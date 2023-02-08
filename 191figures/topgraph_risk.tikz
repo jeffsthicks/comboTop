@@ -1,0 +1,24 @@
+\begin{tikzpicture}[scale=\scalefactor]
+	\input{figuresettings}
+\vertex at (-5,0) {};
+\vertex at (-3.5,0) {};
+\vertex at (-3.5,1.5) {};
+\node[circle, fill=\highlighta, scale=\bigvertexscale] at (-5,1.5) {};
+\vertex at (-5,1.5) {};
+\vertex at (-5.5,2.5) {};
+\vertex at (-7,2.5) {};
+\vertex at (-6,4) {};
+\node[below] at (-3.5,0) {\tiny \stationfont Eastern Australia};
+\node[left] at (-5,0) {\tiny \stationfont Western Australia};
+\node[above] at (-3.5,1.5) {\tiny\stationfont New Guinea};
+\node[left] at (-5,1.5) {\tiny\stationfont Indonesia};
+\node[right] at (-5.5,2.5) {\tiny\stationfont Siam};
+\node[below] at (-7,2.5) {\tiny\stationfont India};
+\node[right] at (-6,4) {\tiny\stationfont China};
+\draw (-6,4) -- (-7,2.5) -- (-5.5,2.5) -- cycle;
+\draw (-5,0) -- (-3.5,0) -- (-3.5,1.5) -- (-5,1.5) -- (-5,0) -- cycle;
+\draw (-3.5,1.5) -- (-5,0);
+\draw (-5.5,2.5) -- (-5,1.5);
+\draw[dashed] (-6,5) -- (-6,4) (-7.5,5) -- (-6,4) (-8,4) -- (-6,4) (-8,3.5) -- (-7,2.5) (-8,2.5) -- (-7,2.5);
+
+\pgfsize \end{tikzpicture}

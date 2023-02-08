@@ -1,0 +1,59 @@
+\begin{doubledpage}{theorem}{Menger's Theorem}{
+	The path connectivity of a graph is equal to the vertex connectivity of the graph.  }
+\label{graph:thm:mengers}
+We first show that the path connectedness is at most the vertex connectedness. 
+Suppose that  $v_1, \ldots, v_k$ form a disconnecting set which separates $G$ into two components $G_1$ and $G_2$.
+Pick a vertex $u_1\in G_1$, and $u_2\in G_2$.
+There can be at most $k$ disjoint paths between $u_1$ and $u_2$, as each path must use one of the $k$ points in the intersection.
+This shows that the path connectivity is less than the vertex connectivity.
+\begin{paragraphfigureenv}[Setup:]{191figures/topgraph_mengersetup.tikz} To show that the path connectedness is at least the vertex-connectedness, we will prove a stronger statement.  Suppose that $G$ is $k$-connected,  and let $A$ and $B$ be disjoint subgraphs of $G$.
+We will show that whenever we have a collection of fewer than $k$ disjoint paths from $A$ to $B$, we can find a larger connection of disjoint paths from $A$ to $B$. Let's set up some notation for this. 
+\end{paragraphfigureenv}
+\begin{claimfigureenv}[Inductive statement for Menger's Thm.]{191figures/topgraph_mengersetup2.tikz}
+Suppose that $A$ and $B$ are subgraphs of $G$ each containing at least $k$ vertices.
+Let $b_1, \ldots, b_n$ be vertices of $B$, with $n<k$. 
+Let $\mathcal P_n=\{P_1, \ldots , P_n\}$ be a collection of disjoint paths $G$, which 
+\begin{itemize}
+    \item only intersect $A$ at their left endpoints,
+    \item only intersect $B$ at their right endpoints, which are the specified vertices $b_i$. 
+\end{itemize}
+Then there exists a point $y\in B$ and  collection $\mathcal P_{n+1}$ of $n+1$ disjoint paths in  $G\setminus (A\cup B))$ which satisfy the above conditions, with right endpoints $b_1, \ldots, b_n, y$. 
+\end{claimfigureenv}
+
+We will prove this by inducting  on the size of $G\setminus B$. When $B$ is all of $G\setminus A$, then each path $P_i$ consists of a single edge, and $k$-connectedness gaurentees that $A$ cannot be separated from $B$ by fewer than the removal of $k$-vertices.
+For our inductive step, let us assume that the claim holds for every subgraph $B'$ containing $B$.  Let's look at our current graph and subgraph $B$. 
+Now, we will randomly construct a new path $Q$ from $A$ with a  random endpoint in $B$.
+If this path is disjoint from the $\mathcal P_n$, then we are done.
+Now, we use the inductive hypothesis by expanding the subgraph $B$ to include a point from the path $Q$. Let $x$ be the final point where the path $Q$ intersects the collection $\mathcal P_n$, and without loss of generality we will assume that $x$ lies on the path $P_n$.
+\begin{paragraphfigureenv}{191figures/topgraph_mengersetup3.tikz}
+     Denote by $Q_y$ the segment of $Q$ going from $x$ to $y$, and $Q_b$ the segment of $Q$ going from $x$ to $b_n$.  Now  enlarge $B$ by including the path $Q_b$ and $Q_y$, 
+\[B':= B\cup Q_b\cup Q_y.\]
+The end points $b_1, \ldots, b_{n-1}, x$ satisfy the conditions of the claim.  By our inductive hypothesis, there exist disjoint paths $\mathcal P_{n+1}'$ going from $A$ to end points $b_1, \ldots, b_{n-1}, x, z$ in $B'$. 
+\end{paragraphfigureenv}
+
+At this point we've found a subgraph $B'$ containing $B$, and we would like to reduce down to $B$.
+We break into different cases based on the location of the point $z$. 
+
+\begin{paragraphfigureenv}{191figures/topgraph_mengercase1.tikz}
+    \textbf{Case 1:} In the easy case, $z$ belongs to our original set $B$. In this case, replace $y$ by $z$ in the original step. The paths $P_1', \ldots P_{n-1}'$ and $P_{n+1}'$ with endpoints $b_1, \ldots, b_{n-1}, z$ are disjoint. To create a final path with endpoint on $b_n$, we take the concatenation of the path $P_{n}'$ with endpoint $x$, and the path $Q_b$. Since $Q_b\subset B'$, it is disjoint from all of the $P'_i$ we've constructed so far. This gives us the collection $\mathcal P_{n+1}$ 
+\end{paragraphfigureenv}
+The more difficult case is when  $z$ only belongs to the enlargement  $B'$. Then $z\in B'\setminus B = Q_b\sqcup Q_y$. By construction, the paths $Q_b$ and $Q_y$ are disjoint, so either $z\in Q_b$ or $z\in Q_y$. 
+\begin{paragraphfigureenv}{191figures/topgraph_mengercase2.tikz} \textbf{Case 2a}
+    Suppose that $z\in Q_y$. Then consider the paths 
+    \begin{itemize}
+        \item $P''_n$, which is $P'_n$ concatenated with $Q_b$, and 
+        \item $P''_{n+1}$, which is $P'_{n+1}$ concatenated with the portion of $Q_y$ lying after $z$. 
+    \end{itemize} 
+    These two paths are disjoint from the $P'_1, \ldots, P'_{n-1}$, and are additionally disjoint for eachother. These paths are seen to have interior vertices which are disjoint from $B$, and by construction have left endpoints in $A$. The $\{P_1', \ldots, P'_{n-1}, P''_n, P''_{n+1}\}$ satisfy the conditions of the claim. 
+\end{paragraphfigureenv}
+
+\begin{paragraphfigureenv}{191figures/topgraph_mengercase3.tikz}
+    \textbf{Case 2b}
+     Alternatively, it may be the case that $z$ lies on the path $Q_b$. T
+     \begin{itemize}
+         \item $P''_n$, which is $P'_{n+1}$ concatenated with $Q_b$, and 
+         \item $P''_{n+1}$, which is $P'_{n}$ concatenated with the portion of $Q_y$ lying after $z$. 
+     \end{itemize}  
+     As in the previous case, the paths $\{P_1', \ldots, P'_{n-1}, P''_n, P''_{n+1}\}$ satisfy the conditions of the claim.
+\end{paragraphfigureenv} 
+\end{doubledpage}

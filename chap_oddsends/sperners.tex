@@ -1,0 +1,84 @@
+
+\section{Sperner's Lemma}
+	We digress for a moment to talk about the 2 dimensional case of Sperner's lemma, which discusses colorings of triangulations. A triangulation is a network of vertices and edges, where every face of this network is a triangle. 
+	\begin{theorem}[Sperner's Lemma]
+	Let $T$ be a triangulation of $x+y+z=1$ with $x, y, z\geq 0$ with labeled vertices $t_{xyz}$. Suppose each vertex is colored either red, green or blue in such a way that 
+	\begin{itemize}
+	\item If $x=0$, then $t_{xyz}$ is not colored red
+	\item If $y=0$, then $t_{xyz}$ is not colored blue
+	\item If $z=0$, then $t_{xyz}$ is not colored green
+	\end{itemize}
+	Then there exists a small triangle in the triangulation, $\Delta$ that has the color of all three vertices different.
+	\end{theorem}
+	\begin{proof} 
+	We will call the small triangles $\Delta$ rooms, which we will usually identify with their bottom left corner.
+	We add a ``door'' to the edge in the array $T$ if the vertices that bound the edge are blue and red. Then all rooms with just 1 door have all different colors for vertices. Every other room has either no doors or 2 doors. 
+	By construction, one side of $T$ contains only blue and red vertices. If a door separates the interior and the exterior of $T$, then it must lie on this blue-green side.
+\[
+         Sperners!%       \includegraphics[scale=.4]{SpernerPath}
+\]
+	\begin{exercise}
+	Prove that there an odd number of doors that separate the interior of $T$ to the exterior of $T$.
+	\end{exercise}
+	For each door on the boundary of $T$, construct a path that travels through $T$ by going through doors, and only going through a door once. This process uniquely determines a path for each initially selected door. This path either terminates in $T$, or it at some point leaves $T$ through another door. As each path that can both enter and leave $T$ uses 2 boundary doors, there must be a path that is unable to leave $T$, as the number of doors on the boundary of $T$ is odd. This implies that a path gets "stuck" in $T$, i.e. it moves into a room with just 1 door. This implies the existence of a red-green-blue room.
+	\end{proof}
+
+Using Sperner's Lemma, we prove Brower's fixed point theorem. 
+\begin{theorem}[\cite{brouwer1911abbildung}].
+Every continuous function $f: D^2\to D^2$ fixes some point. 
+\end{theorem}
+\begin{proof}
+We first prove that there is no function $g: D^2\to \partial D$ that acts as the identity on $\partial D$. Take a triangulation of $D^2$, and divide $\partial D$ into three components: Red, green, blue. Then a map $g:D^2\to \partial D$ gives a coloring to any triangulation of $D^2$. By Sperner's lemma, there must be a RGB triangle. This means that the vertices of the triangle are mapped to the Red, Green and Blue components respectively. This is impossible, as  the map is suppose to be continuous (and therefore uniformly continuous), but an arbitrarily small triangle is mapped to a set of large size.\\
+With this, it is easy to prove that every function $f: D^2\to D^2$ fixes a point. We prove by contradiction. Suppose that $f$ is a function that has no fixed points. Then define a new function,  $H(x,  t): [0, 1]\times D^2\to D^2$ by the following method:
+	\begin{itemize}
+		\item Suppose that you want to know $H(x,  t)$. Draw the points $x$ and $f(x)$.
+		\item Draw a line from $f(x)$ through $x$. This hits a unique point on the boundary of the circle.
+		\item Define $H(x, t)$ to be that point which is $100\cdot t\%$ along the line that you have just drawn. 	When $t=0$,  this should be the identity. When $t=1$,  $H(x,  t)$ always gives a point on the boundary circle. 
+	\end{itemize}
+	Notice that the second step in this definition crucially uses the fact that $f(x)\neq x$ for all $x$. Additionally,  $h(x)$ is a continuous function. Finally,  notice that $H(x, t)$ is a deformation retract to the boundary of the disk. However,  we know that there is no deformation retract of the disk to the circle; this is a contradiction! 
+\end{proof}
+
+This theorem is 
+
+
+\subsection{Nash Equilibria}
+Nash Equilibria is a method that you can apply to mixed strategy problems.
+\begin{definition}
+	A \emph{strategy game} between $k$ players is the following pieces of data:
+	\begin{itemize}
+		\item For every player $i$,   a non-empty finite set $S_i$ of \emph{strategies}.
+		\item For every player $i$,  a continuous function $P_i: S_1\times S_2\times  S_k\to \R$ called the \emph{payoff} function,  which assigns to each possible combination of strategies played,  the payoff of player $i$. 
+	\end{itemize}
+\end{definition}
+\begin{definition}
+	A \emph{set of mixed strategies} for $k$ players is a function $\Sigma: S_1\times S_2\times S_k\to \R$ where $\sum_{s\in S_k} f(s)=1$. The set of all mixed strategies denoted to $\mathbb D$. 
+\end{definition}
+\begin{definition}
+	A \emph{Nash Equilibrium} is a set of mixed strategies $x\in \mathbb D$ where each player cannot improve their utility by changing their specific strategy (with all other players' strategies kept the same). 
+\end{definition}
+
+Notice that the set of mixed strategies is homeomorphic to $D^{|S_1|}\times \cdots \times D^{|S_k|}\cong D^{|S_1|+\cdots +|S_k|}$. 
+\begin{definition}
+	Given a mixed strategy $\Sigma$,  we define the expected payoff of $\Sigma$ to be 
+	\[\mathbb{E}(\Sigma):= (\sum_{s\in S_1} \Sigma(s) P_1 (s),  \sum_{s\in S_2} \Sigma(s) P_2(s),  \ldots,  \sum_{s\in S_k} \Sigma(s) P_k(s))\]
+	This expected payoff function is a continuous function from the set of mixed strategies to the set of all payoffs,   $\mathbb D \to \R^k$. 
+\end{definition}
+\begin{definition}
+	Given a mixed strategy $\Sigma$,  define the \emph{Best Response of player $i$} of $\Sigma$ to be the subset of $D^{|S_i|}$ which maximizes player $i$ payoff,  assuming all of the other players maintain the same strategy.\\
+	Given a mixed strategy $\Sigma\in \mathbb D$,  define the \emph{updated strategy} to be the subset $Up(\Sigma)$ where every player has replaced their strategy with a Best Response. 
+\end{definition}
+
+\begin{claim}
+	Let $\Sigma \in \mathbb D$ be a mixed strategy. If $\Sigma\in Up(\Sigma)$,  then $x$ is a Nash Equilibrium point. 
+\end{claim}
+\begin{proof}
+	Check the definitions. 
+\end{proof}
+\begin{theorem}
+	Every mixed strategy game has a Nash Equilibrium. 
+\end{theorem}
+\begin{proof}
+	We have the update strategy function that takes a mixed strategy $\Sigma\in \mathbb D$ and replaces it with the set of mixed strategies that are the best possible response. This set is convex. Define the average mixed strategy to be the average of $Up(\Sigma)$. We will denote this as 
+	\[\widetilde{Up}(\Sigma)\]
+	Now,  $\widetilde{Up}(\Sigma)$ is a function from $\mathbb D\to \mathbb D$. Since $\mathbb D$ is homeomorphic to a disk,  this function must have a fixed point. This fixed point has the property that $x=\widetilde{Up}(x)\subset Up(x)$. So this gives us a Nash Equilibrium.
+\end{proof}

@@ -1,0 +1,63 @@
+
+\section{A tie in to Multivariable Calculus}
+While an exposition of the tools used in differential geometry (manifolds, tangent bundles and the de Rahm cohomology) is beyond the scope of these notes, some of the basic constructions of de Rahm theory can already be accessed using multivariable calculus and have relevant analogies to constructions in this course.\\
+Due to the notational limits of multi variable calculus, we will strictly work in the 3 dimensional case-- however, all of these results hold equally as well in the 2-dimensional case, and with the development of the language of differential forms can be made to work on arbitrary smooth manifolds. 
+\begin{definition}
+	Let $U$ be a subspace of $\R^3$. A \emph{smooth function} on $U$ is a function $f: U\to R$ which is infinitely differentiable. A \emph{smooth vector field} is a triple of smooth functions 
+	\[X=\langle f, g, h\rangle.\]
+	We'll denote the space of all smooth function $\Func(U)$, and the space of all smooth vector fields $\Vect(U)$. 
+\end{definition}
+Most of an introductory multivariable calculus course is devoted to defining a variety of tools that can be used manipulate vector fields and functions. We break these into 3 classes: products, differentials, and integrals. 
+
+\subsection{Differentials}
+One of the principle difficulties of learning multivariable calculus is finding a good framework to fit in the multitude of different derivatives that are introduced in the course. In 3 dimensions, we have no fewer than 3 different types of derivatives, each measuring different properties with different physical intuitions. We'll quickly review these different derivatives and fix the notation that we'll use for the remainder of this section. \\
+The first derivative that we're introduced to in multivariable calculus is the \emph{gradient} which is defined in any dimension. The gradient inputs a smooth function $f$ and outputs a vector field $\grad f$. \footnote{Also sometimes denoted as $\nabla\cdot f.$}
+\begin{align*}
+\grad: \Func(U)\to& \Vect(U)\\
+f\mapsto &\langle f_x, f_y, x_z\rangle 
+\end{align*}
+One intuition for the physical meaning of the gradient in $\R^n$ is that it returns the vector field that points in the direction of largest increase of our vector field. This intuition tells us why, for instance, the zeros of the gradient correspond to critical points of the function $f$. \\
+Given a vector field, there are two different kinds of derivatives that we can take. The first variety is the \emph{curl}, which outputs another vector field. 
+\begin{align*}
+\curl: \Vect(U)\to&\Vect(U)\\
+\langle f, g, h\rangle \mapsto & \langle h_y-g_z, f_z-h_x, g_x-f_y\rangle
+\end{align*}
+The curl of a vector field is suppose to be a measure of how much rotational inertia a vector field imparts on a particle that is being moved by the vector field; the magnitude of the curl field gives the amount of energy imparted while the direction of curl field denotes the plane of rotation. \\
+The second type of derivative that we can take is the \emph{divergence}, which outputs a function. 
+\begin{align*}
+\ddiv: \Vect(U)\to&\Func(U)\\
+\langle f, g, h\rangle \mapsto& f_x+g_y+h_z
+\end{align*}
+Should a vector field $X$ measure the flow of a fluid, the divergence of a vector field is suppose to measure the net compression / decompression of $X$ at any given point. \\
+Without more intuition, it's not possible to tell how these three operators fit together in a unified framework; however, the following 2 lemmas suggest that we should think of these in the sequence 
+\[
+\begin{tikzcd}
+0 \arrow{r} &\Func(U)\arrow{r}{\grad} & \Vect(U) \arrow{r}{\curl} & \Vect(U) \arrow{r}{\ddiv} & \Func(U)\arrow{r} & 0 
+\end{tikzcd}
+\]
+\begin{claim}
+	The composition $\curl\circ \grad(f)=0$. 
+\end{claim}
+This is sometimes stated as ``every gradient vector field is conservative'' or ``every gradient  field is curl free.'' The proof of this claim is by a simple algebraic computation. 
+\begin{claim}
+	The composition $\ddiv \circ \curl (X)=0$. 
+\end{claim}
+This is sometimes stated as ``every curl field is noncompressible'' or ``every curl field is divergence free.'' Again, the proof of this claim is simply checking the definitions. \\
+With these claims and the machinery built in class, we come to the somewhat remarkable observation that 
+\[
+\begin{tikzcd}
+0 \arrow{r} &\Func^0(U)\arrow{r}{\grad} & \Vect^1(U) \arrow{r}{\curl} & \Vect^2(U) \arrow{r}{\ddiv} & \Func^3(U)\arrow{r} & 0 
+\end{tikzcd}
+\]
+is a (co)chain complex. This chain complex is very different than those that we've defined earlier in class, as each of the chain groups has uncountable dimension. Never-the-less, it still makes sense to make the following definitions:
+\begin{definition}
+	Let $U$ be a subset of $\R^3$. Define the \emph{de Rahm cohomology groups} to be the quotients 
+	\begin{align*}
+	H^0_{dr}(U)=\ker(\grad) && H^1_{dr}(U)=\frac{\ker(\curl)}{\im(\grad)}\\
+	H^2_{dr}(U)=\frac{\ker(\ddiv)}{\im(grad)} && H^3_{dr}(U)=\frac{\Func^3(U)}{\im(\ddiv)}.
+	\end{align*}
+\end{definition}
+
+\subsection{Integrals}
+
+\subsection{Some Sample Computations}

@@ -1,0 +1,77 @@
+\clearpage
+\laststation{Exercises}
+\begin{exercise}
+ Let $G$ be a graph. We call a vertex \emph{even} if its degree is even, and odd otherwise.  Prove that there are an even number of odd vertices. 
+ \label{exer:evengraph} 
+\end{exercise}
+
+\begin{exercise}[Bridges of Konigsberg]
+ A \emph{Walk} is a sequence of vertices which are pairwise connected by edges, and we are allowed to possibly to repeat vertices. Let $G$ be a connected graph. Show that there is a walk in $G$ that uses every edge exactly 1 time if and only there are at most 2 odd vertices.\label{exer:konigs} 	
+\end{exercise}
+\begin{exercise}
+ A connected graph which contains no cycles is called a \emph{tree.} Prove that the following are equivalent:
+	\begin{itemize}
+		\item $G$ is a tree. 
+		\item $G$ is minimally connected,  that is $G\setminus e$ is not connected for any removed edge $e$
+		\item $G$ has no cycles, but adding an edge between any two vertices which do not have an edge already induces a cycle.  
+		\item Between every two vertices there exists a unique path. 
+		\item $G$ is connected and has $|V|=|E|+1$. \\
+	\end{itemize}
+	\label{exer:tree}
+\end{exercise}
+\begin{exercise}
+Show that the edge connectivity is necessarily larger than the vertex connectivity. 
+\label{exer:edgeconnectivity}
+\end{exercise}
+\begin{exercise}
+Show that for every graph $G$, there exists a graph $H$ so that $G$ is a minor of $H$ and for all $v\in V(H)$, $\deg(v)\leq 3$. \label{exer:cubiceasy}
+\end{exercise}
+
+\begin{exercise}
+A graph is called \emph{cubic} if every vertex has degree exactly 3. Show that every graph $G$ is a minor of some cubic graph $H$. \label{exer:cubichard}
+\end{exercise}
+
+\begin{exercise}
+\label{exer:3minors}
+Suppose for all vertices $v\in V(G)$, $\deg v\leq 3$. Show that the following are equivalent:
+\begin{itemize}
+\item $G$ is a topological minor of $H$. 
+\item $G$ is a minor of $H$. 
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}
+Show that the reliability polynomial of a tree only depends on the number of edges in the tree. 
+\label{exer:reliabilitytree}
+\end{exercise}
+
+\begin{exercise}
+Produce two non-isomorphic graphs $G$ and $G'$ which are not trees and \[R_G(p)=R_{G'}(p).\]
+\label{exer:reliabilitynonisomoprhic}
+\end{exercise}
+\begin{exercise}
+Show that either $R_G(p)=0$, or $R_G(p)$ has no zeros in the interval $(0,1)$.
+\label{exer:reliabilityzero}
+\end{exercise} 
+\begin{exercise}
+	Show that a graph $G$ is 3-connected if and only if it contains a $K_4$ minor. 
+	\label{exer:tuttestheorem}
+\end{exercise}
+\begin{exercise} 
+Despite the cycle number being defined via the cycle space, we can compute it without using all of this algebra. 
+\begin{itemize}
+\item Let $e$ be an edge so that $G\setminus e$ is still connected. Show that $b_1(G)-1=b_1(G\setminus e)$. 
+\item Suppose that a graph $G$ is connected. Prove that $b_1(G)=|E|-|V|+1$. 
+\item Generalize the above formula to when $b_0(G)\neq 1$. 
+\end{itemize}
+\label{exer:simpleb1}
+\end{exercise}
+
+\begin{exercise}
+Recall that $b_0(G)$ is the number of connected components of a graph $G$. Show that $b_0(G)=\dim \mathcal V - \dim \im(d).$\label{exer:simpleb0}
+\end{exercise}
+
+\begin{exercise}
+Compute $b_1(K_n)$, the dimension of the cycle space of the complete graph on $n$-vertices. What about $b_1(K_{m,n})$?
+\label{exer:b0kn}
+\end{exercise}

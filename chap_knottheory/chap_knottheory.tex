@@ -1,0 +1,748 @@
+\leavevmode\thispagestyle{empty}\newpage
+\AddToShipoutPictureBG*{%
+\AtPageLowerLeft{\includegraphics[width=\paperwidth,height=\paperheight]{coverchap4}}
+}
+
+\chapter{Knot Theory}
+\section{Introduction to Knots}
+\begin{wrapfigure}{l}{7cm}\includegraphics[scale=1]{knot_ether} \caption{Kelvin's Ether Trefoil}
+\end{wrapfigure}  Knot theory has an interesting mathematical history. In the 1860's, Lord Kelvin developed  the following theory of matter: that atoms, the  indivisible particles that composed the universe, were  actually tiny whirlwind vortices in the ether. The  shape of these vortices were tiny knots, and that one could make compounds out of these Knots by linking  them together. Inspired by the quest to classify  atoms, a mathematician named Tait made a list of  all knots up to 10 crossings (no small feat,  considering that there are around 250 of them).\\
+
+Kelvin's theory turned out to be incorrect (principally because the theory of ether was unfounded) but mathematicians  kept on thinking about knots, It took mathematicians nearly a hundred  years to realize that Tait's list contained an error, and we still study knots to this day. Not because they represent  atoms, but because the are some of the simplest objects a  topologist can study: maps from the circle to 3-dimensional  space. And despite these objects being so fundamental,  a quick classification of Knots eludes mathematicians to this  very day. In this section, we'll take the first step to classifying  knots, by describing invariants of the knot and giving a  procedure to (non-uniquely) describe every Knot.\\
+Let's first make some attempts at defining the principle objects of this chapter.
+\subsection{Preliminary Definitions of Knots}
+One might start by considering knots as mathematical representations of the objects that we call knots in everyday life. A knot is a embedding of a piece of string into three dimensional space; one might represent this with an injective smooth function $f: [0, 1]\to \R^3$. While this definition of a knot most resembles the knots that we use in everyday life, these knots all represent the same object up to smooth deformation, as every knot in a piece of unclosed string can be untied. While this is practical for real applications the topological theory of such knots would be trivial. 
+\begin{wrapfigure}{r}{4cm}
+\centering
+\includegraphics[scale=1]{knot_undo}
+\caption{One can untangle any open knot by doubling back along the original string.}
+\end{wrapfigure} 
+For this reason, there is little overlap between the practical theory of knots and topological knot theory. There is a non-topological knot theory,\project which studies the ``laundry machine'' problem: given a piece of string, what is the probability that it forms a tangle of a certain complexity. This has applications in polymer modeling, DNA topology. \label{proj:knottangle} \\
+The topological study of knots looks at maps from the circle to three dimensional space, which makes them more difficult to untangle. A  \emph{wild knot} is a continuous injective function from $S^1\to \R^3$.  Unfortunately, wild knots are hard to study using combinatorial tools, as there can be all kinds of strange topological phenomenon that show up with continuous injective maps.  
+\begin{figure}
+\centering
+\includegraphics[scale=1]{knot_wild}
+\caption{An example of a wild knot}
+\label{fig:knot:wild}
+\end{figure}
+By working with a more restrictive set of function to define  knots we are able to solve both problems. We will force our knots to be combinatorial by describing them with a discrete amount of data.   \footnote{There are several ways to do this; one is to require the map $f: S^1\to \R^3$ to have a small tubular neighborhood which is preserved by isotopy; however, we will take a more combinatorial definition.}\\
+
+\definitionfigure{ A \emph{knot} is an injective, continuous function \[K:S^1\hookrightarrow \R^3\] whose image is a finite collection of line segments. 
+We will frequently refer to the image of the function $K$ as the knot, and forget the parameterization. \\
+While the strict definition of a knot will require the piecewise linear structure, we will oftentimes forget the piecewise linear structure and draw the knot as a curve.}{\includegraphics[scale=1]{knot_linearization}}
+
+We could also look at a collection of knots at the same time.  A \emph{link} is an injective, continuous function $L:S^1\sqcup S^1\sqcup \cdots \sqcup S^1 \hookrightarrow \R^3 $ whose image is a finite collection of line segments. We will frequently refer to the image set as the link. \\
+As topologists we are interested in how knots behave up to continous deformations. Since our definition of knot has piecewise linear structure, the deformations we use will be restricted to those deformations which preserve the PL structure. \\
+
+
+\stepcounter{theorem}
+\noindent\begin{minipage}{\textwidth}
+
+\setlength\intextsep{0pt}
+\begin{wrapfigure}{r}{4cm}
+\centering
+\includegraphics[scale=1]{knot_triangle}
+
+\end{wrapfigure}
+\textbf{Definition \thetheorem}
+Let $K_0, K_1$ be knots. We say that $K_0$ and $K_1$ differ by a \emph{triangle move} if there exists a triangle $\Delta\subset \R^3$ whose boundary is contained in $\partial \Delta\subset K_0 \cup K_1,$
+and whose interior is disjoint from the knots
+$(\Delta\setminus \partial \Delta)\cap (K_0\cup K_1)=\emptyset.$
+The example on the right has a valid and invalid triangle move.
+\end{minipage}
+
+We should think that the triangle $\Delta$ describes how we can piecewise linearly slide between the knots $K_0$ and $K_1$. We will say that two knots $K_0$ and $K_n$ are  \emph{ambient isotopic} if there exists a sequence of knots $K_0, K_1, \ldots,  K_{n-1}, K_n$ so that $K_i, K_{i+1}$ differ by a triangle move. We'll write $K_0\sim K_1$ if there is an ambient isotopy between them. \footnote{We'll also say that $K_0$ and $K_1$ are isotopic, deformable, the same or similar when they are ambient isotopic.} The principle question of knot theory asks if there is an effective algorithem for determining if two knots $K_0$ and $K_1$ are ambient isotopic. It can be difficult to tell whether a knot is isotopic to the unknot (Figure \ref{fig:knot_moves}) or not.
+\begin{figure}
+\centering
+\includegraphics[scale=1]{knot_moves}
+\caption{It is difficult to tell if a knot is the unknot.}
+\label{fig:knot_moves}
+\end{figure}
+Our goal in this section is to address 3 problems:
+\begin{itemize}
+\item Make our planar representations of knots mathematically rigorous
+\item Give a simpler combinatorial description of knot equivalence so we can quickly give equivalences between knots. 
+\item Produce \emph{invariants} that allow us to tell when two knots are not isotopic. 
+\end{itemize}
+\subsection{Planar Representations}
+
+Since we can't actually visualize knots well in 3-dimensions, we frequently look at the their two dimensional projections. In order to make these pictures understandable, we require that the projection only have double intersections.\\
+\definitionfigure{ Let $K:S^1\to \R^3$ be a knot, and let $\R^2\subset \R^3$ be a plane disjoint from $K$.  A projection $\pi: \R^3\to \R^2$ is a \emph{knot projection of $K$} if there are no points $x,y,z\in S^1$ such that $\pi(K(x))=\pi(K(y))=\pi(K(z))$. In such a drawing each non-injective  point of the composition $\pi\circ K: S^1\to \R^2$ is a double point. \\
+A \emph{knot diagram of $K$} is an assignment of \emph{over or under crossings} to each double point in a knot projection of $K$. This assignment is done  so that the overstrand represents the portion of $K$ which is further away from $\R^2$.}{
+\includegraphics[scale=1]{knot_projection}}
+
+Notice that the same knot could have multiple knot diagrams and knot projections, so it is in some ways more difficult to work with knot projections than the actual knot. However, knot diagrams enjoy several nice properties.
+\begin{itemize}
+\item With some analysis, one can show that such a projection always exists if $K$ is a knot. 
+\item It is interesting to note that given a knot diagram of $K$, one can always construct a knot $K_1$ which is ambient isotopic to $K$. 
+\item They are easy to draw.
+\end{itemize}
+If we are willing to work with knots up to isotopy, a knot diagram is just as good as an actual map $K: S^1\to \R^3$ for describing a knot. Since these pictures are much easier to use, we will in practice use the word ``knot'' for ``knot diagram.'' 
+We could reduce our description of knot diagrams to more combinatorial tools by thinking of the planar diagrams as graph embeddings. In this language, a knot diagram is a planar graph $G$ with an embedding where every vertex has degree 4. Additionally, at each vertex we pick 2 edges which do not share a face, and call these the \emph{over edges.} From this description, it is easy to see that knots have completely combinatorial descriptions. \\
+Here are several examples of different knots that we'll be frequenting throughout the course given by their planar descriptions.\\ 
+
+\examplefigure[Unknot, Trefoil, $4_1$, Hopf Link]{The four knots that we'll see the most throughout the course are the \emph{Unknot, Trefoil, $4_1$} and \emph{Hopf Link}. The trefoil is the ``simplest'' knot under many metrics; for instance, it is the only non-trivial knot that can be drawn with 3 or fewer crossings. There are 2 versions of the figure 8: the right handed version is drawn. \\The Figure 8-knot will be our other frequently used example, as it is easy to draw.  }{\includegraphics[scale=1]{knot_commont}}
+
+
+\examplefigure[Torus Knots]{A torus link is given by wrapping strings around the torus with the standard embedding in $\R^3$. Pick $p\in \N q\in \Z$. Then the \emph{$(p,q)$ torus link }is created by drawing $p$ parallel equidistant vertical lines on the cylinder, and embedding that cylinder on the torus after twisting one of the ends $2\pi q/p$-radians. Notice that this is a knot if and only if $p,q$ are coprime. Furthermore, the $(p,q)$ torus link is isotopic to the $(q, p)$ torus link. The trefoil is the $(3,2)$-torus link. Torus knots are not just useful due to their quick description; they also have many special geometric properties amoung knots. In particular, they are an infinite family of \emph{flat} knots.}{\includegraphics[scale=1]{knot_torus}}
+\examplefigure[Pretzel Link]{Let $p, q, r\in \Z$. The $(p,q,r)$ Pretzel link is  created by placing $p, q, $ and $r$ twists in each of the boxes labeled $p, q, $ and $r$ on the right. These knots, while not mathematically special, are used in a variety of examples and counterexamples for knots displaying certain properties, and are good to have in your toolbag. }{\includegraphics[scale=.5]{knot_pretzel}}
+
+\examplefigure[Braid closures]{A \emph{braid} on $n$-strings is a sequence $\beta$ of elements  $\{\sigma_1, \ldots, \sigma_{n-1},\sigma_1^{-1}, \ldots, \sigma_{n-1}^{-1}\}.$ Such a string determines an embedding of $\hat\beta: [0,1]\times \{1, \ldots, n\}\hookrightarrow\R^3$ recursively, where 
+\[\widehat{\sigma_i \beta}\] is the embedding $\beta$ with the ends on the $i$th and $i+1$th string switched.\\
+For every braid $\beta$, we get a link, called the \emph{braid closure} of $\beta$. Graphically, this link is created by consistently gluing the two ends of each ``string'' in the braid to itself.\\
+Braid closures give us a quick algebraic notation to describing braids. We will later return to braids and explore their algebraic properties in Section \ref{sec:knot:braids}}{\includegraphics[scale=.5]{knot_braid}\\\includegraphics[scale=.5]{knot_braidclosure}}
+
+\subsection{Reidmeister Moves}
+We now have a good planar represntation of knots, so we can quickly describe our three -dimensional objects with 2-dimensional pictures. We will now describe a simpler set of ``moves'' than the triangle moves which better with the planar representations that we will be using. 
+\begin{theorem}
+All $\Delta$ transformations can be described by either planar isotopy of the diagram, or one of the following 3 replacements in the digram, called \emph{Reidemeister moves}. \\
+
+\textfigure[4cm]{
+The first Reidemeister move switches adds a twist to a small section of the knot. This move changes the number of crossings in the diagram by one; it also introduces a \emph{twist} into the knot. In addition to this version of the first Reidemeister move, there is also the twist that goes in the other direction } {\includegraphics[scale=1]{knot_r1}}
+\textfigure[4cm]{
+The second Reidemeister Move takes two pieces of strings and allows one to pass over the other. This increases the number of crossings by 2; however, if we were to count crossings with \emph{orientation}, the resulting crossings would have opposite orientation and cancel each other out. There is additionally the other version of this Reidemeister move where the right strand passes over the left. }{\includegraphics[scale=1]{knot_r2}}
+\textfigure[4cm]{The third Reidemeiseter move takes a piece of string and passes it behind a crossing. This is the only Reidemeister move that neither increases or decreases the number of crossings. There are 4 variations of this Reidemester move, and we do not include them here; for instance, the string could pass in front of the crossing, or the crossing could be in the other direction.  }{ \includegraphics[scale=1]{knot_r3}}
+\end{theorem}
+Before we go into the proof of this theorem, let's look at a specific example.
+\begin{figure}
+\centering
+\includegraphics[scale=1]{knot_movesreid}
+\caption{A sequence of Reidmeister moves transforming to the  unknot: R3, R2, R2, R1. }
+\end{figure}
+Notice that the use of Reideimester moves makes the description of knot isotopies a purely combinatorial exercise. 
+\begin{proof}
+The idea is to break up your triangle move into lots of smaller triangle moves. \\
+Let $K_1$ and $K_2$ be two knots which differ by a triangle move, and let $\pi$ be a knot projection for both $K_1$ and $K_2$. Notice that the knot diagrams of $K_1$ and $K_2$ line up exactly except along the place where the triangle move was done. Let $K$ be the collection of line segments in the projection where $K_1$ and $K_2$ agree, and let $T$ be the image of the triangle under the projection $\pi$. 
+\begin{claim} there exists a subdivision of the triangle $T$ into smaller triangles $T_i$ so that each smaller triangle is one of three types:
+\begin{itemize}
+\item (Case 1) $T_i$ intersects with a single line segment from $K$, which hits a vertex of $T_i$ and an edge of $T_i$. 
+\item (Case 2) $T_i$ intersects with a single line segment from $K$ which hits 2 different edges of $T_i$. 
+\item (Case 3) $T_i$ intersects with 2 line segments from $K$ which are crossing and meet $T_i$ at the edges of $T_i$. 
+\end{itemize}
+\end{claim}
+One can visually inspect that cases 1, 2 and 3 correspond to the three different types of Reidemeister moves. 
+\end{proof}
+Reidemeister's theorm allows us to reduce the study of knots to a pure combinatorics problem. From here on out, we will only refer to knots $K$ by their knot diagrams, and we will say that two knot (knot diagrams) are isotopic  (represent the same knot)   if there is a sequence of Reidemeister diagrams. \\
+We can now rephrase the question motivativing question for the rest of this chapter: when do two knot diagrams $K_1$ and $K_2$ represent the same knot?
+\subsection{A first Knot Invariant: Coloring}
+We can distinguish knots by assigning to them quantities which are independent of the choice of knot diagram. 
+\begin{definition} A \emph{knot invariant} is a set $X$ and a function $f:K\to X$, where the value of the $f(K)$ is independent of the diagram of $K$.\end{definition}
+Notice that a knot invariant does not need to distinguish knots; just because $K_0$ and $K_1$ are different knots does not necessarily mean that $f(K_0)\neq f(K_1)$. However, whenever $f(K_0)\neq f(K_1)$, we say that the link invariant $f$ \emph{distinguishes} the knots from eachother.\footnote{One can similarly define \emph{link invariants}, which are similar except that the domain is over link diagrams. In fact, every link invariant gives a knot invariant. Confusingly, mathematicians usually call link invariants simply ``knot invariants.'' }\\
+ A good knot invariant should have the following properties:
+\begin{itemize}
+\item It should distinguish many different knots/ links  from eachother.
+\item It should be relatively easy to compute.
+\item It should give us some geometric / topological information about the knot/ link which is otherwise interesting. 
+\end{itemize}
+Here are a couple of examples of link invariants that one could look at. \\
+\examplefigure[Components]{Given a link $L=K_1\sqcup K_2\cdots \sqcup K_k$, the \emph{component number} of $L$ is the number $k$. This number is very easy to compute, but it doesn't distinguish links very well from eachother -- for example, every knot has the same component number.}{ }
+\wrapexamplefigure[Linking Number]{Take a link $L=K_1\sqcup K_2$ and assign an orientation to the $K_1$ and $K_2$. Take  a planar diagram of $L$. A positive crossing is a crossing in the diagram which $L_1$ and $L_2$ twist according to the right-hand rule, while a negative crossing are those which do not.
+\[\includegraphics[scale=1]{knot_crossingsign}\]
+Let $\ell_+(K_1, K_2)$ and $\ell_-(K_1, K_2)$ be the number of positive and negative crossings for the link $L$. The \emph{linking number} is given by 
+\[\ell(L):=\frac{\ell_+-\ell-}{2}\]
+This is an easy to compute link invariant, and does distinguish more links than the component number does. For example, the Hopf Link on the right has linking number 1. It is not a complete invariant, as exhibited by the Whitehead link.\\ 
+There is also a topological interpretation to linking number. \project\label{proj:linkingnumber}A link induces the \emph{Gauss Map} from $\Gamma:T^2\to S^2$ by looking at 
+\[\Gamma(\theta_1, \theta_2):=\frac{K_1(\theta_1)-K_2(\theta_2)}{|K_1(\theta_1)-K_2(\theta_2)|}.\]
+The resulting map $\Gamma_*: H_2(T^2, \Z)\to H_2(S^3, \Z)$ is a map from the integers to itself, and therefore $\Gamma_*$ is multiplication by an integer; this integer ends up being the linking number. This can similarly be related the \emph{Gauss Linking Integral.} }{\includegraphics[scale=1]{knot_crossingexample}}
+\examplefigure[Minimum Crossing Number]{To every knot diagram, we have a \emph{crossing number}, which is simply the number of crossings that appears in the diagram. This is clearly not a knot invariant; however, we could look at the \emph{minimal crossing number}, which is minimum number of crossings across all planar representations of $K$. Historically, $\min_c(K)$ has been used to enumerate knots; the knot $5_2$ is the second knot discovered that had a minimum crossing number of $5$. \\
+This is a pretty powerful invariant; it is unfortunately very difficult to compute!}{Minimal Crossing Number Figure}
+\begin{example}[Unknotting Number]
+When we study knots, we are allowed to deform them without causing the string to intersect itself. However, if we allow the string to pass through eachother, we can deform any knot to the unknot. The \emph{unknotting number} $\min_u(K)$ of a knot $K$ is minimal number of such self intersections we must allow to get an isotopy from the knot to the unknot. For example, if we allow a string to pass itself once, we can turn the trefoil into the unknkot. One can always show that $\min_u(K)\leq \min_c(K)$. This is a historically difficult number to compute, although it is practically interesting in applied mathematics and biology. One interesting application of this is in untangeling DNA; there is an enzyme that (topoisomerase II) which switches strands of DNA, and the efficieny of this protein is tied to the minimal unknotting number. 
+\end{example}
+\examplefigure[Stick Number]{Our definition of knots is that they are described by a piecewise linear function. The \emph{Stick Number} of a knot is the minimal number of linear pieces needed. }{}
+\examplefigure[Knot Group]{While the topology of $K$ is that of a circle, the topology of the complement $\R^3\setminus K$ is rich (and recovers$K$ completely with a little additional data.) Unfortunately, the tools of homology we've developed are not powerful enough to tell the difference in the topology. However, there is a classical algebraic topology tool, the \emph{fundamental group,} which can. The \emph{knot group} of $K$ is defined to be $\pi_1(\R^3\setminus K).$ \project This group is a very powerful knot invariant, and one can read off many topological\label{proj:knotgroup} properties of the knot in terms of the group theoretic properties of $\pi_1(\R^3\setminus K.)$ Unfortunately, it is not very good for determining if two knots are the same or different, as determining the isomorphism type of a group given it's presentation is a undecidable.}{}
+\examplefigure[Volume]{The complement of a knot $\R^3\setminus K$ can be endowed with additional geometric structure. Given a knot $K$, one can look for geometries (metrics) on the complement $\R^3\setminus K$ which have constant curvature. The resulting metric is uniquely determined by the knot.\label{proj:hyperbolicknot} Should that metric have negative curvature, the resulting volume of $\R^3\setminus K$ will be finite, and an invariant of the knot.}{}
+\subsection{Knot Invariants: an Overview}
+The previous knot invariants discussed were described in ways that did not use not use knot diagram. We're now going to look at an invariant which is constructed using the combinatorial data of a knot diagram. \\
+\begin{definition}
+Let $K$ be a knot diagram. The \emph{arcs} are the diagram are the individual segments of the drawn knot diagram. Let $C$ be a set of colors, and  $A=\{a_1, \ldots, a_k\}$  the arcs of the knot diagram. A \emph{coloring} of $K$ is a map $f: A\to C$. 
+\end{definition}
+We will now look at some special types of colorings with restrictions based on the diagram. Let's color with three colors $\{R, G, B\}$.  We say that a coloring $f: A\to \{R, G, B\}$ is a valid 3-coloring if 
+\begin{itemize}
+\item At each crossing, the arcs $a_i, a_j, a_k$ have either all the same colors, or all different colors; \[f(a_i)=f(a_j)=f(a_k)\;\;\;\;\;\;\;\; f(a_i)\neq f(a_j)\neq f(a_k).\]
+\item There are at least 2 colors used, so that there exists $i, j$ so that $f(a_i)\neq f(a_j).$
+\end{itemize}
+Notice that if at least 2 colors are used and $K$ is a knot, then all 3 colors must be used.  If a knot diagram $K$ has valid non-trivial three coloring, we say that $K$ is 3-colorable. Notice that we've only shown that the property of 3-colorability is a property of knot diagrams, and not yet of knots. In order to show that 3-colorability is a knot property, we need to prove that it is independent of the knot diagram. 
+\begin{claim}
+Suppose that $K_0$ and $K_1$ are not diagrams for the same knot. Then if $K_0$  admits a valid 3-coloring, so does $K_1$. As a result, there is a well defined function \[C_3: \{\text{Knots isotopy Classes}\}\to \{T, F\}\]. 
+\end{claim}
+\begin{proof}
+This proof style of proof is very commonly used in knot theory; one constructs an invariant based on the knot diagram, and then proves that the Reidmeister moves preserve the invariant. 
+
+It suffices to show that the property of valid 3-coloring is preserved under changing our diagram by the Reidemester moves. Let us suppose that $K_1$ and $K_2$ differ by a single Reidmeister move. If $K_1$ has a 3-coloring, can we ``pull-over'' this to a $3$-coloring of $K_2$? \\
+\textfigure[5cm]{We'll give $K_2$ the same coloring as $K_1$ in every place except in the place where we've done the Reidemeister move. For example, suppose that we've consitently 3-colored the remainder of this picture, and that the given portion of the digram is colored red. Then an application of the first Reidemester move gives us a new diagram, which we will recolor. As long as where the ``local picture'' meets the entire knot matches in color, we'll get a coloring of the whole knot again.} {\includegraphics[scale=1]{knot_3colormodify}} The proof that the general Reidmeister moves preserve the property of 3-coloring is a case-by-case check; in Figure \ref{fig:knot_3color} we give a visual inspection of several of the cases. 
+\end{proof}
+\begin{figure}
+\centering
+\includegraphics[scale=1]{knot_3color}
+\label{fig:knot_3color}
+\end{figure}
+We can now make our first proof that two knots are not isotopic. 
+\begin{corollary} 
+The Unknot is not deformable to the trefoil.
+\end{corollary}
+\begin{proof}
+ The trefoil is 3-colorable, while the unknot is not. 
+\end{proof}
+
+Unfortunately, 3 colorability is not a very powerful invariant. 3-colorability maps knots into a two element set- either ``3-colorable" or ``not 3-colorable". This is pretty terrible, as there are surely more than 2 different classes knots. We can generalize this to work with $p$ colors instead.  
+\definitionfigure[Fox $p$-coloring]{
+Let $p$ be a prime number, and consider the field $\Z_p$. Let $A=\{a_1, \ldots, a_k\}$ be the set of arcs, and let $I: A\to \Z_p$ be a coloring. We say that this is a valid \emph{Fox $p$-coloring} if at each crossing where $a_i$ goes over $a_k$ and $a_j$, we have the relation of labels
+\[2a_i=a_j+a_k.\] 
+We furthermore require that at least 2 colors ar used. }{\includegraphics[scale=1]{knot_foxp}}
+Again, a proof that this is a case-by-case check; the proof for Reidemeister 3 is given by the Figure \ref{fig:knot_foxpr3}.  The diagram itself strongly constrains the labeling of the $R3$ region.  
+\begin{figure}
+\centering
+\includegraphics[scale=1]{knot_foxpr3}
+\caption{The Fox $p$ coloring property is invariant under application of $\R^3$. }
+\label{fig:knot_foxpr3}
+\end{figure}
+While colorings appear on the first glance to be a purely combinatorial construction, the theory of colorings is richly tied to algebraic topology. The regions given by the arc-diagrams correspond to a Seifert-van Kampen decomposition of $\R^3\setminus K$ for computing $\pi_1(\R^3\setminus K.)$ As a result, the labelings of the surface by elements of $\Z/p$ corresponds to a group homomorphism from $\pi_1(\R^3\setminus K)$ to the \project \label{proj:groupcoloring} $d^{2p}$ dihedral group. With this intuition, one can generalize the ideas of Fox $n$-coloring can be generalized to colorings by general groups $G$. 
+\section{Seifert Surfaces, and an infinite family}
+While $n$ coloring is a useful invariant for distinguishing knots, we don't have a quick way for creating new knots. We will start with a simple but useful operation on knots. 
+\subsection{Knot Connect Sum}
+The operation of creating new knots from combining old ones goes back to the Kelvin, who viewed that operations that combined knots were the operations that gave us chemical reactions. 
+
+\definitionfigure[Knot Sum]{
+Let $K_0$ and $K_1$ be oriented knot diagrams. Let $R$ be a region knot diagram that where the arcs from $K_0$ and $K_1$ travel in roughly parallel but opposite directions (indicated by the dashed region on the right.) The \emph{knot sum $K_0\#_DK_1$ } is created by replacing this region with two arcs interchanging the endpoints of $K_0$ and $K_1$ so that they are now are a contiguous string. 
+}{\includegraphics[scale=1]{knot_knotsum}}
+
+The choice of orientation is important in determining the knot sum operation, as different orientations lead to different knot sum diagrams. Curiously, this is not the case when the knot is the trefoil, or $4_1$. 
+\examplefigure[Reef and Square knots.]{ Let $K_L$ and $K_R$ be the left and right handed trefoil knots. A relevant example of knot sum in the real world arises from considering the \emph{granny knot, $K_L\#K_R$} and the \emph{square knot $K_L\#K_L$}. These are two different examples of the double-overhand knot, however, the handedness between the ties makes a difference in their usefulness in different application. For most applications, the granny knot is an inferior knot due to its tendency to capsize. Neither of these knots should be used as bends, as the square knot will similarly capsize, although the lack of the assymetry makes the square knot less prone to capsizing it's symmetry makes it better suited to making a hitch. There are some preliminary mathematics in studying the strength of hitches.}{\includegraphics[scale=1]{knot_grannyreef}}
+
+While the operation of Knot connect sum is dependent on the choice of orientation used, it is independent of knot diagrams used to represent the knots. 
+\begin{claim}
+Let $K_0\sim K_0'$ and $K_1\sim K_1'$ as oriented knots. Then $K_0\# K_1\sim K_0'\#K_1'$. 
+\end{claim}
+This operation satisfies many of the same properties that connect sum of surfaces enjoys (Definition \ref{def:connectsum}.) 
+\begin{claim}
+The set of oriented knots up to isotopy forms a commutative monoid under the operation of knot isotopy.
+\end{claim}
+Notice that the identity operation is given by connect sum with the unknot. In fact, this is a \emph{zerosumfree} monoid, meaning that the only inverses that exist are those for the identity. We'll put of the proof of this until Corollary \ref{cor:zerosumfree}
+\begin{definition}
+A knot $K$ is \emph{prime} if there does not exist primes $K_0, K_1$ so that 
+\[K=K_0\# K_1.\]
+\end{definition}
+\subsection{Seifert Surfaces}
+We'll try to incorporate topological tools we know well into the study of knots.  To every knot we can create a surface whose boundary is that knot. One way to visualize these surfaces is to imagine that the knot is made of a piece of wire, and the surface is like a soap-bubble film that fills in the boundary of the surface. For example, the trefoil can be presented as the boundary of the M\"obius band embedded in $\R^3$ with \emph{three} twists. The M\"obius band $2n+1$-twists serves as a bounding surface for the $(2, 2n+1)$ torus knot. It doesn't seem likely that surfaces would prove useful in distinguishing knots; after all, the M\"obius strip is a bounding surface for infinitely many knots. \\
+Aside from the question about classifying knots, it is interesting to know whether or not knots even have to bound surfaces. 
+\begin{claim}
+For every knot $K$, there exists an embedded surface $\Sigma\subset \R^3$ so that $\partial_\Sigma= K$. 
+\end{claim}
+In order to prove this claim, we will use the \emph{checkerboard lemma.}
+\begin{lemma}
+Let $L$ be a link diagram. Then the faces of that link diagram can be 2-colored so that no two regions that share an edge have the same color. 
+\end{lemma}
+\begin{proof}
+We induct based on the number of crossings in the link diagram $L$.\\
+\textfigure{As a base case, if $L$ has no crossings, it is a collection of (possibly nested) circles. Create a graph by placing a vertex for each region, and connected by vertices whenever two regions share a boundary. This graph is a tree (the Hasse diagram of regions ordered by inclusion) and therefore can be 2-colored.}{\includegraphics[scale=1]{knot_trivialcheckerboard}}\\
+Now look at a crossing $c$ in the diagram. Define a \emph{resolution} of the diagram $L$ at the crossing $c$ to be the local replacement of $c$ with two parallel arcs. \footnote{Notice that there a two different ways to do this; we'll return to this later}  
+\[\includegraphics[scale=1]{knot_checkerboard}\] This operation produces a link $L_c$ which has 1 fewer crossing in it. By induction, we can give the regions of $L_c$ a 2-coloring. \\
+We can use this coloring to produce a 2-coloring of $L$ by consistently extend this 2-coloring locally when we add the crossing $c$ back in. 
+\end{proof}
+A checkerboard coloring of a knot diagram gives us a quick way to create a surface whose boundary is a link $L$ algorithmeically:
+\begin{enumerate}
+\item Give $L$ a checkerboard coloring. 
+\item For each black-colored region, take a disk. This gives us disks which are embedded in $S^3$\footnote{If the outside region is colored black, this corresponds to a disk which has a point going through infinity in $S^3$.}
+\item For each crossing connecting two black colored regions, glue those two regions together by a disk with a twist. 
+\end{enumerate} 
+\[\includegraphics[scale=1]{knot_trefoilmobius}\]
+This algorithm depends on the choice of checkerboard coloring used. For example, the standard coloring of the trefoil will give us the M\"obius band filling of the trefoil; however, the other coloring gives us something a bit more exotic. 
+ Let's try to get a better visualization of this surface. 
+\wrapexamplefigure[Milnor Fiber Trefoil]{
+Consider the sphere $S^3$ as a subset of $\C^2=\{(z_1, z_2\}$ given by the elements satisfying 
+\[S^3=\{(z_1, z_2)\;|\; |z_1|^2+|z_2|^2=2.\}\]
+On $\C^2$, we can cut out a complex hypersurface $V$ by looking at the zero locus of $z_1^2-z_2^3$. Since $V$ is Real 2-dimensional, and $S^3$ is Real $1$-dimensional, the intersection of $V$ and $S^3$ is 1-dimensional. In fact, we can parameterize the solution set with by the real-curve $(e^{3i\theta}, e^{2i\theta}),$ which is seen to be the $(3,2)$ torus knot, or the trefoil. \\
+We could additionally look at the set of points $H_1$ in $\C^2\setminus 0$ which solve the equation 
+\[\frac{z_1^2-z_2^3}{|z_1^2-z_2^3|}=1\]
+By construction, $\frac{z_1^2-z_2^3}{|z_1^2-z_2^3|}$ lies on the unit circle $S^1\subset \C$, and the real dimension of $H_1$ is $3$. The intersection of $H$ with $S^3$ is real 2-dimensional, so that $H\cap S^3$ is a surface $\Sigma_1 \subset \S^3$. Surprisingly,
+\[\partial \Sigma_1 = \partial (H\cap S^3)=(V\cap S^3)=K.\]
+One could additionally define 
+\[H_\theta:=\left\{(z_1, z_2)\;|\; \frac{z_1^2-z_2^3}{|z_1^2-z_2^3|}=\theta\right\}\]
+and taking $\Sigma_\theta=H_\theta\cap S^3.$ These surfaces similarly have boundary given by $K$. \\
+A different way of viewing this is thinking of the map 
+\[\pi: S^3\setminus K\to S^1\]
+given by the restriction of $\frac{z_1^2-z_2^3}{|z_1^2-z_2^3|}$ to the 3-sphere. This is an example of a \emph{fibration}\project, where each fiber $\pi^{\theta}=\Sigma_\theta$ is a surface. This presentation shows that the $S^3\setminus K$ can be parameterized by surfaces $\Sigma_\theta$. Each of the surfaces $\Sigma_\theta$ is an example of the second kind of surface. 
+\label{proj:milnorfibrations}}{\includegraphics[scale=1]{knot_trefoilseifert}}
+
+This surface $\Sigma_\theta$ has an additional condition on it which the M\"obius band does not enjoy; it is \emph{oriented.}
+
+\begin{definition}
+Let $K$ be a knot. A \emph{Seifert Surface} for $K$ is an oriented surface with boundary $\Sigma\subset \R^3$ so that the boundary of $\Sigma$ is $K$. 
+\end{definition}
+Notice that if a Seirfert surface exists, it is not unique; as one may add handles to the surface in order to increase the genus of the surface. As a result, the topology of a Seifert surfaces $\Sigma_K$ does not give us a lot of data about a knot. \\
+Even without knowing the existence of Seifert surfaces, we can alreay use them to understand some properties of knots. 
+\begin{claim}
+Let $K$ be a knot, and suppose that $D^2$ is a Seifert surface for $K$. Then $K$ is the unknot.
+\end{claim}
+Before we can use Seifert surfaces to create invariants of knots, we have to prove that they exist. 
+\begin{theorem}
+Let $K$ be a knot. There exists a Seifert surface for $K$. 
+\end{theorem}
+\begin{proof}
+We use a modified version of the checkerboard algorithm.
+\textfigure[8cm]{Give $K$ an orientation. Let $c$ be a crossing. Then we can locally resolve the crossing in such a way that creates a knot diagram with the same orientation. The resulting set of resolutions will be a collection of nested circles $S^1_i$.}{\includegraphics[scale=1]{knot_orientedresolution}}
+ We call this data that of an \emph{oriented resolution.} Notice that each circle in the oriented resolution is given either a clockwise or counterclockwise orientation on the boundary. \\
+\begin{itemize}
+\item Take a collection of disks $D^2_i$, one for every circle in the oriented resolution. Imagine that each disk has a black and a white side.
+\item Place these disks on top of eachother with the same incidence relation of the circles in the oriented resolution. Place the disk white side up if the orientation of the circle is clockwise, and black side up if the orientation is counterclockwise.
+\item  For each crossing  in the original knot, put a twisted strip between the disks whose boundary component comes from the resolution of the crossing.
+\end{itemize}
+Notice that the twists only connect the strips with black side up to the disks with the white side up, so this algorithm at each step creates an oriented surface. 
+\[\includegraphics[scale=1]{knot_seifertalgo}\]
+\end{proof}
+Seifert's algorithem proves the existence of an oriented surface whose boundary is the knot. We can now use the existence of Seifert surfaces to create new knot invariants. Seifert's algorithem allows us to quickly compute the genus of the surface create by Seifert's algorithem. If Seifert's algorithm uses $k$ disks, and the knot has $n$ crossings, then the surface has genus 
+\[\chi(\Sigma_K)=n-k-1.\]
+However, we've already shown that the genus of the Siefert surface is not a knot invariant-- for instance, applications of Reidemeister 2 can increase the genus of the surface created in Seifert's algorithm. 
+\begin{definition}
+The \emph{genus} of a knot $K$ is the minimal genus over all Seifert surfaces for $K$. We denote the genus $g(K)$. 
+\end{definition}
+While this is a difficult to compute invariant, it is an invariant useful for proving theorems about knots. For example, we can show that the operation of knot sum creates non-trivial knots by reflecting on how that operation changes surfaces. 
+\begin{theorem}
+The genus is additive with respect to knot sum,
+\[g(K_1\#K_2)=g(K_1)+g(K_2).\]
+\end{theorem}
+\begin{proof}
+Clearly, if $K_1$ and $K_2$ are knots, and $\Sigma_1$ and $\Sigma_2$ are surfaces of minimal genus, then taking a small strip along the connecting arcs of $K_1\#K_2$ gives us a surface $\Sigma_1\# \Sigma_2$ which is a Seifert surface for $K_1\#K_2$. Since $g(\Sigma_1\#\Sigma_2)=g(\Sigma_1)+g(\Sigma_2)$, we clearly have that 
+\[g(K_1\#K_2)\leq g(K_1)+g(K_2).\]
+Now let $\Sigma$ be some minimal surface for $K_1\# K_2$. By the construction of connect sum of knots, there exists a plane $P$ which intersects $K_1\# K_2$ at 2 points $p, q$. The surface $\Sigma$ has to intersect $P$ in several places-- including a curve which goes from $p$ to $q$. We now break into two cases based on the intersection of the surface with $H$.\\ 
+
+\noindent \textbf{Case 1:} If this is the only place where $\Sigma$ intersects $P$, then we can cut $\Sigma$ along $P$ to get surfaces $\Sigma_1$ and $\Sigma_2$ for $K_1$ and $K_2$. This cut would show that $g(\Sigma)=g(\Sigma_1)+g(\Sigma_2)$, and we would conclude that the formula holds.\\
+\textfigure[4cm]{\textbf{Case 2:}Otherwise, suppose instead that the plane $H$ intersects $\Sigma$ at a different place. Then there exists a disk $D\subset H$ with $\partial D\subset \Sigma$ and $D\cap K_1\#K_2$ empty. We can cut $\Sigma$ along this $D$ and get a new surface for $K_1\# K_2$. Let's call this modified surface $\Sigma'$. This modified surface $\Sigma'$ will either be connected or disconnected. In the case it's connected, the genus of the modified surface $\Sigma'$ will be less than $\Sigma$; however $\Sigma$ was assumed to be minimal, so we may rule out this case. If $\Sigma'$ is disconnected, each of the connected components will have smaller genus at most that of $\Sigma,$ so we can take $\Sigma'$ to have fewer intersections with $P$ than $\Sigma$. \\
+Repeating this process on each closed intersection eventually moves us to the first case. }
+{\includegraphics[scale=1]{knot_seifertcut}}
+\end{proof}
+This theorem demonstrates that though knot genus is difficult to compute, its inherently topological description make it easier to use in proofs. With this theorem, we easily get the following corollaries. 
+\begin{corollary}
+There are knots with arbritrarily high genus
+\end{corollary}
+\begin{corollary}
+There are infinitely many knots. 
+\end{corollary}
+\begin{remark}
+The Seifert algorithm proves the existence of a Seifert surface for $K$, but it is not the case that every surface for $K$ can be obtained by the Seifert algorithm. If $K$ is a knot, the \emph{weak genus} is the smallest genus achievable over all surfaces for $K$ coming from the Seifert algorithm, and it has been show that there are surfaces with arbitrarily large difference between their genus and weak genus. \cite{stoimenov}.
+\end{remark}
+\section{Jones Polynomial}
+The Jones Polynomial is a somewhat mysterious and magical piece of mathematics. While we present a combinatorial definition of the Jones polynomial via knot resolutions, its original definition comes from von Nuemann algebras, and its modern treatments may view it through the lens of mathematical physics and quantum algebras. We will take a viewpoint which is very similar to the view that we used to run Seifert's algorithm and define graph polynomials. \\
+
+\definitionfigure[Resolutions of Crossings]{ Let $c$ be a crossing in a diagram $L$. We say that we have given $c$ the \emph{0-smoothing} or $\emph{1-smoothing}$ if we replace $c$ with one of the smoothings of the crossing on the right. A mnemonic for remembering the crossings is to that crossing $c$ is obtained from the $1$-smoothing by a right handed twist. \\
+We denote the resolved knot diagram of $K$ at a fixed crossing by $K_1$ of $K_0$. If no resolution was chosen, we will write $K_0$.  }{\includegraphics[scale=.6]{knot_skeinresolutions}}
+The resolution of a knot is a ``simpler'' knot in the sense that the knot diagram, at least has fewer crossings in it. By repeatedly applying the resolution operation on a  diagram, we will eventually arrive at a diagram that has no crossings whatsoever. In this case, we say the diagram has been resolved completely. 
+\definitionfigure[Resolution of a Diagram] {Let $K$ be a knot diagram with crossings indexed $\{1, \ldots ,n\}$. A set of resolution data is a collection  $\vec c\{c_1, c_2, \ldots c_n\}$  where each $c_i\in \{0,1,*\}$. To each resolution data, we can look at the \emph{$\vec c$-resolution $K_\{\vec v\}$ of $K$}. If all $c_i\in \{0,1\}$, then we say that this is a \emph{complete resolution} of $K$.}{ \includegraphics[scale=1]{knot_trefoil10x} }
+The hope behind our definition of the Jones Polynomial is that the combinatorial data of complete resolutions will have enough information to recover the knot completely. A completely resolved knot has no data other than the number of circles in the diagram. If $K_{\vec c}$ is a complete resolution of $K$, define the polynomial 
+\[J(K_{\vec c})(q):= (q+q^{-1})^{\emph{Number of link components of $K_{\vec c}$}}.\]
+To clean up our formulas, we will  write $J(K)$ for $J(K)(q)$ from here on out. \\
+Clearly, this polynomial depends on the choice of resolution for our knot. However, one can use this to construct an invariant if we look at all of the possible resolutions. \\
+If $\vec c\in \{0, 1\}^n$, let $|\vec c|=\sum c_i$. We can combine the data of all the resolutions into one polynomial, weighting the resolution by the crossings. 
+\begin{definition}
+Let $K$ be a knot. Define the \emph{unnormalized Jones polynomial} to be the polynomial
+\[J(K):=\sum_{\vec c\in \{0, 1\}^n}(-q)^{|c|} J(K_{\vec c}).\]
+\end{definition}
+This casting of the Jones polynomial admits a simple mnuemonic for computation via the \emph{cube of resolutions.} Since each element $\vec c\in \{0,1\}^n$  gives us a point on the cube, we can create a cube which on each vertex sits the corresponding resolution. 
+
+  \[\includegraphics[scale=1]{knot_cubeofresolutions}\]
+  
+Converting each diagram to its polynomial,
+\[\begin{tikzpicture}[description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=3em,
+column sep=2.5em, text height=1.5ex, text depth=0.25ex]
+{                    &q(q+q^{-1})^2  & q^2(q+q^{-1})^1  & \\
+  (q+q^{-1})^3&q(q+q^{-1})^2 &q^2(q+q^{-1})^1 &q^3(q+q^{-1})^2 \\
+                      & q(q+q^{-1})^2& q^2(q+q^{-1})^1& \\ };
+\path[->,font=\scriptsize]
+(m-2-1)edge  (m-1-2)
+(m-2-1)edge  (m-2-2)
+(m-2-1)edge  (m-3-2)
+(m-1-2)edge  (m-1-3)
+(m-1-2) edge  node[description]{}(m-2-3)
+(m-2-2) edge (m-1-3)
+(m-3-2) edge node[description]{}(m-2-3)
+(m-2-2) edge (m-3-3)
+(m-3-2) edge(m-3-3)
+(m-1-3) edge(m-2-4)
+(m-2-3) edge (m-2-4)
+(m-3-3) edge (m-2-4);
+\end{tikzpicture}\]
+ 
+Now, we can take the sum of all the polynomials in this resolution, giving us the unnormalized Jones polynomial, 
+\[J(K)= (q+q^{-1})^3-3q(q+q^{-1})^2+3q^2(q+q^{-1})-q^3(q+q^{-1})^2.\]
+From its definition, it is unclear what this polynomial is measuring and why it should be a knot invariant. Instead of computing this invariant by taking all of the resolutions simultaneously, one may compute this polynomial with the following recursive formula. 
+\begin{claim}
+Let $K$ be a knot, and fix some crossing of $K$. Let $K_0$ and $K_1$ be the $0$ and $1$ resolutions of that crossing. The Jones polynomial satsifies the following \emph{skein relation,}
+\[J(K)=J(K_0)-q(K_1).\]
+\end{claim}
+\begin{proof}
+The proof comes from partitioning the cube of resolutions into two parts; those where the last crossing is labeled 0, and those for which the last crossing is labeled 1. 
+\[\includegraphics[scale=.7]{knot_skeincube}.\]
+\end{proof}
+In practice, it is a lot easier to prove things about the Jones polynomial using the Skein relation version of the polynomial instead of the cube of resolutions. For instance, the invariant property of the Jones polynomial is easy to prove with the skein version. 
+\begin{theorem} The Jones Polynomial is an invariant of the link, up to a shift in $q$ degree and sign.
+\end{theorem}
+\begin{proof}
+The idea is to show that the three Reidemeister moves only change the Jones polynomial of a link by a degree of $q$ or by a sign change. Proving invariance boils down to a set of computations. 
+
+ \textfigure[6cm]{\textbf{First Move:} The first Reidmeister move is putting a small kink in the knot. There is a single additional crossing which is added to knot, so we only need to calculate what happens on that crossing. The additional components that are created are cancelled out by the minus sign in skein relation. The first Reidemeister move changes the Jones polynomial by a factor of $-q^2,$ which is just a shift of degree. }{\includegraphics[scale=1]{knot_jonesr1}}\\
+ 
+ \textfigure[6cm]{\textbf{Second Move:} The second Reidemister move is proved using the same technique, we can simplify a little bit so we don't need to go through all 4 diagrams that come from resolving crossings. After resolving one of the crossings, we can apply the first Reidemeister move from before to speed up the computation. Again, the second Reidemeister move shifts the degree of the polynomial. }{\includegraphics[scale=1]{knot_jonesr2}}\\
+ 
+ \textfigure[6cm]{\textbf{Third Move:} Surprisingly, the 3rd Reidmeister move is the easiest one to compute. After resolving the middle crossing, a simple slide of the overarc to the bottom of the diagram and two applications of the second Reidemeister move interchanges this to the resolution of the knot post-Reidemeistermove.}{\includegraphics[scale=1]{knot_jonesr3}}
+
+
+\end{proof}
+
+We now have shown that the Jone's polynomial is an invariant of the knot up to a sign and a multiple of $q$. There is a way to correct this shifting. If we assign an orientation to the knot, we can now label crossings in two different ways, as in the below figure
+\[
+\begin{tikzcd}
+\arrow[leftarrow]{dr}&\;\\ \arrow[crossing over]{ru} & \; \
+\end{tikzcd}
+\begin{tikzcd}
+\;&\;\\ \arrow{ur}&\arrow[crossing over]{lu}
+\end{tikzcd}
+\]
+Let $n_+$ and $n_-$ count the number of $+$ and $-$ crossings respectively. We see that if we multiply our $J$ polynomial by a factor of $(-1)^{n_-}q^{n_+ -2 n_-}$ that this new polynomial now an invariant of the knot (including Reidemeister 1-moves.)\\
+Since the Jones polynomial is defined by locally taking resolutions, the Jones polynomial frequenly plays with operations that modify the knot locally. 
+\begin{claim}
+Let $K_1$ and $K_2$ be knots. Define the \emph{reduced Jones Polynomial} to \[\bar J(K_1)=\frac{J(K_1)}{q+q^{-1}}.\] Then the Jones polynomial gives us a monoid homomorphism from knots with connect sum to polynomials with multiplication \[J(K_1\# K_2)= J(K_1)J(K_2)/(q+q^{-1}).\] 
+\end{claim}
+\begin{proof}
+The cube of resolutions that we've drawn out is a product of the cube of resolutions for $K_1$ and the cube of resolutions for $K_2$. 
+\end{proof}
+
+\begin{remark}
+If the knot $K$ is alternating, then we can associate a graph to $K$ by placing a vertex inside every region of the graph, and connecting two vertices whenever those regions share a crossing. With this set up, the resulting operations of edge contraction and deletion correspond to the $0$ and $1$ resolutions of the corresponding crossing. In this way, we can see that the Jones polynomial looks similar in its computation method to the Chromatic polynomial or Reliability polynomial that we've seen before. In fact, the Jones polynomial can be expressed as a specialization of the Tutte Polynomial. 
+\end{remark}
+The Jones polynomial is a fairly powerful knot invariant, but even it is not complete. Here is a pretty easy knot modification that preserves the Jones polynomial, but can give different knots. 
+\definitionfigure[Mutation]{Let $K$ be a knot diagram, and let $D$ be a disk in the plane whose boundary circle intersects $K$ transversely at 4 points. A \emph{mutation of $K$} along $D$ is a diagram $K'$ obtained by reflecting the portion of $K$ contained inside $D$. In this case, we say that $K$ and $K'$ are \emph{mutants}. }{Mutationpicture}
+Mutants give us an example of knots which cannot be told apart by the Jones polynomial, as the complete resolutions of $K$ and $K'$ all have the same number of connected components. \\
+Mutation tells us that there are knots which cannot be distinguished by the Jones polynomial. Instead of asking if the Jones polynomial can tell apart all knots, one might restrict to just telling if $J(K)=q+q^{-1}$ can tell us if $K$ is the unknot. So far, there are no knots which are known to have trivial Jones polynomial, and there is good evidence that the Jones polynomial may be an unknot detector (which we will explore in Section \ref{sec:knot:khovanov}.
+\subsection{Side Topic: Topological Considerations}
+Despite its combinatorial presentation, the Jones polynomial can be defined using only the smooth topology of $K$. The relationship between the smooth topology of $K$ and the Jones polynomial can be formalized via Chern-Simons theory. While we won't be able to go over that formulation in this class, we will see how  a polynomial can show up as a topological invariant of a knot from topology. In this section we'll look at the relationship between covers of $S^3$ branched over $K$ and the Alexander Polynomial (which is also defined via a combinatorial relation.)  \\
+Let $\Sigma$ be a Seifert surface for our knot $K$.
+\begin{claim}
+There is a nondegenerate form $g:H_1(\Sigma)\times H_1(S\setminus \Sigma)\to \Z$. In particular, the first homology of the Seifert surface its complement are isomorphic. 
+\end{claim}
+\begin{proof}
+In fact, we prove something a little different: given any \emph{handlebody} in $S^3$, there is a pairing with its complement. In fact, a handlebody and its complement are homeomorphic. \\
+Notice a handlebody is just a 3-ball with some disks which are identified to each other. Given a handlebody, pick disks which fill in the ``donut-holes'' of the handlebody, which lie in the complement. Cutting the complement along these holes gives us a 3 ball. The number of disks that we need to cut will be equal to the genus of the handlebody, which determines handlebodies up to homeomorphism. \\
+Let $\alpha$ be a generator of homology of the handlebody, and $\beta$ an element in $H_1(S\setminus M)$. Then the generator $\alpha$ corresponds to some disk, and the (signed) intersection of $\beta$ and the disk associated to $\alpha$ gives us the symmetric  form. \\
+\end{proof}
+There is an easier way to think of his form. We think of elements of $H_1(M)$ and $H_1(S\setminus M)$ as begin represented by oriented loops. Then the pairing is the \emph{linking number} between the two loops, which is the number of positive crossings, less the number negative crossings in a projection of the two loops. 
+\begin{claim}
+The orientation of the Seifert surface gives us two different maps $H^1(M)\to H^1(S^3\setminus M)$. \\
+\end{claim}
+\begin{proof}
+As the Seifert surface is orientable, there is a normal direction at every point of the Seifert surface. One can take any loop representing a class of homology, and push it off the Seifert surface into the complement. This gives us a loop in the complement, which represents an element of homology in $H^1(S^3\setminus M)$. Of course, if we use the other normal, we get a different map. 
+\end{proof}
+\begin{definition}
+Let $K$ be a knot. Let $M$ be a Seifert surface for the knot, and $i_+: M\to S/M$ be an inclusion. Then there is a map, called the \emph{Seifert Matrix} 
+\begin{align*}
+A: H_1(M)\to H_1(M)\\
+\alpha\mapsto g(\alpha, i_+(\alpha))
+\end{align*}
+The determinant of the map  $\Delta(K):=\det (tA-A^t)$ (where $t$ is a dummy variable) is called the \emph{Alexander Polynomial}. 
+\end{definition}
+
+\begin{claim}
+The Alexander polynomial is a knot invariant up to sign and a multiple of $t$. 
+\end{claim}
+\begin{proof}
+We show that the alexander polynomial is generated by a Skein relation as well. However, this is a Skein relation that involves reversing the crossings. At a given crossing (with orientation), denote the $+$  and $-$ and $0$ resolutions of a particular crossing by 
+
+We like to prove that the Alexander polynomial as defined here satisfy the Skein relation 
+\[\Delta(K^+)-\Delta(K^-)=(1-t)\Delta(K^0)\]
+In order to prove this, we pick a very special basis for the homology, given by a certain realization of the Seifert Surface. \\
+Draw the Seifert surface as before, with a collection of disks and bridges between them. On every disk. there are bridges that point ``outward'' to lower disks, and bridges that point inward to ``higher''disks. On the disk $d^i$, let $T_{ik}$ be a labeling of the outward pointing bridges in a cyclic order. \\
+Then we can give a basis for $H_1(\Sigma)$ in the following way: Let $v_{ik}$ be the loop that starts on the disk $d^i$, goes down the $T_{ik}$ crossing, goes over to the $T_{i(k+1)}$ crossing, then goes up back to the disk $d^i$.Note here that we \emph{do not} take these indexes to be cyclic-- there is no entry $v_{in}$, where $1\leq k \leq n$.  This is because we can write $v_{in}$ as $\sum_k v_{ik}$. \\
+Now, let's put an ordering on the basis so that $v_{ij}$ comes before $v_{mn}$ if $i\leq m$, and then if $j\leq n$. In this ordered basis, what does the matrix $A$ look like? The entry $a_{ij}$ is nonzero if and only if the loops link-- but notice that $v_{ij}$ and $v_{mn}$ link if and only if $i=m$ and $j=n\pm 1$. From this, we know that $A$ splits as a bunch of matrices along the diagonal, one block for every disk $d^i$, and has entries only on the diagonal, super diagonal, and sub diagonal.\\
+For ease of notation, let $B=A+tA^T$, and let $A^\pm$, and $A^0$ denote the matrices to the $+, -$ and $0$ resolution of a knot on the $T_{11}$ crossing. \
+Now we would like to compute $\det (B^+)- (\det B^-)$. By minor expansion, we have that 
+\begin{align*}
+\det (B^+)-\det(B^-)=& b_{11}^+ [B^+_{11}]-b^+_{12}[B^+_{12}]-(b_{11}^-[B^-_{11}]-b^-_{11}[B^-_{11}])\\
+\intertext{Now, look at $b^\pm_{11}$. One of these entries will be 0, and the other one will necessarily be $1+t$. Why is this? Becuase the crossing $T^+_{11}$ and $T^+_{12}$ either both contribute $\pm1$ to the linking of $v_{11}$, or they contribute opposite signs. Similarly, $T^-_{11}$ and $T^-{11}$ contribute opposite signs to the crossing, or a $\pm$ 1. We work on the case where $b_{11}^-=0$, the other case is similar argument. }
+=& b_{11}^+[B^+_{11}]-b^+_{12}[B^+_{12}]+b^-_{11}[B^-_{11}]
+\intertext{ Now, $b^-_{12}$ and $b^+_{12}$ are the same, as $v_{11}$ and $v_{12}$ interact only at the the $T_{12}$ crossing, which is unchanged. Similarly , the matrices $B^\pm_{11}$ are the same.}
+=& b_{11}^+[B^+_{11}]-b^+_{12}([B^+_{12}]-[B^-_{12}])\\
+=& b_{11}^+[B^+_{11}]\\
+=& (1-t)[B^+_{11}]=(1-t)[B^0]
+\end{align*}
+\end{proof}
+\subsection{HOMFLY}
+\section{Khovanov Homology}
+The Jones polynomial tells us that there should be a relationship between a knot and its resolutions of the form
+\[\includegraphics[scale=1]{knot_skeinsum}\]
+Our experimentations with homology tells us that we should try to replace this sum with an exact sequence of chain complexes. Here are some properties of the theory that we will develop:
+\begin{theorem}[\cite{khovanov1999categorification}]
+To a knot $K$ we can associate a chain complex of graded vector spaces $Kh^\bullet(K)$ which satisfies the following properties:
+\begin{itemize}
+\item For some suitable definition of dimension, $\chi(Kh^\bullet(K)$ is the Jones Polynomial. 
+\item If $K_*$ has resolutions at a crossing $K_0$ and $K_1$, then there is a short exact sequence of chain complexes
+\[0\to Kh^\bullet(K_1)\to Kh^\bullet(K)\to Kh^{\bullet+1}(K_1)\to 0\]
+\item The homology groups $HKh^\bullet(K)$ are knot invariants (up to a shift in grading.)
+\end{itemize}
+\end{theorem} 
+We've already seen from the cube of resolutions that there is an alternating sum in involved in the construction of Jones polynomial; we might suspect that this alternating sum comes from treating the polynomial as an Euler characteristic of some chain complex. Of course, to get this work out, we'll need a definition of dimension that returns polynomials. 
+\definitionfigure{
+A graded vector space is vector space $V$ with the additional data of a decomposition into subspaces $V_i$, called the \emph{graded components} of $V$. \\
+The \emph{graded-dimension} of a vector space is a polynomial that tracks the dimension of the vector space in each grading. 
+}{\[V=\bigoplus_{i\in \Z}  V_i.\]
+\[\dim_V(q)= \sum_{i\in \Z} q^i \dim(V_i).\]}
+
+While the definition may look a bit confusing at first, graded dimension is just a way to record the dimension of a vector space and which gradings those dimension are in. The graded dimension is a polynomial associated to a vector space. The graded dimension satisfies a number of properties similar to those of dimension demonstrating that graded vector spaces equipped with the direct sum and tensor product are a generalization of the ring of polynomials. 
+\begin{definition}
+Let $V=\bigoplus_{i\in \Z} V_i$ and $W=\bigoplus_{j\in Z} W_j$. Then the \emph{graded direct sum} and \emph{graded tensor products} are the graded vector spaces
+\[V\oplus W =\bigoplus_{i\in \Z} V_i\oplus W_i\]
+\[V\otimes W= \bigoplus_{\substack{i\in \Z\\ j+k=i}} V_j\tensor W_k.\]
+A \emph{graded linear map} $f: V\to W$ is a collection of maps $f_i: V_i\to W_i$. 
+\end{definition}
+The basic properties of dimension and linear algebra carry through to graded dimension and graded linear algebra. 
+\begin{itemize}
+\item If $V, W$ are graded vector spaces, then $\qdim(V\oplus W)=\qdim(V)+\qdim(W).$
+\item If $V, W$ are graded vector spaces, then \[\dim_{V\otimes W}(q)=\qdim(V)\qdim(W).\]
+\item If $U\to V\to W$ is a short exact sequence of graded vector spaces, then $\qdim(V)=\qdim (U)+\qdim W$
+\end{itemize}
+We can also shift around the gradings of vector spaces. If $W=\bigoplus_i(W_i)$ is a graded vector space, we can define the $j$-shifting $W[j]$ to be the vector space where give the grading of $W_i$ is reassigned to be $W_{i+j}$. With this shift of grading, we get 
+\[\qdim(W[j])=q^j \qdim W[j].\]
+We'll want to use graded vector spaces in constructing the homology and use the quantum dimension to get polynomials as dimension. 
+\begin{definition} 
+The \emph{space of states for the circle} is the $\Z_2$ graded vector space which is generated by elements $\{e, x\}$. We give $e$ a grading of $-1$ and $x$  a grading of $1$. 
+\end{definition}
+With this vector space, to each complete resolution, define the chain complex  $Kh(K_{\vec c})$ associated to $K_{\vec c}$ to be the vector space 
+\[Kh(K_{\vec c}):=V^{\tensor \text{components of $K_{\vec c}$}}.\]
+This assignment converts our Jones polynomials for unlinks into vector spaces. The graded dimension recovers the Jones polynomial of the of these resolutions.
+\[\qdim(Kh(K_{\vec c}))=(q+q^{-1})^{\text{number of connected components of $K_{\vec c}$}}.\]
+The vector space $Kh(K_{\vec c})$ has a natural basis coming from the basis $\{e, x\}$ on $V$. Each element of this basis for  $Kh(K_{\vec c})$ corresponds to a labeling of the connected components of $K_{\vec c}$ by either $e$ or $x$. We call such a labelling a \emph{state}, and will therefore sometimes call $Kh(K_{\vec c})$ the \emph{space of states} for $K_{\vec c}.$
+\begin{figure}
+\centering
+\includegraphics[scale=1]{knot_states}
+\caption{A basis for the state spaces$Kh(K_{100})$.}
+\end{figure}
+After taking this shift, we can define the vector spaces in a chain complex for a knot:
+\definitionfigure{
+Let $K$ be a knot. We define the $i$th- Khovanov chain group to be the direct sum of all the states coming from degree $i$ resolutions of the knot $K$, with a shift in quantum grading corresponding to the degree of the resolution. }{
+\[Kh^i(K)=\bigoplus_{|\vec c|=i} Kh(K_{\vec c})[i].\]}
+We haven't given this the structure of a differential, if we are able to give this a differential, we would already have a chain complex which extends the notion of the Jones Polynomial. 
+\begin{claim}
+The graded Euler characteristic of the Khovanov chain complex  is 
+\[\chi(Kh(K))=J_K(q).\]
+\end{claim}
+We can visualize the chain groups of this complex by again drawing on the cube of resolutions that we used to construct the Jones polynomial, and convert the resolutions into spaces of states. \\
+  \[\includegraphics[scale=.4]{knot_cubeofresolutions}\begin{tikzpicture}[ scale=.3, description/.style={fill=white,inner sep=2pt}]
+\matrix (m) [matrix of math nodes, row sep=.5em,
+column sep=2em, text height=1.5ex, text depth=0.25ex]
+{                    &V^{\tensor 2}[1]  & V^{\tensor 1}[2] & \\
+& \oplus & \oplus\\
+  V^{\tensor 3} &V^{\tensor 2}[1] &V^{\tensor 1}[2]&V^{\tensor 2}[3]\\
+& \oplus & \oplus\\
+                      & V^{\tensor 2}[1]& V^{\tensor 1}[2]& \\ };
+\path[->,font=\scriptsize]
+(m-3-1)edge  (m-1-2)
+(m-3-1)edge  (m-3-2)
+(m-3-1)edge  (m-5-2)
+(m-1-2)edge  (m-1-3)
+(m-1-2) edge  node[description]{}(m-3-3)
+(m-3-2) edge (m-1-3)
+(m-5-2) edge node[description]{}(m-3-3)
+(m-3-2) edge (m-5-3)
+(m-5-2) edge(m-5-3)
+(m-1-3) edge(m-3-4)
+(m-3-3) edge (m-3-4)
+(m-5-3) edge (m-3-4);
+\end{tikzpicture}\]
+All we have done at this point is give the chain groups of $Kh^\bullet(K).$ We will need to equip this chain complex with a differential, show that this differential squares to zero, and prove that the resulting homology groups are independent of the knot diagram. 
+\subsection{The Differential}
+ In order to construct the differential, we need to develop a little more machinery. Just like we had set up a differential in the inclusion-exclusion complex \ref{exam:inclusionexclusioncomplex}, we will assign to each arrow in the above diagram a linear map based on how the two corresponding resolutions differ. Namely, if $K_{0*}, K_{1*}$ are two resolutions of $K$ which differ at a single crossing, we would like a way to transfer states from $K_{0*}$ to $K_{1*}$.\\
+These two resolutions are very similar; the only difference between the connected components of two resolutions which vary at a single crossing is that either two regions are merged together, or two regions are split apart. For simplicity, let's suppose that two regions $R_a, R_b$ are merged together into a regions $R_{ab}$ as we change from a $0$ to $1$ crossing. Our intution for transfering states of $K_{0*}$ to $K_{1*}$ is that the states on $R_a$ and $R_b$ should be multiplied together to give a state on $R_{ab}$. Accordingly, we should hope that the space of states $V$ comes with a multiplication structure. Similarly, the splitting of states suggests that $V$ should come with a \emph{comultiplication} structure as well. \\
+\begin{remark} There is a framing of Khovanov homology which only uses the structure of the cobordism category to describe these mergings and multiplications.  \project \label{proj:cobordism} While we won't persue this theory in these notes, a wonderful exposition of the relationship between Frobenius algebras and cobordisms via  2-dimensional topological quantum field theory is presented in \cite{kock2004frobenius}. 
+\end{remark}
+We now know what kind of algebraic structures are necessary to define the Khovanov differential; we will need $V$ to be some kind of algebra with multiplication and comultiplication. 
+\begin{definition}
+A \emph{commutative Frobenius Algebra} is a vector space $V$ over a field $k$ with the following operations,
+\begin{itemize}
+\item \textbf{Multiplication} $m:V\times V\to V$.
+\item \textbf{Comultiplication} $\Delta: V\to V\times V$. 
+\item \textbf{Augmentation} $\epsilon: V\to k$
+\item \textbf{Unit}$\eta: k\to V$. 
+\end{itemize}
+These maps must satisfy the following axioms:
+\begin{itemize}
+\item $(V, m, \eta)$ has the structure of a commutative algebra 
+\item $(V, \Delta, \epsilon)$ has the structure of a commutative  coalgebra
+\item $m$ and $\Delta$ satisfy the Frobenius identities:
+\begin{align*}
+m(\Delta(a), b)=&\Delta(m(a, b))\\
+m(a, \Delta(b))=&\Delta(m(a, b)).
+\end{align*}
+\end{itemize}
+\end{definition}
+\begin{claim}
+The algebra $V$ gives has the structure of a Frobenius algebra. 
+\end{claim}
+Let $\vec c$ and $\vec c'$ be two choices of resolution which differ at a single place. Then the resulting resolutions $K_{\vec c}$ and $K_{\vec '}$ differ in that either 2 regions are merged together, or 2 regions are split apart. We will view this merging and splitting operation as the operation of multiplication or comultiplication. In either case, we write $\vec c \lessdot \vec c'$.  \\
+The elements of $\sigma Kh(K_{\vec c})$ are called \emph{states}, and they correspond to labelling the regions of $K_{\vec c}$ by either the vectors $e$ or $x$. Suppose $\vec c\lessdot \vec c$. Given a state $\sigma$ on $K_{\vec c}$, we can obtain a new state on $K_{\vec c'}$ by utilizing the structure of the Frobenius algebra. 
+\begin{definition}
+Let $r_1, \ldots, r_m$ be the regions of $K_{\vec c}.$ When we take another resolution so that  $\vec c\lessdot \vec c'$, it either the case that $K_{\vec{c}}$ and $K_{\vec c'}$ differ by either a \emph{splitting} of regions or a \emph{merging} of regions.   \\
+Suppose that $K_{\vec c}$ and $K_{\vec c'}$ differ in that the region $r_1$ is split into two regions $r_a, r_b$. The states space for $K_{\vec c}$ belong then to the vector space $V_1\tensor \cdots\tensor  V_r$ and the states for $K_{\vec c'}$ are given by $V_a\tensor V_b\tensor \cdots\tensor V_r$. Then we take the map between \[d^{\vec c \vec c'}:=\Delta\tensor\id\tensor \cdots \id: V_1\tensor \cdots\tensor  V_r\to V_a\tensor V_b\tensor \cdots\tensor V_r\]
+and we say that this differential is \emph{splitting.}\\
+\noindent\fbox{\textfigure[8cm]{\begin{align*}
+Kh(K_{100})\to & Kh(K_{101})&\\
+e\otimes e\mapsto& e&\\
+e\otimes x\mapsto& x&\\
+x\otimes e\mapsto& x&\\
+x\otimes x\mapsto& 0&
+\end{align*}}{
+\includegraphics[scale=1]{knot_differingstates}}}
+
+ Suppose insted that $K_{\vec c}$ and $K_{\vec c'}$ differ in that the regions $r_1$ and $r_2$ are \emph{merged} into a new region $r_a$. Then we define the differential to be 
+\[d^{\vec c \vec c'}:= m\tensor\id\tensor \cdots \id: V_1\tensor V_2\tensor \cdots\tensor   V_a\tensor V_b\tensor \cdots\tensor V_r\]
+and we say this differential is \emph{merging}.\\
+\noindent\fbox{\textfigure[8cm]{\begin{align*}
+Kh(K_{101})\to & Kh(K_{111})&\\
+e\otimes e\mapsto& e\tensor e&\\
+x\mapsto & x\tensor e +e\tensor x &
+\end{align*}}{
+\includegraphics[scale=1]{knot_differingstates2}}}
+This defines for us maps $d^{\vec c, \vec c'}: Kh(K_{\vec c})\to Kh(K_{\vec c'}).$
+\end{definition}
+With these preliminary maps, we can define the Khovanov Chain complex.
+
+\begin{tuftepage}
+\begin{definition}
+Let $K$ be a knot. Define the \emph{Khovanov Chain complex}
+\[Kh^i(K)=\bigoplus_{|\vec c|=i} Kh(K_{\vec c})[i]\]
+and define differential\footnote{Here, we work with a chain complex with coefficent field $\Z_2$, so one need not worry about signs. The honest version of Khovanov complex needs the inclusion of a sign on the differential to make $d^2=0$. } $d: Kh^i(K)\to Kh^{i+1}(K)$ is given by 
+\[\bigoplus_{\vec c\lessdot \vec c'} d^{\vec c, \vec c'}.\]
+\end{definition}
+There are two things that we need to check at this point: that the complex $(Kh^i(K), d)$ is a chain complex, and that its homology is invariant under Reidemester moves. \\
+However, before we do that, let's take a look at the Khovanov homology of the trefoil. \smarginnotel{\begin{align*}
+\qdim HKh_1(K)=& 0\\
+\qdim HKh_2(K)=& q^{-5}\\
+\qdim HKh_3(K)=& q^{-9}\\
+\end{align*}}
+The computation on the next page shows the difficulty of computing the Khovanov homology by hand. Fortunately, it is possible to do this computation with a computer instead. The remaining (unnormalized) homology groups for the Trefoil in degrees 2 and 3.  \\
+\smarginnotel{\begin{tabular}{c| c c c c }
+$q \backslash \bullet$ & 3&2&1&0\\\hline
+-1 &&&&1\\
+-3&&&&1\\
+-5&&1 &&\\
+-7\\
+-9& 1
+\end{tabular}} After taking the account in shift due to writhe of the knot, we can tabulate the Khovanov homology of the knot where the table indexes are homological and quantum grading.  This tabular form is a quick way to get a visualization of the Khovanov homology of a knot. One notices that it is ``thinly supported'' on the diagonal, which is a phenomenon that extends to many knots. \\
+\end{tuftepage}
+\wrapexamplefigure{
+The main difficulty of computing the Khovanov homology by hand is keeping a consistent indexing for all of your vector spaces; there are a lot of elements floating around. To keep track of our indexing, we will refer to the figure on the left to translate between the labelling of the diagram with states and the vector notation for algebraically writing down states. \\ Let $K$ be the trefoil, and let's examine the differential from $Kh_0(K)\to Kh_1(K)$. The space $Kh_0(K)$ is 8 dimensional, and spanned by the state vectors 
+\begin{align*}\{&1\tensor 1 \tensor 1,
+x\tensor 1 \tensor 1, 
+1\tensor x \tensor 1, 
+1\tensor 1 \tensor x, \\
+&x\tensor x \tensor 1, 
+1\tensor x \tensor x, 
+x\tensor 1 \tensor x, 
+x\tensor x \tensor x\}\end{align*}
+The space $Kh_1(K)$ is 12 dimensional, and spanned by the state vectors
+\begin{align*}\{&
+(1\tensor 1,0,0),
+(1\tensor x,0,0),
+(x\tensor 1,0,0),
+(x\tensor x,0,0),\\
+&(0,1\tensor 1,0),
+(0,1\tensor x,0),
+(0,x\tensor 1,0),
+(0,x\tensor x,0),\\
+&(0,0,1\tensor 1),
+(0,0,1\tensor x),
+(0,0,x\tensor 1),
+(0,0,x\tensor x)\}
+\end{align*}
+The differential can be described by $8\times 12$ matrix. Here is the value of the differential on the original basis and the corresponding matrix
+\scalebox{.7}{\begin{minipage}{\textwidth}
+\begin{align*}
+d(1\tensor 1 \tensor 1)=(1\tensor 1, 1\tensor 1, 1\tensor 1) &&
+d(x\tensor 1 \tensor 1)=(x\tensor 1, x\tensor 1, x\tensor 1) \\
+d(1\tensor x \tensor 1)=(1\tensor x, x\tensor 1, 1\tensor x) &&
+d(1\tensor 1 \tensor x)=(x\tensor 1, 1\tensor x, 1\tensor x) \\
+d(x\tensor x \tensor 1)=(x\tensor x, 0 , x\tensor x) &&
+d(1\tensor x \tensor x)=(x\tensor x, x\tensor x, 0) \\
+d(x\tensor 1 \tensor x)=(0, x\tensor x, x\tensor x) &&
+d(x\tensor x \tensor x)=(0,0,0) \\
+\end{align*}
+\end{minipage}}
+\scalebox{.5}{$
+\begin{pmatrix}
+1 & 0 &0 &0&0&0&0&0\\
+0&0& 1& 0&0&0&0& 0\\
+0&1&0&1&0&0&0&0&\\
+0&0&0&0&1&1&0&0\\
+
+1 & 0 &0 &0&0&0&0&0\\
+0&0&0&1&0&0&0&0\\
+0&1&1&0&0&0&0&0\\
+0&0&0&0&0&1&1&0\\
+
+1&0&0&0&0&0&0&0\\
+0&0&1&1&0&0&0&0\\
+0&1&0&0&0&0&0&0\\
+0&0&0&0&1&0&1&0
+\end{pmatrix}$}\\
+
+The columns of this are not $\Z_2$ independent; the kernel is generated by 
+\[\ker(d)=\Z_2\{ (x\tensor x \tensor 1+1\tensor x \tensor x+x\tensor 1 \tensor x),(x\tensor x\tensor x)\}\]
+Since the first homology is the kernel of $d^0$, \[\qdim HKh_0(K)=q^{-1}+q^{-3}.\]
+ }{\includegraphics[scale=.5]{knot_differentialtrefoil1}}
+\begin{framedtuftepage}
+\begin{claim} The differential on $Kh^\bullet(K)$ squares to zero. 
+\end{claim}  
+\begin{proof}
+
+\smarginnotel{$d^2:Kh(K_{00})\to Kh(K_{11})$}Here, we will use the fact that we are working over $\Z_2$. To show that $d^2=0$, we can check that $d^2=0$ when inputs have been restricted and outputs have been projected to resolutions that differ at only 2 crossings. 
+ The only contributions to this composition come from the 2 intermediate resolutions between $K_{\vec c_{00}}$ and $K_{\vec c_{11}}$. 
+\smarginnotel{
+\includegraphics[scale=.5]{knot_smallkhovanovdiagram}
+}
+From this diagram, we see that we need now only check that 
+\[d^{*1}\circ d^{0*} + d^{1*}\circ d^{*0}=0\]
+and since we are working over $\Z_2$, this is equivalent to showing that these two terms are the same. \\
+The diagrams $K_{\vec c_{**}}$ must be quite simple.
+\smarginnotel{\includegraphics[scale=.6]{knot_khovanovcases1} } We now need do case analysis based on whether these subdifferentials are the splitting or merging case of the differential. We first look at all of the different diagrams of links with 2 crossings; these correspond to all the possible states which $K_{\vec{c_{**}}}$ may be in. \\
+In the first case drawn, neither of the crossing share any common regions in resolutions, so clearly the compositions match up. \\
+\smarginnotel{\includegraphics[scale=.6]{knot_khovanovcases2} } The the second case, the regions do have some interaction with eachother. As a result, the differential may not be the same. When the crossings receive the same resolutions, we see that 3 regions are being merged into one, and the compositions $d^{*1}\circ d^{0*} $ and $d^{1*}\circ d^{*0}$ are equal because the multiplication structure on $V$ is associative. Should we have taken resolutions in the opposite direction (so that one region is divided into 3) we would have us the coassociative property of $(V, \Delta).$\\
+\smarginnotel{\includegraphics[scale=.6]{knot_khovanovcases3} } In the third case, we have a merging and then a division as opposed to a division and a merging. Checking that $d^{*1}\circ d^{0*}$= $d^{1*}\circ d^{*0}$ is exactly checking the Frobenius property. \\
+This proves that $d^2=0$ when restricted to any resolution, therefore it is zero on the whole complex. 
+\end{proof}
+\end{framedtuftepage}
+\begin{doubledpage}
+\subsection{Invariance}
+The strength of Khovanov homology comes from reinterpreting the Skein relation in the form of cone. 
+\begin{theorem}
+Let $K_0$ and $K_1$ be resolutions of $K$ at a distiguished crossing.  Then there is a short exact sequence:
+\[0\to Kh(K_0)\to Kh(K)\to Kh(K_1)[1]\to 0\]
+\end{theorem}
+The diagram on the right exhibits $Kh(K)$ as a cone between the two resolutions of $K$. We can use this cone to prove invariance under the first Reidemester move. 
+
+\begin{claim}
+The Khovanov homology is invariant under the first Reidemester move. 
+\end{claim} 
+\begin{proof}
+Notice that if $K'$ differs from $K$ by a reidemeister 1 move, then the two resolutions of $K'$ at the differing crossing give us $K$ and $K\sqcup U$ respectively. By the above, we have the short exact sequence of chain groups 
+\[0\to Kh(K)\to Kh(K') \to Kh(K\cup U)[1]\to 0.\]
+This gives us a long exact sequence on homology. If we focus on $H(K\cup U)$, we see that $H(K\cup U)=H(K)\tensor V= H(K)\oplus H(K)[1]$,\\
+\[
+\begin{tikzcd}[ row sep=.5em]
+\; & & H(K)\arrow{dr}\\
+H(K)\arrow{r} &H(K') \arrow{ru} \arrow{dr} & \oplus & H(K) \arrow{r} & H(K')\\
+\;& & H(K)[1] \arrow{ur}
+\end{tikzcd}
+\]
+ The map $H(K)\to H(K')$ is an isomorphism (given by multiplciation by 1. ). It therefor follows from exactness  that $H(K)[1]\simeq H(Kh(K'))$. 
+ \end{proof}
+Similar techniques can be used to show invariance under the other Reidmeister moves. 
+\begin{claim}
+The Khovanov Homology is invariant under all 3 Rediemester moves. 
+\end{claim}
+\begin{proof} Proof of this fact, please refer to \cite{bar2002khovanov}.
+\end{proof}
+\newpage
+\begin{vplace}
+	\centering
+\includegraphics[scale=.8]{knot_khovanovcone}
+\end{vplace}
+\end{doubledpage}

@@ -1,0 +1,23 @@
+
+\begin{tikzpicture}[scale=\scalefactor]
+\input{figuresettings}
+\vertex at (1,4) {};
+\vertex at (4,3) {};
+\vertex at (-1.5,2.5) {};
+\vertex at (-0.5,1.5) {};
+\vertex at (-2.5,1.5) {};
+\vertex at (1.5,1.5) {};
+\vertex at (6,2.5) {};
+\vertex at (0.5,0.5) {};
+\vertex at (2.5,0.5) {};
+\vertex at (5,1.5) {};
+\vertex at (7,1.5) {};
+\draw (1,4) -- (-1.5,2.5) -- (-0.5,1.5);
+\draw (-1.5,2.5) -- (-2.5,1.5);
+\draw (1,4) -- (4,3) -- (1.5,1.5) -- (0.5,0.5);
+\draw (4,3) -- (6,2.5) -- (5,1.5);
+\draw (1.5,1.5) -- (2.5,0.5);
+\draw (6,2.5) -- (7,1.5);
+\node[above] at (1,4) {$v$};
+
+\pgfsize \end{tikzpicture}

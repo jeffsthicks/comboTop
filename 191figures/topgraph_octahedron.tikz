@@ -1,0 +1,22 @@
+\begin{tikzpicture}[scale=\scalefactor]
+	\input{figuresettings}
+	\node [circle, fill=black, scale=\vertexscale] (t) at (0,0) {};
+	\node [circle, fill=black, scale=\vertexscale] (k4) at (-.7, 1) {};
+	\node [circle, fill=black, scale=\vertexscale] (k1) at (.7,1) {};
+	\node [circle, fill=black, scale=\vertexscale] (b) at (0,3) {};
+	\node [circle, fill=black, scale=\vertexscale] (k3) at (-3, -1) {};
+`	\node [circle, fill=black, scale=\vertexscale] (k2) at (3,-1) {};
+	\draw [-] (k1)--(k2);
+	\draw [-] (k2)--(k3);
+	\draw [-] (k3)--(k4);
+	\draw [-] (k4)--(k1);
+	\draw [-] (k1)--(t);
+	\draw [-] (k2)--(t);
+	\draw [-] (k3)--(t);
+	\draw [-] (k4)--(t);
+	\draw [-] (k1)--(b);
+	\draw [-] (k2)--(b);
+	\draw [-] (k3)--(b);
+	\draw [-] (k4)--(b);
+
+   \pgfsize \end{tikzpicture}

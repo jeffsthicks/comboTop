@@ -1,0 +1,29 @@
+\begin{framedpage}{example}{Application: Reliability Polynomial}{The \emph{reliability} of $G$ is a function $R_G(p)$, which calculates the probability that $G$ remains connected if we remove each edge of $G$ with probability $(1-p)$.}%
+\nomenclature{$R_G(p)$}{The reliability of a graph $G$.}%
+\label{sec:topgraph:reliability}%
+ For instance, a tree does not make a very reliable network-- for a tree to fail, all we need is for one of its edges to give out. This means that the reliability of the tree is $p^{|E|}$.\\
+Na\"ively, one computes the reliability polynomial by looking at every subgraph of the $G$, checking if it is connected, and taking the average connectivity of these states.
+We can use contraction to obtain a nice recurrence relation which computes the reliability. 
+\begin{prop}[Recursive computation of $R_{G}$]%
+Let $G$ be a graph. Then the reliability polynomial can be computed by the relation:
+ \[pR_{G/e}(p)+(1-p)R_{G\setminus e}.\] 
+\end{prop}
+\begin{proof}
+ Take any edge $e$ in $G$. When we start removing edges of $G$, we start with this edge, and either this edge fails with probability $p$, or it remains reliable and is not deleted.
+\begin{paragraphfigureenv}[\textbf{Case 1: }]{191figures/topgraph_reliabilitydeletion.tikz}
+  The edge $e$ fails, which occurs with probability $p$. Even though we remove $e$ there is still the possibility that the graph is connected. 
+  The probability that the graph remains connected after the possible removal of more edges is given by the reliability of the remaining graph. So, all of the  cases where the edge $e$ is deleted contributes  contributes $p\cdot R_{G\setminus e}(p)$ to the reliability polynomial. 
+\end{paragraphfigureenv}
+  
+\begin{paragraphfigureenv}[\textbf{Case 2: }]{191figures/topgraph_reliabilitycontraction.tikz} With probability $(1-p)$, the edge will not fail. This means that the two vertices at the edge of the graph are gaurenteed to remain connected. One way to represent this configuration is to take the graph $G$ and contract it along the edge $e$.  The contribution from states containing the edge $e$ is $(1-p)\cdot R_{G/e}(p)$ .
+\end{paragraphfigureenv}
+
+These two cases are disjoint, and exhaust all the possibilities for how edges of $G$ may fail or remain. Therefore the probability that $G$ is connected after removing each edge with probability $(1-p)$ is 
+\[p\cdot R_{G/e}(p)+(1-p)\cdot R_{G\setminus e}.\] 
+\end{proof}
+
+As a corollar, we learn something about the structure of $R_G(p)$ by applying induction on the number of edges in $G$. 
+\begin{corollary}
+The Reliability of a graph is a polynomial in the variable $p$. 
+\end{corollary}
+\end{framedpage}

@@ -1,0 +1,22 @@
+\begin{tikzpicture}[scale=\scalefactor]
+\input{figuresettings}
+\vertex at (-3,2) {};
+\vertex at (-3,1) {};
+\vertex at (-3,0) {};
+\vertex at (-3,-1) {};
+\vertex at (-4,0) {};
+\vertex at (-2,0) {};
+\vertex at (-1,0) {};
+\vertex at (3,2) {};
+\vertex at (3,1) {};
+\vertex at (3,0) {};
+\vertex at (3,-1) {};
+\vertex at (3,-2) {};
+\vertex at (2,0) {};
+\vertex at (4,0) {};
+\draw (-4,0) -- (-1,0);
+\draw (-3,-1) -- (-3,2);
+\draw (2,0) -- (4,0);
+\draw (3,2) -- (3,-2);
+\pgfsize
+\end{tikzpicture}

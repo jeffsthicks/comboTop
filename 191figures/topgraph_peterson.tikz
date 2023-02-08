@@ -1,0 +1,21 @@
+
+\begin{tikzpicture}[scale=\scalefactor]
+	\input{figuresettings}
+  \vertex (v5) at (0:2) {};
+	\vertex (v1) at (72:2) {};
+	\vertex (v2) at (144:2) {};
+	\vertex (v3) at (216:2) {};
+	\vertex (v4) at (288:2) {};
+	\vertex (v8) at (0:1) {};
+	\vertex (v6) at (72:1) {};
+	\vertex (v9) at (144:1) {};
+	\vertex (v7) at (216:1) {};
+	\vertex (v10) at (288:1) {};
+	\draw (v1) -- (v2) -- (v3) -- (v4) -- (v5) -- (v1) -- (v6);
+	\draw (v6) -- (v7) -- (v8) -- (v9) -- (v10) -- (v6);
+	\draw (v2);
+	\draw (v2) -- (v9);
+	\draw (v3) -- (v7);
+	\draw (v4) -- (v10);
+	\draw (v5) -- (v8);
+ \pgfsize \end{tikzpicture}

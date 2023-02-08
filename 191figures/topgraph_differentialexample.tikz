@@ -1,0 +1,15 @@
+\begin{tikzpicture}[scale=\scalefactor]
+\input{figuresettings}
+\draw (1,1) -- (0,2) -- (-1,1);
+\node at (-1,1) {};
+\node at (0,2)  {};
+\node at (1,1) {};
+\node[below] at (1,1) {$v_1$};
+\vertex at (1,1) {};
+\node[right] at (0.5,1.5) {$e_1$};
+\node[right] at (0,2) {$v_2$};
+\vertex at (0,2) {};
+\node[left] at (-0.5,1.5) {$e_2$};
+\node[below] at (-1,1) {$v_3$};
+\vertex at (-1, 1) {} ;
+\pgfsize \end{tikzpicture}

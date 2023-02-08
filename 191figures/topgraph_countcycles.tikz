@@ -1,0 +1,10 @@
+\begin{tikzpicture}[scale=\scalefactor]
+    \input{figuresettings}
+\vertex at (-1.5,0.5) {};
+\vertex at (0,2) {};
+\vertex at (1.5,0.5) {};
+\vertex at (0,-1) {};
+\draw (-1.5,0.5) .. controls (-1.5,2) and (-1.5,2) .. (0,2) .. controls (1.5,2) and (1.5,2) .. (1.5,0.5) .. controls (1.5,-1) and (1.5,-1) .. (0,-1) .. controls (-1.5,-1) and (-1.5,-1) .. (-1.5,0.5);
+\draw (-1.5,0.5) .. controls (-1,0.5) and (1,0.5) .. (1.5,0.5);
+\pgfsize
+\end{tikzpicture}

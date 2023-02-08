@@ -1,0 +1,27 @@
+\begin{framedpage}{example}{Some Common Graphs}{It is good to have some examples of graphs in mind before we go around discussing the theory of graphs.}
+
+\begin{smallexamplefigureenv}[Graph:]{191figures/topgraph_graph.tikz}
+One way to construct a graph is to build it by hand. 
+For example, we can give a graph four vertices and 4 edges by specifying
+  \[V=\{1,2,3,4\}\;\;\; E=\{12,23,13,14\}.\]
+ While mathematically precise, this presentation is not very intuitive, and so when we want to specify a graph in this text, we will usually just draw a picture of that graph, and assume that it has some explicit (although unwritten) labeling of the vertices and edges.
+\end{smallexamplefigureenv}
+
+
+\begin{smallexamplefigureenv}[Complete Graph:]{191figures/topgraph_completegraph.tikz}
+  One especially important family of graphs are the \emph{complete graphs}, which are saturated with edges.
+\noindent Let $n\in \N$ be a natural number. The \emph{complete graph on $n$ vertices},  denoted as $K_n$, is the graph with $n$ vertices and an edge between every pair of vertices. 
+Since every edge corresponds to a choice of 2 vertices, and in the complete graph we've chosen every pair, it follows that 
+\[|E_{K_n}|={n\choose 2}.\]
+One reason we call this graph complete is because every graph on fewer than $n$ vertices is a subgraph of $K_n$. 
+\end{smallexamplefigureenv}
+\nomenclature{$K_n$}{The complete graph with $n$ vertices}
+
+
+\begin{smallexamplefigureenv}[Octahedron:]{191figures/topgraph_octahedron.tikz}
+Graphs naturally arise from other branches of mathematics. 
+For example, every polyhedra in $\R^3$ determines a graph by its edges and vertices. In the diagram on the left, we see the graph corresponding to the octahedron.
+Later, we will classify the platonic solids by understanding the combinatorics of their corresponding graphs. 
+Notice that a polyhedron has more data than just its underlying graph, as it also knows what combinations of edges and vertices make up faces of the polyhedron. 
+\end{smallexamplefigureenv}
+\end{framedpage}

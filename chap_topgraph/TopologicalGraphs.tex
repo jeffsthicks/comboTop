@@ -1,0 +1,153 @@
+\begin{elevator}[Minors and Topological Minors]
+Subdivision and contraction are two dual operations which  modify a graph at an edge.
+We'll look at how these opertaions preserve and modify the topological and combinatorial properties of a graph.
+\end{elevator}
+\label{sec:graph:Minors}
+The main goal of topology is to understand what kinds of topological spaces are out there, and classify them.
+This means not only understanding how to construct topological spaces, but also when two different spaces are equivalent.
+So far, we've been using graphs as the building blocks for topological spaces.
+\begin{examplefigureenv}{191figures/topgraph_differentpresentation.tikz}
+	When we draw a graph,  we do not care how we draw the edges of the graph --  the edges are allowed to be bent, or straight or cross. Only the adjacency relations between those edges and vertices matter to us.
+	For example, both the pentagon and the star drawn represent the same graph, just drawn differently in the plane.
+	They also represent the same topological space: both are a combinatorial representation of the circle, $S^1$.
+	\end{examplefigureenv}
+Before we understand when two graphs represent the same topological space, we should understand when two different graphs are equivalent.
+\nomenclature{$S^n$}{The $n$-dimensional sphere}
+\begin{definition}[Graph Isomorphism]
+	We say that two graphs $G$ and $H$ are \emph{graph isomorphic} if there exists a bijection $\phi: V(G)\to V(H)$ so that whenever $vw$ is an edge of $E(G)$, then $\phi(v)\phi(w)$ is an edge of $E(H)$. 
+	\label{def:graphiso}
+\end{definition}
+
+Isomorphism is an equivalence relation on graphs. 
+Figuring out if two graphs are graph isomorphic isn't an easy task -- proving that there does not exist a map between two graphs can be very tricky. 
+Usually, we prove the non-existence of an isomorphism between two graphs by assigning \emph{invariants or properties} to our graphs which only depend on the isomorphism class of a graph. 
+This allows us to distinguish non-isomorphic graphs. 
+
+A simple invariant would be to count the number of edges in a graph.  clearly two graphs cannot be graph isomorphic if they have a different number of edges or vertices.
+However, there are plenty of graphs which have the same number of edges and vertices and are not isomorphic. 
+For example, all trees on $n$-vertices  have $n-1$ edges, and all appear the same when only looking at the number of edges and number of vertices. 
+
+The properties of the graph that we have studied so far (connectivity of a graph, maximal vertex degree) all can be used to distinguish graphs, and when we develop new properties and invariants throughout this course, I encourage you to construct pairs graphs which can be distinguished by the invariant, and pairs of graph which are non-isomorphic but are not distinguished by the property being discussed. 
+\begin{projectdescription}{Graph Homomorphisms}
+One could weaken the notion of isomorphism to homomorphism, which drops the \label{proj:graphhomo} requirement of \sref{def:graphiso} that the map of vertices be in bijection.
+A typical example of a graph homomorphism comes from subgraphs, where one can express the subgraph inclusion  $H\subset G$ via an injective graph homomorphism from $H$ to $G$. 
+Asking whether or not there exists a graph homomorphism between two graphs is not only interesting as a relation between graphs, but can be used to construct invariants between graphs.
+For example, the graph homomorphisms from $G\to K_n$ can be used to understand the vertex colorings of the graph $G$. 
+\end{projectdescription}
+
+\subsection{Subdivision and Topological Minors}
+
+Graph isomorphism does not describe the whole entire story of topological equivalence. 
+To a topologist, there is no difference between a path and an edge-- they both describe ``things that look like lines.'' 
+In the same light, all cycles, no matter their size, topologically describe the circle. 
+While all graph equivalences give us topological equivalences, the notion of topological equivalence is weaker and a bit more nuanced. 
+One approach to understanding topological equivalence of graphs is to develop some operations which modify a graph, but keep the topology the same.
+\begin{definitionfigureenv}[Subdivision]{191figures/topgraph_subdivision.tikz}
+	Let $G$ be a graph,  and let $e$ be an edge in $G$, with endpoints $w_-$ and $w_+$. 
+	The \emph{subdivision} of $G$ at $e$ is the graph $G\div e$,  whose vertex set has an additional vertex
+	\[
+		V(G\div e)=V(G)\cup\{v_e\}
+	\]
+	and whose edge set connects this new vertex connecting to the ends of $e$:
+	\[
+		E(G\div e )=V(G)\setminus \{e\}\cup\{v_ew_-, v_ew_+\}.
+	\] 
+\end{definitionfigureenv}
+If $H$ is obtained from $G$ by a sequence of subdivisions,  we say that $H$ is a subdivision of $G$. If a subdivision of $G$ is contained in $H$,  we say that $G$ is a \emph{topological minor} of $H$. The set of all graphs that contain $G$ as a topological minor is denoted $TG$.
+
+	\nomenclature{$G\div e$}{The subdivision of $G$ at $e$} 
+While the definition of subdivision may look intimidating, it is a visually intuitive process.
+One starts with a graph, selects an edge, and then adds a new vertex into the middle of that edge. 
+
+Every cycle is a subdivision of the basic cycle on 3 vertices. Subdividing any edge of a cycle produces the next larger cycle, so one may say that whenever $m<n$, $C_m$ is a topological minor of $C_n$. The set of graphs whose topology matches that of the circle can be described using subdivisions as $TC_3$. 
+
+\begin{examplefigureenv}[$K_5$ Subdivision]{191figures/topgraph_k5subdivision.tikz}
+Graphs contain many more graphs as topological minors than subgraphs.
+Notice that every subgraph is a topological minor, but it is usually not the case that a topological minor is a subgraph.
+The graph drawn on the right is a subdivision of $K_5$, obtained by taking every edge and subdividing it.
+Since this graph is a subdivision of $K_5$, it contains every graph on five vertices as a topological minor.
+However, it does not even contain a triangle as a subgraph. 
+In fact, every cycle in this graph has even length, which is a pretty uncommon property for a graph to have. 
+\end{examplefigureenv}
+
+From a combinatorial perspective, subdivision is a bit confusing.
+It doesn't preserve many graph invariants: for example, whenever one subdivides a graph, the vertex connectivity of the graph is reduced down to at most two. 
+While things like the maximal degree of a vertex are preserved, almost every other combinatorial properties (like edge or vertex connectivity, coloring) is thrown out of the window. Furthermore, subdivision only serves to make a graph more complicated by adding in additional vertices and edge. 
+
+However, subdivision satisfies all the condition that we value as topologists: when you subdivide an edge, you are allowed to stretch paths out, but  not allowed to break them or create new ones. We will therefore say that the \emph{topological} properties of a graph are those which are preserved under subdivision.
+If $H$ is a subdivision of $G$, we will write $G\Rightarrow H$. 
+
+This doesn't form an equivalence relation on graphs, as the relation is rarely reflexive: if $G\Rightarrow H$ then $H\Rightarrow G$, it must be the case that $G=H$. 
+However, there is a general trick for construcing equivalence relations out of operations which do not satisfy the reflexive axiom. 
+
+\begin{claimfigureenv}[Homeomorphic]{191figures/topgraph_commonsubdivision.tikz}
+Graphs $G_1$ and $G_2$ are \emph{homeomorphic} or \emph{topologically equivalent} if there exists a \emph{common subdivision} $H$ so that 
+\[G_1\Rightarrow H \text{  and  } G_2\Rightarrow H.\]
+We then write $G_1\simeq G_2$. 
+Homeomorphism is an equivalence relation. 
+\end{claimfigureenv}
+\begin{comment}
+Not all kinds of topological deformations are captured by the subdivision relation. Perhaps the most important of these relations is the homotopy equivalence, which is not characterized by subdivision. If we allow for homotopy-like deformations, then a graph is completely characterized by the number of independent loops it has, and so every graph can be homotoped to a graph with one vertex of high degree, and many other vertices of degree 2. However, subdivision preserves more properties than this:
+\begin{claim}
+Let $H$ be a subdivision of $G$. Then for every $k$, the number of vertices of $G$ of degree $k$ is equal to the number of vertices of $H$ of degree $k$. 
+\end{claim}
+\end{comment}
+As a general rule, subdivision preserves the topological properties of a graph, but loses a lot of the combinatorial data. 
+In particular, the operation of subdivision takes a graph $G$, and produces a slightly sparser, more complicated graph $G\div e$.
+This means that the operation of subdivision is not particularly useful for proof techniques. 
+In short: subdivision is good for topologists, but bad for graph theory.
+
+\subsection{Contraction and Minors}
+A slightly more aggressive type of graph deformation is contraction along and edge, which one can use to invert the operation of subdivision. 
+\begin{definitionfigureenv}[Contraction]{191figures/topgraph_contraction.tikz}
+  Let $G$ be a graph, and let $e$ an edge in $G$ with ends $w_+$ and $w_-$. Then define the \emph{contraction} $G/e$  to be the graph with a new vertex $v_e$ 
+  \[
+	  V(G/e)=V(G)\setminus \{v_-, v_+\}\cup\{v_e\}
+\]
+  whose edges are given by neighbors of $e$,
+  \[
+	  E(G/e)=E(G)\cup\{v_ev \;|\; e\in N(w_-)\cup N(w_+)\}.
+	\]
+   A graph $G$ is a  \emph{minor} of $H$ is $G$ is a subgraph of a contraction of $H$.
+   When $G$ is a minor of $H$, we write $G\preceq H$. 
+\end{definitionfigureenv}
+\nomenclature{$G/e$}{$G$ contracted along an edge $e$}
+
+The graph $G/e$ is in some sense ``simpler'' than the graph $G$ in that $G/e$ has fewer edges and vertices than $G$. 
+Contraction is an opposite operation to subdivision, in that every subdivision can be undone by a contraction. 
+However it is not the case that every contraction can be undone by a subdivision. 
+For instance, the contraction given in the above example is not a contraction which can be undone by subdivision. 
+One also sees this relation between subdivision and contraction when comparing the topological minors of a graph to their minors. 
+
+\begin{examplefigureenv}[Peterson Graph]{191figures/topgraph_peterson.tikz}
+	While every topological minor is a minor, it is not the case that every minor is a topological minor.
+	A famous example of a graph which contains many minors, but not very many topological minors, is the \emph{Peterson graph}.
+		 The Peterson graph can be contracted to $K_5$. 
+		 As a result, the peterson graph contains every graph on 5 or fewer vertices as a topological minor.
+		However, it does not contain $K_5$ as a topological minor.
+		Compare this to  \sref{exam:k5division}, which contains $K_5$ as a topological minor. 
+	\end{examplefigureenv}
+
+Subdivision preserves the paths and cycles which exist in a graph, while contracting an edge can possibly destroy the paths and cycles which contain that edge. 
+For this reason, we do not usually think of contraction as an operation which plays well with the topological aspects of graph theory. 
+Consider, for instance, that every connected graph can eventually be contracted down to a point!
+This means that contraction doesn't give meaningful equivalence relations between graphs.
+
+This does not mean that contraction is less useful for studying graphs. In fact, many of the combinatorial properties of graphs that we care about are not related to the topological type of the graph. Furthermore, because contraction simplifies a graph by lowering the number of edges and vertices, it becomes a valuable tool for inspecting the combinatorial properties of a graph.
+ \lineconnection{sec:planar:planar}
+	 Contraction will become a more powerful tool for studying the combinatorial properties of a graph.
+	 There are even a few topological properties of a graph which are well behaved under contraction.
+	 For instance, whether or not a graph can be drawn in the plane  without edges crossing (\sref{sec:planar:planar}) is a property which is preserved under the operation of contraction.
+ 	Additionally, the number of ways that we can color a graph so that no two adjacent vertices have the same color is well behaved under the operation of contraction.
+ 	We will return to this at \sref{sec:planar:coloring}.
+
+\begin{projectdescription}{Deletion-Contraction}
+	While subdivision seems to make a graph sparser (and less connected), contraction makes a graph denser. 
+	At \sref{sec:topgraph:reliability} we will see how this relation can be used to compute the reliability of a graph, which is another measure of connectivity. 
+	This is an example of graph properties which can be calculated via a recursion relation called \emph{deletion-contraction}.
+	Examples of properties that can be computed by deletion contraction include the Pott-Ising model which describes spins on a lattice, or the number of spanning forests in a graph. 
+	The Tutte Polynomial of a graph is an invariant of the graph which universally captures all such properties. 
+\label{proj:polynomials}
+\end{projectdescription}
+
+\input{reliabilitypolynomial}

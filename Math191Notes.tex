@@ -1,0 +1,52 @@
+
+\input{test.output}
+	
+\documentclass[draft,showtrims,11pt,executivepaper,openright,draft]{memoir}
+%\usepackage{showframe} %Troubleshooter, load if broken
+
+
+	\input{preamble/preamble}
+	\input{preamble/mathpreamble}
+
+	\graphicspath{{191figures/}}
+	\addbibresource{preamble/References.bib}
+	
+	\makeindex
+	\strictpagecheck
+\title{Combinatorial Topology}
+\author{Jeff Hicks}
+\date{\today}
+
+%%% ---- The Document ----
+\begin{document}
+\dimdef{\outsidetextwidth}{\textwidth}
+\dimdef{\figuretextwidth}{-1\tuftesize + 1\textwidth  }
+\def \babel@toc#1#2{}
+%Here's the title of a section
+
+%\includefrom{wrapping/}{frontmatter}
+%\includefrom{wrapping/}{introduction}
+\mainmatter 
+%Here's our first chapter
+%\includefrom{chap_topgraph/}{reliabilitypolynomial}	
+%\includefrom{chap_topgraph/}{reliabilitypolynomial}	
+\includefrom{chap_topgraph/}{chap_topgraph}
+\includefrom{chap_embgraph/}{chap_embgraph}
+%\includefrom{chap_simpcomplex/}{chap_simpcomplex}
+%\includefrom{chap_knottheory/}{chap_knottheory}
+%%%$ Now we are in the appendix
+%\appendix
+\includefrom{app_homological/}{HomologicalAlgebra}
+%
+%\includefrom{chap_oddsends/}{OddsAndEnds}
+%\includefrom{wrapping/}{listofprojects}
+
+
+%%% This is the part of the document after the main text.
+
+
+
+%\backmatter
+%\printbibliography
+
+\end{document}

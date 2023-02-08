@@ -1,0 +1,25 @@
+\begin{tikzpicture}[scale=\scalefactor]
+	\input{figuresettings}
+	\vertex (k3) at (0.72, 3.87) {};
+	\vertex (k2) at (-3.06, -2.52) {};
+	\vertex (k4) at (1.41, -3.52) {};
+	\vertex (k5) at (-3.49, 2.05) {};
+	\vertex (k1) at (3.75, 0.43) {};
+	\draw [-] (k1)--(k2);
+	\draw [-] (k2)--(k3);
+	\draw [-] (k3)--(k4);
+	\draw [-] (k4)--(k5);
+	\draw [-] (k5)--(k1);
+\begin{scope}[shift={(9,-9)}]
+	\vertex (k3) at (0.72,3.87) {};
+	\vertex (k2) at (-3.06,-2.52) {};
+	\vertex (k4) at (1.41,-3.52) {};
+	\vertex (k5) at (-3.49,2.05) {};
+	\vertex (k1) at (3.75,0.43) {};
+	\draw [-] (k1)--(k3);
+	\draw [-] (k3)--(k5);
+	\draw [-] (k5)--(k2);
+	\draw [-] (k2)--(k4);
+	\draw [-] (k4)--(k1);
+\end{scope}
+   \pgfsize \end{tikzpicture}

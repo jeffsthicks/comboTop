@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\newcommand{\changetocdepth}[1]{}
+\newcommand{\chapternumberline}[1]{}
+\def \metrolinewidth{4pt}
+
+
+\renewcommand{\contentsline}[4]{#2\\}
+\newcounter{tocline}
+\renewcommand{\contentsline}[4]
+{\edef\temp{#1}
+\ifx \continueprinting \checkvalue%
+    {\ifx \temp \test%
+        {\stepcounter{tocline}
+        \node[right] at (.1, \thetocline) {#2};}
+    \else \def\continueprinting{0} \fi }
+\fi}
+
+
+\newcommand{\chaptercontents}[1]{
+    \def \continueprinting{1}
+    \def\test{section}
+    \def\checkvalue{1}
+    \renewcommand{\numberline}[1]{}
+    \renewcommand{\boolfalse}[1]{}
+    \renewcommand{\defcounter}[2]{}
+\begin{tikzpicture}
+    \tikzset{metroline/.style={color=white, line width=1pt, double=red, double distance=\metrolinewidth}}
+    \tikzset{station/.style={draw,color=white, line width =2pt ,fill=red, circle, inner 	sep=3pt}}
+    \input{#1}
+    \draw[metroline] (0,1) -- (0, \thetocline);
+    \foreach \y in {1, ..., \thetocline}
+        \node[station] at (0, \y) {};
+\end{tikzpicture}}
+
+
+
+\begin{document}
+\chaptercontents{Math191Notes.toc}
+\end{document}

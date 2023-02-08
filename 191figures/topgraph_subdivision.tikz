@@ -1,0 +1,22 @@
+
+\begin{tikzpicture}[scale=\scalefactor]
+    \input{figuresettings}
+\draw (-2,2) -- (-2,0) -- (0,0) -- (0,2) -- (-2,2);
+\draw (2,2) -- (2,0) -- (4,0) -- (4,2) -- (3,3) -- (2,2);
+\vertex at (-2,2){};
+\vertex at (0,0) {};
+\vertex at (0,2) {};
+\vertex at (3,3) {};
+\vertex at (2,2) {};
+\vertex at (4,2) {};
+\vertex at (4,0) {};
+\vertex at (2,0) {};
+\vertex at (-2,0){};
+\draw[thick, dashed, ->] (-1,3) -- (-1,2.5);
+\node at (-1,3.5) {$e$};
+\node at (-1,-0.5) {$G$};
+\node at (3,-0.5) {$G\div e$};
+\node[left] at (-2,2) {$w_-$};
+\node[right] at (0,2) {$w_+$};
+\node[above] at (3,3) {$v_e$};
+\pgfsize \end{tikzpicture}

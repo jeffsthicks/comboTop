@@ -1,0 +1,51 @@
+\begin{doubledpage}{theorem}{Inclusion-Exclusion}{
+	One cannot use inclusion/exclusion to compute connected components. However, there is another way.  }
+\label{graph:thm:mengers}
+Let $G$ be a graph, and let $A, B\subset G$ be two subgraphs which \emph{cover} $G$ in the sense that $G=A\cup B$. There are several quantities of $G$ which can be computed via an inclusion/exclusion principle.
+For instance, both the number of edges and vertices in $G$ can be computed by 
+\begin{align*}
+|V(G)|=|V(A)|+|V(B)|-|V(A\cap B)| && |E(G)|=|E(A)|+|E(B)|-|E(A\cap B).
+\end{align*}
+This is not surprising, as both the number of edges and number of vertices are really set theoretic properties of the graph. 
+\begin{paragraphfigureenv}{191figures/topgraph_incexc.tikz}
+However, the number of connected components does \emph{not} satisfy the inclusion-exclusion property. In the example on the left, $b_0(A)=b_0(B)=1$, and $b_0(A\cap B)=2$, but
+\[b_0(G)\neq b_0(A)+b_0(B)-b_0(A\cap B)=0\]
+This gives us a striking example that the global property of connectedness does not break up well accross multiple components! The problem in this siuation is that $A$ and $B$ are connected across two different components of their common intersection.
+\end{paragraphfigureenv}
+There is a useful example to keep in mind where the number of connected components can be computed via inclusion-exclusion.
+\begin{paragraphfigureenv}{191figures/topgraph_forest.tikz}
+If the graph $H$ is a \emph{forest}, meaning that it is a disjoint union of trees, then the number of connected components can be computed via the formula
+\[b_0(H)=|V(H)|+|E(H)|.\]
+Since both $V(H)$ and $E(H)$ can be computed with inclusion-exclusion, we see that $b_0(H)$ can be computed in terms of the subgraphs of $H$ whenever $H$ is a forest.
+\end{paragraphfigureenv}
+Both of the previous examples point to role that cycles play in computing the number of connected components of $G$ in terms of its subgraphs.
+One may also try to compute the cycle number $b_1(G)$ by inclusion exclusion, and once again sees that this fails to satisfy the inclusion/exclusion principle. However, there is a simple example to keep in mind when this succeeds. 
+When $b_0(G)=1$, then the cycle number can be be computed by 
+\[b_1(G)=|E(H)|-|V(H)|+1\]
+From this, we can make the following inclusion/exclusion computation.
+\begin{claim}
+Suppose that $b_0(A)=b_0(B)=b_0(G)=1$. Then 
+\[
+	b_1(G)=b_1(A)+b_1(B)-b_1(A\cap B)+b_0(A\cap B)-1.
+\]
+\end{claim}
+This formula seems a bit ad-hoc, but can be understood as partitioning the cycles of $G$ into those cycles which are completely outside of $B$, completely outside of $A$, completely contained in the intersection, or passing between $A$ and $B$ through a distinct connected component of the intersection. 
+\includefigure{191figures/topgraph_incexcb1.tikz}
+
+One interpretation of this is the following: if the conneected components of $A\cap B$ causes us to \emph{overcount $b_0(G)$}, then this overcount is realized in the \emph{undercount} of $b_1(G)$.
+There is a delicate balencing that occurs here, and problematically the numbers do not have enough structure for us to remember all of the balencing that occurs. 
+Fortunately the numbers $b_0$ and $b_1$ are only shadows of vector spaces, 
+\begin{align*}b_0(G)= \mathcal V(G)/\im(\partial) && b_1(G)= \ker(\partial)\end{align*} 
+and we can reconstruct the decomposition of cycles of $G$ by using maps of vector spaces. 
+\begin{claim}
+	There exists a map $\delta: \ker(\partial_G)\to \mathcal V(A\cap B)/\im(\partial_{A\cap B}) $.
+\end{claim}
+\begin{proof}
+	Let $c\in \ker(\partial_G)$ be a cycle of $G$. Let $c|_A\in \mathcal E(A)$ be the restriction of the cycle to the subgraph $A$. Note that $c|_A$ will no longer be a cycle. This truncated cycle  will now have boundary $\partial_A(c_A)$ at every point where the cycle $c$ crossed over into $B$, so $\partial(c_A)\in \mathcal V(A\cap B)$. We define $\delta(c):=[\partial(c_A)]\in \mathcal V(G)/\im(\partial_G)$. 
+\end{proof}
+This can be extended (see \sref{app:}) to show that the failure of $b_0$ to satisfy the inclusion/exclusion principle is exactly equal to the failure of $b_1$ to satisfy the inclusion/exclusion principle so that:
+\begin{align*}
+0=&\left(b_0(A\cup B)-(b_0(A))+b_0(B)+b_0(A\cap B)\right)\\
+&-\left(b_1(A\cup B)-(b_1(A)+b_1(B))+b_1(A\cap B)\right)
+\end{align*}
+\end{doubledpage}

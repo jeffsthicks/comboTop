@@ -1,0 +1,169 @@
+
+\newcommand{\vertexradius}{2.5pt}
+\newcommand{\vertexscale}{.5}
+\newcommand{\bigvertexscale}{2}
+\newcommand{\vertex}{\node[circle, fill=black, scale=\vertexscale] }
+\newcommand{\vertexa}{\node[circle, fill=red, scale=\vertexscale] }
+\newcommand{\highlighta}{red!20}
+\newcommand{\highlightb}{blue!20}
+\newcommand{\highlightc}{green!20}
+\newcommand{\shadinga}{gray!20}
+\newcommand{\smallvertex}{\node[circle, fill=black, scale=.2]}
+\newcommand{\highlightlinewidth}{3pt}
+
+\begin{tikzpicture}[scale=\scalefactor]
+\begin{scope}[rotate=90]
+
+\draw[fill=\highlighta]  (-1.5,0) ellipse (2 and 2);
+\draw[fill=\highlightb] (0.5,0) ellipse (2 and 2);
+\begin{scope}
+\tikzset{every path/.style={}}
+\clip(-1.5,0) ellipse (2 and 2);
+\draw[fill=purple!50, line width=1pt]  (0.5,0) ellipse (2 and 2);
+
+\end{scope}
+\begin{scope}
+\tikzset{every path/.style={}}
+\clip (0.5,0) ellipse (2 and 2);
+\draw[line width = 1pt](-1.5,0) ellipse (2 and 2);
+\end{scope}
+\draw (-2,-0.5) -- (-3,0) -- (-2,0.5) -- cycle;
+\draw (-0.5,1) -- (-2,0.5) -- (-2,-0.5) -- (-0.5,-1) -- (-0.5,-1) -- (1.5,-1) -- (2,0) -- (1.5,1) -- (-0.5,1);
+
+
+
+
+\draw (-0.5,1) -- (-1,0.5) -- (-0.5,0) -- (0,0.5) -- cycle;
+\vertexa at (-3,0) {};
+\vertexa at (-2,0.5) {};
+\vertexa at (-2,-0.5) {};
+\vertex at (-0.5,1) {};
+\vertex at (-1,0.5) {};
+\vertex at (-0.5,0) {};
+\vertex at (0,0.5) {};
+\vertex at (-0.5,-1) {};
+\vertex at (1.5,-1) {};
+\vertex at (1.5,1) {};
+\draw (1.5,1) -- (1,0.5) -- (1,-0.5) -- (1.5,-1);
+\vertex at (1,0.5) {};
+\vertex at (1,-0.5) {};
+\vertex at (2,0) {};
+\draw[red] (-3,0) -- (-2,0.5) -- (-2,-0.5) -- cycle;
+\end{scope}
+\begin{scope}[rotate=90, shift={(0,-4.5)}]
+
+\draw[fill=\highlighta]  (-1.5,0) ellipse (2 and 2);
+\draw[fill=\highlightb] (0.5,0) ellipse (2 and 2);
+\begin{scope}
+\tikzset{every path/.style={}}
+\clip(-1.5,0) ellipse (2 and 2);
+\draw[fill=purple!50, line width=1pt]  (0.5,0) ellipse (2 and 2);
+
+\end{scope}
+\begin{scope}
+\tikzset{every path/.style={}}
+\clip (0.5,0) ellipse (2 and 2);
+\draw[line width=1pt](-1.5,0) ellipse (2 and 2);
+\end{scope}
+\draw (-2,-0.5) -- (-3,0) -- (-2,0.5) -- cycle;
+\draw (-0.5,1) -- (-2,0.5) -- (-2,-0.5) -- (-0.5,-1) -- (-0.5,-1) -- (1.5,-1) -- (2,0) -- (1.5,1) -- (-0.5,1);
+
+
+
+
+\draw (-0.5,1) -- (-1,0.5) -- (-0.5,0) -- (0,0.5) -- cycle;
+\vertex at (-3,0) {};
+\vertex at (-2,0.5) {};
+\vertex at (-2,-0.5) {};
+\vertex at (-0.5,1) {};
+\vertex at (-1,0.5) {};
+\vertex at (-0.5,0) {};
+\vertex at (0,0.5) {};
+\vertex at (-0.5,-1) {};
+\vertexa at (1.5,-1) {};
+\vertexa at (1.5,1) {};
+\draw (1.5,1) -- (1,0.5) -- (1,-0.5) -- (1.5,-1);
+\vertexa at (1,0.5) {};
+\vertexa at (1,-0.5) {};
+\vertexa at (2,0) {};
+\draw[red] (2,0) -- (1.5,1) -- (1,0.5) -- (1,-0.5) -- (1.5,-1) -- cycle;
+\end{scope}
+\begin{scope}[rotate=90, shift={(0,-9)}]
+
+\draw[fill=\highlighta]  (-1.5,0) ellipse (2 and 2);
+\draw[fill=\highlightb] (0.5,0) ellipse (2 and 2);
+\begin{scope}
+\tikzset{every path/.style={}}
+\clip(-1.5,0) ellipse (2 and 2);
+\draw[fill=purple!50, line width=1pt]  (0.5,0) ellipse (2 and 2);
+
+\end{scope}
+\begin{scope}
+\tikzset{every path/.style={}}
+\clip (0.5,0) ellipse (2 and 2);
+\draw[line width=1pt](-1.5,0) ellipse (2 and 2);
+\end{scope}
+\draw (-2,-0.5) -- (-3,0) -- (-2,0.5) -- cycle;
+\draw (-0.5,1) -- (-2,0.5) -- (-2,-0.5) -- (-0.5,-1) -- (-0.5,-1) -- (1.5,-1) -- (2,0) -- (1.5,1) -- (-0.5,1);
+
+
+
+
+\draw (-0.5,1) -- (-1,0.5) -- (-0.5,0) -- (0,0.5) -- cycle;
+\vertex at (-3,0) {};
+\vertex at (-2,0.5) {};
+\vertex at (-2,-0.5) {};
+\vertexa at (-0.5,1) {};
+\vertexa at (-1,0.5) {};
+\vertexa at (-0.5,0) {};
+\vertexa at (0,0.5) {};
+\vertex at (-0.5,-1) {};
+\vertex at (1.5,-1) {};
+\vertex at (1.5,1) {};
+\draw (1.5,1) -- (1,0.5) -- (1,-0.5) -- (1.5,-1);
+\vertex at (1,0.5) {};
+\vertex at (1,-0.5) {};
+\vertex at (2,0) {};
+\draw[red] (0,0.5) -- (-0.5,1) -- (-1,0.5) -- (-0.5,0) -- cycle;
+\end{scope}
+\begin{scope}[rotate=90, shift={(0,-13.5)}]
+
+\draw[fill=\highlighta]  (-1.5,0) ellipse (2 and 2);
+\draw[fill=\highlightb] (0.5,0) ellipse (2 and 2);
+\begin{scope}
+\tikzset{every path/.style={}}
+\clip(-1.5,0) ellipse (2 and 2);
+\draw[fill=purple!50, line width=1pt]  (0.5,0) ellipse (2 and 2);
+
+\end{scope}
+\begin{scope}
+\tikzset{every path/.style={}}
+\clip (0.5,0) ellipse (2 and 2);
+\draw[line width=1pt](-1.5,0) ellipse (2 and 2);
+\end{scope}
+\draw (-2,-0.5) -- (-3,0) -- (-2,0.5) -- cycle;
+\draw (-0.5,1) -- (-2,0.5) -- (-2,-0.5) -- (-0.5,-1) -- (-0.5,-1) -- (1.5,-1) -- (2,0) -- (1.5,1) -- (-0.5,1);
+
+
+
+
+\draw (-0.5,1) -- (-1,0.5) -- (-0.5,0) -- (0,0.5) -- cycle;
+\vertex at (-3,0) {};
+\vertexa at (-2,0.5) {};
+\vertexa at (-2,-0.5) {};
+\vertexa at (-0.5,1) {};
+\vertex at (-1,0.5) {};
+\vertex at (-0.5,0) {};
+\vertex at (0,0.5) {};
+\vertexa at (-0.5,-1) {};
+\vertexa at (1.5,-1) {};
+\vertexa at (1.5,1) {};
+\draw (1.5,1) -- (1,0.5) -- (1,-0.5) -- (1.5,-1);
+\vertexa at (1,0.5) {};
+\vertexa at (1,-0.5) {};
+\vertex at (2,0) {};
+\draw[red] (1.5,1) -- (1,0.5) -- (1,-0.5) -- (1.5,-1) -- (-0.5,-1) -- (-2,-0.5) -- (-2,0.5) -- (-0.5,1) -- cycle;
+\end{scope}
+            
+\pgfsize
+\end{tikzpicture}

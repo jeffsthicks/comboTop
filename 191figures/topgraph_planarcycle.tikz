@@ -1,0 +1,19 @@
+
+\begin{tikzpicture}[scale=\scalefactor]
+    \input{figuresettings}
+\draw (-4,1) -- (-4,-2) -- (-1,-2) -- (-2.5,-0.5) -- (-4,-2);
+\draw (-4,1) -- (-2.5,-0.5);
+\draw (-1,-2) -- (-1,1) -- (-4,1);
+\vertex at (-1,-2) {};
+\vertex at (-2.5,-0.5) {};
+\vertex at (-4,1) {};
+\vertex at (-1,1) {};
+\vertex at (-4,-2) {};
+\vertex at (-2,0) {};
+\node[left] at (-4,1) {$v_1$};
+\node[left] at (-4,-2) {$v_2$};
+\node[right] at (-1,-2) {$v_3$};
+\node[right] at (-1,1) {$v_4$};
+\node at (-2.5,-1) {$v_5$};
+\draw (-2,0) -- (-1,1);
+\pgfsize \end{tikzpicture}

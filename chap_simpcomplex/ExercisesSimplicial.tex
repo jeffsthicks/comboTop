@@ -1,0 +1,99 @@
+
+
+
+\section{Exercises}
+
+
+\begin{exercise}\label{exer:simp:homtorus}
+Give a triangulation of the Torus, and compute its homology.
+\end{exercise}
+
+\begin{exercise}\label{exer:simp:homklein}
+Give a triangulation of the Klein bottle, and compute its homology. 
+\end{exercise}
+
+\begin{exercise}\label{exer:simp:spherebyhand}
+Prove by hand that the homology of the sphere $H_k(S^n)$ is zero whenever $n\neq k, 0$. 
+\end{exercise}
+
+\begin{exercise}\label{exer:simp:homologystronger}
+Construct two simplicial complexes $X$ and $Y$ which have the same Euler characteristic, but different homology groups. (This proves that homology is a stronger tool to study topological spaces than Euler Characteristic, as whenever $X$ and $Y$ have the same homology groups, they have the same Euler Characteristic.)
+\end{exercise}
+
+\begin{exercise}\label{exer:simp:arbitraryhom}
+Let $b_0, \ldots, b_n$ be an arbitrary sequence. Construct a simplicial complex $X$ with $\dim(H_k(X))=b_k$. 
+\end{exercise}
+
+
+
+\begin{exercise}
+\label{exer:homsphere}
+Using induction, show that $H^n(S^n)=\Z_2$ by using the \ref{cor:coneles} and \ref{exam:conesphere}.
+\end{exercise}
+
+\begin{exercise}\label{exer:hom:conecontract}
+Show that for every $X$, there exists a space $Y$ and an injective simplicial map $i: X\to Y$ so that $H_k(Y)=0$ for all $k\geq 1$. 
+\end{exercise}
+
+One of the main uses of $\cone$ is to create new topological spaces. Let $x$ be the topological space consisting of a single point. A topological space is an \emph{iterated cone} if it can be created from written as a sequence of mapping cones and disjoint unions of points. For example, one may make a triangle by taking the iterated mapping cone:
+\[\cone(i:x\cup x \to  \cone(\id:x\to x)).\]
+where the map $i:x\cup x\to \cone(\id(x\to x))$ is inclusion to the left and right endpoints. 
+\begin{exercise}\label{exer:hom:iteratedmapping}
+Show that all disks and all spheres can be constructed as iterated mapping cones. 
+\end{exercise}
+
+\begin{exercise}\label{exer:hom:graphiterated}
+ Show that every graph is a topological minor of an interated cone. 
+\end{exercise}
+
+\begin{exercise}\label{exer:hom:coneedge}
+Let $X$ be a connected simplicial complex, $v, w$ two vertices of the simplicial complex so that $vw$ is not an edge in $X$. Show that the simplicial complex $X\cup \{e\}$, where $e$ as a new edge between $vw$ has $H_1(X\cup\{e\})=H_1(X)\oplus \Z$, and $H_k(X\cup\{e\})=H_k(X)$ when $k\neq 1$. 
+\end{exercise}
+
+Let $X$ be a simplicial complex. The \emph{suspension} of $X$ is the simplicial complex given by successively taking two cones:
+\[\Sigma X=\cone(i:X\to \cone(\id:X\to X)).\]
+The $n$-fold suspension is given by $\Sigma^kX:=\underbrace{\Sigma\cdot \Sigma}_{k \text{ times}} X$. 
+\begin{exercise}\label{exer:hom:suspensioneuler}
+Compute the Euler characteristic of $\Sigma X$ in terms of the Euler characteristic of $X$. 
+\end{exercise}
+
+\begin{exercise}\label{exer:hom:suspension}
+Let $S^0=\{x, y\}$ be the two point space. Draw out the  $k=0, 1, 2$ the spaces
+\[\Sigma^k S^0.\]
+Make a geometric argument for why these spaces are topologically spheres, and then compute $H^k(\Sigma^k S^0).$ 
+\end{exercise}
+
+\begin{exercise}\label{exer:hom:suspensionhomology}
+Show that whenever $k\geq 1$, 
+\[H_{k+1}(\Sigma X ) = H_k(X). \]
+\end{exercise}
+
+
+
+
+
+
+\begin{exercise}
+Two chain complexes are \emph{quasi-isomorphic} if there exists a chain map $f: A_\bullet\to B_\bullet$ so that $f_*: H_\bullet(A)\to H_\bullet(B)$ is an isomorphism. Find two chain complexes $A_\bullet, B_\bullet$ so that their homologies are isomorphic, but $A_\bullet, B_\bullet$ are \emph{not} quasiisomorphic. (You will have to work with modules.)
+\end{exercise}
+
+\begin{exercise}
+Let $X$ be a simplicial complex, and $\sigma$ a simplex of $X$. Pick $\tau \subset \sigma$ a subsimplex. Suppose $x$ is a vertex so that whenever $x\in \tau$, we have that $\tau\subset \sigma$.  We define the simplicial complex $X\setminus x$ to be the simplicial complex with all the simplices of $X$ except those which include the vertex $x$. Show that $H_k(X\setminus x)=H_k(X)$. 
+\end{exercise}
+
+\begin{exercise}
+Let $X$ be a simplicial complex, and suppose that there is a morse function $f: X\to \R$ which has only 1 critical point. Show that the homology of $X$ is that of a point. 
+\end{exercise}
+
+\begin{exercise}
+Suppose that $X$ is a simplicial complex which is a graph. Show that it is contractible if and only if it is a tree. 
+\end{exercise}
+
+
+\begin{exercise}
+What is the structure of $\Delta(\overline {P(\Delta)})$?
+\end{exercise}
+
+\begin{exercise}
+Show that $\Delta(\overline{P(\Delta)})$ is homotopic to $\Delta(\overline{P(\Delta)})$.  
+\end{exercise}

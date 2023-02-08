@@ -1,0 +1,20 @@
+
+\begin{framedpage}{theorem}{Mader's Theorem}{Every graph with average vertex degree $d(g)$ greater than $4k$ contains a $k$-connected subgraph. \label{graph:thm:mader}}
+	The idea of this proof is to induct on the number of vertices, where the vertex we remove during the inductive step is one of low degree. We start by massaging $d(G)\geq 4k$ to obtain the inequalities
+	\begin{align*}|V|\geq 2k-1 && |E|\geq (2k-3)(|V|-k+1)+1\end{align*}
+	For the first inequality, notice that if the average degree is $4k$, there must be a vertex with degree at least $4k$; therefore it has $4k$ neighbors. Therefore the number of vertices is at least $4k$. 
+	For the second inequality, we apply \sref{claim:avgdegree},
+	\[|E|= d(G)|V| \geq  4k  |V| 
+	\geq(2k-3)(|V|-k+1)+1\]
+	With these two new inequalities, we run an inductive argument on the number of vertices in the graph. In the base case, $G$ is a graph on $2k-1$ vertices and therefore is complete, for which the claim follows trivially.
+
+    For the inductive step, we split into two cases based on whether there exists a vertex of low-degree. If $v$ has low degree, then $G\setminus v$ will have \emph{larger}  average degree, and by induction we can still run our argument. 
+    
+	\textbf{Case 1:} Suppose that there exists a vertex of degree less than $2k-3$. Then even after removing this vertex, our inductive hypothesis holds as we've decreased the number of vertices by 1 but only removed at most $(2k-3)$ edges.
+\begin{paragraphfigureenv}[]{191figures/topgraph_disconnect.tikz} 
+	\textbf{Case 2:} Suppose that the inequality is not sharp,  and we cannot find a vertex of degree $2k-3$ or less. Let's assume for contradiction that $G$ is not $k$-connected. Then there are two subgraphs $G_1,  G_2\subset G$ such that $G_1\cap G_2$ has fewer than $k$ vertices. 
+	Every vertex in $G_1\setminus G_2$ has neighbors only in $G_1$. Since the minimal degree of each vertex is $2k-2$,  we have that $G_1$ has at least $2k-1$ vertices. Similarly,  $G_2$ has $2k-1$ vertices. So, both the graphs $G_i$ satisfy the first inequality for our induction hypothesis.
+	\end{paragraphfigureenv} As $E=E_1\cup E_2$, we get $|E|\leq |E_1|+|E_2|$. We additionally know that $|V_1|+|V_2|\leq |V|+k$. Combining these inequalities gives
+	\[(2k-3)(|V_1|-k+1)+1)+(2k-3)(|V_2|)-k+1)\leq (2k-3)(|V|-k+1)+1\leq |E|\leq |E_1|+|E_2|\]
+	from which we conclude that one of the $G_i$ satisfy the induction hypothesis, and therefore contains a $k$-connected subgraph. 
+\end{framedpage}

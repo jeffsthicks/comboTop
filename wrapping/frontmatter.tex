@@ -1,0 +1,25 @@
+
+\includepdf[pages=-]{cover.pdf}
+%%%  Here is a titlepage. You can also use \maketitle instead of this setup, which makes a slightly fancier looking titlepage. 
+	\makeatletter
+	\begin{titlingpage}
+	\begingroup
+	\raggedleft
+	\vspace*{1cm}
+	{\Huge\textit{ \@title }}\\[1cm]
+	{\large Math 191, Spring 2017}\\[0.5cm]
+	{\Large \@author}\par
+	\vfill
+	{\Large  \sffamily UC Berkeley}
+	\vspace*{1cm}
+	\endgroup
+	\end{titlingpage}
+	\makeatother
+%%% This says that we're in the part of the document that should before the main text. 
+\frontmatter
+	\tableofcontents*  % Print the Table of Contents
+	\newpage
+	\begin{multicols}{2}
+		\printnomenclature % Print the Nomenclature
+	\end{multicols}
+	

@@ -1,0 +1,119 @@
+\chapter{Introduction}
+\subsection*{Some Context for these Notes}
+These are course notes that were developed to teach  Math 191 at UC Berkeley in Spring of 2015 and Spring of 2017. Perhaps before going into detail about the mathematical content of this book, it's worth going over the structure and pedagogy of the course.  The goal of the course was to provide an experience somewhere in between a seminar and reading course for students. There are not a lot of places for undergraduates in mathematics to move from learning in the classroom to independent study. The lecture portion of this class was structured like a series of mini-courses, each exploring a topic for 3-4 hours. The lectures did not explore a particular field in depth, and I should stress that this class is not designed to be a replacement for a dedicated course on topology or algebraic topology. Instead, one should think of this course as a sampling plate, offering a small taste from a variety of different topics.\\
+The purpose of having small, mostly independent sections was three-fold.
+ As a topics course, students entered with a wide variety of mathematical backgrounds, bringing in their own mathematical strengths in topology, but also analysis, applied mathematics, combinatorics and beyond. Each unit in the course started out introductory, while the last lecture in each series may have been supplemented with topics that might usually appear in research seminars. Students with prior knowledge in the field could still enjoy these topics, while those who were just seeing it for the first time could get a view of modern developments without worrying that mastery of the material would be necessary to move forward in the course. \\
+ The centerpiece of student work were two papers and a presentation completed during the course. One reason to move through a lot of different material in the course was to provide a lot of different topics that students could then pick up on their own and learn in detail. I've marked the portions in the text which might make good projects for students to think about with a margin note labeled ``Projects.''\project Additionally, the appendix of this text contains some abstracts for potential projects.\\
+ Finally, the way that mathematics is done in introductory courses and seminar courses is very different, with more emphasis being placed on proof and rigour on the former and covering the ``big picture'' in the latter. I hope that the layout of this course was something like a bridge between those two formats. Students participated in the seminar format by giving small end-of-term talks on their independent projects. 
+
+\begin{comment}
+\subsubsection*{Coursework} Coursework for this class came from 4 categories. 
+\begin{itemize}
+\item \emph{Exercises} comprise 20\% of your final grade. I will post exercises periodically throughout the class. Exercises will be labeled as either concept checks, or part of a continuing set of exercises designed to explore one of the themes of this course. 
+\item The \emph{Midterm Project} is another 20\% of the grade.  Projects must be typeset using \LaTeX. You're welcome to work in groups. 
+\item The largest portion (50\%) of the grade is a \emph{Final Project and Presentation}, which will be due at the end of the semester. The presentation should be a 15-30 minute talk, which is accessible to other students in the course.\station{gray}{Projects} As before, you are welcome to work in groups. Throughout these notes, I will try to highlight  topics which may make interesting projects with the symbol in the margin  
+\item The final 10\% of the grade is determined by \emph{peer work.} At the end of the semester you will be asked to peer-review each other's projects, and attend each others presentation. 
+\end{itemize}
+
+ 
+\subsubsection*{Other Course Information}
+\begin{itemize}
+\item  In previous courses, I've held ``roaming office hours,'' where I'm generally accessible for any questions that you might have. I'll keep these updated in the course folder online. 
+\item Through the semester, I would like to touch base with all of you on your projects and the course. This can be during my office hours, roaming office hours, or other time. 
+\item I'll try my best to keep these course notes updated throughout the semester. If you spot typos or errors, please let me know!
+\item Sometime through the semester we'll have a workshop on how to use \emph{\LaTeX}. 
+\end{itemize}
+\end{comment}
+\subsection{About The Course}
+\begin{wrapfigure}{r}{4cm}
+\centering
+\includegraphics[scale=.3]{notadonut}
+\end{wrapfigure}
+\emph{Topology} is the study of ``shapes'' or ``objects'' where we allow ourselves to continuously deform the objects. A running joke among topologists is that a mathematician cannot tell the difference between a coffee mug and a donut, as we can continuously deform one into the other. You can even buy a coffee mug with a cautionary reminder from the Berkeley Math Graduate Student Association if you would like.
+This example shows why topology is a rich subject: the relation of ``$A$ is equivalent to $B$ if we can deform them into each other'' has the right amount of give for both interesting structures and relations to exist. It is restrictive enough to give us lots of different objects to talk about. Not all objects are made the same under this relation. However, topological equivalence is loose enough so that we can play a lot with pictures, and group many objects together as equivalent under deformation. \\
+It will take us some time to develop the definitions of ``objects'' and ``deformations'' to a level which is mathematically satisfying, but let's take a bird's-eye view of some of the topics that we will study this semester.  In each topic, there are 2 main questions that are good to keep in mind. 
+\begin{itemize}
+	\item How do we classify different topological spaces? One can try and get finer and finer descriptions of topological spaces by inventing ``invariants'' which measure topological properties of mathematical objects. Even the simplest of topological invariants which count the number of connected components of the space enjoys a rich mathematical theory. 
+	\item Once we know some topological property of a space, can we draw some other mathematical conclusions about the topological space? For example, do we know that the space cannot be embedded in 3-dimensional space without a self-crossing, or do functions from the space to itself necessarily fix a point. These questions are not relevant to topology itself, but rather serve as applications of topology to other branches of mathematics. 
+\end{itemize}
+I found myself studying topology because I enjoy finding pictures and diagrams to match the mathematical concepts that I was exploring at the time. To that end, I've attempted to fill this text with as many pictures as possible. I encourage the reader of this text to draw their own diagrams for all of the proofs that lack their own pictures, as I find that many of the explanations in this subject are better understood visually than through text.
+
+\subsection{Some Course Resources}
+As this course is somewhere in between a class, a seminar, and an independent study, coming up with a set list of resources is a bit tricky. However, here are some texts that I have found useful in preparing this course. 
+\begin{itemize}
+	\item I was initially exposed to knot theory in a course taught by Olga Radko. The book we used \citetitle{farmer1995knots} by \citeauthor{farmer1995knots}. 
+	\item A book for a modern rendition of this field is \citetitle{kozlov2007combinatorial} by  \citeauthor{kozlov2007combinatorial}. 
+	\item A comprehensive view of algebraic topology is in \citetitle{hatcher2002algebraic} by \citeauthor{hatcher2002algebraic}. This develops algebraic topology from the fundamentals of point set topology. 
+	\item \citeauthor{diestel2000graph}'s \citetitle{diestel2000graph} is where I first learned of the Algebraic Planarity criterion, which became on of the centerpieces of this course. 
+	\item The structure of the course and development of homology through the principle of inclusion/exclusion is influenced heavily by the ideas of \citetitle{khovanov1999categorification} by \citeauthor{khovanov1999categorification}, as well as the exposition \citetitle{bar2002khovanov} by \citeauthor{bar2002khovanov}. 
+\end{itemize}
+\subsection{Apologies and Acknowledgments}
+As the course continues, I will try to keep these notes updated with material from the course, and I apologize for any errors and typos present. They serve as an outline to the lecture.\\
+
+\begin{doubledtuftepage}[The Principle of Inclusion Exclusion]
+A running theme through the course will applying and generalizing the property of inclusion-exclusion to topology. In its most general form, the principle of inclusion-exclusion allows us to understand a complicated mathematical object by gluing it together from smaller components.The most basic objects that one can apply this principle to is sets, with the property being cardinality. In this case, we recover the classical statement of inclusion exclusion,
+\smarginnotel{\includegraphics[scale=.8]{intro_incexc}}
+\[|X|=|A|+|B|-|A\cap B|\]
+which says that the size of the union of two sets is related to the sizes of the original sets less an error accounting for their overlap. \\ 
+More generally, let's suppose that we have an object $X$, and I want to study property $P$ of this object. Then we decompose $X$ into simpler parts $A\cup B=X$, and instead study $P(A), P(B)$ and $P(A\cap B)$. If we can understand $P(X)$ from these pieces of data, we say that $P$ is a property computable by $\emph{inclusion-exclusion}$ .\\
+The simplest topological property that we will study is the number of connected components a space $X$ can have. As notation, we will define $b_0(X)$ to be the number of connected components in a space. For our first example,  take a decomposition of this blob-like region into smaller components on the left.\smarginnotel{\includegraphics[scale=.8]{intro_incexcblob}} The number of connected components for each portion of the decomposition is\[ b_0(A)=1,\;\;\; b_0(B)= 2\;\;\; b_0(A\cap B)=2\]
+\nomenclature{\;$b_0(X)$}{Number of connected components of $X$} 
+When grouped together in an ``inclusion-exclusion''  type formula, these give the equality
+\[b_0(X)= b_0(A)+b_0(B)-b_0(A\cap B).\]
+We can draw many kinds of blobs, and cut them up into smaller regions, and find that this inclusion-exclusion principle seems to hold. This stems from the fact that all of the blobs are topologically the same. In the setting where we do not have any kind of interesting topology, the number of connected components that a topological shape is a measure of how ``big'' it is. \\
+If we move onto a shape with more interesting topology, we no longer can expect the inclusion-exclusion equation to hold. Let's instead look at the annulus, with the decomposition given by the blue and red shaded regions. \smarginnotel{\includegraphics[scale=.6]{intro_incexcannulus}} In this decomposition, each of the $A$ and $B$ contribute one connected component to $A\sqcup B$, but their intersection has 2 connected components (one on each side of the annulus.) 
+\[ b_0(A)=1,\;\;\; b_0(B)= 1\;\;\; b_0(A\cap B)=2\]
+These values no longer fit into our na\"ive inclusion-exclusion formula. Instead, we can correct our formula by incorporating an error term $b_1(X)=1$. 
+\[b_0(X)= b_0(A)+b_0(B)-b_0(A\cap B)+b_1(X)\]
+This gives us an interesting insight on the invariant $b_0$. While $b_0$ cannot tell the difference between the annulus and blob directly, the way that this invariant behaves with respect to decompositions can tell the difference. In this case, we can call the resulting error-term $b_1(X)$, which captures some new interesting topological property of the annulus: the presence of a cycle. The failure of a property to obey the inclusion-exclusion decomposition rules is a new kind of property that we can study.  \\ One of the major goals of this class will be to frame this generalization of inclusion-exclusion in a way that makes this idea mathematically formal, which will eventually bring us to the study of \emph{homological algebra.} Throughout this course, we will run into many constructions where we glue a larger mathematical object together from smaller pieces. In these cut and paste scenarios, we'll frequently run into  ``inclusion-exclusion'' like principles, and we'll be able to apply this framework to get some powerful new invariants. \;
+\end{doubledtuftepage}
+\subsubsection{Topological Graph Theory}\station{\topgraph}{Chapter \ref{chap:topgraph}}
+The first theory of combinatorial topology  that we'll study is topological graph theory. A \emph{graph} is a network-- a collection of vertices connected by edges. Many graphs, although non-isomorphic as graphs, describe the same object topologically( see for instance the two $\Theta$-shaped graphs in  Figure \ref{fig:twotopeqgraphs}.) 
+\begin{wrapfigure}{l}{6cm}
+\centering
+\includegraphics[scale=1]{intro_twotopeqgraphs}
+\caption{Non-isomorphic graphs which are topologically equivalent}
+\label{fig:twotopeqgraphs}
+\end{wrapfigure}
+One of our goals will be to distill what combinatorial data makes such graphs topologically equivalent, and then assign invariants that only depend on  the topological type of the graph. Here we will be using the combinatorics of the graph to determine some topological data. Even the simplest topological property, connectivity, gives us a large number of avenues for exploration. We'll develop tools like contraction and subdivision to help us characterize topological equivalences between graphs, and find that those tools are also useful to analyzing the non-topological properties of the graph as well. \\
+We'll also be interested in looking at the reverse  direction, and see how the topological data of a graph determines some of its combinatorics. For instance, a graph is called  \emph{planar} if it can be drawn in the plane so that no two edges in the drawing cross. Planarity gives us a property of a graph which is easy to state topologically but difficult to find a combinatorial characterization for. This topological constraint gives us graphs which satisfy a wide variety of nice combinatorial properties.  Perhaps the most famous property of planar graphs is ``four-colorability'', which means that one can color the vertices of a planar graph with 4 different colors in a way that no edge has ends of the same color. While the proof of this theorem is outside the scope of our class, we'll be looking at the 5 color theorem, and other topological variants of this theory-- like what happens if one instead requires their graph to have an embedding into a  coffee mug. \\
+In between both of these worlds will be determining when a graph $G$ has a particular topological property $P$. We'll come up with a quick algebraic criterion for when a graph $G$ has a drawing inside of a surface $\Sigma$, which will serve as our first introduction to the ideas of \emph{algebraic topology} and a bridge to the study of higher-dimensional topology. We will use graphs as a toy model for the more sophisticated algebraic techniques that we develop later, and due to the topological simplicity of graphs, we will be able to give concrete interpretations to the algebraic constructs we develop here. 
+\subsubsection{Surfaces}
+
+During our exploration of graphs, \station{\embedded}{Chapter \ref{chap:embedded}} we'll implicitly use some of the tools from the study of surfaces, and later we will formally develop a language of surfaces. The topology of a surface is determined completely by it's orientability and the number of ``holes'' it has. Our study of surfaces will be inspired by from our study of graphs, and we'll think of surfaces as faces, edge and vertices glued together. We'll look at several different methods to get these decompositions of spaces.  
+\begin{wrapfigure}{r}{5cm}
+\centering
+\includegraphics[scale=1]{intro_morsedecomp}
+\caption{Decomposing a surface into different flow spaces.}
+\label{fig:morsedecomp}
+\end{wrapfigure}
+In this exposition, we'll think of surfaces as sitting somewhere in between the land of classical graph theory and the theory of simplicial complexes. On the one hand, surfaces are simple enough that it's worth studying them on their own without the full algebraic machinery needed to work in higher dimensions. However, we will only be interested in studying the topological properties of surfaces, and not their combinatorial ones. \\
+Since we know that the topology of a surface is only determined by how many ``holes'' it has -- referred to as the genus-- we can extend out study to surfaces to determine how properties of surfaces are  dependent on this single number. In mathematics, there are a plethora of different theorems about surfaces that boil down to computing the genus of a surface, and our study of surfaces will conclude with a whirlwind tour of some fun examples, including a proof of the Discrete Gauss-Bonnet theorem, an exposition of discrete Morse theory, and return to the algebraic space of cycles that we  developed in graph theory. 
+\subsubsection{Simplicial Complexes}
+\begin{wrapfigure}{r}{5cm}
+	\centering
+	\includegraphics[scale=.8]{intro_3sphere}
+	\caption{A combinatorial description of the 3-sphere, with a single 3-simplex shaded in.}
+	\label{fig:3sphere}
+\end{wrapfigure}
+In order to study higher dimensional \station{\simplicial}{Chapter \ref{chap:simplicial}} topological spaces, we'll have to accept a certain amount of additional abstraction. Instead of describing a topological space as a single object, we'll  assemble large topological spaces by gluing them together from smaller combinatorial pieces. For example, we can think of graphs as being built of vertices and edges glued together, similarly we can build the 3-sphere by gluing together 5 tetrahedrons together by their face (Figure \ref{fig:3sphere}.) This ``cut-and paste'' approach to topology is amenable to attack by combinatorial methods inspired by the principle of inclusion-exclusion. 
+While there is no simple classification of higher dimensional topological spaces, we will still be able to create many new and interesting topologies and talk about their properties. We'll develop the tools of simplicial homology, a powerful algebraic framework, and discuss its topological meaning. This is a substantial piece of machinery, and it will take us some time to get it set up in a way that makes it consistent with our cut-and-paste view of combinatorial topological spaces. In parallel to it's applications to topology, we'll also study the theory of homological algebra, and draw geometric inspirations for the ``abstract nonsense'' constructions and proofs on the algebraic side of the theory. \\
+After developing these tools, we want to  know what we can do with them. These new homological invariants will allow us to prove theorems about fixed points and existence of vector fields, which will give us results related to combinatorics, game theory, and beyond. The invariants themselves have interesting physical interpretations as a count of  higher-dimensional ``holes'' that exist in your space. We'll finally relate these invariants back to our original thought about inclusion-exclusion and Euler characteristic. 
+\subsubsection{Knot Theory}
+The last topic that we'll cover in this course is Knot theory, which has a much more combinatorial feel than the study of surfaces and simplicial complexes. 
+\station{\knots}{Chapter \ref{chap:knots}} A knot is a map from the circle $S^1\to \R^3$, and even though these represent some of the simplest objects that we can study, their mathematical theory remains rich. Knots are studied under the equivalence relation of \emph{isotopy}, which is a continuous deformation that does not create new intersection points, with the central question of determining whether two presentations of a knot are isotopic or not. When we study knots, we will use \emph{knot diagrams}, a two dimensional projection of the 3 dimensional knot. 
+
+\begin{wrapfigure}{r}{5cm}
+	\centering
+	\includegraphics[scale=1]{knot_commont}
+	\caption{Some knots and links}
+	\label{fig:knotintro}
+\end{wrapfigure}
+ Our study of knots will include some other tools from algebra, including braid groups, and fundamental groups. We will  end the semester by studying knot polynomials, which will look similar to some of the tools developed at the beginning of the semester for graphs. With the additional machinery that we will have developed through studying simplicial complexes, we will develop Khovanov Homology, a powerful combinatorial tool inspired from our study of knot polynomials, inclusion-exclusion, and homology. 
+\section{Course Map}
+The cover of this book can be used as a course map. The suggested order of this course is the order of the chapters, although the section on simplicial complexes and homological algebra can be done covered independently from the rest of the text. The chapter on knot theory can also be covered separately.\\
+A common theme of this course is homological algebra, which is treated as an appendix. However, it is best to read these sections of homological algebra as you encounter them. 
+ \leavevmode\thispagestyle{empty}\newpage
+\AddToShipoutPictureBG*{%
+	\AtPageLowerLeft{\includegraphics[width=\paperwidth,height=\paperheight]{cover}}
+}

@@ -1,0 +1,203 @@
+\begin{elevator}[The Cycle Space]
+By representing the vertex set and edge set of a graph with vector spaces, we can recast some of the graph properties we previously explored (like path-connectivity) in the language of linear algebra. 
+We show that the dimension of the cycle space is a topological invariant of a graph.
+\end{elevator}
+\label{sec:graph:cyclespace}
+In this section we introduce a way of encoding data that we'll use in the future. The idea is to take some of the combinatorial data of the graph and upgrade it to algebraic data. Here is a question that frames the tools we'll be developing in this section. 
+\begin{examplefigureenv}[How to count cycles]{191figures/topgraph_countcycles.tikz}
+	\label{fig:cyclecount}
+What is the proper way to count the number of cycles in a graph $G$?
+One way to get a count of cycles is to list them all out: for instance, this graph has 3 cycles. However, it looks like the large cycle can be drawn by combining  two smaller interior cycles. We would like to say that  this graph  has 2 essential cycles, and that the third comes about from the fact that when 2 cycles share an edge, you get a third cycle for free. 
+\end{examplefigureenv}
+
+The problem in counting cycles is that we do not have a good notion of what it means to ``add'' together cycles in a graph.
+We do not even know how to add together edges.
+One way we could make sense of taking sums of edges would be to work instead with a vector space $\mathcal E$, whose basis is given by the set of edges.
+In order to this to have any meaning, we'd have to imbue this vector space with some information so that it remembers what the graph $G$ was. This means that we are going to have to abstract our definition of a graph a little bit.
+\begin{claim}[Graphs a 1-complexes]
+The data of a directed graph equivalent to a set of vertices $V$, a set of edges $E$, and two maps, called the left and right boundary maps: \[\partial_l : E\to V, \partial_r: E\to V.\]
+\end{claim} 
+When we work with sets, there is not a way to encode both the left and right endpoint maps into the same map. However, if we upgrade the set $E$ into a vector space, we can encode both of these boundary maps into one function instead. 
+\subsubsection{Sets and Vector Spaces}
+\begin{stationconnection}{sec:chaincomplexes:intro}
+There are some portions of this course where we'll foray into the world of algebra, and try to build up algebraic tools which capture the geometric of what we are trying to construct. The majority of these tools are summarized in the appendix. In general, these discussions are rather abstract, but are useful to see in parallel with the topologically inspired problems we are solving.
+
+Let's start with a discussion on the limitation of working with sets and function between sets.
+Suppose we are given two functions $f_1: S_1\to T$ and $f_2: S_2\to T$. Then in the language of sets, we can assemble these two maps into one map. 
+\begin{align*}
+	f_1\sqcup f_2 : S_1\sqcup S_2\to& T\\
+f(x)=&\left\{\begin{array}{cc}f_1(x) & \text{if $x\in S_1$}\\ f_2(x) & \text{if $x\in S_2$} \end{array}\right.
+\end{align*}
+It may help to think of the data of the disjoint union and the relevant maps between sets as fitting nicely into the diagram drawn below.
+\[
+\begin{tikzcd}[column sep = huge, row sep = huge]
+S_1\sqcup S_2\arrow{dr}{f_1\sqcup f_2}  \arrow{r}{\pi_1} \arrow{d}{\pi_2} & S_1\arrow{d}{f_1} \\
+ S_2 \arrow{r}{f_2} & T
+\end{tikzcd}
+\]
+One might say that the disjoint union construct allows us to take maps between sets  ``combine'' them whenever they have the same target. However, if we instead have maps $f_1: S\to T_1$ and $f_2: S\to T_2$, there is not a good way to formulate a map from $S$ to $T_1\sqcup T_2$. The obstacle to the creation of such a map is that it should be multi-valued, but we don't have multi-valued maps between sets. 
+
+In order to be able to add together the codomains of maps, we'll need to upgrade our sets to more interesting algebraic objects. 
+\begin{definition}[Linearizeation of Sets]
+Let $S=\{s_1, \ldots, s_k\}$ be a set. Denote by $\mathcal S$ the vector space over $\mathbb F_2=\Z/2\Z$, with basis labeled by $S$. 
+
+Let $f:S_1\to S_2$ be a map between sets. When we  write  $f: \mathcal S_1\to \mathcal S_2$, we'll mean the linear map induced from the basis $f$, which is called the \emph{linearization of $f$}.
+\end{definition}
+We'll continue to build a dictionary between sets and linear algebra throughout this course. A way to translate from vector spaces back to combinatorics ofsets is to use the relation 
+\[\dim(\mathcal S)=|S|.\]
+\begin{claim}
+Let $S= S_1\sqcup S_2$ be finite sets. Then $\mathcal S= \mathcal S_1\oplus \mathcal S_2. $
+\end{claim}
+\begin{proof}
+Recall that $\mathcal T_1\oplus \mathcal T_2$ is the set of vectors written as pairs $(t_1, t_2)$, where $t_1\in \mathcal T_1$ and $t_2\in \mathcal T_2$. A basis for $\mathcal T_2\oplus \mathcal T_2$ is given by the disjoint union of the basis for $\mathcal T_1$ and $\mathcal T_2$. 
+\end{proof}
+Linear algebra is an extremely flexible piece of mathematical theory. In the land of linear algebra, we can take sums of maps not just along the domain of the map, but additionally along the target. This is an advantage over maps between sets.  
+\begin{definition}[Summing the Target] Let $f_1: \mathcal S\to \mathcal T_1$ and $f_2: \mathcal S\to \mathcal T_2$ be two linear maps. Define the sum over the target as $f_1\oplus f_2: \mathcal S\to \mathcal T_1\oplus T_2$ by 
+\[(f_1\oplus f_2)(s)=(f_1(s), f_2(s)).\]
+\end{definition}
+\begin{definition}[Summing the Domain] Let $f_1: \mathcal S_1\to \mathcal T$ and $f_2: \mathcal S_2 \to \mathcal T$ be two linear maps. Define the sum over the domain as $f_1\oplus f_2: \mathcal T_1\oplus \mathcal T_2\to \mathcal S$ to be the map which sends 
+\[ (f_1\oplus f_2)(s_1, s_2)=f_1(s_1)+f_2(s_2).\]
+\end{definition}
+These definitions generalize the disjoint union of two maps between sets. Whenever $f_1:S_1\to T, f_2: S_2\to T$ are two maps of sets, then $f_1\sqcup f_2: S_1\sqcup S_2\to T$ has linearization given by $f_1\oplus f_2: \mathcal S_1\oplus \mathcal S_2\to \mathcal T$. 
+\begin{comment}
+Suppose we have a decomposition of a set $C$ into subsets $S_1$ and $S_2$, which we might represent by the following commutative diagram. 
+\[
+\begin{tikzcd}
+A= S_1\cap S_2\arrow{r}{i_1} \arrow{d}{i_2}& S_1 \arrow{d}{j_1}\\
+S_2\arrow{r}{j_2} & S_1\cup S_2= C
+\end{tikzcd}\]
+\begin{theorem} Let $A=S_1\cap S_2$, $B=S_1\sqcup S_2$, and $C=S_1\cup S_2$. Then define the maps  \label{thm:inexcategory}
+\begin{align*}
+f:=i_1\oplus i_2&: \mathcal A\to \mathcal B\\
+g:=j_1\oplus j_2&: \mathcal B\to \mathcal C. 
+\end{align*}
+Then $f$ is injective, $g$ is surjective, and $\ker g = \im f$ .
+\end{theorem}
+\begin{corollary}[Inclusion-Exclusion.]
+$|A|-|B|+|C|=0$. 
+\end{corollary}
+\begin{proof}
+We will instead show that $\dim\mathcal A- \dim\mathcal B + \dim \mathcal C=0$ with 2 applications of the rank-nullity theorem. 
+\begin{align*}
+\dim\mathcal A- \dim\mathcal B + \dim \mathcal C=& (\dim \ker(f) + \dim \im(f))\\&-(\dim \ker(f) + \dim \im(g))+\dim \mathcal C
+\intertext{As the map $f$ is injective and $g$ is surjective}
+=& (0 + \dim \im(f))\\&-(\dim \ker(f) + \dim \im(g))+\dim \im g)\\
+=& \dim \im(f)-\dim \ker(f)\\
+=&0.
+\end{align*}
+\end{proof}
+\end{comment}
+
+\end{stationconnection}
+\subsubsection{A return to Graphs}
+Let's try to use these tools to combine those maps that we were talking about earlier from graph theory. 
+
+\begin{definition} Given a graph $G$, define the
+\begin{itemize}
+\item \emph{edge space} $\mathcal E$ to be the $\mathbb F_2$ vector space generated on a basis $E$. 
+\item \emph{vertex space} $\mathcal V$ to the $\mathbb F_2$ vector space generated on a basis $V$. 
+\item \emph{edge boundary map} $\partial: \mathcal E\to \mathcal V$ by 
+\[\partial:= \partial_l\oplus \partial_r.\]
+\end{itemize}
+\label{def:graphcomplex}
+\end{definition}
+\nomenclature{$\mathcal E(G)$}{The edge space of $G$.}
+\nomenclature{$\mathcal V(G)$}{The vertex space of $G$.}
+In this new setup,  elements of $\mathcal E$ correspond to subsets of $E(G)$, and the vector addition on $E$ corresponds to symmetric difference. Since each vector $s\in \mathcal E$ corresponds to a subset of $E(G)$, we will frequently say that an edge $e$ is in $s$ if $e$ is contained in the corresponding subset. Likewise, we will say the size of a vector $s$ is the number of edges in the corresponding subset. 
+
+\begin{examplefigureenv}{191figures/topgraph_differentialexample.tikz}
+	\label{exam:simplegraph}
+	Let's try this new viewpoint by applying it to the  graph on the left. The edge space is given by the basis  $\{e_1,e_2\}$, and the vertex space has the basis spanned by $\{v_1, v_2, v_3\}$.
+	In this basis, the edge boundary map can be expressed as the matrix:
+\[\begin{pmatrix}
+1&0\\
+1&1\\
+0&1
+\end{pmatrix}: \mathcal E\to \mathcal V
+\]
+\end{examplefigureenv}
+We have a nice algorithm for writing out the matrix of the \emph{edge differential} if we use the standard basis for $\mathcal E$ and $\mathcal V$. Each row of the matrix will represent a vertex, and the columns are indexed by the vertices.`'
+Then whenever an edge in $e$ is has a vertex $v$ as an endpoint, we put a $1$ in the corresponding place in the matrix. As a result, the number of ones in each column will be exactly 2 (as each edge has 2 endpoints,) and the number of ones in each row will be the degree of the corresponding vertex. 
+
+It will be convenient for us to refer to the elements of $\mathcal E$ and $\mathcal V$ by simply referring to them by the corresponding vertices and edges, so whenever we write a vertex $v\in \mathcal V$, or edge $e\in \mathcal E$, we will mean the corresponding basis vector.
+A good way to verify that we're on the same page for notation is to check that 
+\[\partial (e_2)=v_3+v_2\]
+for the graph drawn in \sref{exam:simplegraph}.
+
+A reason to upgrade this combinatorial set-up to an algebraic framework is that many graph properties of subsets of edges can be easily stated in terms of properties of the edge differential. 
+\begin{claimfigureenv}[Identifying Paths]{191figures/topgraph_pathboundary.tikz}
+	Suppose that $v, w\in V$ are two vertices which belong to the same connected component.
+	Let $P$ be the path which connects $v$ and $w$. Then $\partial(P)=v-w$. 
+	In particular, 
+	\[v-w\in \im (\partial).\] 
+	\label{claim:pathsindifferential}
+\end{claimfigureenv}
+
+\begin{proof}
+	Let $P\subset E$ be the subset of edges that correspond to a path between $v, w$. Then $\partial(P)$ is the subset of vertices which belong to $P$ counted with multiplicity based on how many edges they show up in. Since the interior vertices each belong to 2 edges in the path, they get counted with multiplicity 2, which is congruent to 0 mod 2. The boundary vertices, $\{v, w\}$ each get counted once. Therefore, $\partial(P)=\{v, w\}= v-w$. 
+\end{proof}
+\begin{corollary}[Identifying Cycles]
+Let $C\subset E$ be a subset of edges that form a cycle, and let $c\in \mathcal E(G)$ be the vector corresponding to that cycle. Then $\partial(c)=0$. 
+\end{corollary}
+\nomenclature{$\mathcal C(G)$}{The Cycle space of a graph.}
+It is not the case that the set of cycles forms a subspace of $\mathcal E$, as the sum of two cycles will usually be just the disjoint union of two cycles. However, we can still look at the smallest subspace of $\mathcal E$ which contains every cycle. 
+\begin{definition}[Cycle Space] Define $\mathcal C$, the \emph{cycle space}, to be the subspace spanned by all the edge sets giving cycles in $\mathcal E$.
+\end{definition} 
+\begin{claim}
+The cycle space can be related to the boundary by 
+\[\mathcal C = \ker \partial.\]
+\label{claim:cyclespaceisker}
+\end{claim}
+\begin{proof}
+The forward direction follows from \sref{claim:pathsindifferential}. To show that that every element of the $\ker\partial$ is a sum of cycles, we will use a greedy algorithm which decomposes an element $s\in \ker \partial $ into a sum of cycles.
+
+We induct on the number of edges in  $s\in \ker \partial$. Pick any edge $e_1$ in $s$. Since $s\in \ker \partial$, there must be another edge $e_2\in s$ with left endpoint equal to $e_1$'s right endpoint. This process constructs a path, and by finiteness of the graph this path must eventually cross itself. This gives us a cycle $c_1\in s$, so we have 
+\[s=s'+c_1\]
+where $s'$ has fewer edges than $s$, and $s'\in \ker \partial$. By our induction hypothesis, we know that $s'$ is a sum of cycles; therefore we can find a decomposition of $s$ into a sum of cycles. 
+\end{proof}
+We now can associate to a graph $G$ a subspace $\mathcal C\subset \mathcal E$ which describes the set of cycles, and this subspace is easy to compute (as it is simply the kernel of a linear map.) We'll use this subspace to give a definition of the number of independent cycles in our graph. 
+\begin{definition}[Betti Numbers]
+Let $G$ be a graph. The \emph{zero Betti number}, denoted by $b_0(G)$, is the number of connected components of $G$. 
+The \emph{first Betti number}, denoted by $b_1(G):=\dim (\ker (\partial))= \dim \mathcal C$, is the cycle number of $G$. 
+\end{definition}
+These numbers are a topological invariant of our graph. One would hope that the number of cycles or connected components does not vary as we subdivide an edges of our graph.  
+\begin{theorem}
+Suppose that $H=G\div xy$. Then $b_1(G)=b_1(H)$. 
+\end{theorem}
+\begin{proof}
+The remainder of this section is spent on this proof. 
+The goal will be to show that the spaces $\mathcal C(H)= \ker(\partial^H)$ and $\mathcal C(G)=\ker(\partial^G)$ are isomorphic.
+We will use our topological intuition to construct maps of vector spaces between $\mathcal E(G)\leftrightarrow \mathcal E(H)$ and $\mathcal V(G)\leftrightarrow \mathcal V(H)$.
+The proof can be broken into a topological portion, and an algebra portion.
+On the topological part, we need to create maps between vector spaces encoding our intuition on what happens to edges and vertices in the process of subdivision. \[\begin{tikzcd}
+\mathcal E(G)\arrow{r}{\partial^G} \arrow{d}{i_E} & \mathcal V(G) \arrow{d}{i_V}\\
+\mathcal E(H)\arrow{r}{\partial^H} & \mathcal V(H)
+\end{tikzcd}\;\;\;\begin{tikzcd}
+\mathcal E(G)\arrow{r}{\partial^G}& \mathcal V(G) \\
+\mathcal E(H)\arrow{r}{\partial^H} \arrow{u}{\pi_E}  & \mathcal V(H) \arrow{u}{\pi_V}
+\end{tikzcd}\]
+The second thing we'll need to do is some linear algebra to show that these topologically inspired maps give rise to isomorphisms between the cycle spaces.
+\input{definitionsofmaps}
+These results are listed in greater detail in \sref{append:chaincomplexes.}
+While we have now produced maps between the cycle spaces of $G$ and $H$, we still need to show that these maps are isomorphisms.  
+\begin{claim}
+The restrictions of the map $(i_E)|_{\ker \partial^G}: \ker \partial^G\to \ker \partial^H$ and $(\pi_E)|_{\ker \partial^H}: \ker \partial^H\to \ker \partial^G$ are inverses.
+\end{claim}
+This proof is mostly a computation by hand. Again, we need to check two directions. Let's start with $\pi_E\circ i_E=\id_{\ker \partial^G}.$ We have on a basis that 
+\begin{align*}
+\pi_E\circ i_E(e) = & \left\{\begin{array}{ll} e & \text{if $e\neq xy$}\\ \pi_E(xv_{xy}+v_{xy}y ) & \text{if $e=xy$}\end{array}\right.\\
+= & e	
+\end{align*}
+A similar proof works in the other direction. 
+\begin{align*}
+i_E\circ \pi_E(e) = & \left\{\begin{array}{ll} e & \text{if $e\neq xy$}\\ \pi_E(xv_{xy}+v_{xy}y ) & \text{if $e=xy$}\end{array}\right.\\
+\intertext{Switching basis slightly}
+= & \left\{\begin{array}{ll} i_E(e) & \text{if $e\neq xv_{xy},v_{xy}y $}\\  i_E(xy) & \text{if $xv_{xy}+v_{xy}y$}\\  i_E(0) & \text{if $e=v_{xy}y$}\end{array}\right.\\
+=& \left\{\begin{array}{ll} e & \text{if $e\neq xv_{xy},v_{xy}y $}\\  xv_{xy}+v_{xy}y & \text{if $e=xv_{xy}+v_{xy}y$}\\ 0 & \text{if $e=v_{xy}y$}\end{array}\right.\\
+\end{align*}
+We've now reduced to three different cases. In the first case, we have an isomorphism on the nose. In the second case, we also have an isomorphism.
+
+Let's see if the third case even occurs. Let  $c$ be any element in the kernel of $\partial^H$.  Then if $c$ contains the edge $xv_{xy}$, it must also contain the edge $v_{xy}y$, as these are the only two edges which contain the vertex $v_{xy}$.  As a result, we can throw the third case out, as it is not contained in the cycle space. A key takeaway is that the map $i_E\circ \pi_E$ is \emph{not} an isomorphism on the edge spaces, but it is an isomorphism on the cycle spaces.
+\end{proof}
+The same proof can be used to show that $b_0$ is a topological invariant of our space. 
+\input{chap_topgraph/inclusionexclusion.tex}

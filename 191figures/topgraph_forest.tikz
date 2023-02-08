@@ -1,0 +1,18 @@
+\begin{tikzpicture}[scale=\scalefactor]
+    \input{figuresettings}
+\draw (0,1.5) -- (0.5,2.5) -- (0,3.5);
+\draw (0.5,2.5) -- (1.5,2.5) (2.5,3.5) -- (3,3) -- (3,2) -- (2.5,1.5) (3.5,1.5) -- (3,2) (3.5,3.5) -- (3,3)  (0.5,4.5) -- (1.5,4);
+\vertex at (0,3.5) {};
+\vertex at (0.5,2.5) {};
+\vertex at (0,1.5) {};
+\vertex at (1.5,2.5) {};
+\vertex at (3,2) {};
+\vertex at (3.5,1.5) {};
+\vertex at (2.5,1.5) {};
+\vertex at (2.5,3.5) {};
+\vertex at (3,3) {};
+\vertex at (3.5,3.5) {};
+\vertex at (1.5,4) {};
+\vertex at (0.5,4.5) {};
+\pgfsize
+\end{tikzpicture}

@@ -1,0 +1,29 @@
+
+\begin{tikzpicture}[scale=\scalefactor]
+    \input{figuresettings}
+\fill[\highlightb]  (-2,1) ellipse (2 and 2);
+\fill[\highlighta]  (4,1) ellipse (2 and 2);
+\fill[\highlighta]  plot[smooth cycle, tension=.7] coordinates { (1,1)  (1.8,2.2) (3.2,1.8) (4.4,0) (1.8,-0.2)};
+\smallvertex (v4) at   (3.5,2)     {};
+\smallvertex (v5) at   (3.5,1.5)   {};
+\smallvertex (v3) at   (3.5,0.5)   {};
+\smallvertex (v1) at   (1.4,1)     {};
+\smallvertex (v2) at   (3.5,-0.5)  {};
+\smallvertex (v2) at   (3.5,0)     {};
+\node at (-2,3.5) {$A$};
+\node at (4,3.5) {$B'$};
+\node[right] at (4,2) {$b_1$};
+\node[right] at (4,1.5) {$b_2$};
+\node[right] at (4,0.5) {$b_n$};
+\node at (4,0) {$y$};
+\node at (4,-.5) {$z$};
+\node at (1.2,0.6) {$x$};
+\draw  plot[smooth, tension=.7] coordinates {(v1) (2,0.5) (v2)};
+\draw  plot[smooth, tension=.7] coordinates {(1.4,1) (2.4,1.4) (v3)};
+\draw  plot[smooth, tension=.7] coordinates {(-1.5,2) (1,3.5) (v4)};
+\draw  plot[smooth, tension=.7] coordinates {(-1.5,1.5) (1,3) (v5)};
+\draw  plot[smooth, tension=.7] coordinates {(-1.5,1) (0.5,1.5) (1.4,1)};
+\draw  plot[smooth, tension=.7] coordinates {(-1.5,0) (1,-1) (3.5,-0.5)};
+\node at (2.2,1.8) {$Q_b$};
+\node at (1.8,0.2) {$Q_y$};
+\pgfsize \end{tikzpicture}

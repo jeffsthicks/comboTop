@@ -1,0 +1,30 @@
+\begin{tikzpicture}[scale=\scalefactor]
+    \input{figuresettings}
+\draw[fill=\highlighta]  (-1.5,0) ellipse (1.5 and 1.5);
+\draw[fill=\highlightb] (0.5,0) ellipse (1.5 and 1.5);
+\begin{scope}
+\tikzset{every path/.style={}}
+\clip(-1.5,0) ellipse (1.5 and 1.5);
+\draw[fill=purple!50, line width=1pt]  (0.5,0) ellipse (1.5 and 1.5);
+
+\end{scope}
+\begin{scope}
+\tikzset{every path/.style={}}
+\clip (0.5,0) ellipse (1.5 and 1.5);
+\draw[line width = 1pt](-1.5,0) ellipse (1.5 and 1.5);
+\end{scope}
+\draw (-1.5,-0.5) -- (-2.5,0) -- (-1.5,0.5) -- cycle;
+\draw (-0.5,0.5) -- (-1.5,0.5) -- (-1.5,-0.5) -- (-0.5,-0.5) -- (-0.5,-0.5) -- (0.5,-1) -- (1,0) -- (0.5,1) -- (-0.5,0.5);
+\vertex at (-2.5,0) {};
+\vertex at (-1.5,0.5) {};
+\vertex at (-1.5,-0.5) {};
+\vertex at (0.5,-1) {};
+\vertex at (1,0) {};
+\vertex at (0.5,1) {};
+\vertex at (-0.5,0.5) {};
+\vertex at (-0.5,-0.5) {};
+\node at (-1.5,2) {$A$};
+\node at (0.5,2) {$B$};
+\node at (-0.5,2) {$A\cap B$};
+\pgfsize
+\end{tikzpicture}

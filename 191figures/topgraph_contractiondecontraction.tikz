@@ -1,0 +1,57 @@
+
+\begin{tikzpicture}[scale=\scalefactor]
+\input{figuresettings}
+\draw (-1.5,2) -- (-0.5,2) -- (0.5,3) -- (1.5,2) -- (2.5,2) (1.5,2) -- (0.5,1) -- (-0.5,2);
+\draw (0.5,3) -- (0.5,1);
+\begin{scope}[shift={(0,-0.5)}]
+\draw (-1.5,-0.5) -- (-0.5,-0.5) -- (1.5,-0.5) -- (2.5,-0.5);
+\end{scope}
+\begin{scope}[shift={(0,-3.5)}]
+\draw (-1.5,-0.5) -- (-0.5,-0.5) -- (1.5,-0.5) -- (2.5,-0.5);
+\end{scope}
+\draw (-1.5,-6.5) -- (-0.5,-6.5) -- (0.5,-5.5) -- (1.5,-6.5) -- (2.5,-6.5) (-0.5,-6.5) -- (0.5,-7.5) -- (1.5,-6.5) (0.5,-5.5) -- (0.5,-7.5);
+\vertex at (-1.5,2) {};
+\vertex at (-0.5,2) {};
+\vertex at (0.5,3)  {};
+\vertex at (0.5,1)  {};
+\vertex at (1.5,2)  {};
+\vertex at (2.5,2)  {};
+\vertex at (-1.5,-6.5){};
+\vertex at (-0.5,-6.5){};
+\vertex at (0.5,-5.5) {};
+\vertex at (0.5,-7.5) {};
+\vertex at (1.5,-6.5) {};
+\vertex at (2.5,-6.5) {};
+\vertex at (2.5,-4) {};
+\vertex at (1.5,-4) {};
+\vertex at (0.5,-4) {};
+\vertex at (-0.5,-4) {};
+\vertex at (-1.5,-4) {};
+\vertex at (-1.5,-1) {};
+\vertex at (-0.5,-1) {};
+\vertex at (0.5,-1) {};
+\vertex at (1.5,-1) {};
+\vertex at (2.5,-1) {};
+\node[above] at (-1.5,2)  {$a$};
+\node[above] at (-0.5,2)  {$b$};
+\node[above] at (0.5,3)   {$c$};
+\node[below] at (0.5,1)   {$d$};
+\node[above] at (1.5,2) {$e$};
+\node[above] at (2.5,2) {$f$};
+\node[above] at (-1.5,-1) {$\pi(a)$};
+\node[above] at (-0.5,-1) {$\pi(b)$};
+\node[above] at (0.5,-1)  {$\pi(c)$};
+\node[below] at (0.5,-1)  {$\pi(d)$};
+\node[above] at (1.5,-1)  {$\pi(e)$};
+\node[above] at (2.5,-1)  {$\pi(f)$};
+\node[above] at (-1.5,-4) {$a$};
+\node[above] at (-0.5,-4) {$b$};
+\node[above] at (0.5,-4) {$c$};
+\node[above] at (1.5,-4) {$d$};
+\node[above] at (2.5,-4) {$e$};
+\node[above] at (-1.5,-6.5) {$i(a)$};
+\node[above] at (-0.6,-6.45) {$i(b)$};
+\node[above] at (0.5,-5.5)  {$i(c)$};
+\node[above] at (1.6,-6.45) {$i(d)$};
+\node[above] at (2.5,-6.5)  {$i(e)$};
+\pgfsize \end{tikzpicture}

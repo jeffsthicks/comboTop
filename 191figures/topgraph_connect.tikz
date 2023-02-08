@@ -1,0 +1,24 @@
+
+\begin{tikzpicture}[scale=\scalefactor]
+    \input{figuresettings}
+\draw(0,0)   circle[radius=5];
+\draw(6,0)   circle[radius=5];
+\draw (-2,3) -- (-3,0) -- (-1,-4) -- (-1,-2) -- (-3,0) -- (-1,2) -- (3,2) node (v1) {} -- (6,4) -- (9,1) -- (8,-3) -- (6,-3) -- (9,1) -- (v1);
+\draw (-1,-2) -- (3,0) -- (6,-3);
+\draw (-1,-4) -- (3,-2) -- (3,0);
+\draw (3,-2) -- (6,-3);
+\vertex at (-2,3) {};
+\vertex at (-1,2) {};
+\vertex at (-3,0) {};
+\vertex at (-1,-2){};
+\vertex at (-1,-4){};
+\vertex at (3,0)  {};
+\vertex at (3,-2) {};
+\vertex at (3,2)  {};
+\vertex at (6,4)  {};
+\vertex at (6,-3) {};
+\vertex at (9,1)  {};
+\vertex at (8,-3) {};
+\node at (-1,0) {$G_1$};
+\node at (7,0) {$G_2$};
+\pgfsize \end{tikzpicture}

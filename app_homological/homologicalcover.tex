@@ -1,0 +1,86 @@
+\def\chapterfigurecaption{The Dumbbell Graph}
+\def\chaptergraphic{
+\input{figuresettings.tex}
+\begin{scope}[shift={(-3.5, -1.5)},scale=.2, rotate=70]
+
+\begin{scope}
+\vertex (k3) at (0.97,4.44) {};
+\vertex (k2) at (-2.81,-1.95) {};
+\vertex (k1) at (1.66,-2.95) {};
+\vertex (k5) at (-3.24,2.62) {};
+\vertex (k4) at (4,1) {};
+\draw [-] (k3)--(k1);
+\draw [-] (k3)--(k2);
+\draw [-] (k3)--(k4);
+\draw [-] (k3)--(k5);
+\draw [-] (k2)--(k1);
+\draw [-] (k2)--(k3);
+\draw [-] (k2)--(k4);
+\draw [-] (k2)--(k5);
+\draw [-] (k1)--(k2);
+\draw [-] (k1)--(k3);
+\draw [-] (k1)--(k4);
+\draw [-] (k1)--(k5);
+\draw [-] (k5)--(k1);
+\draw [-] (k5)--(k2);
+\draw [-] (k5)--(k3);
+\draw [-] (k5)--(k4);
+\draw [-] (k4)--(k1);
+\draw [-] (k4)--(k2);
+\draw [-] (k4)--(k3);
+\draw [-] (k4)--(k5);
+\end{scope}
+\begin{scope}
+\vertex (l3) at (-17.03,4.44) {};
+\vertex (l2) at (-20.81,-1.95) {};
+\vertex (l1) at (-16.34,-2.95) {};
+\vertex (l5) at (-21.24,2.62) {};
+\vertex (l4) at (-14,1) {};
+\draw [-] (l3)--(l1);
+\draw [-] (l3)--(l2);
+\draw [-] (l3)--(l4);
+\draw [-] (l3)--(l5);
+\draw [-] (l2)--(l1);
+\draw [-] (l2)--(l3);
+\draw [-] (l2)--(l4);
+\draw [-] (l2)--(l5);
+\draw [-] (l1)--(l2);
+\draw [-] (l1)--(l3);
+\draw [-] (l1)--(l4);
+\draw [-] (l1)--(l5);
+\draw [-] (l5)--(l1);
+\draw [-] (l5)--(l2);
+\draw [-] (l5)--(l3);
+\draw [-] (l5)--(l4);
+\draw [-] (l4)--(l1);
+\draw [-] (l4)--(l2);
+\draw [-] (l4)--(l3);
+\draw [-] (l4)--(l5);
+\end{scope}
+\draw  (-18,1) ellipse (5 and 5);
+\draw  (0,1) ellipse (5 and 5);
+\vertex (v1) at (-9,1) (v1) {} ;
+\draw[dashed] (l3) -- (v1) -- (k3);
+\draw[dashed]  (v1) -- (k5);
+\draw[dashed] (l1) -- (v1) -- (k2);
+\draw[dashed] (l4) -- (v1);
+\draw[dashed] (l5) -- (v1) -- (k4);
+\draw[dashed] (l2) -- (v1) -- (2,-2);
+\node at (-18,8) {$K_n$};
+\node at (0,8) {$K_n$};
+\node at (-9,3) {$v$};
+\end{scope}
+}
+
+\def\qed{
+    \begin{tikzpicture}[scale=.1]
+    \draw[fill=black]  (0,0) ellipse (1.5 and 1.5);
+        
+    \node[white] at (0,0) {$\scriptscriptstyle{\partial^2}$};
+    \end{tikzpicture}}
+
+\def\chaptermark{\begin{scope}[scale=.3]
+    \draw[fill=black]  (0,0) ellipse (1.5 and 1.5);
+        
+    \node[white] at (0,0) {$\boldsymbol {\partial^2}$};
+    \end{scope}}

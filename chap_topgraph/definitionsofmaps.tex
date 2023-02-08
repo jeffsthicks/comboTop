@@ -1,0 +1,65 @@
+
+    \begin{claim}[Definitions of Maps] 
+    Define the following maps between edge and vertex spaces. 
+    \begin{itemize}
+    \item As $V(H)= V(G)\cup\{v_{xy}\}$, there is a natural inclusion $i_V:V(G)\into V(H)$. The map $i_V: \mathcal V(G)\into \mathcal V(H)$ is the linearization of that map. 
+    \item We have that $E(H)=E(G)\cup \{xv_{xy},v_{xy}y\}\setminus xy.$ Define the map $i_V:\mathcal E(G)\to \mathcal E(H)$ on the basis of $\mathcal E(G)$ by \[i_E(e)=\left\{\begin{array}{ll} e & \text{if $e\neq xy$}\\ xv_{xy}+v_{xy}y & \text{if $e=xy$}\end{array}\right.\]
+    \item We slightly modify the map $\pi_E$. In the basis $E(H)$ for $\mathcal E(H)$, we define the projection map by \[\pi_E(e)=\left\{\begin{array}{ll} e & \text{if $e\neq xv_{xy},v_{xy}y $}\\  xy & \text{if $e=xv_{xy}$}\\  0 & \text{if $e=v_{xy}y$}\end{array}\right.\]
+    \item Define the $\pi_V:\mathcal V(H)\to \mathcal V(G)$ by defining the values on the basis  
+    \[\pi_V(v)=\left\{\begin{array}{ll} v & \text{if $v\neq v_{xy}$}\\  y& \text{if $v=v_{xy}$}\end{array}\right.\]
+    \end{itemize}
+    
+    \end{claim}
+    
+    
+    \begin{paragraphfigureenv}{191figures/topgraph_undocontract.tikz}
+    These maps between edge spaces and vertex spaces seems a tad bit arbitrary, but are are inspired bo the figure to the right. In short, the inclusion map $i_V: \mathcal E(G)\to \mathcal E(G\div xy)$ works by seinding the edge  to the sum of two edges. 
+     When undoing a subdivision, we make a choice in the choice of contraction, which gives us the definition for the map $\pi_E$ and $\pi_V$. 
+    We chose the contraction which squashes the edge $v_{xy}y$. 
+    \end{paragraphfigureenv}
+    While the topology is all fine and good, to show that these have some meaning for cycle spaces we'll show that these map are \emph{chain map}, which means that it preserves the boundary operation. See \sref{def:chainmap} for the full definition.
+    \begin{claim} The following squares commute: \label{claim:graphchainmap}
+     \[\begin{tikzcd}
+    \mathcal E(G)\arrow{r}{\partial^G} \arrow{d}{i_E} & \mathcal V(G) \arrow{d}{i_V}\\
+    \mathcal E(H)\arrow{r}{\partial^H} & \mathcal V(H)
+    \end{tikzcd}\;\;\;\begin{tikzcd}
+    \mathcal E(G)\arrow{r}{\partial^G}& \mathcal V(G) \\
+    \mathcal E(H)\arrow{r}{\partial^H} \arrow{u}{\pi_E}  & \mathcal V(H) \arrow{u}{\pi_V}
+    \end{tikzcd}.\]
+    \end{claim}
+    We will first check that this is true for the square given by the inclusion.\\
+    \begin{align*}
+    \partial^H(i_E)(e)=& \left\{\begin{array}{ll} \partial^H(e) & \text{if $e\neq xy$}\\  d_H(xv_{xy}+v_{xy}y) & \text{if $e=xy$}\end{array}\right.\\
+    =& \left\{\begin{array}{ll} \partial^H(e) & \text{if $e\neq xy$}\\  x+v_{xy}+y+v_{xy} & \text{if $e=xy$}\end{array}\right.\\=& \left\{\begin{array}{ll} i_V\partial^G(e) & \text{if $e\neq xy$}\\  i_V\partial^G(xy) & \text{if $e=xy$}\end{array}\right.\\
+    =&i_V\partial^G(e)
+    \end{align*}
+    For the other square,
+    \begin{align*}
+    \partial^G(\pi_E)(e)=&\left\{\begin{array}{ll} \partial^G(e) & \text{if $e\neq xv_{xy}+v_{xy}y $}\\  \partial^G(xy) & \text{if $e=xv_{xy}$}\\  \partial^G(0) & \text{if $e=v_{xy}y$}\end{array}\right.\\
+    =&\left\{\begin{array}{ll}
+     \pi_V \partial^H(e) & \text{if $e\neq xv_{xy},v_{xy}y $}\\ 
+    x+y & \text{if $e=xv_{xy}$}\\ 
+    0 & \text{if $e=v_{xy}y$}\end{array}\right.\\
+    =&\left\{\begin{array}{ll}
+     \pi_V \partial^H(e) & \text{if $e\neq xv_{xy},v_{xy}y $}\\ 
+    \pi_V(x+v_{xy}) & \text{if $e=xv_{xy}$}\\ 
+     & \pi_V(v_{xy}+y)\text{if $e=v_{xy}y$}\end{array}\right.\\
+    =& \pi_V \partial^H(e)
+    \end{align*}
+    \qed
+    
+    \noindent Whenever we have a chain map, we get an induced map between the cycle spaces. 
+    \begin{lemma}[Induced Map on Cycle Spaces]
+        Suppose we have a diagram of maps as given:
+        \[\begin{tikzcd}
+        \mathcal E(G)\arrow{r}{\partial^G} \arrow{d}{f_E} & \mathcal V(G) \arrow{d}{f_V}\\
+        \mathcal E(H)\arrow{r}{\partial^H} & \mathcal V(H)
+        \end{tikzcd}\]
+        Then the restriction of $(f_V)|_{\ker(\partial^G)}\subset \ker \partial^H$.
+    \end{lemma}
+    \begin{proof}
+    Suppose that $c\in \ker \partial^G$. Then we want to show that $f_E(c)\in \ker \partial^H$. This means that we need to compute $\partial^Hf_E(c)$. By commutativity of the diagram, 
+    \[
+    \partial^Hf_E(c) = f_V \partial^G(c)
+    = f_V(0)=0. \]
+    \end{proof}

@@ -1,0 +1,144 @@
+
+%%% ---- Mathematical Commands ----
+%Honestly, I don't really use all of these. At some point I probably had to use some shortcuts, and they all just accumelate in one place. 
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\K}{\mathcal{K}}
+\newcommand{\Mor}{\text{Mor}}
+\newcommand{\im}{\text{ Im }}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\tensor}{\otimes}
+\newcommand{\Mod}{\textbf{Mod}}
+\newcommand{\leg}[2]{\left(\frac{#1}{#2}\right)}
+\newcommand{\px}{\frac{\partial}{\partial x}}
+\newcommand{\pxi}{\frac{\partial}{\partial x_i}}
+\newcommand{\del}{\nabla}
+\newcommand{\cixe}{C^\infty(X;E)}
+\newcommand{\cix}{C^\infty(X)}
+\newcommand{\End}{\text{End}}
+\newcommand{\Op}{\textbf{Op}}
+\newcommand{\DO}{\textbf{DO}}
+\newcommand{\PDO}{\textbf{PDO}}
+\newcommand{\OP}{\textbf{OP}}
+\newcommand{\MSW}{{\mathcal M _{\text{SW}}}}
+\newcommand{\FSW}{F_\text{SW}}
+\newcommand{\Lie}{\mathcal L}
+
+\newcommand{\rmod}[1]{(#1\text{-mod})}
+\DeclareMathOperator{\coim}{coim}
+\DeclareMathOperator{\Map}{Map}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Tr}{tr}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Crit}{Crit}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\Spin}{Spin}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\Symb}{Symb}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\Area}{Area}
+\DeclareMathOperator{\gr}{gr}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sstab}{SStab}
+\DeclareMathOperator{\Hess}{Hess}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Func}{\textbf{Func}}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\ddiv}{div}
+\newcommand{\II}{\mathrm{I\!I}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\dirac}{\slashed {\partial}}
+\newcommand{\tv}{\pitchfork}
+\newcommand{\dd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ddh}[1]{\frac{\dd}{\dd z_{#1}}}
+\newcommand{\dda}[1]{\frac{\dd}{\dd \ol{z}_{#1}}}
+\newcommand{\onto}{\twoheadrightarrow }
+\newcommand{\flashcheck}[1]{#1 \endnotetext{#1}}
+\DeclareMathOperator{\Symp}{Symp}
+\DeclareMathOperator{\colim}{colim}
+\DeclareMathOperator{\Tot}{Tot}
+\DeclareMathOperator{\cone}{cone}
+
+\DeclareMathOperator{\qdim}{qdim}
+\newcommand{\Set}{\textbf{Set}}
+\newcommand{\Ring}{\textbf{Ring}}
+\newcommand{\Ab}{\textbf{Ab}}
+\newcommand{\Vect}{\textbf{Vect}}
+%\newcommand{\Top}{\textbf{Top}}
+\newcommand{\ot}{\leftarrow}
+
+%A Sha is required.
+
+    \DeclareFontFamily{U}{wncy}{}
+    \DeclareFontShape{U}{wncy}{m}{n}{<->wncyr10}{}
+    \DeclareSymbolFont{mcy}{U}{wncy}{m}{n}
+    \DeclareMathSymbol{\Sh}{\mathord}{mcy}{"58} 
+    
+%Theorem Environments
+
+
+\newshadedfigureenvironment{example}{Example}
+\newshadedfigureenvironment{definition}{Definition}
+\newshadedfigureenvironment{claim}{Claim}
+\newfigureenvironment{smallexample}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{notation}{Notation}
+\newtheorem{fact}{Fact}
+\newtheorem[problemsetnumber]{exercise}{Exercise}
+\newtheorem{claim}{Claim}
+\newtheorem{example}{Example}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{question}{Question}
+\newtheorem{remark}{Remark}
+\newenvironment{proof}{\par\emph{Proof:}}{\hfill\qed\par}
+
+
+\def\catcodetheorem{t}
+\def\catcodeclaim{t}
+\def\catcodelemma{t}
+\def\catcodeprop{t}
+\def\catcodeframed{t}
+\def\catcodecorollary{t}
+\def\catcodeexample{e}
+\def\catcodedefinition{d}
+\def\catcodeframed{f}
+\def\catcodestation{s}
+\def\catcodequestion{q}
+\def\catcodeexercise{p}
+
+
+\def\markcoderound{o}
+\def\markcodesubattraction{v}
+\def\markcodeframed{f}
+\def\markcodeproblem{p}

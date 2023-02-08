@@ -1,0 +1,46 @@
+
+\begin{tikzpicture}[scale=\scalefactor]
+    \input{figuresettings}
+\begin{scope}[]
+\draw (-3.5,1.5) -- (-3.5,0) -- (-2,0) -- (-2,1.5) -- (-3.5,1.5) -- (-2,0);
+
+\vertex at (-3.5,1.5) {};
+\vertex at (-2,1.5) {};
+\vertex at (-2,0) {};
+\vertex at (-3.5,0) {};
+
+\vertex at (-2.75,1.5) {};
+\vertex at (-2.75,0.75) {};
+\node at (-2.75,2) {$H$};
+\end{scope}
+\begin{scope}[shift={(2,-2.5)}]
+\draw (-3.5,1.5) -- (-3.5,0) -- (-2,0) -- (-2,1.5) -- (-3.5,1.5) -- (-2,0);
+
+\vertex at (-3.5,1.5) {};
+\vertex at (-2,1.5) {};
+\vertex at (-2,0) {};
+\vertex at (-3.5,0) {};
+
+\vertex at (-2.75,0.75) {};
+\node at (-2.75,2) {$G_2$};
+\end{scope}
+\begin{scope}[shift={(-2,-2.5)}]
+\draw (-3.5,1.5) -- (-3.5,0) -- (-2,0) -- (-2,1.5) -- (-3.5,1.5) -- (-2,0);
+
+\vertex at (-3.5,1.5) {};
+\vertex at (-2,1.5) {};
+\vertex at (-2,0) {};
+\vertex at (-3.5,0) {};
+
+\vertex at (-2.75,1.5) {};
+\node at (-2.75,2) {$G_1$};
+\end{scope}
+
+
+
+\draw[ -> ] (-3.75,-0.75) -- (-3.25,-0.25);
+
+
+\draw[ -> ] (-1.75,-0.75) -- (-2.25,-0.25);
+
+\pgfsize \end{tikzpicture}

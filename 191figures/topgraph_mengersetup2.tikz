@@ -1,0 +1,23 @@
+
+\begin{tikzpicture}[scale=\scalefactor]
+    \input{figuresettings}
+\fill[\highlightb]  (-2,1) ellipse (2 and 2);
+\fill[\highlighta]  (4,1) ellipse (2 and 2);
+\draw  plot[smooth, tension=.7] coordinates {(-1.5,2) (1,2.5) (3.5,2)};
+\draw  plot[smooth, tension=.7] coordinates {(-1.5,1.5) (1,2) (3.5,1.5)};
+\draw  plot[smooth, tension=.7] coordinates {(-1.5,0.5) (1,1) (3.5,0.5)};
+\smallvertex at  (3.5,2)   {};
+\smallvertex at  (3.5,1.5) {};
+\smallvertex at  (3.5,0.5) {};
+\smallvertex at  (1.4,1)   {};
+\smallvertex at  (3.5,0)   {};
+\node at (-2,3.5) {$A$};
+\node at (4,3.5) {$B$};
+\node[right] at (4,2) {$b_1$};
+\node[right] at (4,1.5) {$b_2$};
+\node[right] at (4,0.5) {$b_n$};
+\draw  plot[smooth, tension=.7] coordinates {(-1.5,0) (0.4,0.6) (1,3.5) (1.6,0.6) (3.5,0)};
+\node[above] at (1, 3.5) {$Q$};
+\node[below right] at (4,0) {$y$};
+\node at (1.2,0.4) {$x$};
+\pgfsize \end{tikzpicture}

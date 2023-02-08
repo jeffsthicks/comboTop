@@ -1,0 +1,126 @@
+
+\section{Posets and Simplicial Complexes}
+
+\begin{definition}
+A \emph{partially ordered set}, or \emph{poset} for short, is a set $P$ with an order relation $\leq$ satisfying the properties of transitivity, reflexivity, and antisymmetry.
+\end{definition}
+The reason that a poset is partially ordered is that it may not be possible to compare any given pair of elements in that poset. 
+\begin{example}
+ The sets $\mathbb N,  \mathbb Z,  \mathbb Q,  \mathbb R$ are all posets with the standard ordering.\\
+  A more interesting way to order the set $\N$ is with the order $\leq_|$,  which says that $a\leq_|b$ if $a$ divides $b$. For example,  $3\leq_|6$,  but $3\not\leq_|7$. Notice that not every pair of elements are compatible in this partial ordering on $\N$. 
+\end{example}
+The structure of a partial order is still enough to carry over many of the constructs from a full order. 
+
+\begin{definition}
+	Let $(P,  \leq)$ be a poset,  and $a\leq b\in P$. 
+	\begin{itemize}
+		\item Define the \textbf{closed interval}$[a, b]$ to be the set of all elements greater than or equal to $a$,  and less than or equal to $b$. 
+		\[ [a, b]:=\{p\in P\;|\;a\leq p\leq b\}\]
+		\item We say that $a$ \textbf{is covered by} $b$ ( or $b$ \textbf{covers} $a$) if the interval $[a, b]$ contains only 2 elements. In this case we write $a\lessdot b$.
+	\end{itemize}
+\end{definition}
+It will oftentimes be convenient to encode the information of a poset graphically. 
+\begin{definition}
+	Let $(P,  \leq)$ be a finite poset. The \textbf{Hasse Diagram} of $P$ is a diagram with vertices given by the elements of $P$,  and an edge drawn \emph{upward} from a vertex $a$ to a vertex $b$ if $a\lessdot b$.
+\end{definition}
+Hasse diagrams are much easier to understand if you've seen a couple examples. Here are the Hasse diagrams for a few familiar posets.
+For us,  it will oftentimes be convenient to encode the information of a poset pictorially. 
+\begin{definition}
+	Let $(P,  \leq)$ be a finite poset. The \textbf{Hasse Diagram} of $P$ is a diagram with vertices given by the elements of $P$,  and an edge drawn \emph{upward} from a vertex $a$ to a vertex $b$ if $a\lessdot b$.
+\end{definition}
+Hasse diagrams are much easier to understand if you've seen a couple examples. Here are the Hasse diagrams for a few familiar posets.
+\begin{example}
+	\begin{itemize}
+		\item Look at the poset $[0, 4]$ with the usual ordering. This has a Hasse diagram that looks like this:
+		\[\begin{tikzcd}
+		  	4\arrow[dash]{d} \\3\arrow[dash]{d} \\2\arrow[dash]{d} \\1\arrow[dash]{d} \\0
+		  \end{tikzcd}\]
+		\item Look at the numbers between $0$ and $12$ with the ordering $a\leq_|b$ if $a$ divides $b$. This has a Hasse Diagram
+		\[
+			\begin{tikzcd}
+				\;& 12& 8\\
+				9&6 \arrow[dash]{u}&4\arrow[dash]{ul} \arrow[dash]{u} & 10\\
+				3\arrow[dash]{u} \arrow[dash]{ur} &2 \arrow[dash]{ur} \arrow[dash]{u} \arrow[dash]{rru} &5 \arrow[dash]{ru} &7&11\\
+				&&1 \arrow[dash]{ull} \arrow[dash]{ul} \arrow[dash]{u} \arrow[dash]{ur} \arrow[dash]{urr}
+			\end{tikzcd}
+		\]
+		\end{itemize}
+\end{example}
+The primary example that we will be working with is the poset associated to a simplicial complex.
+\begin{definition}
+ Given $\Delta$ a simplicial complex, we construct a poset $P(\Delta)$ which
+ \begin{itemize}
+ \item As a set, has elements $\Delta\setminus\{\emptyset\}$
+ \item Has order relation  $\sigma_1\leq \sigma_2$ in $P(\Delta)$ if $\sigma_1\subset \sigma_2$. 
+ \end{itemize}
+\end{definition}
+
+What properties do all of these Posets have?
+\begin{definition}
+ A \emph{simplicial poset} is a poset with a minimal element $\hat 0$ with the property that for all $x\in P$, the interval $[0, x]$ is isomorphic as a poset to some Boolean poset $B_n$. 
+\end{definition}
+It is clear that not every poset is a simplicial poset.
+\begin{claim}
+Simplicial posets are the same as abstract simplicial complexes.
+\end{claim}
+To every poset, we can associate a \emph{order complex} to it, which consists of all chains in the poset. We denote this simplicial complex as $\Delta(P)$. \\ If $P$ is a poset with a minimal element, let $\bar P$ be the poset missing that minimal element. 
+
+
+
+\subsection{The Incidence Algebra}
+One thing that is particularly interesting to us are functions that assign a value to every interval of a poset. For instance,  given a poset $P$,  consider the function that assigns to the interval $[a, b]$
+\[f([a, b])=\text{number of elements in }[a, b]\]
+\begin{definition}
+	Let $P$ be a finite poset. Define the \textbf{Incidence algebra} to be the set of functions of the form
+	\[f:\{a\leq b\}\to \R.\]
+	Given two such functions $f$ and $g$, we can build a new function $f*g\in I(P)$. To define $f*g$,  we need to say what it's value is on every interval:
+	\[f*g([a, b])=\sum_{a\leq c\leq b} f([a, c])g([c, b]).\]
+\end{definition}
+There are a few special functions that belong to every incidence algebra. 
+
+\begin{example}
+	 Let's look at $\mathcal P(\underbar 3)$,  the poset of subsets of $\{1, 2, 3\}$. 
+	 \begin{itemize}
+	 	\item The \textbf{counting function} $c([a, b])$ takes value equal to the number of elements in the interval $[a, b]$. For example
+	 	\[c([\{1, 2, 3\},  \{1\}])=4.\]
+	 	\item The \textbf{$\delta$ function} $\delta([a, b])$  takes a value of $1$ if $a=b$,  and $0$ otherwise. 
+	 	\[\delta([\{1\},\{1, 2\}])=0\;\;\;\;\; \delta([\{2\}, \{2\}])=1)\]
+	 	The \textbf{$\delta$-function} has the property that for every other $f\in I(P)$,  
+	 	\[\delta*f=f.\]
+	 	\item The $\zeta$-function takes a value of $1$ on every interval.
+	 	\[\zeta([\{1\}, \{1, 2, 3\}])=1\]
+	 	\item The \textbf{M\"obius function} is the unique function $\mu$ that has the property that 
+	 	\[\mu*\zeta=\delta.\]
+	 	On the poset $\mathcal P(\underbar 3)$,  this is given by 
+	 	\[\mu([U,  V])=(-1)^{|V|-|U|}\]
+	 	\item The \textbf{covering function} $\eta([a, b])$ assigns $1$ if $a\lessdot b$ and $0$ otherwise. 
+	 	\[\eta([\{1\},\{1, 2\}])=1\;\;\;\;\; \eta([\{2\}, \{2\}])=0)\]
+	 \end{itemize}
+\end{example}
+\begin{lemma}
+	We can directly define the M\"obius function recursively as follows:
+	\[
+		\mu(x, y)=\left\{\begin{array}{cc}
+		                 	1 & \text{if $x=y$}\\
+		                 	-\sum_{x\leq z < y} \mu(x,  z) & \text{for $x<y$}\\
+		                 	0 & \text{otherwise}
+		                 \end{array}	\right.\]
+\end{lemma}
+\begin{proof}
+	Exercise!
+\end{proof}
+\begin{definition}
+	A \textbf{chain} of $P$ is a sequence of element in $P$ \[a_1<a_2<\cdots a_{n-1}< a_n.\]. 
+\end{definition}
+
+\begin{lemma}
+	Suppose that $P$ is a poset that has a largest and smallest element (which we will denote $\hat 0$ and $\hat 1$. Then $\mu(\hat 0,  \hat 1)=-c_1+c_2-c_3+\ldots (-1)^r c_r$,  where $c_r$ is the number of chains of length $r$. 
+\end{lemma}
+
+
+
+\begin{theorem}
+	Suppose that $P$ is a poset. Further suppose that $P$ has a largest and smallest element,  which we will call $\hat 0$ and $\hat 1$. . Then $P^c$ is a simplicial poset,  at we have that 
+	\[\chi(P^c)-1=\mu(\hat 0,  \hat 1).\]
+\end{theorem}
+

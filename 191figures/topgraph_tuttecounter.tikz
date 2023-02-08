@@ -1,0 +1,13 @@
+
+\begin{tikzpicture}[scale=\scalefactor]
+    \input{figuresettings}
+	\vertex (v1) at (-3,2) {};
+	\vertex (v2) at (-3,1) {};
+	\vertex (v6) at (-2,1) {};
+	\vertex (v5) at (-2,2) {};
+	\vertex (v8) at (-1,2) {};
+	\vertex (v7) at (-1,1) {};
+	\vertex (v3) at (0,1) {};
+	\vertex (v4) at (0,2) {};
+	\draw (v1) -- (v2) -- (v3) -- (v4) -- (v1) -- (v5) -- (v6) -- (v7) -- (v8);
+	\pgfsize \end{tikzpicture}

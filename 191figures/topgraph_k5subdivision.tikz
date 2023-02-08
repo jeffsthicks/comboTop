@@ -1,0 +1,24 @@
+
+\begin{tikzpicture}[scale=\scalefactor]
+\input{figuresettings}
+\vertex (v5) at (0:2) {};
+\vertex (v5) at (0:2) {};
+\vertex (v1) at (72:2) {};
+\vertex (v2) at (144:2) {};
+\vertex (v3) at (216:2) {};
+\vertex (v4) at (288:2) {};
+\begin{scope}[scale=.308]
+    \vertex  at (0:2) {};
+    \vertex  at (0:2) {};
+    \vertex  at (72:2) {};
+    \vertex  at (144:2) {};
+    \vertex  at (216:2) {};
+    \vertex  at (288:2) {};
+\end{scope}
+\vertex (v8) at (0:-1.64) {};
+\vertex (v6) at (72:-1.64) {};
+\vertex (v9) at (144:-1.64) {};
+\vertex (v7) at (216:-1.64) {};
+\vertex (v10) at (288:-1.64) {};
+\draw (v1) -- (v2) -- (v3) -- (v4) -- (v5) -- (v1) -- (v3) -- (v5) -- (v2) -- (v4) -- (v1);
+\pgfsize \end{tikzpicture}

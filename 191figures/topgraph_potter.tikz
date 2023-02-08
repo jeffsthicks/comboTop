@@ -1,0 +1,14 @@
+
+\begin{tikzpicture}[scale=\scalefactor]
+\input{figuresettings}
+\draw (-2.5,1) -- (-1,1.5)(-1,1.5)  -- (0,2.5) -- (0.5,1) -- cycle;
+\node at (-1.7,1.75) {\tiny\stationfont Albus};
+\node at (0.75,0.65) {\tiny\stationfont Sirus};
+\node at (0.65,2.5)  {\tiny\stationfont James};
+\node at (-2.45,0.65){\tiny\stationfont Severus};
+\vertex at (-2.5,1) {};
+\vertex at (-1,1.5) {};
+\vertex at (0.5,1) {};
+\vertex at (0,2.5) {};
+
+\pgfsize \end{tikzpicture}

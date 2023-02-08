@@ -1,0 +1,25 @@
+\begin{tikzpicture}[scale=\scalefactor]
+	\input{figuresettings}
+	\draw[ line width = \highlightlinewidth,  color=\highlighta] (6,1.5) -- (7,1.5);
+	\vertex at (8,0.5) {};
+	\vertex at (8,2) {};
+	\vertex at (7,1.5) {};
+	\vertex at (6,1.5) {};
+	\vertex at (5,2) {};
+	\vertex at (6,0.5) {};
+	\vertex at (8,-2) {};
+	\vertex at (8,-0.5) {};
+	\vertex at (6,-1) {};
+	\vertex at (6,-1) {};
+	\vertex at (5,-0.5) {};
+	\vertex at (6,-2) {};
+	\draw  (5,2) -- (6,1.5) -- (7,1.5) -- (8,2) ;
+	
+	\draw  (5,-0.5) -- (6,-1) -- (6,-1) -- (8,-0.5) ;
+	
+	\draw (6,1.5) -- (6,0.5) -- (7,1.5);
+	\draw (6,-1) -- (6,-2);
+
+\draw (6,-1) -- (8,-2);
+\draw (7,1.5) -- (8,0.5);
+	\pgfsize \end{tikzpicture}

@@ -1,0 +1,76 @@
+\section{Exercises}
+
+\begin{exercise}[Utilities Problem]
+Alice, Bob, and Charlie live in 3 houses. Each house requires gas, electricity and water. Show that there is no way to connect the 3 houses directly to each of the 3 utilities in the plane without creating a crossing-- in other words, prove that the graph $K_{3,3}$ is nonplanar. 
+\label{exer:utilities}
+\end{exercise}
+
+\begin{exercise} 
+A forest is a graph which contains no cycles. Let $G$ be a planar graph. Prove that there exists a decomposition $E=E_1\sqcup E_2\sqcup E_3$ so that $G_1, G_2, G_3$, the subgraphs induced by those edge sets, are forests.
+\label{exer:planarforest}
+\end{exercise}
+
+
+\begin{exercise}
+Let $G$ be a planar graph. The \emph{total angle} $\alpha(f)$ of a face is the sum of the  angles at the corners of that face. Show that 
+\[\sum_{f\in F} \alpha(f) = 2\pi |V|.\]
+\label{exer:totalangleplanar}
+\end{exercise}
+
+\begin{exercise}
+Let $P$ be a polyhedron. The \emph{angle deficit} at a vertex $v$ in that polyhedron 
+\[\alpha(v)=2\pi- \text{The sum of the angles which contain $v$.}\]
+For example, a cube has angle deficit $\pi/2$ at each vertex.\\
+Prove that the angle deficit of any polyhedron is $4\pi$. 
+
+\label{exer:angledeficit}
+\end{exercise}
+
+\begin{exercise}
+Show that every graph $G$ is a topological minor of a graph $H$ with chromatic number $\gamma(H)=2$. 
+\label{exer:topologicalminorbipartite}
+\end{exercise}
+
+\begin{exercise}
+Give an example of 2 graphs which are not trees that have the same chromatic polynomial. 
+\label{exer:chromaticpolynomial}
+\end{exercise}
+
+\begin{exercise}
+Let $G$ be a graph that requires $k$ colors. Show that there are at least $k$ vertices of degree $k-1$. 
+\label{exer:coloringedges}
+\end{exercise}
+
+\begin{exercise}
+Suppose that $G$ has $n$ vertices. How many edges can $G$ have and remain $k$-colorable?
+\label{exer:maximaledges}
+\end{exercise}
+
+
+Let $G$ be a graph. Let $V(G)=\{v_1, \ldots v_n\}.$ The \emph{Mycielski Graph} $\mu_G$ is constructed by taking 
+\begin{itemize}
+\item Vertices $v_1, \ldots, v_n, u_1, \ldots u_n, w$. 
+\item The edges $v_iv_j, u_iv_j, v_iu_j$ for each edge $v_iv_j$ in $V(G)$, and additionally the edges $u_kw$ for all $k$. 
+\end{itemize}
+
+\begin{exercise}[Mycielski I]
+Show that if $G$ is $k$-colorable, that $\mu_G$ is $k+1$ colorable. \label{exer:myci}
+\end{exercise}
+
+\begin{exercise}[Mycielski II]
+Show that if $\mu_G$ is $k$-colorable, then $G$ is $k-1$ colorable.  \label{exer:mycii}
+\end{exercise}
+
+\begin{exercise}[Mycielski III]
+A graph is triangle-free if it has no cycles of length 3. Use Exercises \ref{exer:myci} and \ref{exer:mycii} to construct graphs $G_n$ which are triangle free and require at least $k$ colors.  \label{exer:myciii}
+\end{exercise}
+
+\begin{exercise}
+Let $G$ be a planar graph. Prove Euler's Formula $|V|-|E|+|F|=2$ by using the machinery of Definition \ref{def:planarcomplex} and \ref{lemma:eulercharacteristic}.
+\label{exer:eulercharacteristic}
+\end{exercise}
+
+
+\begin{exercise}
+Show that if $H$ has a simple basis for $\mathcal C(H)$, then every $G\subset H$ has a simple basis for $\mathcal C(G)$.  \label{exer:simplebasis} 
+\end{exercise}
