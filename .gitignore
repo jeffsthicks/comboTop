@@ -13,6 +13,8 @@
 *.bcf
 *.idx
 *.toc
+*.fls
+*.fdb_latexmk
 *.blg
 *.code-workspace
 *.output
