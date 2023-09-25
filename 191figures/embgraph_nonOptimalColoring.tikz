@@ -1,0 +1,27 @@
+\begin{tikzpicture}[scale=\scalefactor]
+    \input{figuresettings}
+\draw (0,-2) -- (-1,-1) -- (0,0) -- (0,-2) -- (1,-1) -- (2,0) -- (1,1) -- (0,0) -- (2,0);
+\draw (0,0) -- (1,-1);
+\vertexa at (0,0) {};
+\vertexc at (0,-2) {};
+\vertexb at (1,1) {};
+\vertexc at (2,0) {};
+\vertexb at (1,-1) {};
+\vertexd at (-1,-1) {};
+\draw  plot[smooth, tension=.7] coordinates {(-1,-6) (-0.5,-5) (0.5,-4.5)};
+\draw  plot[smooth, tension=.7] coordinates {(-1,-6) (0,-5.5) (0.5,-4.5)};
+\draw  plot[smooth, tension=.7] coordinates {(0.5,-7.5) (-1,-6)};
+\draw  plot[smooth, tension=.7] coordinates {(0.5,-7.5) (0.5,-4.5)};
+\draw  plot[smooth, tension=.7] coordinates {(2,-6) (1,-5.5) (0.5,-4.5)};
+\draw  plot[smooth, tension=.7] coordinates {(2,-6) (1.5,-5) (0.5,-4.5)};
+\draw (-1,-6) -- (2,-6);
+\vertexd at (.5,-7.5) {};
+\vertexb at (2,-6) {};
+\vertexa at (-1,-6) {};
+\vertexc at (.5,-4.5) {};
+\node at (-2,-1) {$G$};
+\node at (-2,-6) {$K_G$};
+
+\draw[draw=none]  (3,-8) rectangle (-3,1.5);
+\pgfsize
+\end{tikzpicture}

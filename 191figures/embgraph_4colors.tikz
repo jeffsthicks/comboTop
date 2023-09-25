@@ -1,0 +1,13 @@
+\begin{tikzpicture}[scale=\scalefactor]
+    \input{figuresettings}
+\draw (0,-2) -- (-1,-1) -- (0,0) -- (0,-2) -- (1,-1) -- (2,0) -- (1,1) -- (0,0) -- (2,0);
+\draw (0,0) -- (1,-1);
+\draw[dashed]  plot[smooth, tension=.7] coordinates {(-1,-1) (-1,1) (1,1)};
+\vertexa at (0,0) {};
+\vertexc at (0,-2) {};
+\vertexb at (1,1) {};
+\vertexc at (2,0) {};
+\vertexb at (1,-1) {};
+\vertexd at (-1,-1) {};
+\pgfsize
+\end{tikzpicture}

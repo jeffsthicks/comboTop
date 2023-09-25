@@ -1,63 +1,30 @@
 
 \begin{elevator}[Introduction to Surfaces]
 We generalize our study of planar drawing to drawings on other surfaces, and along the way generalize our Euler's characteristic, and interpretations of planarity criterion. 
-\end{elevator}
 \label{sec:planar:surfaces}
-The simplest kind of topological surface that we can look at are those of \emph{surfaces.} A good way to get an initial handle on surfaces is by describing them in terms of the combinatorial data of a graph drawn on that surface. We'll give a formal definition of a surface in the next section, but for now think of this as a shape without corners which you could make out of a rubber sheet. \\
+\end{elevator}
+The simplest kind of topological surface that we can look at are those of \emph{surfaces.} A good way to get an initial handle on surfaces is by describing them in terms of the combinatorial data of a graph drawn on that surface. We'll give a formal definition of a surface in the next section, but for now think of this as a shape without corners which you could make out of a rubber sheet.
 \begin{definition}
 An \emph{embedding} of a graph $G$ into a surface $\Sigma$ is a drawing of $G$ on $\Sigma$ where no edges cross eac hother. 
 \end{definition}
 Here are a few examples of embeddings of graphs into surfaces:
 
-\examplefigure{Every planar graph embedding gives us an example of a surface embedding. A graph which is embeddable in the plane is embeddable in every surface, as each surface locally looks like a copy of the plane. Because of this, we see that one requires more than just the information of a graph on a surface to determine what surface we are looking at. }{\begin{tikzpicture}[scale=.18]
+\begin{examplefigureenv}[Graph on the torus]{191figures/embgraph_graphOnTorus.tikz}
+	Every planar graph embedding gives us an example of a surface embedding. A graph which is embeddable in the plane is embeddable in every surface, as each surface locally looks like a copy of the plane. Because of this, we see that one requires more than just the information of a graph on a surface to determine what surface we are looking at. 
+\end{examplefigureenv}
 
-\draw  (-3,-0.5) ellipse (8 and 3);
-\draw  plot[smooth, tension=.7] coordinates {(-6,0) (-5,-1) (-3,-1.5) (-1,-1) (0,0)};
-\draw  plot[smooth, tension=.7] coordinates {(-5,-1) (-3,-0.5) (-1,-1)};
-\draw (-2.5,8) -- (-3.5,6) -- (-1.5,6) -- (-2.5,8);
-\draw (-5.5,5) -- (-3.5,6);
-\fill(-2.5,8) circle[radius=.2];
-\fill(-9,-2) circle[radius=.2];
-\fill(-7,0) circle[radius=.2];
-\fill(-6.8,-1.6) circle[radius=.2];
-\fill(-8.4,-0.8) circle[radius=.2];
-\fill(-5.5,5) circle[radius=.2];
-\fill(-1.5,6) circle[radius=.2];
-\fill(-3.5,6) circle[radius=.2];
-\draw  plot[smooth, tension=.7] coordinates {(-7,0) (-8,0) (-8.4,-0.8)};
-\draw  plot[smooth, tension=.7] coordinates {(-8.4,-0.8) (-7.8,-1.6) (-6.8,-1.6) (-6.4,-1) (-7,0)};
-\draw  plot[smooth, tension=.7] coordinates {(-8.4,-0.8) (-9.2,-1.2) (-9,-1.8)};
-\end{tikzpicture}}
 
-\examplefigure{Graphs which are embeddable in the sphere are exactly equal to planar graphs. One can translate between these two types of graph via a technique called \emph{stereographic projection.}
-}{\begin{tikzpicture}[scale=.3]
 
-\draw (-4,-1) -- (5,-1) -- (4,-3) -- (-5,-3) --  cycle;
-\draw[fill=white](0,0) circle[radius=2];
-\draw  (0,0) ellipse (2 and .6);
-\draw[dashed] (0,2) -- (-2,-2);
-\fill(0.5,1.2) node (v1) {} circle[radius=.1];
-\fill(-1,1) circle[radius=.1];
-\fill(1.6,-2.8) circle[radius=.1];
-\fill(2.8,-2.2) circle[radius=.1];
-\fill(0.8,-2.2) circle[radius=.1];
-\fill(-1.4,-2.2) circle[radius=.1];
-\fill(1.4,0.6) circle[radius=.1];
-\fill(0.8,0.2) circle[radius=.1];
-\draw  plot[smooth, tension=.7] coordinates {(-1,1) (0,1.4) (1.4,0.6)};
-\draw  plot[smooth, tension=.7] coordinates {(v1) (0.8,0.6) (0.8,0.2)};
-\draw (-1.2,-2.2) -- (0.8,-2.2) -- (2.8,-2.2) -- (1.6,-2.8) -- (0.8,-2.2);
-\end{tikzpicture}}
+\begin{examplefigureenv}[Stereographic Projection]{191figures/embgraph_stereographic.tikz}
+	Graphs which are embeddable in the sphere are exactly equal to planar graphs. One can translate between these two types of graph via a technique called \emph{stereographic projection.}
+\end{examplefigureenv}
 
-\examplefigure{There are of some more intesting graphs that we can embed on the torus. In the figure on the right, the graph drawn has only 1 face; but any planar drawing of this graph will have 3 faces as the graph has 2 cycles. }{\begin{tikzpicture}[scale=.18]
-\draw  (-3,-0.5) ellipse (8 and 3);
-\draw  plot[smooth, tension=.7] coordinates {(-6,0) (-5,-1) (-3,-1.5) (-1,-1) (0,0)};
-\draw  plot[smooth, tension=.7] coordinates {(-5,-1) (-3,-0.5) (-1,-1)};
-\fill(-5.2,-2.2) circle[radius=.3];
-\draw  plot[smooth cycle, tension=.7] coordinates {(-3,-2.5) (-8.5,-0.5) (-3,1.5) (2.5,-0.5)};
-\draw  plot[smooth, tension=1] coordinates {(-3.8,-1.4) (-5.2,-2.2) (-4.4,-3.4)};
-\draw[dashed]  plot[smooth, tension=1] coordinates {(-3.8,-1.4) (-3.6,-2.4) (-4.4,-3.4)};
-\end{tikzpicture}}
+\begin{examplefigureenv}[Differences in face counts]{191figures/embgraph_planeVsTorus.tikz}
+	
+There are of some more intesting graphs that we can embed on the torus. In the figure on the right, the graph drawn has only 1 face; but any planar drawing of this graph will have 3 faces as the graph has 2 cycles. 
+\end{examplefigureenv}
+
+\begin{comment}
 It can be difficult to draw a graph on a surface when we imagine that surface being in 3-dimensional space-- especially when we consider that not every surface is embeddable in 3 dimensional space! Here is a convenient piece of notation or drawing technique for getting a better handle on visualizing surfaces. A \emph{gluing polygon} for a surface is a polygon where pairs of sides have been labeled with an orientation and letter. Such a diagram gives us a method for building a surface: imagine that this polygon was a sheet of rubber, and take pairs of sides equipped with the same label and glue them together as specified by the orientation. 
 \begin{claim}
 For any surface $\Sigma$, there exists a gluing polygon that glues up to that surface. 
@@ -221,7 +188,7 @@ Given two nets $G_1$ and $G_2$ on a surface, there is another net $H$ called the
 \label{fig:commonrefinement}
 \end{figure}
 \end{proof}
-
+\begin{comment}
 \subsection{Combinatorial Surfaces, and maps between surfaces}
 Right now, we've been thinking of the graph and the surface as 2 different objects, where the surface gives us a structure on the graph. We'd like to make those notions the same. 
 \begin{definition}
@@ -798,3 +765,5 @@ We get as a result that $\dim(H_E)=2-\chi(\Sigma)$. This means that unless $\chi
 \begin{corollary}
 The Euler characteristic of a surface can never be greater than 2. 
 \end{corollary}
+
+\end{comment}
