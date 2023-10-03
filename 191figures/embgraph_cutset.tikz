@@ -1,0 +1,18 @@
+\begin{tikzpicture}[scale=\scalefactor]
+    \input{figuresettings}
+
+\draw[fill=\shadinga]  plot[smooth cycle, tension=.7] coordinates {(7,-1) (7.5,-3) (9.5,-2.5) (10,-0.5) (8.5,0)};
+\draw[fill=\shadinga]  plot[smooth cycle, tension=.7] coordinates {(11,-1.5) (9.5,-3) (9,-4) (11.5,-4)};
+\fill (9,-2) circle[radius=.1];
+\fill (11,-3.5) circle[radius=.1];
+\fill (10.5,-2) circle[radius=.1];
+\fill (9.5,-3.5) circle[radius=.1];
+\fill (9,-0.5) circle[radius=.1];
+\fill (7.5,-1.5) circle[radius=.1];
+\fill (7.5,-2.5) circle[radius=.1];
+\draw (7.5,-2.5) -- (7.5,-1.5) -- (9,-0.5) -- (9,-2) -- (7.5,-2.5) -- (9,-0.5);
+\draw (10.5,-2) -- (9.5,-3.5) -- (11,-3.5) -- (10.5,-2);
+\draw[red, thick] (7.5,-2.5) -- (9.5,-3.5) -- (9,-2) -- (10.5,-2) -- (9,-0.5);
+\node at (6.5,0) {$H_1$};
+\node at (12,-2) {$H_2$};
+\end{tikzpicture}

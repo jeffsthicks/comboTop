@@ -135,7 +135,7 @@ These simple inequalities already place many restrictions on a planar embedding 
 
 The inequality also provides a criterion that can show the non-existence of any graph embedding. Roughly speaking, if your graph as many edges compared to vertices, it is unlikely that \sref{emb:cor:inequality} will be satisfied. As complete graphs maximize the edge-to-vertex ratio, they are a natural first candidate to check. 
 
-\begin{corollary}
+\begin{corollary}[$K_5$ is non-planar]
  For every $n\geq 5$, the complete graph $K_n$ admits no planar embedding. 
 \end{corollary}
 
@@ -310,7 +310,6 @@ In fact, K\"onig's theorem is equivalent to Menger's theorem. \\
 Two colorability is a rather easy property to look for. Given a graph $G$ with $n$ vertices, determining if $G$ is 2-colorable is an algorithm that runs in $n$ steps. However, the algorithm to check if a graph is even 3-colorable runs in exponential time with respect to the number of vertices, and is one of the hallmark ``NP-complete'' problems. 
 
 
-\begin{comment}
 \subsection{Coloring Embedded Graphs}
 Historically, the problem of coloring planar graphs has been a rich field, motivated by the observation that an atlas can be colored with 4 colors. This theorem was outside the reach of mathematicians until the use of a computer program to verify a large number of edge cases. In this course, we will prove some results in the vicinity of the 4 color theorem. We start with a surprisingly useful fact about planar graphs:
 \begin{lemma}
@@ -326,61 +325,19 @@ This allows us to run induction arguments on planar graphs where we induct on th
  Every planar graph is 6 colorable. 
 \end{corollary}
 \begin{proof}
- We prove by induction on the number of vertices. \\
+ We prove by induction on the number of vertices. 
+ 
  Let $G$ be our graph. By Lemma \ref{lemma:lowdegree}, we can  choose to remove a vertex $v$ of degree 5. The induction hypothesis tells us that there exists a 6-coloring for $G\setminus v$. Since $v$ has degree 5, there is a color which is not used in $N(v)$. Color $v$ with that color to get a valid coloring for $G\setminus v$. 
 \end{proof}
 
-We use this to help prove the 5 color theorem. 
-\begin{theorem}
- Every planar graph is 5 colorable. 
-\end{theorem}
-\begin{proof}
- Again, we prove by induction on removing a small degree vertex. Let $G$ be a graph, and pick a vertex $v$ of degree 5. By our induction hypothesis, we can come up with a $5$-coloring of the graph $G\setminus v$. We may assume that the neighborhood of $v$ sees all 5 colors, otherwise we would be done. As such, index $N(v)$ by colors $\{v_1, v_2, v_3, v_4, v_4\}$. Furthermore, as we are in a planar graph, we may take this labeling to proceed cyclically around $v$. We now use a trick very similar to the proof of \ref{thm:brooks}. \\
-For each $i$ and $j$, let $H_{ij}$ be the $ij$ colored subgraph of $G\setminus v$. Then either $v_i$ and $v_j$ belong to the same connected component of $H_{ij}$, or not. In the case they do not, we can switch the colors $i, j$ in the connected component containing $v_i$, and now the neighborhood of $v$ only has 4 colors. \\
-Suppose instead that for each $i, j$, the vertices $v_i$ and $v_j$ belong to the same connected component. This means that there is a path $P_{1,3}$ from $v_1$ to $v_3$, which is only colored with colors $1, 3$.\\
- Similarly, there must be a path $P_{2, 4}$ from $v_2$ to $v_4$ which is only colored with vertices colored $2$ and $4$. As these paths get different colors, we know that they are disjoint from each other. 
- \begin{itemize}
-  \item Suppose there is not an $i,j$ colored path between $v_i$ and $v_j$ . Then $v_i$ and $v_j$ belong to separate connected components of the subgraph colored $i,j$, therefore in one component we can switch their colors, This reduces the colors in the neighborhood of $v$ to 4 colors, so we can color the graph with 5 colors. 
-  \item The above must be the case, as a 13 path cannot intersect a 24 path, but the existence such paths would create a topological $K_{3,3}$ within our graph, contradicting planarity.
-  \[\begin{tikzpicture}
-
-\vertexc at (0,1) {};
-\vertexa at (-2,-3) {};
-\vertexd at (0,-3) {};
-\vertexb at (-2,-1) {};
-\vertexe at (2,-1) {};
-\draw[fill=white] (0,-1) node (v1) {} circle[radius=.2];
-\draw (-2,-3) -- (v1) -- (0,1);
-\draw (-2,-1) -- (0,-1) -- (0,-3);
-\draw (2,-1) -- (0,-1);
-\node at (-2,-1.5) {$v_1$};
-\node at (-0.5,0.5) {$v_2$};
-\node at (1.5,-0.5) {$v_3$};
-\node at (0,-3.5) {$v_4$};
-\node at (-2,-3.5) {$v_5$};
-\draw  plot[smooth, tension=.7] coordinates {(-2,-1) (-2,2) (0,3) (2,2) (2,-1)};
-\draw  plot[smooth, tension=.7] coordinates {(0,1) (3,1) (4,-1) (3,-3) (0,-3)};
-
-\vertexc at (3,-3) {};
-\vertexd at (3,1) {};
-\vertexb at (2,2) {};
-\vertexe at (-2,2) {};
-\node[above] at (0,3) {$P_{1,3}$};
-\node[right] at (4,-1) {$P_{2,4}$};
-\end{tikzpicture}\] 
- \end{itemize}
-\end{proof}
-There is of course the infamous 4 color theorem:
-\begin{theorem}
- Every planar graph is 4 colorable. 
-\end{theorem}
-This theorem was historically broken by a computer, and we will not go into the proof of it here. 
+The proof of the five color theorem follows a similar strategy. The four color theorem, on the other hand required significant advances is computational mathematics in order to complete the proof. 
 \subsection{Snarks}
 While the 4-coloring theorem was proven using computers, there was a different approach to proving it using a special type of graph called a \emph{snark.} Recall that an \emph{edge coloring} is an assignment of colors to the edges so that no vertex sees more than 1 of the same color edges. 
-\begin{definition}
+\begin{definition}[snark]
  A \emph{snark} is a 2-edge-connected graph with every vertex degree 3 and \emph{edge coloring} requiring 4 colors. 
 \end{definition}
-The typical example of a snark is the \emph{Peterson Graph,} which we've seen before. \\
+The typical example of a snark is the \emph{Peterson Graph,} which we've seen before. The snark obtains its colorful name from \cite{gardner1976snarks}.
+
 Since the maximal degree of a vertex is three, it is obvious that we will require at least 3 colors. However, no more than 4 colors are required for the edges (the proof of this is due to Vizing's Theorem \cite{vizing1964estimate}.) \\
 Not only is the Peterson graph a simple example of a snark, it is a fundamentally snarky graph:
 \begin{theorem}
@@ -467,7 +424,7 @@ See Exercise \ref{exer:3minors}
 \begin{figure}
 \centering
 \begin{tikzpicture}[scale=.6]
-
+  \input{figuresettings.tex}
 \draw  [fill=\shadinga]  plot[smooth cycle, tension=.7] coordinates {(7.5,-1.5) (8.6,-1.8) (9,-2.5) (8.5,-3) (7.5,-2.5)};
 \draw [fill=\shadinga] plot[smooth cycle, tension=.7] coordinates {(4.5,0) (4,-1) (5,-2.5) (6,-1.5) (5.5,-0.5)};
 \draw [fill=\shadinga]  plot[smooth cycle, tension=.7] coordinates { (8.8,-1.6) (10,-1.5) (10,-0.5) (8,-0.5)};
@@ -686,6 +643,7 @@ Recall we had previously defined a \emph{chain complex} associated to a planar g
  \begin{figure}
  \centering
  \begin{tikzpicture}
+  \input{figuresettings.tex}
 \fill[\shadinga] (-3,-4.5) -- (-3,-6) -- (-4.5,-5.5) -- (-4,-7.5) -- (-1,-6.5) -- (-2,-5.5) -- cycle;
 \fill (-2,-5.5)  circle[radius=.1];
 (-4,-7.5) -- (-1,-6.5) -- (-2,-5.5) -- cycle;
@@ -715,23 +673,13 @@ A nice interpretation of the algebraic planarity criterion comes from studying d
 \begin{definition}
 Let $G$ be a connected graph. Let $V=V_1\sqcup V_2$. The \emph{cut set} between $V_1$ and $V_2$ is the subset of all edges between vertices of $V_1$ and $V_2$. We denote such a cutset as $E(V_1, V_2)$. We say that a cut set is \emph{minimal} if it belongs to no other cutsets. 
 \end{definition}
-\examplefigure{Here is an example of a graph $G$ with a partition of it's vertices into $V_1$ and $V_2$. The graph $G$ decomposes into the induced subgraph on the vertex subsets, plus a collection of edges that go in between those two subgraphs. }{\begin{tikzpicture}[scale=.5]
 
-\draw[fill=\shadinga]  plot[smooth cycle, tension=.7] coordinates {(7,-1) (7.5,-3) (9.5,-2.5) (10,-0.5) (8.5,0)};
-\draw[fill=\shadinga]  plot[smooth cycle, tension=.7] coordinates {(11,-1.5) (9.5,-3) (9,-4) (11.5,-4)};
-\fill (9,-2) circle[radius=.1];
-\fill (11,-3.5) circle[radius=.1];
-\fill (10.5,-2) circle[radius=.1];
-\fill (9.5,-3.5) circle[radius=.1];
-\fill (9,-0.5) circle[radius=.1];
-\fill (7.5,-1.5) circle[radius=.1];
-\fill (7.5,-2.5) circle[radius=.1];
-\draw (7.5,-2.5) -- (7.5,-1.5) -- (9,-0.5) -- (9,-2) -- (7.5,-2.5) -- (9,-0.5);
-\draw (10.5,-2) -- (9.5,-3.5) -- (11,-3.5) -- (10.5,-2);
-\draw[red, thick] (7.5,-2.5) -- (9.5,-3.5) -- (9,-2) -- (10.5,-2) -- (9,-0.5);
-\node at (6.5,0) {$H_1$};
-\node at (12,-2) {$H_2$};
-\end{tikzpicture}}
+
+
+\begin{examplefigureenv}{191figures/embgraph_cutset.tikz}
+
+Here is an example of a graph $G$ with a partition of its vertices into $V_1$ and $V_2$. The graph $G$ decomposes into the induced subgraph on the vertex subsets, plus a collection of edges that go in between those two subgraphs. 
+\end{examplefigureenv}
 
 Cut sets behave in a lot of ways similar to cycles. Define the \emph{  cut space} $\mathcal C^*\subset \mathcal E$ as the set of all cuts. In many ways it is better behaved than the cycle space, as it is a space of its own right (we don't need to take span). To prove this observe that 
 \begin{claim}
@@ -760,38 +708,10 @@ Unlike in the case of the cycle space, the cut set comes with a simple generatin
 \begin{claim}
  $G$ and $G^*$ planar dual implies that $G$ and $G^*$ are abstract dual. 
 \end{claim}
-\examplefigure{In this example, we've drawn two dual polytopes: the octahedron in black, and the cube in red. The collection of faces shaded in gray represent a cycle in the octahedron, giving us the corresponding cut set (demarcated with dashes) in the cube.}{\begin{tikzpicture}[scale=.45]
-\draw[fill=\shadinga] (-6.5,-5) -- (-4.5,-7) -- (-4,-9) -- (-3.5,-7) -- (-1.5,-5) -- (-4,-6) -- (-6.5,-5);
-\fill (-4,-6) circle[radius=.1];
-\fill (-3.5,-7) circle[radius=.1];
-\fill (-1.5,-5) circle[radius=.1];
-\fill (-6.5,-5) circle[radius=.1];
-\fill (-4,-9) circle[radius=.1];
-\fill (-4.5,-7) circle[radius=.1];
-\draw (-6.5,-5) -- (-4.5,-7) -- (-4,-6) -- (-3.5,-7) -- (-1.5,-5) -- (-4,-6) -- (-6.5,-5);
-\draw (-3.5,-7) -- (-4.5,-7) -- (-4,-9) -- (-3.5,-7);
-\draw (-1.5,-5) -- (-4,-9);
-\draw (-6.5,-5) -- (-4,-9);
-\draw (-6.5,-5) -- (-1.5,-5);
 
-
-
-%cube
-
-\fill[red] (-4,-5.5) circle[radius=.1];
-\fill[red] (-4,-4.5) circle[radius=.1];
-\fill[red] (-4,-8) circle[radius=.1];
-\fill[red] (-3,-7) circle[radius=.1];
-\fill[red] (-5,-7) circle[radius=.1];
-\fill[red] (-3,-6) circle[radius=.1];
-\fill[red] (-5,-6) circle[radius=.1];
-\fill[red] (-4,-6.5) circle[radius=.1];
-\draw[dashed, red] (-4,-5.5) -- (-5,-6) -- (-5,-7) -- (-4,-8) -- (-3,-7) -- (-3,-6) -- (-4,-5.5);
-\draw[red] (-5,-6) -- (-4,-6.5) -- (-4,-8);
-\draw[red] (-3,-6) -- (-4,-6.5);
-\draw[red]  plot[smooth, tension=.7] coordinates {(-5,-7) (-6,-7.5) (-7.5,-5) (-4,-4.5) (-0.5,-5) (-2,-7.5) (-3,-7)};
-\draw[red] (-4,-5.5) -- (-4,-4.5);
-\end{tikzpicture}}
+\begin{examplefigureenv}{191figures/embgraph_abstractDuals.tikz}
+  In this example, we've drawn two dual polytopes: the octahedron in black, and the cube in red. The collection of faces shaded in gray represent a cycle in the octahedron, giving us the corresponding cut set (demarcated with dashes) in the cube.
+\end{examplefigureenv}
 \begin{proof}
  Let $F\subset E_G$ be a minimal edge cut that separates $G$. This creates 2 components. The intersection of all the faces contained in one region and contained in the other region should have the property that each face only contains 2 edges from the minimal cut set-- as only 2 edges are required separate the cycle which is each face. This means that we have a collection of faces which all have degree 2 in the dual. This gives us a collection of cycles. Of course, it can't be a collection of cycles, as this would cause various separate regions by the Jordan curve theorem. 
 \end{proof}
@@ -802,7 +722,10 @@ The other direction is clear.  This means that whenever $G$ and $G^*$ planar dua
 \begin{proof}
  The forward direction we just proved-- the dual multigraph is a candidate dual. For the other direction, notice that the cut space of $G^*$ has a simple basis, therefore the cycle space of $G$ has a simple basis, therefore $G$ is planar. 
 \end{proof}
-In fact, this kind of duality shows up in a lot of different places in combinatorics. At its heart, planar duality, abstract duality and cycles and cut-sets are the first shadows of a \project larger class of combinatorial objects called \emph{matroids.} \label{proj:matroids.} These generalizations of graphs capture the idea of relations by looking at ``linearly independent sets'' within some collection that one studies. \\
-Similarly, the duality has a topological meaning, in the form of \emph{Poincar\'e duality.} On compact oriented $n$- manifolds, the space of $k$ cycles looks very \project much like the space of $n-k$ cycles, and there is a pairing between them in very much the same way that there is a pairing between cut sets and cycles. While we won't have time to go into this general phenomenon in this course, it would be an interesting thing to look at. 
+\begin{projectdescription}{Matroids}
+In fact, this kind of duality shows up in a lot of different places in combinatorics. At its heart, planar duality, abstract duality and cycles and cut-sets are the first shadows of a larger class of combinatorial objects called \emph{matroids.} \label{proj:matroids.} These generalizations of graphs capture the idea of relations by looking at ``linearly independent sets'' within some collection that one studies. 
+\end{projectdescription}
 
-\end{comment}
+\begin{projectdescription}{Poincar\'e duality}
+Similarly, the duality has a topological meaning, in the form of \emph{Poincar\'e duality.} On compact oriented $n$- manifolds, the space of $k$ cycles looks very much like the space of $n-k$ cycles, and there is a pairing between them in very much the same way that there is a pairing between cut sets and cycles. While we won't have time to go into this general phenomenon in this course, it would be an interesting thing to look at. 
+\end{projectdescription}
