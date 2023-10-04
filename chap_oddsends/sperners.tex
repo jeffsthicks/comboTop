@@ -47,11 +47,11 @@ Nash Equilibria is a method that you can apply to mixed strategy problems.
 	A \emph{strategy game} between $k$ players is the following pieces of data:
 	\begin{itemize}
 		\item For every player $i$,   a non-empty finite set $S_i$ of \emph{strategies}.
-		\item For every player $i$,  a continuous function $P_i: S_1\times S_2\times  S_k\to \R$ called the \emph{payoff} function,  which assigns to each possible combination of strategies played,  the payoff of player $i$. 
+		\item For every player $i$,  a continuous function $P_i: S_1\times S_2\times  S_k\to \RR$ called the \emph{payoff} function,  which assigns to each possible combination of strategies played,  the payoff of player $i$. 
 	\end{itemize}
 \end{definition}
 \begin{definition}
-	A \emph{set of mixed strategies} for $k$ players is a function $\Sigma: S_1\times S_2\times S_k\to \R$ where $\sum_{s\in S_k} f(s)=1$. The set of all mixed strategies denoted to $\mathbb D$. 
+	A \emph{set of mixed strategies} for $k$ players is a function $\Sigma: S_1\times S_2\times S_k\to \RR$ where $\sum_{s\in S_k} f(s)=1$. The set of all mixed strategies denoted to $\mathbb D$. 
 \end{definition}
 \begin{definition}
 	A \emph{Nash Equilibrium} is a set of mixed strategies $x\in \mathbb D$ where each player cannot improve their utility by changing their specific strategy (with all other players' strategies kept the same). 
@@ -61,7 +61,7 @@ Notice that the set of mixed strategies is homeomorphic to $D^{|S_1|}\times \cdo
 \begin{definition}
 	Given a mixed strategy $\Sigma$,  we define the expected payoff of $\Sigma$ to be 
 	\[\mathbb{E}(\Sigma):= (\sum_{s\in S_1} \Sigma(s) P_1 (s),  \sum_{s\in S_2} \Sigma(s) P_2(s),  \ldots,  \sum_{s\in S_k} \Sigma(s) P_k(s))\]
-	This expected payoff function is a continuous function from the set of mixed strategies to the set of all payoffs,   $\mathbb D \to \R^k$. 
+	This expected payoff function is a continuous function from the set of mixed strategies to the set of all payoffs,   $\mathbb D \to \RR^k$. 
 \end{definition}
 \begin{definition}
 	Given a mixed strategy $\Sigma$,  define the \emph{Best Response of player $i$} of $\Sigma$ to be the subset of $D^{|S_i|}$ which maximizes player $i$ payoff,  assuming all of the other players maintain the same strategy.\\

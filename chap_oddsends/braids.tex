@@ -1,9 +1,9 @@
 \section{Braids}
 \label{sec:knot:braids}
 Braid groups describe one particular way that we can tangle stings together. Intuitively, a braid is a tangle of strings that go from top to bottom, that is they proceed in only one direction. The stings of the braid can't intersect, and they can't loop back on themselves. A braid is like a permutation with some additional information encoded about the order that you took the permutations in, and we will formally see later why this is an accurate description of the braid group.
-\begin{definition} A collection of functions $f_i:[0,1]\to \R^3$ , $i\in {1,2,\ldots n}$ is called a \textbf{braid on $n$ strings} and is written as $\beta$ if the following properties hold:
+\begin{definition} A collection of functions $f_i:[0,1]\to \RR^3$ , $i\in {1,2,\ldots n}$ is called a \textbf{braid on $n$ strings} and is written as $\beta$ if the following properties hold:
 \begin{enumerate}
-\item $f_i(x) \in \{x\}\times \R^2$
+\item $f_i(x) \in \{x\}\times \RR^2$
 \item $f_i(x)\neq f_j(x)$ for all $i\neq j$
 \item $\im f_i$ is a finite collection of line segments
 \item $f_i(0)=(i,0,0) $ and $f_i(1)=(\sigma(i),0,1)$ where $\sigma_i\in S_n$ a permutation function.

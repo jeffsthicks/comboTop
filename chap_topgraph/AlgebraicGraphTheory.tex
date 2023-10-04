@@ -15,7 +15,8 @@ We do not even know how to add together edges.
 One way we could make sense of taking sums of edges would be to work instead with a vector space $\mathcal E$, whose basis is given by the set of edges.
 In order to this to have any meaning, we'd have to imbue this vector space with some information so that it remembers what the graph $G$ was. This means that we are going to have to abstract our definition of a graph a little bit.
 \begin{claim}[Graphs a 1-complexes]
-The data of a directed graph equivalent to a set of vertices $V$, a set of edges $E$, and two maps, called the left and right boundary maps: \[\partial_l : E\to V, \partial_r: E\to V.\]
+The data of a directed graph equivalent to a set of vertices $V$, a set of edges $E$, and two maps, called the left and right boundary maps: \begin{align*}\partial_l : E\to V && \partial_r: E\to V.
+\end{align*}
 \end{claim} 
 When we work with sets, there is not a way to encode both the left and right endpoint maps into the same map. However, if we upgrade the set $E$ into a vector space, we can encode both of these boundary maps into one function instead. 
 \subsubsection{Sets and Vector Spaces}

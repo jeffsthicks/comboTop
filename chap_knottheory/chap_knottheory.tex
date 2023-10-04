@@ -11,27 +11,27 @@
 Kelvin's theory turned out to be incorrect (principally because the theory of ether was unfounded) but mathematicians  kept on thinking about knots, It took mathematicians nearly a hundred  years to realize that Tait's list contained an error, and we still study knots to this day. Not because they represent  atoms, but because the are some of the simplest objects a  topologist can study: maps from the circle to 3-dimensional  space. And despite these objects being so fundamental,  a quick classification of Knots eludes mathematicians to this  very day. In this section, we'll take the first step to classifying  knots, by describing invariants of the knot and giving a  procedure to (non-uniquely) describe every Knot.\\
 Let's first make some attempts at defining the principle objects of this chapter.
 \subsection{Preliminary Definitions of Knots}
-One might start by considering knots as mathematical representations of the objects that we call knots in everyday life. A knot is a embedding of a piece of string into three dimensional space; one might represent this with an injective smooth function $f: [0, 1]\to \R^3$. While this definition of a knot most resembles the knots that we use in everyday life, these knots all represent the same object up to smooth deformation, as every knot in a piece of unclosed string can be untied. While this is practical for real applications the topological theory of such knots would be trivial. 
+One might start by considering knots as mathematical representations of the objects that we call knots in everyday life. A knot is a embedding of a piece of string into three dimensional space; one might represent this with an injective smooth function $f: [0, 1]\to \RR^3$. While this definition of a knot most resembles the knots that we use in everyday life, these knots all represent the same object up to smooth deformation, as every knot in a piece of unclosed string can be untied. While this is practical for real applications the topological theory of such knots would be trivial. 
 \begin{wrapfigure}{r}{4cm}
 \centering
 \includegraphics[scale=1]{knot_undo}
 \caption{One can untangle any open knot by doubling back along the original string.}
 \end{wrapfigure} 
 For this reason, there is little overlap between the practical theory of knots and topological knot theory. There is a non-topological knot theory,\project which studies the ``laundry machine'' problem: given a piece of string, what is the probability that it forms a tangle of a certain complexity. This has applications in polymer modeling, DNA topology. \label{proj:knottangle} \\
-The topological study of knots looks at maps from the circle to three dimensional space, which makes them more difficult to untangle. A  \emph{wild knot} is a continuous injective function from $S^1\to \R^3$.  Unfortunately, wild knots are hard to study using combinatorial tools, as there can be all kinds of strange topological phenomenon that show up with continuous injective maps.  
+The topological study of knots looks at maps from the circle to three dimensional space, which makes them more difficult to untangle. A  \emph{wild knot} is a continuous injective function from $S^1\to \RR^3$.  Unfortunately, wild knots are hard to study using combinatorial tools, as there can be all kinds of strange topological phenomenon that show up with continuous injective maps.  
 \begin{figure}
 \centering
 \includegraphics[scale=1]{knot_wild}
 \caption{An example of a wild knot}
 \label{fig:knot:wild}
 \end{figure}
-By working with a more restrictive set of function to define  knots we are able to solve both problems. We will force our knots to be combinatorial by describing them with a discrete amount of data.   \footnote{There are several ways to do this; one is to require the map $f: S^1\to \R^3$ to have a small tubular neighborhood which is preserved by isotopy; however, we will take a more combinatorial definition.}\\
+By working with a more restrictive set of function to define  knots we are able to solve both problems. We will force our knots to be combinatorial by describing them with a discrete amount of data.   \footnote{There are several ways to do this; one is to require the map $f: S^1\to \RR^3$ to have a small tubular neighborhood which is preserved by isotopy; however, we will take a more combinatorial definition.}\\
 
-\definitionfigure{ A \emph{knot} is an injective, continuous function \[K:S^1\hookrightarrow \R^3\] whose image is a finite collection of line segments. 
+\definitionfigure{ A \emph{knot} is an injective, continuous function \[K:S^1\hookrightarrow \RR^3\] whose image is a finite collection of line segments. 
 We will frequently refer to the image of the function $K$ as the knot, and forget the parameterization. \\
 While the strict definition of a knot will require the piecewise linear structure, we will oftentimes forget the piecewise linear structure and draw the knot as a curve.}{\includegraphics[scale=1]{knot_linearization}}
 
-We could also look at a collection of knots at the same time.  A \emph{link} is an injective, continuous function $L:S^1\sqcup S^1\sqcup \cdots \sqcup S^1 \hookrightarrow \R^3 $ whose image is a finite collection of line segments. We will frequently refer to the image set as the link. \\
+We could also look at a collection of knots at the same time.  A \emph{link} is an injective, continuous function $L:S^1\sqcup S^1\sqcup \cdots \sqcup S^1 \hookrightarrow \RR^3 $ whose image is a finite collection of line segments. We will frequently refer to the image set as the link. \\
 As topologists we are interested in how knots behave up to continous deformations. Since our definition of knot has piecewise linear structure, the deformations we use will be restricted to those deformations which preserve the PL structure. \\
 
 
@@ -45,7 +45,7 @@ As topologists we are interested in how knots behave up to continous deformation
 
 \end{wrapfigure}
 \textbf{Definition \thetheorem}
-Let $K_0, K_1$ be knots. We say that $K_0$ and $K_1$ differ by a \emph{triangle move} if there exists a triangle $\Delta\subset \R^3$ whose boundary is contained in $\partial \Delta\subset K_0 \cup K_1,$
+Let $K_0, K_1$ be knots. We say that $K_0$ and $K_1$ differ by a \emph{triangle move} if there exists a triangle $\Delta\subset \RR^3$ whose boundary is contained in $\partial \Delta\subset K_0 \cup K_1,$
 and whose interior is disjoint from the knots
 $(\Delta\setminus \partial \Delta)\cap (K_0\cup K_1)=\emptyset.$
 The example on the right has a valid and invalid triangle move.
@@ -67,8 +67,8 @@ Our goal in this section is to address 3 problems:
 \subsection{Planar Representations}
 
 Since we can't actually visualize knots well in 3-dimensions, we frequently look at the their two dimensional projections. In order to make these pictures understandable, we require that the projection only have double intersections.\\
-\definitionfigure{ Let $K:S^1\to \R^3$ be a knot, and let $\R^2\subset \R^3$ be a plane disjoint from $K$.  A projection $\pi: \R^3\to \R^2$ is a \emph{knot projection of $K$} if there are no points $x,y,z\in S^1$ such that $\pi(K(x))=\pi(K(y))=\pi(K(z))$. In such a drawing each non-injective  point of the composition $\pi\circ K: S^1\to \R^2$ is a double point. \\
-A \emph{knot diagram of $K$} is an assignment of \emph{over or under crossings} to each double point in a knot projection of $K$. This assignment is done  so that the overstrand represents the portion of $K$ which is further away from $\R^2$.}{
+\definitionfigure{ Let $K:S^1\to \RR^3$ be a knot, and let $\RR^2\subset \RR^3$ be a plane disjoint from $K$.  A projection $\pi: \RR^3\to \RR^2$ is a \emph{knot projection of $K$} if there are no points $x,y,z\in S^1$ such that $\pi(K(x))=\pi(K(y))=\pi(K(z))$. In such a drawing each non-injective  point of the composition $\pi\circ K: S^1\to \RR^2$ is a double point. \\
+A \emph{knot diagram of $K$} is an assignment of \emph{over or under crossings} to each double point in a knot projection of $K$. This assignment is done  so that the overstrand represents the portion of $K$ which is further away from $\RR^2$.}{
 \includegraphics[scale=1]{knot_projection}}
 
 Notice that the same knot could have multiple knot diagrams and knot projections, so it is in some ways more difficult to work with knot projections than the actual knot. However, knot diagrams enjoy several nice properties.
@@ -77,17 +77,17 @@ Notice that the same knot could have multiple knot diagrams and knot projections
 \item It is interesting to note that given a knot diagram of $K$, one can always construct a knot $K_1$ which is ambient isotopic to $K$. 
 \item They are easy to draw.
 \end{itemize}
-If we are willing to work with knots up to isotopy, a knot diagram is just as good as an actual map $K: S^1\to \R^3$ for describing a knot. Since these pictures are much easier to use, we will in practice use the word ``knot'' for ``knot diagram.'' 
+If we are willing to work with knots up to isotopy, a knot diagram is just as good as an actual map $K: S^1\to \RR^3$ for describing a knot. Since these pictures are much easier to use, we will in practice use the word ``knot'' for ``knot diagram.'' 
 We could reduce our description of knot diagrams to more combinatorial tools by thinking of the planar diagrams as graph embeddings. In this language, a knot diagram is a planar graph $G$ with an embedding where every vertex has degree 4. Additionally, at each vertex we pick 2 edges which do not share a face, and call these the \emph{over edges.} From this description, it is easy to see that knots have completely combinatorial descriptions. \\
 Here are several examples of different knots that we'll be frequenting throughout the course given by their planar descriptions.\\ 
 
 \examplefigure[Unknot, Trefoil, $4_1$, Hopf Link]{The four knots that we'll see the most throughout the course are the \emph{Unknot, Trefoil, $4_1$} and \emph{Hopf Link}. The trefoil is the ``simplest'' knot under many metrics; for instance, it is the only non-trivial knot that can be drawn with 3 or fewer crossings. There are 2 versions of the figure 8: the right handed version is drawn. \\The Figure 8-knot will be our other frequently used example, as it is easy to draw.  }{\includegraphics[scale=1]{knot_commont}}
 
 
-\examplefigure[Torus Knots]{A torus link is given by wrapping strings around the torus with the standard embedding in $\R^3$. Pick $p\in \N q\in \Z$. Then the \emph{$(p,q)$ torus link }is created by drawing $p$ parallel equidistant vertical lines on the cylinder, and embedding that cylinder on the torus after twisting one of the ends $2\pi q/p$-radians. Notice that this is a knot if and only if $p,q$ are coprime. Furthermore, the $(p,q)$ torus link is isotopic to the $(q, p)$ torus link. The trefoil is the $(3,2)$-torus link. Torus knots are not just useful due to their quick description; they also have many special geometric properties amoung knots. In particular, they are an infinite family of \emph{flat} knots.}{\includegraphics[scale=1]{knot_torus}}
+\examplefigure[Torus Knots]{A torus link is given by wrapping strings around the torus with the standard embedding in $\RR^3$. Pick $p\in \N q\in \Z$. Then the \emph{$(p,q)$ torus link }is created by drawing $p$ parallel equidistant vertical lines on the cylinder, and embedding that cylinder on the torus after twisting one of the ends $2\pi q/p$-radians. Notice that this is a knot if and only if $p,q$ are coprime. Furthermore, the $(p,q)$ torus link is isotopic to the $(q, p)$ torus link. The trefoil is the $(3,2)$-torus link. Torus knots are not just useful due to their quick description; they also have many special geometric properties amoung knots. In particular, they are an infinite family of \emph{flat} knots.}{\includegraphics[scale=1]{knot_torus}}
 \examplefigure[Pretzel Link]{Let $p, q, r\in \Z$. The $(p,q,r)$ Pretzel link is  created by placing $p, q, $ and $r$ twists in each of the boxes labeled $p, q, $ and $r$ on the right. These knots, while not mathematically special, are used in a variety of examples and counterexamples for knots displaying certain properties, and are good to have in your toolbag. }{\includegraphics[scale=.5]{knot_pretzel}}
 
-\examplefigure[Braid closures]{A \emph{braid} on $n$-strings is a sequence $\beta$ of elements  $\{\sigma_1, \ldots, \sigma_{n-1},\sigma_1^{-1}, \ldots, \sigma_{n-1}^{-1}\}.$ Such a string determines an embedding of $\hat\beta: [0,1]\times \{1, \ldots, n\}\hookrightarrow\R^3$ recursively, where 
+\examplefigure[Braid closures]{A \emph{braid} on $n$-strings is a sequence $\beta$ of elements  $\{\sigma_1, \ldots, \sigma_{n-1},\sigma_1^{-1}, \ldots, \sigma_{n-1}^{-1}\}.$ Such a string determines an embedding of $\hat\beta: [0,1]\times \{1, \ldots, n\}\hookrightarrow\RR^3$ recursively, where 
 \[\widehat{\sigma_i \beta}\] is the embedding $\beta$ with the ends on the $i$th and $i+1$th string switched.\\
 For every braid $\beta$, we get a link, called the \emph{braid closure} of $\beta$. Graphically, this link is created by consistently gluing the two ends of each ``string'' in the braid to itself.\\
 Braid closures give us a quick algebraic notation to describing braids. We will later return to braids and explore their algebraic properties in Section \ref{sec:knot:braids}}{\includegraphics[scale=.5]{knot_braid}\\\includegraphics[scale=.5]{knot_braidclosure}}
@@ -150,8 +150,8 @@ This is a pretty powerful invariant; it is unfortunately very difficult to compu
 When we study knots, we are allowed to deform them without causing the string to intersect itself. However, if we allow the string to pass through eachother, we can deform any knot to the unknot. The \emph{unknotting number} $\min_u(K)$ of a knot $K$ is minimal number of such self intersections we must allow to get an isotopy from the knot to the unknot. For example, if we allow a string to pass itself once, we can turn the trefoil into the unknkot. One can always show that $\min_u(K)\leq \min_c(K)$. This is a historically difficult number to compute, although it is practically interesting in applied mathematics and biology. One interesting application of this is in untangeling DNA; there is an enzyme that (topoisomerase II) which switches strands of DNA, and the efficieny of this protein is tied to the minimal unknotting number. 
 \end{example}
 \examplefigure[Stick Number]{Our definition of knots is that they are described by a piecewise linear function. The \emph{Stick Number} of a knot is the minimal number of linear pieces needed. }{}
-\examplefigure[Knot Group]{While the topology of $K$ is that of a circle, the topology of the complement $\R^3\setminus K$ is rich (and recovers$K$ completely with a little additional data.) Unfortunately, the tools of homology we've developed are not powerful enough to tell the difference in the topology. However, there is a classical algebraic topology tool, the \emph{fundamental group,} which can. The \emph{knot group} of $K$ is defined to be $\pi_1(\R^3\setminus K).$ \project This group is a very powerful knot invariant, and one can read off many topological\label{proj:knotgroup} properties of the knot in terms of the group theoretic properties of $\pi_1(\R^3\setminus K.)$ Unfortunately, it is not very good for determining if two knots are the same or different, as determining the isomorphism type of a group given it's presentation is a undecidable.}{}
-\examplefigure[Volume]{The complement of a knot $\R^3\setminus K$ can be endowed with additional geometric structure. Given a knot $K$, one can look for geometries (metrics) on the complement $\R^3\setminus K$ which have constant curvature. The resulting metric is uniquely determined by the knot.\label{proj:hyperbolicknot} Should that metric have negative curvature, the resulting volume of $\R^3\setminus K$ will be finite, and an invariant of the knot.}{}
+\examplefigure[Knot Group]{While the topology of $K$ is that of a circle, the topology of the complement $\RR^3\setminus K$ is rich (and recovers$K$ completely with a little additional data.) Unfortunately, the tools of homology we've developed are not powerful enough to tell the difference in the topology. However, there is a classical algebraic topology tool, the \emph{fundamental group,} which can. The \emph{knot group} of $K$ is defined to be $\pi_1(\RR^3\setminus K).$ \project This group is a very powerful knot invariant, and one can read off many topological\label{proj:knotgroup} properties of the knot in terms of the group theoretic properties of $\pi_1(\RR^3\setminus K.)$ Unfortunately, it is not very good for determining if two knots are the same or different, as determining the isomorphism type of a group given it's presentation is a undecidable.}{}
+\examplefigure[Volume]{The complement of a knot $\RR^3\setminus K$ can be endowed with additional geometric structure. Given a knot $K$, one can look for geometries (metrics) on the complement $\RR^3\setminus K$ which have constant curvature. The resulting metric is uniquely determined by the knot.\label{proj:hyperbolicknot} Should that metric have negative curvature, the resulting volume of $\RR^3\setminus K$ will be finite, and an invariant of the knot.}{}
 \subsection{Knot Invariants: an Overview}
 The previous knot invariants discussed were described in ways that did not use not use knot diagram. We're now going to look at an invariant which is constructed using the combinatorial data of a knot diagram. \\
 \begin{definition}
@@ -194,10 +194,10 @@ Again, a proof that this is a case-by-case check; the proof for Reidemeister 3 i
 \begin{figure}
 \centering
 \includegraphics[scale=1]{knot_foxpr3}
-\caption{The Fox $p$ coloring property is invariant under application of $\R^3$. }
+\caption{The Fox $p$ coloring property is invariant under application of $\RR^3$. }
 \label{fig:knot_foxpr3}
 \end{figure}
-While colorings appear on the first glance to be a purely combinatorial construction, the theory of colorings is richly tied to algebraic topology. The regions given by the arc-diagrams correspond to a Seifert-van Kampen decomposition of $\R^3\setminus K$ for computing $\pi_1(\R^3\setminus K.)$ As a result, the labelings of the surface by elements of $\Z/p$ corresponds to a group homomorphism from $\pi_1(\R^3\setminus K)$ to the \project \label{proj:groupcoloring} $d^{2p}$ dihedral group. With this intuition, one can generalize the ideas of Fox $n$-coloring can be generalized to colorings by general groups $G$. 
+While colorings appear on the first glance to be a purely combinatorial construction, the theory of colorings is richly tied to algebraic topology. The regions given by the arc-diagrams correspond to a Seifert-van Kampen decomposition of $\RR^3\setminus K$ for computing $\pi_1(\RR^3\setminus K.)$ As a result, the labelings of the surface by elements of $\Z/p$ corresponds to a group homomorphism from $\pi_1(\RR^3\setminus K)$ to the \project \label{proj:groupcoloring} $d^{2p}$ dihedral group. With this intuition, one can generalize the ideas of Fox $n$-coloring can be generalized to colorings by general groups $G$. 
 \section{Seifert Surfaces, and an infinite family}
 While $n$ coloring is a useful invariant for distinguishing knots, we don't have a quick way for creating new knots. We will start with a simple but useful operation on knots. 
 \subsection{Knot Connect Sum}
@@ -224,10 +224,10 @@ A knot $K$ is \emph{prime} if there does not exist primes $K_0, K_1$ so that
 \[K=K_0\# K_1.\]
 \end{definition}
 \subsection{Seifert Surfaces}
-We'll try to incorporate topological tools we know well into the study of knots.  To every knot we can create a surface whose boundary is that knot. One way to visualize these surfaces is to imagine that the knot is made of a piece of wire, and the surface is like a soap-bubble film that fills in the boundary of the surface. For example, the trefoil can be presented as the boundary of the M\"obius band embedded in $\R^3$ with \emph{three} twists. The M\"obius band $2n+1$-twists serves as a bounding surface for the $(2, 2n+1)$ torus knot. It doesn't seem likely that surfaces would prove useful in distinguishing knots; after all, the M\"obius strip is a bounding surface for infinitely many knots. \\
+We'll try to incorporate topological tools we know well into the study of knots.  To every knot we can create a surface whose boundary is that knot. One way to visualize these surfaces is to imagine that the knot is made of a piece of wire, and the surface is like a soap-bubble film that fills in the boundary of the surface. For example, the trefoil can be presented as the boundary of the M\"obius band embedded in $\RR^3$ with \emph{three} twists. The M\"obius band $2n+1$-twists serves as a bounding surface for the $(2, 2n+1)$ torus knot. It doesn't seem likely that surfaces would prove useful in distinguishing knots; after all, the M\"obius strip is a bounding surface for infinitely many knots. \\
 Aside from the question about classifying knots, it is interesting to know whether or not knots even have to bound surfaces. 
 \begin{claim}
-For every knot $K$, there exists an embedded surface $\Sigma\subset \R^3$ so that $\partial_\Sigma= K$. 
+For every knot $K$, there exists an embedded surface $\Sigma\subset \RR^3$ so that $\partial_\Sigma= K$. 
 \end{claim}
 In order to prove this claim, we will use the \emph{checkerboard lemma.}
 \begin{lemma}
@@ -268,7 +268,7 @@ given by the restriction of $\frac{z_1^2-z_2^3}{|z_1^2-z_2^3|}$ to the 3-sphere.
 This surface $\Sigma_\theta$ has an additional condition on it which the M\"obius band does not enjoy; it is \emph{oriented.}
 
 \begin{definition}
-Let $K$ be a knot. A \emph{Seifert Surface} for $K$ is an oriented surface with boundary $\Sigma\subset \R^3$ so that the boundary of $\Sigma$ is $K$. 
+Let $K$ be a knot. A \emph{Seifert Surface} for $K$ is an oriented surface with boundary $\Sigma\subset \RR^3$ so that the boundary of $\Sigma$ is $K$. 
 \end{definition}
 Notice that if a Seirfert surface exists, it is not unique; as one may add handles to the surface in order to increase the genus of the surface. As a result, the topology of a Seifert surfaces $\Sigma_K$ does not give us a lot of data about a knot. \\
 Even without knowing the existence of Seifert surfaces, we can alreay use them to understand some properties of knots. 

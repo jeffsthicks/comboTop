@@ -1,36 +1,41 @@
 
 \begin{elevator}[Planarity]
-A planar graph is a graph that can be drawn in the plane without edges crossings. We look at relations between the number of faces, edges and vertices of a graph. 
-We also associate to every graph a dual graph. 
-We touch on how the faces relate to the cycle space construction from before, and show that certain graphs are not planar. 
+A planar graph is a graph that can be drawn in the plane without edges crossings. We look at relations between the number of faces, edges, and vertices of a graph. 
+We also associate a dual graph with every graph. 
+We touch on how the faces relate to the earlier construction of a cycle space and show that certain graphs are not planar. 
 \label{sec:planar:planar}
 \end{elevator}
 
 While a graph is an abstract object, in practice we work with drawings of graphs for our intuition. A planar graph is a graph we can draw without the edges crossing. 
-This means that all of the data of the graph can be easily read off of the picture.
-We probably won't ever use the actual definition of a planar graph, but it's good at least to write it down once:
-\begin{definition}
- A \emph{planar representation} of a graph $G$ is a set of vertices $V\subset \R^2$ and a set of continuous arcs $\{f_e: I\to \R^2\}_{e\in E}$ indexed by $E$ such that
+This means that all of the data of the graph can be easily read from the picture.
+To make a rigorous definition of a planar graph, we must employ some topology (to state what it means to ``draw'' an edge).
+We probably won't ever use the actual definition of a planar graph, but it is a good idea at least to write it down once:
+\begin{definition}[Planar representation]
+ A \emph{planar representation} of a graph $G$ is a set of vertices $V\subset \RR^2$ and a set of continuous arcs $\{f_e: I\to \RR^2\}_{e\in E}$ indexed by $E$ such that
  \begin{itemize}
   \item 
     If $f_{e}(t)=f_{e'}(t')$ and $t, t'\neq 0,1$,  then $e'=e$ and $t=t'$. 
-    This means that the paths corresponding to edges do not cross over the interiors.  
+    This means that the paths given by edges do not cross over the interiors.  
   \item 
     If $uv$ is an edge, then $f_{uv}(0)=u$ and $f_{uv}(1)=v$. 
     This means that the paths corresponding to each pair of vertices have endpoints on the appropriate vertices.
  \end{itemize}
 \end{definition}
-We say that a graph is \emph{planar} if it admits a planar representation.
-Note that it is possible for a graph to have topologically non-isomorphic planar representations. 
+We say that a graph is \emph{planar} if it admits a planar representation. We say that two planar representations of $G$ are topologically equivalent if there exists a map of the plane interchanging one planar representation with the other.
+Note that a graph can have topologically inequivalent planar representations. 
 
 \begin{examplefigureenv}[Same graph, different drawings]{191figures/embgraph_treerepresentations.tikz}	Even a graph as simple as a tree can admit different planar representations. The trees on the right are the same as graphs, but there is no way to distort the first diagram into the second without creating a crossing at some point. To capture the planar information of a graph combinatorially, one can use the data of a rotation system.
 \end{examplefigureenv}
 A planar representation of a graph gives us a new piece of data: the \emph{faces} of a graph. 
-\begin{definition} A \emph{Face} of a planar representation of $G$ is a connected component of $\R^2\setminus G$.  The set of such components is denoted $F(G)$. 
+\begin{definition}[face of a planar graph] A \emph{face} of a planar representation of $G$ is a connected component of $\RR^2\setminus G$.  The set of such components is denoted $F(G)$. \
 \end{definition}
 \nomenclature{$F(G)$}{The faces of $G$.}
- Notice that this definition gives us a large ``outer face'' to the graph. To each face, we get a \emph{closed walk} which makes up the boundary of the face. Even though a closed walk is not a cycle, it is an element of the cycle space. 
-\begin{definition} Let $G$ be a planar graph with a fixed embedding, and let $F=\{f_1, \ldots, f_k\}$ be the set of faces. Let $\mathcal F$ be the $\Z_2$ vector space generated on the set $F$. Let $\partial_F: \mathcal F\to \mathcal E$ be the map which sends each face to the subset of edges in it's boundary (counted with multiplicity.) 
+ Notice that this definition counts the large ``outer region'' of the plane as a face of the graph. 
+ 
+\begin{stationconnection}{sec:graph:cyclespace}
+ To each face, we get a \emph{closed walk} which makes up the boundary of the face. Even though a closed walk is not a cycle, it is an element of the cycle space. We now give an algebraic way to encode this relation. Given a face $f$ and an edge $e$, denote by $\#(e\lessdot f)$ denote the number of times that $e$ shows up in the closed walk which is the boundary of $f$; note that this number can be $0, 1$ or $2$.
+\begin{definition}[Boundary map on faces] Let $G$ be a planar graph with a fixed embedding, and let $F=\{f_1, \ldots, f_k\}$ be the set of faces. Let $\mathcal F$ be the $\Z_2$ vector space generated on the set $F$. Let $\partial_F: \mathcal F\to \mathcal E$ be the map that sends each face to the subset of edges in its boundary, so that 
+  \[\langle \partial_F(f_i), e_j\rangle = \#(e_i\lessdot f_j).\]  
  \end{definition}
 This is a construction very similar to those that we've employed for our algebraic analysis of graphs, just we've included faces into it. 
 \begin{claim}
@@ -42,32 +47,38 @@ This is a \emph{chain complex}, in that $\partial_E\circ \partial_F =0$ \label{d
 \label{claim:dsquarezerograph}
 \end{claim}
 \begin{proof}
-In order to show that $\partial_E\circ \partial_F=0$, it suffices to check on a basis of $\mathcal F$. Let $f\in \mathcal F$ be a face. Then $\partial_F(f)$ is a union of cycles. By \ref{claim:cyclespaceisker}, this lies in the kernel of $\partial_E$. 
+In order to show that $\partial_E\circ \partial_F=0$, it suffices to check on a basis of $\mathcal F$. Let $f\in \mathcal F$ be a face. Then $\partial_F(f)$ is a union of cycles. By \sref{claim:cyclespaceisker}, this lies in the kernel of $\partial_E$. 
 \end{proof}
-We will develop the algebraic theory of chain complexes throughout the course-- for more details, see Appendix \ref{append:chaincomplexes}. 
-We'll bring this complex back throughout this section.  Let's look at some basic facts about planar graphs.
+We will develop the algebraic theory of chain complexes throughout the course ( \sref{def:chainmap})
+We will continue to use this chain complex through this section.
+\end{stationconnection}
 
-A useful geometric construction for planar graphs is the \emph{dual graph} construction. Given a graph $G$ with a planar embeddings, we can construct a multigraph which is dual to it. 
+
+Let's look at some basic facts about planar graphs.
+
+A useful geometric construction for planar graphs is the \emph{dual graph} construction. Given a graph $G$ with a fixed planar embedding, we can construct a multigraph that is dual to it. 
 \begin{definition}[Multigraph]
  A multigraph on $n$ vertices is a symmetric $n\times n$ matrix with entries in $\N$. 
 \end{definition}
-The coefficient in the $i,j$ spot of the matrix denotes the number of edges that lie between the $i $ and $j$ vertex. 
+The coefficient in the $i,j$ spot of the matrix denotes the number of edges that lie between the $i$ and $j$ vertex. 
 
 \begin{examplefigureenv}[Multigraph]{191figures/embgraph_multigraph.tikz}
-  For example, here is the multigraph given by the matrix 
+  For example, the incidence matrix
 \[\begin{pmatrix}
 0&2&0&0\\
 2&0&1&3\\
 0&1&2&1\\
 0&3&1&0 \end{pmatrix}\]
+gives the multigraph drawn on the right.
 \end{examplefigureenv}
 Let $G$ be a planar multigraph. From here we can construct a new planar multigraph, called the \emph{dual} of $G$, interchanging the roles of vertices and edges. 
-\begin{definition}
-Let $G$ be a planar multigraph. Let $G^*$ be the graph where 
-\[V(G^*)=F(G), E(G^*)=E(G), F(G^*)=V(G)\]
-We have an edge between two vertices between $f_i$ and $f_j$, for each common edge in the boundary of the faces $f_i$ and $f_j$.
+\begin{definition}[Dual Graph]
+Let $G$ be a planar multigraph. Let $G^*$ be the graph where the sets of vertices, edges, and faces are :
+\[V(G^*)=F(G), E(G^*)=E(G), F(G^*)=V(G).\]
+Observe that each edge of $E(G)$ belongs to two faces of $G$; we therefore say that an edge $e\in E(G^*)$ is an edge between vertices  $f_i, f_j\in V(G^*)$ if the corresponding edge $e\in E(G)$ is a common boundary of the faces $f_i$ and $f_j$.
 \label{def:dualgraph}
 \end{definition}
+The construction of a planar embedding of the dual graph (which defines the structure of the faces on the dual graph) requires topology: we take its existence on faith. Intuitively, one constructs the planar dual by placing a vertex at the center of each face of your original graph.
 \begin{examplefigureenv}[A graph and its planar dual]{191figures/embgraph_planarduals.tikz}
   An example of a graph $G$ in black and its corresponding dual multigraph $G^*$ in red. Notice that the degree of each vertex counts the number of edges in the boundary walk of the graph in the dual, and vice versa. Also notice that the double dual, $(G^*)^*$, is $G$. 
 \end{examplefigureenv}
@@ -83,33 +94,36 @@ One can similarly define the boundary maps and face maps to the theory of multig
 \mathcal F& \arrow{l}{d_E} \mathcal E& \arrow{l}{d_V}  \mathcal V
 \end{tikzcd}\]
 which is a kind of ``dual complex'' to our original theory. 
+\subsubsection{Some inequalities for planar graphs}
 \begin{claim}
-If $G$ is a simple graph, then every vertex of $G^*$ has degree at least 3.
+If $G$ is a simple graph, then every vertex of $G^*$ has a degree of at least 3.
 \end{claim}
 \begin{proof}
 This is because each vertex of $G^*$ corresponds to a face in $G$, and the boundary of such faces are cycles of $G$. Since $G$ is simple, each cycle must have length at least 3. This means that each face borders at least 3 other faces, so the degree of each $f_i\in V(G^*)$ must be at least 3. 
 \end{proof}
 \begin{claim}[Basic Graph Properties]
- Let $G$ be a connected simple planar graph, and let $V, E, F$ be the set of vertices, edges and faces. 
+ Let $G$ be a connected simple planar graph, and let $V, E, F$ be the set of vertices, edges, and faces. 
  \begin{itemize}
   \item $2|E|\geq |V|$
   \item $2|E|\geq 3|F|$
  \end{itemize}
 \end{claim}
 \begin{proof}
- The first claim follows from our argument about average degree and edges in Claim \ref{claim:avgdegree}. Since $G$ is connected, the average degree of a vertex is at least 1. \\
- The second claim is actually the same as the first claim, just applied to the dual graph. As every vertex in $G^*$ has degree at least 3, we have that 
+ The first claim follows from our argument about average degree and edges in Claim \sref{claim:avgdegree}. Since $G$ is connected, the average degree of a vertex is at least 1. 
+
+ The second claim is the same as the first claim, just applied to the dual graph. As every vertex in $G^*$ has a degree at least 3, we have that 
  \[2E(G)=2E(G^*)=(\text{ Average degree in $G^*$ )}|V(G^*)|\geq 3|V(G^*)|= 3|F(G)|.\] 
 
 \end{proof}
-The structure of a graph gives us an additional relation between the number of vertices, edges and faces. 
+The structure of a graph gives us an additional relation between the number of vertices, edges, and faces. 
 \begin{theorem}[Euler's Formula]
 Let $G$ be a connected planar graph. Then
   \[|V|-|E|+|F|=2.\]
   \label{thm:eulersformula}
 \end{theorem}
 \begin{proof}
- This theorem is traditionally prove by induction on the number of edges. Of course, we cannot induct on the number of edges right away, because if we remove an edge from a graph it may not remain connected. However, with every connected graph $G$, there exists an edge so that $G\setminus e$ is connected, or $G$ is a tree (See Exercise \ref{exer:tree}.) Therefore, checking trees suffices as a base case.\\
+ This proof of the theorem proceeds by induction on the number of edges. Of course, we cannot induct on the number of edges right away, because if we remove an edge from a graph it may not remain connected. However, with every connected graph $G$, there exists an edge so that $G\setminus e$ is connected, or $G$ is a tree (See \sref{exer:tree}.) Therefore, checking trees suffices as a base case.
+
  In the case of a tree, we know that the number of edges is 1 fewer than the number of vertices, and the number of faces is 1. This gives us 
  \[|V|-|E|+|F|=|V|-(|V|-1)+1=2.\]
  For the induction step, let $G$ be a planar connected graph, and let $e$ be an edge so that $G\setminus e$ is still connected. Since $G\setminus e$ is still connected, it is the case that $e$ belongs to 2 different faces. Therefore, $E(G\setminus e)=E(G)-1$, and $F(G\setminus e)=F(G)-1$. We conclude that 
@@ -119,84 +133,54 @@ Let $G$ be a connected planar graph. Then
  =&2.
  \end{align*}
 \end{proof}
-A nice way to prove this is to use the algebraic graph techniques that we've been working on. See Exercise \ref{exer:eulercharacteristic} for details on how one would prove this. 
+A nice way to prove this is to use the algebraic graph techniques that we've been working on. See \sref{exer:eulercharacteristic} which outlines how to structure the proof in this language. 
 \begin{corollary}
 Let $G$ be a simple planar graph. If $|V|\geq 3$, then $|E|\leq 3|V|-6$. 
 \label{emb:cor:inequality}
 \end{corollary}
 \begin{proof}
- Take a planar simple graph $G$ with at least 3 vertices. Suppose that it is not the case that every face of $G$ is a triangle. Then you may add an edge to $G$ and keep it planar whenever $G$ has a face which is not a triangle. When all of the faces of $G$ are triangular, the graph is \emph{maximally planar}.
+ Take a planar simple graph $G$ with at least 3 vertices. Suppose that it is not the case that every face of $G$ is a triangle. Then you may add an edge to $G$ and keep it planar whenever $G$ has a face that is not a triangle. When all of the faces of $G$ are triangular, the graph is \emph{maximally planar}.
 
- Let $G'$ be a maximally planar graph containing $G$. In this situation we have the additional equality $2|E(G')|=3|F(G')|$. From Euler's formula, we have 
+ Let $G'$ be a maximally planar graph containing $G$. In this situation, we have the additional equality $2|E(G')|=3|F(G')|$. From Euler's formula, we have 
  \[|V(G')|-|E(G')|+2/3 |E(G')|=2\]
 Since $G'$ has more edges than $G$, we can rearrange this equality to $|E|\leq 3|V|-6$. 
 \end{proof}
-These simple inequalities already place many restrictions on a planar embedding for many graphs. For instance, in \sref{emb:exm:platonic} we use this classify the face and vertex regular planar graphs, i.e. the Platonic solids. 
+These simple inequalities already place many restrictions on a planar embedding for many graphs. For instance, in \sref{emb:exm:platonic} we use this to classify the face and vertex regular planar graphs, i.e. the Platonic solids. 
 
-The inequality also provides a criterion that can show the non-existence of any graph embedding. Roughly speaking, if your graph as many edges compared to vertices, it is unlikely that \sref{emb:cor:inequality} will be satisfied. As complete graphs maximize the edge-to-vertex ratio, they are a natural first candidate to check. 
+The inequality also provides a criterion that can show the non-existence of any graph embedding. Roughly speaking, if your graph has many edges compared to vertices, it is unlikely that \sref{emb:cor:inequality} will be satisfied. As complete graphs maximize the edge-to-vertex ratio, they are a natural first candidate to check. 
 
 \begin{corollary}[$K_5$ is non-planar]
  For every $n\geq 5$, the complete graph $K_n$ admits no planar embedding. 
 \end{corollary}
 
 \begin{proof}
- It suffices to show this for $n=5$, as an planar embedding of $K_n$ with $n>5$ induces a planar embedding of $K_5$.  For $K_5$, we have that $|E|=10$, and $|V|=5$. This fails to satisfy $|E|\leq 3|V|-6$. Therefore $K_5$ is nonplanar. 
+ It suffices to show this for $n=5$, as a planar embedding of $K_n$ with $n>5$ induces a planar embedding of $K_5$.  For $K_5$, we have that $|E|=10$, and $|V|=5$. This fails to satisfy $|E|\leq 3|V|-6$. Therefore $K_5$ is nonplanar. 
 \end{proof}
-This gives us actually a general criterion we can check to see if a graph is non-planar, as if even $G$ contains $K_5$ as a topological minor, it cannot be planar. 
-
-
-\begin{framedpage}{Example}{The Platonic Solids}{
- The only Platonic solids are the tetrahedron, cube, octahedron, dodecahedron or icosahedron. \label{emb:exm:platonic}
-}
- Recall that a Platonic solid is one where all the vertices have the same degree and all of the faces have the same number of edges. We can take any polyhedron and convert it into a planar graph by stereographic projection. Therefore, to each platonic solid we should look at a graph which has vertices of degree $m$, and faces $n$ boundary edges. \\
- Since we know the degree and size of each edge, we can state the exact relations:
- \[2|E|= n|F|\]
- \[2|E|= m|V|\]
- Therefore, $|F|=m/n|V|.$ Applying this to Euler's formula tells us:
- \[|V|-m/2|V|+m/n|V|=2\]
- Now, we have some additional geometric bounds we may place  on $m$ and $n$. 
- \begin{itemize}
-  \item We know that $n$ is at least 3 (all faces have at least 3 sides.)
-  \item We get the bound \[m\left(\frac{1}{n}-\frac{1}{2}\right)> -1\] from the Euler characteristic formula. This means that $m$ cannot be greater than $5$.
-  \item $m$ must be at least 3. The only valid values of $m$ are now 3, 4, 5. 
-  \item By taking a dual polygon, we get similar restraints on $n$. 
- \end{itemize}
-Tabulating our results we have:
-\[
- \begin{tabular}{c|c|c|c|c|c}
-   $m$ & $n$ & $|V|$ & $|E|$& $|F|$ & Shape\\ \hline
-   3 & 3& 4& 6 & 4 & Tetrahedron \\
-   3& 4& 8& 12& 6 & Cube\\
-   3& 5& 20& 30 &12 & Dodecahedron\\
-   4& 3& 6&12 & 8 & Octohedron \\
-   5& 3& 12& 30 & 20 & Icosohedron\\   
- \end{tabular}
-\]
-There is a kind of duality that you might notice here on first inspection. First of, in the proof, it seems like the values of $m$ and $n$ are exchangeable. This is reflected in the platonic solids that we've found- they come in pairs where the roles of vertices and faces are reversed. These dual-polytopes pairs are given by dual-graphs. 
-
-
-\end{framedpage}
-
+This gives us a general criterion we can check to see if a graph is non-planar as if even $G$ contains $K_5$ as a topological minor, it cannot be planar. 
+\subsubsection{Polyhedra}
+A convex polyhedron is the set of points in $\mathbb{R}^3$ given by finitely many intersections of sets of the form $\{\lambda(x)\geq c\}$, where $\lambda: \mathbb{R}^3\to \mathbb{R}$ is a linear function and the $c$ are constants. The boundary of a convex polyhedron can be broken down into faces, edges, and vertices: we can take any polyhedron and convert it into a planar graph by stereographic projection. Many of the properties of these 3-dimensional shapes can be described by the graph theory of the corresponding planar graph. Most famously, the platonic solids \sref{emb:exm:platonic} are classified completely using planar graph theory.
 
 \begin{projectdescription}{Polyhedra}
   Outside of the Platonic solids, there are many different types of polytopes that one can study and represent with graphs. For instance, a \emph{quasi-regular} polyhedra is allowed to have 2 different kinds of faces that alternate \label{proj:polytope} around each vertex, and their classification follows a similar argument as the one used above. The general theory of understanding convex polytopes branches substantially into algebraic topology. For instance, understanding the simplicial convex $d$-polytopes can be understood in just the number of facets it has in every dimension( \cite{stanley1980number}). 
 \end{projectdescription}
 
 
+\input{platonicSolids.tex}
+
 \begin{elevator}[Graph Colorings]
 We return to a historic problem: how many colors are needed to color a map. We first explore abstract colorings of maps, including coloring estimates, chromatic polynomials, and properties of 2-colorable graphs. We then later turn to coloring planar graphs, proving the 6 and 5 color theorem. 
 \end{elevator}
 \label{sec:planar:coloring}
-We're going to take a slight detour from planar graphs to talk about graph colorings, which are a major tool in graph theory. Eventually, we'll bring this back to planar graphs when we discuss colorings of planar graphs. 
+We're going to take a slight detour from planar graphs to talk about graph colorings, which are a major tool in graph theory. Eventually, we'll bring this back to planar graphs when we discuss the colorings of planar graphs. 
 \begin{definition}[Colorings]
  Let $G$ be a graph. A \emph{$k$-coloring} of a graph $G$ is an assignment  $f: V\to \{1,2, \ldots ,k\}$ such that if $xy\in E$, $f(x)\neq f(y)$. The minimal $k$ such that a $k$ coloring of $G$ exists is called the \emph{chromatic number} of $G$ and is denoted $\gamma(G)$. 
 \end{definition}
 
 \nomenclature{$\gamma(G)$}{The chromatic number of $G$}
 \begin{examplefigureenv}[Coloring a graph]{191figures/embgraph_4colors.tikz}
-  The graph on the right, despite not containing a complete graph on 4 vertices, still requires a minimal of 4 colors to color. The proof is as follows: the colors of the top 5 vertices are fixed because it is constructed out of triangles. We are thus forced to paint the final leftmost vertex a fourth color. The removal of the dashed edge would lower the chromatic number to 3. 
+  The graph on the right, despite not containing a complete graph on 4 vertices, still requires a minimum of 4 colors to color. The proof is as follows: the colors of the top 5 vertices are fixed because it is constructed out of triangles. We are thus forced to paint the final leftmost vertex a fourth color. The removal of the dashed edge would lower the chromatic number to 3. 
 \end{examplefigureenv}
-Colorings, like connectivity, are both influenced by local properties of the graph and by global properties of the graph. For instance, a local result is:
+Colorings, like connectivity, are both influenced by local properties of the graph and global properties of the graph. For instance, a local result is:
 \begin{claim}
  Let $\Delta(G)$ be the maximal degree of vertices in $G$. Then $G$ admits a $\Delta+1$ coloring. 
 \end{claim}

@@ -3,7 +3,7 @@
 \label{sec:simplicial:simplicial}
 So far, we have studied topological spaces of dimension 1 (graphs,) and dimension 2 (surfaces.) We want to generalize these constructions to larger topological spaces. The natural extension of vertices, edges and faces are building blocks called \textbf{simplices.}
 \begin{definition}
-	For $k\geq 0$,  a \textbf{geometric $k$-simplex} $\alpha^k$ is the set of points in $\R^{k+1}$ whose coordinates are non-negative and sum to $1$. 
+	For $k\geq 0$,  a \textbf{geometric $k$-simplex} $\alpha^k$ is the set of points in $\RR^{k+1}$ whose coordinates are non-negative and sum to $1$. 
 	\[\{(x_1, x_2, \ldots,  x_{k+1})\;| \; x_1+x_2+\cdots x_{k+1}=1,  x_i\geq 0\}.\]
 	Given a simplex,  we say that $k$ is the \textbf{dimension} of $\alpha^k$. 
 \end{definition}
@@ -12,7 +12,7 @@ So far, we have studied topological spaces of dimension 1 (graphs,) and dimensio
 	We've already seen a couple of geometric simplices before, and given them some common names.\\
 \begin{tabular}{l|l|b{5cm}|c}
 Dimension & Common Name & Notes & Graphical Representation\\ \hline
-	0 & Point, Vertex &  By the above definition,  it specifically the point $1\in \R^1$.  & \begin{tikzpicture}[scale=.7]
+	0 & Point, Vertex &  By the above definition,  it specifically the point $1\in \RR^1$.  & \begin{tikzpicture}[scale=.7]
 \draw[->,  dotted] (-2, 0)--(2, 0);
 \fill(1,0) circle[radius=.1];
 \end{tikzpicture}\\\hline
@@ -124,12 +124,12 @@ Let $\mathcal S=P$, and let $\Delta$ be the set of all chains coming from the pa
 
 
 
-Given any simplicial complex, we have a \emph{geometric realization} of the complex. Choose $S$ with finite size, and consider the affine space $(\R^+)^{|S|}$ with coordinates $\{e_i\}_{i\in S}$. Then to the simplicial complex $X=(\Delta, \mathcal S)$, we associate the topological space 
+Given any simplicial complex, we have a \emph{geometric realization} of the complex. Choose $S$ with finite size, and consider the affine space $(\RR^+)^{|S|}$ with coordinates $\{e_i\}_{i\in S}$. Then to the simplicial complex $X=(\Delta, \mathcal S)$, we associate the topological space 
 \[|X|:=\bigcup_{\sigma \in \Delta} \text{Conv}(\{e_i\}_{i\in \sigma})\]
  This is a topological space. We will avoid working with the geometric realization, because it is not very combinatorial. \\
  Simplicial complexes are broad class of topological space; in fact, the majority of topological spaces that you might study are built out of simplicial complexes. Here are a few interesting examples of topological spaces that one can build. 
 \begin{example}[Higher Dimensional Spheres]
-A \emph{$n$-sphere} is cut out from $\R^{n+1}$ by the equation
+A \emph{$n$-sphere} is cut out from $\RR^{n+1}$ by the equation
 \[\sum_{i=1}^{n+1} x_i^2=0.\]
 For us, a good model for the $n$-sphere is the boundary of the $n+1$ simplex. As a simplicial space, we can describe by letting $\mathcal S=\{1,\ldots, n+2\} $, and defined the simplicial complex
 \[S^{n+1}=\mathcal P(\mathcal S)\setminus\{\{1,\ldots, n+2\}\}\]
@@ -209,7 +209,7 @@ This is exactly the same as the homology elements of $X$.
 
 \examplefigure[Higher Homology of Torus]{
 Let's look at an example of a space, and try to use the above intuition for guessing what the homology of a space is. \\
-The \emph{3 -torus} can be constructed by taking the quotient $T^3:=\R^3/\Z^3.$ One way to visualize this to imagine a room where:  The Floor and Ceiling have been glued together; The West and East walls have been identified;The North and South walls have been identified. \\
+The \emph{3 -torus} can be constructed by taking the quotient $T^3:=\RR^3/\Z^3.$ One way to visualize this to imagine a room where:  The Floor and Ceiling have been glued together; The West and East walls have been identified;The North and South walls have been identified. \\
 One could take a line of string and tie it into a loop by passing it through the north and south walls. This loop represents a 1-dimensional subspace which is not the boundary of any 2-dimensional subspace; it therefore represents a class in homology. Similarly, the Floor-Ceiling loop and West-East loop represent different homology classes. With this data, we guess that 
 \[H^1(T^3)=(Z_2)^3.\]
 Similarly, one can find 3 tori which are not the boundary of 3-dimensional subspaces, and giving us 
@@ -757,7 +757,7 @@ This computation shows us that the $\Z$ homology groups give us some interesting
 We now look at a related set of examples given by $3$ manifolds, starting with the 3 sphere. 
 \begin{example}[Decomposition of Sphere] We now give a sligtly strange decomposition of the sphere. Let's view the sphere as the set of points 
 \[x_1^2+x_2^2+x_3^2+x_4^2=1\]
-in $\R^4$. We will break the sphere into two portions: 
+in $\RR^4$. We will break the sphere into two portions: 
 \begin{itemize}
 \item Let $A$ be the portion where $x_1^2+x_2^2\leq \frac{1}{2}$
 \item Let $B$ be the portion where $x_1^2+x_2^2\geq \frac{1}{2}$
@@ -769,7 +769,7 @@ x_1^2+x_2^2=&\frac{1}{2}\\
 x_3^2+x_4^2=&\frac{1}{2}
 \end{align*}
 where both constraints cut out circles. Therefore $A\cap B = S^1\times S^1= T^2$. \\
-By similar argument, we see that $A=S^1\times D^2$, and $B=D^2\times S^1$. We call $A$ and $B$ \emph{donuts}\footnote{The donut is much heftier than the torus, as it is filled.} (to distinguish them from $S^1\times S^1$, which is a torus.) To get a visuaizeation of $A$ and $B$ from stereographic projection of $S^3\setminus\{x\}\to \R^3$, see figure \ref{fig:3spheredecomp}\\
+By similar argument, we see that $A=S^1\times D^2$, and $B=D^2\times S^1$. We call $A$ and $B$ \emph{donuts}\footnote{The donut is much heftier than the torus, as it is filled.} (to distinguish them from $S^1\times S^1$, which is a torus.) To get a visuaizeation of $A$ and $B$ from stereographic projection of $S^3\setminus\{x\}\to \RR^3$, see figure \ref{fig:3spheredecomp}\\
 \begin{figure}
 \caption{A decomposition of the 3 sphere into two donuts, $D^2\times S^1$ and $S^1\times D^2$ viewed under stereographic projection.}
 \end{figure}

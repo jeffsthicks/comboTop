@@ -3,7 +3,7 @@
 While an exposition of the tools used in differential geometry (manifolds, tangent bundles and the de Rahm cohomology) is beyond the scope of these notes, some of the basic constructions of de Rahm theory can already be accessed using multivariable calculus and have relevant analogies to constructions in this course.\\
 Due to the notational limits of multi variable calculus, we will strictly work in the 3 dimensional case-- however, all of these results hold equally as well in the 2-dimensional case, and with the development of the language of differential forms can be made to work on arbitrary smooth manifolds. 
 \begin{definition}
-	Let $U$ be a subspace of $\R^3$. A \emph{smooth function} on $U$ is a function $f: U\to R$ which is infinitely differentiable. A \emph{smooth vector field} is a triple of smooth functions 
+	Let $U$ be a subspace of $\RR^3$. A \emph{smooth function} on $U$ is a function $f: U\to R$ which is infinitely differentiable. A \emph{smooth vector field} is a triple of smooth functions 
 	\[X=\langle f, g, h\rangle.\]
 	We'll denote the space of all smooth function $\Func(U)$, and the space of all smooth vector fields $\Vect(U)$. 
 \end{definition}
@@ -16,7 +16,7 @@ The first derivative that we're introduced to in multivariable calculus is the \
 \grad: \Func(U)\to& \Vect(U)\\
 f\mapsto &\langle f_x, f_y, x_z\rangle 
 \end{align*}
-One intuition for the physical meaning of the gradient in $\R^n$ is that it returns the vector field that points in the direction of largest increase of our vector field. This intuition tells us why, for instance, the zeros of the gradient correspond to critical points of the function $f$. \\
+One intuition for the physical meaning of the gradient in $\RR^n$ is that it returns the vector field that points in the direction of largest increase of our vector field. This intuition tells us why, for instance, the zeros of the gradient correspond to critical points of the function $f$. \\
 Given a vector field, there are two different kinds of derivatives that we can take. The first variety is the \emph{curl}, which outputs another vector field. 
 \begin{align*}
 \curl: \Vect(U)\to&\Vect(U)\\
@@ -51,7 +51,7 @@ With these claims and the machinery built in class, we come to the somewhat rema
 \]
 is a (co)chain complex. This chain complex is very different than those that we've defined earlier in class, as each of the chain groups has uncountable dimension. Never-the-less, it still makes sense to make the following definitions:
 \begin{definition}
-	Let $U$ be a subset of $\R^3$. Define the \emph{de Rahm cohomology groups} to be the quotients 
+	Let $U$ be a subset of $\RR^3$. Define the \emph{de Rahm cohomology groups} to be the quotients 
 	\begin{align*}
 	H^0_{dr}(U)=\ker(\grad) && H^1_{dr}(U)=\frac{\ker(\curl)}{\im(\grad)}\\
 	H^2_{dr}(U)=\frac{\ker(\ddiv)}{\im(grad)} && H^3_{dr}(U)=\frac{\Func^3(U)}{\im(\ddiv)}.

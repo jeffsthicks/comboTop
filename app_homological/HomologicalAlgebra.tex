@@ -15,8 +15,8 @@ Let $V_1, V_2$ be two vector spaces. The \emph{direct sum} of $V_1$ and $V_2$ is
 \[V_1\oplus V_2:=\{(v_1, v_2)\;|\; v_1\in V_1, v_2\in V_2\}.\]
 \end{definition}
 \begin{example}
-The set of $n$-tuples of real numbers is usually denoted $\R^n$. Another way of presenting this vector space is 
-\[\R^n=\underbrace{\R\oplus \R \oplus \cdots \oplus \R\oplus \R}_n\]
+The set of $n$-tuples of real numbers is usually denoted $\RR^n$. Another way of presenting this vector space is 
+\[\RR^n=\underbrace{\RR\oplus \RR \oplus \cdots \oplus \RR\oplus \RR}_n\]
 where now each ``vector'' $r_i\in R^1_i$ is a scalar. 
 \end{example}
 \begin{example}The rank nullity theorem can be restated that if $f: V\to W$ is a map, then 
@@ -97,10 +97,10 @@ Homological Algebra is a algebraic tool that we'll return to at several points t
 In principle, all of the tools that we are developing with chain complexes can be defined with rings and modules instead of just vector spaces. In fact, the field of homological algebra generally works \label{proj:abelian} over any  \emph{Abelian category,} which is a category equipped ith the necessary structures to make linear algebra-like constructions. 
 \end{projectdescription}
 \begin{example}
-Let's look at a first example of a chain complex. Let $C_1=C_2= C_3=\R^2$, so that we may represent our boundary maps by matrices. Consider the sequence of maps 
+Let's look at a first example of a chain complex. Let $C_1=C_2= C_3=\RR^2$, so that we may represent our boundary maps by matrices. Consider the sequence of maps 
 \[
 \begin{tikzcd}[ampersand replacement=\&, column sep= large] 
-0 \arrow{r}{0} \& \R^2 \arrow{r}{\begin{pmatrix}1&0\\0&0\end{pmatrix}} \& \R^2 \arrow{r}{\begin{pmatrix}0&0\\0&1\end{pmatrix}} \& \R^2 \arrow{r}{0} \& 0 
+0 \arrow{r}{0} \& \RR^2 \arrow{r}{\begin{pmatrix}1&0\\0&0\end{pmatrix}} \& \RR^2 \arrow{r}{\begin{pmatrix}0&0\\0&1\end{pmatrix}} \& \RR^2 \arrow{r}{0} \& 0 
 \end{tikzcd}
 \]
 This is an example of a chain complex, as the composition of the differential is zero:

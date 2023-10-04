@@ -339,7 +339,7 @@ The Euler Characteristic, determines all orientable surfaces uniquely; as a resu
 
 In this section we prove a small result of Discrete curvature:
 \begin{definition}
-Let $\Sigma$ have a linear embedding into $\R^n$, so that every edge is a line segment, and every face is contained in some 2-dimensional subspace. Then at each vertex $v$, define the \emph{curvature} 
+Let $\Sigma$ have a linear embedding into $\RR^n$, so that every edge is a line segment, and every face is contained in some 2-dimensional subspace. Then at each vertex $v$, define the \emph{curvature} 
 \[\kappa(v)=2\pi \sum_{wvu} \angle wvu\]
 as $2\pi$ less the measure of each angle that contains $v$ in radians. 
 \end{definition}
@@ -536,7 +536,7 @@ Index & Dimension Flow Space & Graph Theoretic Analogue\\ \hline
 0 & 0 & Vertex
 \end{tabular} \]
 While we cannot assemble graphs from the morse function, we can define their Euler characteristics. 
-\begin{theorem} Let $f:\Sigma\to \R$ be a function with non-degenerate critical points. Define the \emph{Euler characteristic of $f$} to be 
+\begin{theorem} Let $f:\Sigma\to \RR$ be a function with non-degenerate critical points. Define the \emph{Euler characteristic of $f$} to be 
 \[\chi_f(\Sigma)\sum_{x\in \Crit(f)} (-1)^{\ind(f)}.\]
 This is no different than the Euler Characteristic of $\Sigma,$
 \[\chi_f(\Sigma)=\chi(\Sigma).\]
@@ -550,7 +550,7 @@ Let $\Sigma$ be a triangulated surface. Write $\Delta(\Sigma)= V\cup E\cup F$. $
 If $\alpha< \beta \in \Delta$ are two simplices without an intermediary $\alpha<\gamma<\beta$, then we say that $\alpha$ is a \emph{facet} of $\beta$ and write $\alpha\lessdot\beta$. \\
 The kind of functions which mimic those describing paint flows are \emph{discrete morse functions. } 
 \begin{definition}[Discrete Morse Function]
-Let $\Sigma$ be a triangulated surface. A \textbf{discrete Morse function} for $\Sigma$ is a function $f: \Delta(\Sigma)\to \R$ such that for every simplex $\alpha$,
+Let $\Sigma$ be a triangulated surface. A \textbf{discrete Morse function} for $\Sigma$ is a function $f: \Delta(\Sigma)\to \RR$ such that for every simplex $\alpha$,
 \[|\{\beta \;|\; \beta\lessdot \alpha ,  f(\beta)\geq f(\alpha)\}|\leq 1\]
 \[|\{\beta \;|\; \alpha\lessdot \beta ,  f(\alpha)\geq f(\beta)\}|\leq 1.\]
 \end{definition}
@@ -592,7 +592,7 @@ The rules for a Morse function look a little bit strange, but they can be summar
 \end{tikzpicture}}
 While the assignments of numbers to the simplices seems like a good idea to imitate a Morse function,  why do we have these funny conditions?  The idea is that all simplices should have at most one higher side and be the higher face of one simplex. \\
 \begin{claim}
-	There always exists a Morse function $f: \Sigma\to \R$.
+	There always exists a Morse function $f: \Sigma\to \RR$.
 \end{claim}
 \begin{proof}
 	Just assign $f(v)=0$, $f(e)=1$ and $f(f)=2$. 
@@ -601,7 +601,7 @@ While the assignments of numbers to the simplices seems like a good idea to imit
 Under this definition of a Morse function,  what should the critical values be? In the differential geometry version,  these corresponded to places where the tangent plane lay flat. In our version,  it will be simplices that are critical. 
 
 \begin{definition}[Critical Points]
-	A simplex is called a \emph{critical point} of $f: \Delta(\Sigma)\to \R$ if the following two conditions hold:
+	A simplex is called a \emph{critical point} of $f: \Delta(\Sigma)\to \RR$ if the following two conditions hold:
 	\[|\{\beta \;|\; \beta\lessdot \alpha ,  f(\beta)\geq f(\alpha)\}|=0\]
 \[|\{\beta \;|\; \alpha\lessdot \beta ,  f(\alpha)\geq f(\beta)\}|=0.\]
 \end{definition}
@@ -677,7 +677,7 @@ Notice that if $\alpha\cdot \beta$, and $\beta$ is an downward exception for $\a
 \draw[->,blue] (0:1)--(0:1.5);
 \end{tikzpicture}}
 \begin{theorem}
-	Suppose $f: \Delta(\Sigma) \to \R$  be Morse function. Then 
+	Suppose $f: \Delta(\Sigma) \to \RR$  be Morse function. Then 
 	$\chi(\Sigma)= \sum_{\alpha\in \Crit(f)} (-1)^{\dim(\alpha)}$
 \end{theorem}
 \begin{proof}

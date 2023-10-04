@@ -1,0 +1,32 @@
+\begin{framedpage}{Example}{The Platonic Solids}{
+ The only Platonic solids are the tetrahedron, cube, octahedron, dodecahedron, or icosahedron. \label{emb:exm:platonic}
+}
+ A Platonic solid is a polytope where all the vertices have the same degree and all of the faces have the same number of edges. To each Platonic solid we can associate graph that has vertices of degree $m$, and faces $n$ boundary edges. 
+
+ Since we know the degree and size of each edge, we can state the exact relations:
+ \[2|E|= n|F|\]
+ \[2|E|= m|V|\]
+ Therefore, $|F|=m/n|V|.$ Applying this to Euler's formula tells us:
+ \[|V|-m/2|V|+m/n|V|=2\]
+ Now, we have some additional geometric bounds we may place  on $m$ and $n$. 
+ \begin{itemize}
+  \item We know that $n$ is at least 3 (all faces have at least 3 sides.)
+  \item We get the bound \[m\left(\frac{1}{n}-\frac{1}{2}\right)> -1\] from the Euler characteristic formula. This means that $m$ cannot be greater than $5$.
+  \item $m$ must be at least 3. The only valid values of $m$ are now 3, 4, 5. 
+  \item By taking a dual polygon, we get similar restraints on $n$. 
+ \end{itemize}
+Tabulating our results we have:
+\[
+ \begin{tabular}{c|c|c|c|c|c}
+   $m$ & $n$ & $|V|$ & $|E|$& $|F|$ & Shape\\ \hline
+   3 & 3& 4& 6 & 4 & Tetrahedron \\
+   3& 4& 8& 12& 6 & Cube\\
+   3& 5& 20& 30 &12 & Dodecahedron\\
+   4& 3& 6&12 & 8 & Octohedron \\
+   5& 3& 12& 30 & 20 & Icosohedron\\   
+ \end{tabular}
+\]
+There is a kind of duality that you might notice here on first inspection. First of, in the proof, it seems like the values of $m$ and $n$ are exchangeable. This is reflected in the platonic solids that we've found- they come in pairs where the roles of vertices and faces are reversed. These dual-polytopes pairs are given by dual-graphs. 
+
+
+\end{framedpage}
