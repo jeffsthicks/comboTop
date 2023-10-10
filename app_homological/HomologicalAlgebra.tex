@@ -3,51 +3,58 @@
 \chaptercontents{Homological Algebra}{homologicalcover.tex}{These notes are meant as a quick reference guide for the constructions in homological algebra that we will use throughout the course, and are not in any way suppose to be a substitute for a proper set of notes on homological algebra.}
 \label{chap:homologicalalgebra}
 
-\begin{elevator}[An introduction to Chain Complexes]
-	A short introduction to chain complexes.
+\begin{elevator}[Vector Spaces, Sets, and Diagrams]
+	Before we start with the development of homological algebra, it is a good idea to set up some common conventions and diagrams for simplifying linear algebra. 
 \end{elevator}
 
 \label{sec:chaincomplexes:intro}
-\subsection{Vector Spaces, Sets, Diagrams and Notations}
-Before we start with the development of homological algebra, it is a good idea to set up some common conventions for doing abstract linear algebra diagrammatically. We've already developed some of these tools independently in \ref{sec:graph:cyclespace}, but we should flush out these methods more fully before proceeding to develop chain complexes. \\
-\begin{definition}
-Let $V_1, V_2$ be two vector spaces. The \emph{direct sum} of $V_1$ and $V_2$ is the vector space of pairs of vectors between them, and is denoted 
+%We've already developed some of these tools independently in \ref{sec:graph:cyclespace}, but
+These are some class notes! Please lets me if you know see any errors. Here we will flesh these methods out in more detail before developing chain complexes. \\
+\begin{definition}[Direct Sum]
+Let $V_1$ and $V_2$ be vector spaces. The \emph{direct sum} of $V_1$ and $V_2$ is the vector space of pairs of vectors, and is denoted 
 \[V_1\oplus V_2:=\{(v_1, v_2)\;|\; v_1\in V_1, v_2\in V_2\}.\]
 \end{definition}
-\begin{example}
-The set of $n$-tuples of real numbers is usually denoted $\RR^n$. Another way of presenting this vector space is 
-\[\RR^n=\underbrace{\RR\oplus \RR \oplus \cdots \oplus \RR\oplus \RR}_n\]
-where now each ``vector'' $r_i\in R^1_i$ is a scalar. 
-\end{example}
-\begin{example}The rank nullity theorem can be restated that if $f: V\to W$ is a map, then 
+The vector addition on $V_1\oplus V_2$ is done component wise,
+\[(v_1, v_2)+(w_1, w_2)=(v_1+w_1, v_2+w_2).\]
+The scalar multiplication acts on all components simultaneously,
+\[\lambda\cdot (v_1, v_2)= (\lambda\cdot v_1, \lambda\cdot v_2).\]
+\begin{example}[Real $n$ dimensional space]
+	The set of $n$-tuples of real numbers is usually denoted $\RR^n$. Another way of presenting this vector space is 
+	\[\RR^n=\underbrace{\RR\oplus \RR \oplus \cdots \oplus \RR\oplus \RR}_n\]
+	where now each ``vector'' $r_i\in R^1_i$ is a scalar. 
+	\end{example}
+The direct sum operation is commutative, in that the vector spaces $V_1\oplus V_2$ is isomorphic to $V_2\oplus V_1$. Additionally, the direct sum of vector spaces is an associative operation so that the vector spaces $(V_1\oplus V_2)\oplus V_3$ is isomorphic to $V_1\oplus(V_2\oplus V_3)$. 
+If this looks suspiciously like addition on the integers to you, you're picking up on an intertwining between these two operations via dimension:
+\[\dim(V_1\oplus V_2)=\dim(V_1)+ \dim(V_2.)\]
+\begin{example}The rank nullity theorem can be restated as: If $f: V\to W$ is a linear map, then 
 \[V\simeq \ker f\oplus \im f. \]
 \end{example}
 Given vector spaces $V_1, V_2, W$, and maps $f_1: V_1\to W$, $f_2: V_2\to W$, one can create a new map from $V_1\oplus V_2\to W$, which is defined by taking the sum of the two maps:
 \begin{align*}
 f_1\oplus f_2: V_1\oplus V_2 \to&  W\\
-(v_1, v_2)\mapsto f_1(v_1)+f_2(v_2).
+(v_1, v_2)\mapsto& f_1(v_1)+f_2(v_2).
 \end{align*}
-We will frequently represent this composition either \emph{diagrammatically} or {using matrices.} The diagrammatic presentation of the direct sum of maps is:
+We will frequently represent this composition either \emph{diagrammatically} or {using matrices.}
+This is a useful shorthand, and we will use it throughout this section on chain complexes.
+
 \[
 \begin{tikzcd}
 V_1\arrow{dr}{f_1}\\
 \oplus & W\\
 V_2 \arrow{ur}{f_2}
-\end{tikzcd}.
+\end{tikzcd}
+\;\;\;\;\;\begin{pmatrix} f_1 & f_2 \end{pmatrix} \cdot \begin{pmatrix} v_1\\v_2\end{pmatrix} = \begin{pmatrix}f_1(v_1)+f_2(v_2) \end{pmatrix}.
 \]
-This is a useful shorthand, and we will use it throughout this section on chain complexes. \\
-If we want to think of the direct sum as a matrix we will write it at 
-\[\begin{pmatrix} f_1 & f_2 \end{pmatrix} \cdot \begin{pmatrix} v_1\\v_2\end{pmatrix} = \begin{pmatrix}f_1(v_1)+f_2(v_2) \end{pmatrix}.\]
 There is nothing that limits us to taking the direct sum of more than one map along the domain. 
-\begin{definition}
+\begin{definition}[Sum across common target]
 Let $f_i: V_i\to W$ be a collection of maps. Then define $\bigoplus_{i=1}^k f_i: \bigoplus_{i=1}^k V_i\to W$ be the map defined on tuples by
 \[\left(\bigoplus f_i\right)(v_1, \ldots, v_{k})=\sum_{i=1}^k f_i(v_i).\]
 \end{definition}
-Similarly, this map can be represented diagrammatically. \\
-Just as we can take the sum along the domains of maps, we are allowed to take sums along the codomains of maps. Let $g_1: V\to W_1$ and $g_2: V\to W_2$ be two linear maps. Then denote the direct sum along the codomain
+Just as we can take the sum along the domains of maps, we are also allowed to take sums along the targets of the maps. 
+Let $g_1: V\to W_1$ and $g_2: V\to W_2$ be two linear maps. Then denote the direct sum along the target
 \begin{align*}
 g_1\oplus g_2: V\to & W_1\oplus W_2\\
-v\mapsto (g_1(v), g_2(v).)
+v\mapsto& (g_1(v), g_2(v).)
 \end{align*}
 Just as we did for direct sum along the domain, we can represent these maps diagrammatically or with matrices. 
 \[\begin{tikzcd}
@@ -55,19 +62,19 @@ Just as we did for direct sum along the domain, we can represent these maps diag
 V\arrow{ur}{g_1}   \arrow{dr}{g_2} & \oplus \\
 \; & W_2 
 \end{tikzcd}\;\;\;\;\;\;\;\;\;\;\;\;\begin{pmatrix} g_1 \\ g_2 \end{pmatrix} \cdot \begin{pmatrix} v\end{pmatrix} = \begin{pmatrix}g_1(v_1)\\g_2(v_2) \end{pmatrix}.\]
-We can quickly do this with many codomains at the same time.
-\begin{definition}
+We can quickly do this with many targets at the same time.
+\begin{definition}[Sum across common domain]
 Let $g_i: V\to W_i$ be a collection of linear maps. Define their direct sum to be 
 \begin{align*}
 \bigoplus_{i=1}^k g_i: V\to& \bigoplus_{i=1}^k W_i\\
-v\mapsto &(g_1(v), g_2(v) \cdots , g_k(v)).
+v\mapsto& (g_1(v), g_2(v) \cdots , g_k(v)).
 \end{align*}
 \end{definition}
-By combining both processes, we can create maps from many domains and codomains simultaneously. 
-\begin{definition}
+By combining both processes, we can create maps from many domains and targets simultaneously. 
+\begin{definition}[Sum across domains and targets]
 Let $f_{ij}: V_i\to W_j$ be a collection of linear maps. Define their direct sum to be 
 \begin{align*}
-\bigoplus_{i,j} f_{ij}: \bigoplus_{i=1}^m V_i\to\bigoplus_{j=1}^n\\
+\bigoplus_{i,j} f_{ij}: \bigoplus_{i=1}^m V_i\to\bigoplus_{j=1}^n W_j\\
 (v_1, \ldots, v_m)\mapsto & \left(\sum_{i=1}^mf_{i,1}(v_i), \sum_{i=1}^mf_{i,2}(v_i), \ldots, \sum_{i=1}^mf_{i,{n-1}}(v_i), \sum_{i=1}^mf_{i,{n}}(v_i)\right).
 \end{align*}
 \end{definition}
@@ -81,442 +88,593 @@ V_2\arrow{r}  \arrow{ruu} & W_2
 \begin{pmatrix}
 f_{11}& f_{21}\\f_{12} & f_{22}
 \end{pmatrix}
-\begin{pmatrix} v_1 \\ v_2\end{pmatrix} = \begin{pmatrix} f_{11})(v_1)+f_{21}(v_2)\\ f_{12}(v_1)+f_{22}(v_2)\end{pmatrix}.
+\begin{pmatrix} v_1 \\ v_2\end{pmatrix} = \begin{pmatrix} f_{11}(v_1)+f_{21}(v_2)\\ f_{12}(v_1)+f_{22}(v_2)\end{pmatrix}.
 \]
 
+\begin{doubledpage}{theorem}{Inclusion- Exclusion with 2 sets}{Suppose that we have a decomposition $A=S_1\cup S_2$. Then the sizes of these sets are related by the \emph{inclusion-exclusion} formula: $0=|A| -(\left(|S_1|+|S_2|\right))+|S_1\cap S_2|.$}
+We will first translate the sets $A, S_1, S_2$ and $S_1\cap S_2$ into vector spaces. 
+We take a slightly different approach than before. 
+To each set $U$, let $\mathcal F(U):= \hom(U, \ZZ_2)$. Note that $\mathcal F(U)\cong \mathcal U$, the $\ZZ_2$ vector space whose basis is given by $U$, but not canonically isomorphic. The advantage with working with the vector space $\mathcal F(U)$ is that it is canonically defined (i.e. doesn't come with a preferred basis.)
+Each element $\phi\in \mathcal F(U)$ can be thought of as an assignments of 0's and 1's to the elements of $U$. 
 
-\subsection{Chain Complexes, Homology, and Chain Maps}
-Homological Algebra is a algebraic tool that we'll return to at several points throughout the course, and it makes sense to combine the general facts of the theory in one place. 
-\begin{definition}  A \emph{chain complex} is a sequence of vector spaces, $\ldots C_{-1},C_{0},C_{1}\ldots$ and boundary maps $\partial_n:C_n\to C_{n-1}$ with the condition that $$\partial_{n-1}\circ \partial_{n}=0.$$ Frequently, we represent a chain complex with the following diagram of vector spaces and maps: $$
+A slightly confusing feature of working with this vector space is that functions between sets translate into functions going the other direction on the vector spaces,
+\begin{align*}
+	f: U\to&V\\
+	\mathcal F(U)\ot& \mathcal F(V):f^*.
+\end{align*}
+The map $f^*$ is called the \emph{pullback} map, and it is defined via precomposition. Given an element $\phi\in \mathcal F(V)$, the pullback along $f$ is the map $(\phi \circ f)\in \mathcal F(U)$. 
+I find the clearest way to think about this is interpret $\mathcal F(V)$ as the space of measurements on $V$. 
+Then a function $f: U\to V$ yields for each measurement $\phi: V\to \ZZ_2$ a new measurement $f^*(\phi)$ on the space $U$. 
+The way this measurement $f^*(\phi)$ works is by taking elements $u\in U$, sending them to $V$, and then performing the measurement $\phi$ there:
+\[f^*(\phi)(u):=\phi(f(u)).\]
+\begin{remark}
+	The function $\mathcal F: \textbf{Sets}\to \textbf{Vect}$ turns problems about sets into problems of vector spaces. This function is an example of a \emph{functor.} 
+	Because $\mathcal F$ reverses the directions of functions, we call this a \emph{contravariant functor.} 
+	The general theory of functors belongs to a branch of mathematics called category theory, which studies mathematics from the perspective of general properties of functions. 
+\end{remark}
+An important feature of the functor $\mathcal F$ is that it exchanges cardinality with dimension: 
+\[
+	|U|=\dim(\mathcal F(U)).
+\]
+Let's return to the setting of inclusion-exclusion.
+Suppose that we have a decomposition $A=S_1\cup S_2$.
+We can encode this decomposition in the following maps between sets:
+\[
 \begin{tikzcd}
-    \cdots\arrow{r}{\partial_{2}}&    C_{1}\arrow{r}{\partial_{1}} &C_{0} \arrow{r}{\partial_0}  &C_{-1}\arrow{r}{\partial_{-1}}&\cdots \\
-\end{tikzcd}$$ We will usually denote the chain complex as $( C_\bullet, \partial_\bullet)$, where $C_\bullet$ is the sequence of modules and $\partial_\bullet$ the sequence of boundary maps.\footnote{There is no particular reason for the numbers to decrease. We could make the numbers increase, and we would call it \emph{cohomology} instead.} \label{def:chaincomplex}
+  S_1\cap S_2 \arrow{r}{i_1} \arrow{d}{i_2} & S_1\arrow{d}{j_1} \\
+  S_2\arrow{r}{j_2} & A
+\end{tikzcd}\;\;\;\;\;\;\;
+\begin{tikzcd}
+	\mathcal F(S_1\cap S_2 ) &  \mathcal F(S_1) \arrow{l}{i_1^*}\\
+	\mathcal F(S_2) \arrow{u}{i_2^*} & \mathcal \mathcal F(A) \arrow{u}{j_1^*} \arrow{l}{j_2^*}
+\end{tikzcd}.		
+\]
+\newpage
+\begin{theorem} 
+	Let $A^0=\mathcal F(A)$, $A^1=(\mathcal F(S_1)\oplus \mathcal F(S_2))$ and $A^2=\mathcal F(S_1\cap S_2)$.
+	Let $i^*:= i_1^*\oplus i_2^*: A^1\to A^2$, and let $j^*:= j_1^*\oplus j_2^*: A^0\to A^1$ as drawn below:
+\[
+	\begin{tikzcd}[row sep=4pt]
+		\; & \mathcal F(S_1) \arrow{dl}{i_1^*} \\
+		\mathcal F(S_1\cap S_2) &\oplus  & \mathcal F(A)\arrow{ul}{j_1^*} \arrow{dl}{j_2^*}\\
+		\; & \mathcal F(S_2)\arrow{ul}{i_2^*}\\ \\ \\
+		A^2 & A^1\arrow{l}{i^*} & A^0 \arrow{l}{j^*}
+	\end{tikzcd}
+\]
+The map $j^*$ is an inclusion, the map $i^*$ is surjective, and $\ker(i^*)=\im(j^*)$. 
+\end{theorem}
+\begin{proof}
+	We show that the map $j^*$ is an inclusion. Let $\phi\in \mathcal F(A)$ be a non-zero element, and let $a\in A$ be the element so that $\phi(a)=1$. Since $A= S_1\cup S_2$, there is an element $b\in S_1$ or $b\in S_2$ so that $j_1(b)=a$ or $j_2(b)=a$. Without loss of generality, suppose $b\in S_1$.
+	We can then compute that  $j^*(\phi)=(\phi\circ j_1, \phi\circ j_2)$ and $\phi\circ j_1(b)\neq 0$. This proves that $j^*(\phi)$ is nonzero, so the map $j^*$ has trivial kernel and is therefore injective. 
+	A similar proof shows that $i^*$ is surjective. 
+	
+	We now show that $\ker(i^*)=\im(j^*)$. For any element $a\in S_1\cap S_2$, we note that 
+	\begin{align*}
+		(i^*\circ j^*(\phi))(a)=&\phi((j_1\circ i_1)(a))+\phi((j_2\circ i_2)(a))\\
+		\intertext{Since $(j_1\circ i_1)(a)=(j_2\circ i_2)(a)$,}
+		=&2\phi(j_1\circ i_1(a))=0
+	\end{align*}
+	This shows that $\im(j^*)\subset \ker(i^*)$. The reverse inclusion is by a similar argument. 
+\end{proof}
+We can now prove Inclusion-Exclusion for two sets. We will instead show that $\dim A^0 - \dim A^1 + \dim A^2=0$ using two applications of the rank-nullity theorem. 
+\begin{align*}
+\dim A^0- \dim A^1 + \dim  A^2=& (\dim \ker(j^*) + \dim \im(j^*))-(\dim \ker(i^*) + \dim \im(i^*))+\dim  A^2
+\intertext{As the map $j^*$ is injective and $i^*$ is surjective}
+=& (0 + \dim \im(j^*))-(\dim \ker(i^*) + \dim \im(i^*))+\dim \im(i^*))\\
+=& \dim \im(j^*)-\dim \ker(i^*)\\
+=&0.
+\end{align*}
+\end{doubledpage}
+\input{basictopology.tex}
+\begin{elevator}[Chain Complexes, Homology, and Chain Maps]
+Homological Algebra is a algebraic tool that we'll return to at several points throughout the course, and it makes sense to combine the general facts of the theory in one place. 
+\end{elevator}
+\begin{definition}[Cochain complexes]  A \emph{cochain complex} is a sequence of vector spaces, $\ldots C^{-1},C^{0},C^{1}\ldots$ and boundary maps $d^n:C^{n}\to C^{n+1}$ with the condition that 
+	\[
+		d^{n+1}\circ d^{n}=0.
+	\] Frequently, we represent a chain complex with the following diagram of vector spaces and maps: 
+	\[
+\begin{tikzcd}
+    \cdots&    C^{1}\arrow{l}{d^{1}} &C^{0} \arrow{l}{d^0}  &C^{-1}\arrow{l}{d^{-1}}& \cdots \arrow{l}{d^{-2}} 
+\end{tikzcd}
+\]
+ We will usually denote the chain complex as $( C^\bullet, d^\bullet)$, where $C^\bullet$ is the sequence of modules and $d^\bullet$ the sequence of boundary maps.
+ \footnote{There is no particular reason for the numbers to increase. We could make the numbers decrease, and we would call it \emph{homology} instead.} \label{def:chaincomplex}
 \end{definition}
-\nomenclature{$(C, \partial)$}{A chain complex}
-\begin{projectdescription}{Foo}
-In principle, all of the tools that we are developing with chain complexes can be defined with rings and modules instead of just vector spaces. In fact, the field of homological algebra generally works \label{proj:abelian} over any  \emph{Abelian category,} which is a category equipped ith the necessary structures to make linear algebra-like constructions. 
+\nomenclature{$(C, d)$}{A chain complex}
+\begin{projectdescription}{Abelian Categories}
+In principle, all of the tools that we are developing with cochain complexes can be defined with rings and modules instead of just vector spaces. In fact, the field of homological algebra generally works \label{proj:abelian} over any  \emph{Abelian category,} which is a category equipped with the necessary structures to make linear algebra-like constructions. 
 \end{projectdescription}
 \begin{example}
-Let's look at a first example of a chain complex. Let $C_1=C_2= C_3=\RR^2$, so that we may represent our boundary maps by matrices. Consider the sequence of maps 
+Let's look at a first example of a chain complex. Let $C^1=C^2= C^3=\RR^2$, so that we may represent our boundary maps by matrices. Consider the sequence of maps 
 \[
 \begin{tikzcd}[ampersand replacement=\&, column sep= large] 
 0 \arrow{r}{0} \& \RR^2 \arrow{r}{\begin{pmatrix}1&0\\0&0\end{pmatrix}} \& \RR^2 \arrow{r}{\begin{pmatrix}0&0\\0&1\end{pmatrix}} \& \RR^2 \arrow{r}{0} \& 0 
 \end{tikzcd}
 \]
 This is an example of a chain complex, as the composition of the differential is zero:
-\[\partial_2\circ \partial_3 = \begin{pmatrix}0&0\\0&1\end{pmatrix}\cdot \begin{pmatrix}1&0\\0&0\end{pmatrix}=\begin{pmatrix} 0&0\\0&0\end{pmatrix}.\]
+\[d^3\circ d^2 = \begin{pmatrix}0&0\\0&1\end{pmatrix}\cdot \begin{pmatrix}1&0\\0&0\end{pmatrix}=\begin{pmatrix} 0&0\\0&0\end{pmatrix}.\]
 \end{example}
-The boundary squaring to zero is equivalent to the statement that the image of the boundary map $\partial_{k+1}$ is in the kernel of the map $\partial_{k}$.\\
-The theory of homology was developed and inspired from techniques in topology, but it is a very useful algebraic framework to have in mind. Abstractly, the chain complexes and homology are a tool that explains the relations, and relations of relations, and higher meta-relations. For example, Let $V$ be a set with a relation $E\subset V\times V$ on it. Let $\mathcal V, \mathcal E$ be the vector spaces which have $V$ and $E$ as basis respectively. One might state the relationship now in terms of a map $\partial: \mathcal E \to \mathcal V$, whose image tells us if 2 points in $V$ are related. \\
-However, the framework of homology allows us to put relations on the set of relations, by introducing maps $\mathcal F\to \mathcal E$, and so on. \\
- We have seen multiple examples of chain complexes throughout this course. 
-The above example is more than just a chain complex; it is \emph{exact} in that $\ker\partial_k=\im\partial_{k+1}.$ We'll explore exact complexes in more detail in the future. 
-\begin{example}[Graph Complex]
-A simple example of a chain complex comes from our exploration of graph theory. The edge space, vertex space, and boundary map from Definition \ref{def:graphcomplex} is an example of a chain complex, albeit a very short one. Two points $v, w$ have the property that their sum is in the image of $\partial: \mathcal E\to \mathcal V$ if there is a path $P\in\mathcal E$ between them. In this case, $\partial(P)=v+w$. 
+The boundary squaring to zero is equivalent to the statement that the image of the boundary map $d^{k}$ is in the kernel of the map $d^{k+1}$.
+
+The theory of cohomology was developed and inspired from techniques in topology, but it is a very useful algebraic framework to have in mind. 
+Abstractly, the chain complexes and cohomology are a tool that explains the relations, and relations of relations, and higher meta-relations.
+For example, let $V$ be a set with a relation $E\subset V\times V$ on it. Let $\mathcal F(V)$ and $\mathcal F(E)$ be the vector spaces given by maps to the field of two elements.
+One might state the relationship now in terms of a map $d: \mathcal F(V)\to \mathcal F(E)$, where the image of a function $\phi:V\to \ZZ_2$ consists of all relations $E$ which have a member evaluating under $\phi$. 
+
+However, the framework of homology allows us to put relations on the set of relations, by introducing maps` $\mathcal F(E)\to \mathcal F(V)$, and so on. 
+\begin{example}`'
+The example we considered in \sref{hom:thm:inex} is more than just a cochain complex; it satisfies the stronger condition of being \emph{exact} in that $\im d^k=\ker d^{k+1}.$ We'll explore exact complexes in more detail in the future. 
 \end{example}
-\begin{example}[Embedded Graph Complex]
-Recall, if we have a net $G$ for a surface $\Sigma$, we get an associated chain complex in Definition \ref{def:surfacecomplex}. This chain complex can be modified to capture the full topological data of $\Sigma$. In a way similar to the graph complex, vertices are related if there exists a path between them. However, in this example, we have a higher relation: paths are related if there exists a subsurface which has that path as it's boundary. 
+\begin{example}
+	The examples considered in \sref{hom:sec:connectedcomplex} of topological spaces covered with sets, and the $\mathcal F(-)$ functor give another example of cochain complexes.
 \end{example}
-\begin{example}[Simplicial Homology]
-The Chain complex associated to a simplicial complex \ref{def:simplicialhomology} is the natural generalization of the previous two constructions. The elements of this chain complex are $k$-dimensional sub-complexes, and two subcomplexes are related if they are the boundary components of a common $k+1$ dimensional subcomplex.
+Before we study the general theory of cochain complexes, we would like to build a combinatorial framework for describing topological spaces, which will give us something concrete to stand on when we start describing cochain complexes in this class. 
+The natural extension of vertices, edges and faces are building blocks called \textbf{simplices.}
+\begin{definition}[Geometric Simplex]
+	For $k\geq 0$,  a \textbf{geometric $k$-simplex} $\alpha^k$ is the set of points in $\RR^{k+1}$ whose coordinates are non-negative and sum to $1$. 
+	\[\{(x_1, x_2, \ldots,  x_{k+1})\;| \; x_1+x_2+\cdots x_{k+1}=1,  x_i\geq 0\}.\]
+	Given a simplex,  we say that $k$ is the \textbf{dimension} of $\alpha^k$. 
+\end{definition}
+
+\begin{example}
+	We've already seen a couple of geometric simplices before, and given them some common names.\\
+\begin{tabular}{l|l|b{5cm}|c}
+Dim &  Name & Notes & Graphical Representation\\ \hline
+	0 & Vertex &  By the above definition,  it specifically the point $1\in \RR^1$.  & \begin{tikzpicture}[scale=.7]
+\draw[->,  dotted] (-2, 0)--(2, 0);
+\fill(1,0) circle[radius=.1];
+\end{tikzpicture}\\\hline
+1 & Edge & Drawn with the above notation, it is the line segment in the first quadrant. Notice that the restriction of the line to either axis gives us a point.  &
+			\begin{tikzpicture}[scale=.5]
+				\draw[->,  dotted] (-2, 0)--(2, 0); \draw[->,  dotted] (0, -2)--(0, 2);
+				\draw (1, 0)--(0, 1);
+			\end{tikzpicture}\\\hline
+0 & Face & A 2-simplex is a (filled in) triangle, filling the first quadrant. Again, the restriction to either the coordinate planes or axis gives us edges and vertices respectively. & 			\begin{tikzpicture}[scale=.5]
+				\draw[fill=gray] (1, 0)--(0, 1)--(-.4,  -.8)--(1, 0);
+				\draw[->,  dotted] (-2, 0)--(2, 0); \draw[->,  dotted] (0, -2)--(0, 2) ; \draw[->,  dotted] (.9,  1.8)--(-.9,  -1.8) ;
+			\end{tikzpicture}
+\end{tabular}
 \end{example}
-While the examples that we've looked at in class are inspired from topology, there are many examples come from different branches of mathematics. 
-\begin{definition} Let $(C,\partial_\bullet)$ be a chain complex The \emph{homology} of $\C$ at $n$ is defined to be the module 
-\[H_n(C)=\frac{\ker \partial_n}{ \im \partial_{n+1}}\]
- As the composition $\partial_n \partial_{n+1}=0$, this is well defined.
+Simplices have the property that their boundaries are created of smaller simplices. For instance,  a 2-simplex (triangle) has 3 boundary 1-simplices (edges.) A 3-simplex (tetrahedron) has 4 boundary 1-simplices. In general a $k$-simplex has $k+1$ boundary $k-1$-simplices,  called \emph{facets}.
+
+A simplex has more than just $k-1$ dimensional facets; it also has boundary components of dimension $k-l$. Each boundary component is uniquely specified by the $k-l+1$ corner vertices it uses. If we wanted to build more complicated spaces by gluing together simplices, one would imagine that we would take these simplices and join them together along boundary strata picked out by identifying their vertices.
+
+\begin{examplefigureenv}[A simplicial complex]{191figures/simp_examplecomplex.tikz}
+	Here is an example of a topological space constructed from simplices. It uses 8 vertices, has 13 edges, 8 faces, and 1 3-simplex (the right simplex is not filled in.) Notice that this topological space doesn't have a consistent notion of ``dimension''-- the dimension varies from 1-3 dimensional depending on which part of the complex you look at.
+\end{examplefigureenv}
+
+In practice, it is simpler to build in this identification of simplices from the very beginning.   
+\begin{definition}[Abstract Simplicial Complex]
+	A \emph{finite abstract simplicial complex} is a pair $X=(\Delta, \mathcal S)$ where
+	\begin{itemize}
+	\item  $\mathcal S$ is a base set of vertices
+	\item $\Delta\subset \mathcal P(S)$ is a finite set of \emph{simplices} 
+	\end{itemize}
+	where the simplices are downward closed. This means that whenever $\sigma\in \Delta$ and $\tau\subset \sigma$, then $\tau\in \Delta$. We say that $\sigma\in \Delta$ is a \emph{$k$-simplex} if $|\sigma|=k+1.$ We will in this case write that $\dim(\sigma)=k$. 
+	If $\sigma\subset \tau$, and $\dim\sigma=\dim\tau-1$, then we say that $\sigma$ is a \emph{facet} of $\tau$ and write $\sigma \lessdot \tau$. 
+	
+\end{definition}
+
+%\begin{example}[Graph Complex]
+%A simple example of a cochain complex comes from our exploration of graph theory.
+%Let $V$ and $E$ be the edges and vertices of a graph. There exist left and right boundary maps %$\partial_l:E\to V$ and $\partial_r: E\to V$ sending each edge to its left or right boundary.
+%We define 
+%\begin{align*}
+%	d: \mathcal F(V)\to& \mathcal F(E)\\
+%	\phi\mapsto& (\partial_l\oplus\partial_r)^*\phi
+%\end{align*}
+%to be the differential map. 
+%Note that $d(\phi)=0$ and the graph $G$ is connected, then for all $v$ either $\phi(v)=0$ or %$\phi(v)=1$.
+%\end{example}
+%\begin{example}[Embedded Graph Complex]
+%Recall, if we have a net $G$ for a surface $\Sigma$, we get an associated chain complex in %Definition \ref{def:surfacecomplex}. This chain complex can be modified to capture the full %topological data of $\Sigma$. In a way similar to the graph complex, vertices are related if %there exists a path between them. However, in this example, we have a higher relation: paths are %related if there exists a subsurface which has that path as it's boundary. 
+%\end{example}
+%\begin{example}[Simplicial Homology]
+%The Chain complex associated to a simplicial complex \ref{def:simplicialhomology} is the natural %generalization of the previous two constructions. The elements of this chain complex are %$k$-dimensional sub-complexes, and two subcomplexes are related if they are the boundary %components of a common $k+1$ dimensional subcomplex.
+%\end{example}
+%While the examples that we've looked at in class are inspired from topology, there are many examples come from different branches of mathematics. 
+\begin{claimfigureenv}[Covers from Simplices]{191figures/simp_examplecovering.tikz}
+	Let $X=(\Delta, \mathcal S)$. There is a collection of sets $\{U_s\}_{s\in \mathcal S}$ so that $\bigcup_{s\in \mathcal S} U_s=X$.
+	Define for each simplex $\sigma\in \Delta$ the associated covering set 
+	\[U_{I}=X\cap \bigcap_{s\in I}U_s.\]
+	Furthermore, for every indexing set $I$,  $U_I$ is contractible, and is non-empty if and only if $I=\sigma$ for some simplex in our complex. 
+
+	Note that for each $\sigma\lessdot\tau$, there exists an inclusion map $i_{\sigma\tau}:U_\tau\to U_\sigma$, and subsequently a map 
+	\[i^*_{\sigma\tau}: \hom(U_\sigma, \ZZ_2)\to \hom(U_\tau, \ZZ_2).\]
+\end{claimfigureenv}
+We now define the \emph{reduced Cech cochain complex.} For each $i$, let
+\[\underline C^{-1}(X, \ZZ_2):= \hom(X, \ZZ_2)\]
+\[\underline C^i(X, \ZZ_2):= \bigoplus_{\sigma\;|\; \dim(\sigma)=i} \hom(U_\sigma, \ZZ_2).\]
+Define the differential maps 
+\begin{align*}
+	d^i&: \underline C^i(X, \ZZ_2)\to C^{i+1}(X, \ZZ_2)\\
+	d^i&:=\bigoplus_{\sigma\lessdot\tau, \dim\sigma=i} i^*_{\sigma\tau}.
+\end{align*}
+\begin{claim}[Simplicial Cochains are a complex]
+	$\underline C^\bullet(X, \ZZ_2)$ with differential $d^i$ is a cochain complex. Furthermore, a basis of the $C^i$ can be indexed by the $i$-dimensional simplices of $X$, and the differential defined on a basis element $e_\sigma$ can be written as 
+	\[
+		d(e_\sigma)=\sum_{\tau\;|\; \sigma\lessdot \tau} e_\tau.
+	\]
+\end{claim}
+It is rarely the case that this will be an example of an exact chain complex. The difference between $\im d^{i+1}$ and $\ker d^i$ will be an interesting thing to measure.
+Because we are loathsome to leave the land of vector spaces, we will measure this difference with a new vector space. 
+
+\begin{definition}[Cohomology Groups]
+	Let $(C,\partial_\bullet)$ be a chain complex.
+	The \emph{cohomology} of $C^\bullet$ at $n$ is defined to be the module 
+\[H^n(C)=\frac{\ker d^{n}}{ \im d^{n-1}}\]
+ As the composition $d^{n+1}\circ d^n=0$, this is well defined.
  \label{def:homologygroups}
 \end{definition}
-\nomenclature{$H_k(C)$}{The $k$-th homology group of $(C, \partial)$}
-For convenience, we will often call the kernel of $\partial_{n}$ the set of cycles, and write it $Z_n$. The image of $\partial_{n+1}$ is the set of boundaries and will be written $B_n$. Then $H_n(C)=Z_n/B_n$. The names cycles and boundaries correspond to the geometric interpretation of the homology as given above.  
-\begin{definition} We say that a chain complex is \emph{bounded} if there exists $n$ such that $C_i=0$ if $|i|\geq n$.
+\nomenclature{$H^k(C)$}{The $k$-th homology group of $(C, \partial)$}
+For convenience, we will often call the kernel of $d^{n}$ the set of cocycles, and write it $Z^n$. The image of $d^{n-1}$ is the set of coboundaries and will be written $B^n$. Then $H^n(C)=Z^n/B^n$. The names cycles and boundaries correspond to the geometric interpretation of the homology as given above.  
+\begin{definition} 
+	We say that a chain complex is \emph{bounded} if there exists $n$ such that $C^i=0$ if $|i|\geq n$.
 \end{definition}
 While it doesn't make sense to ask about the dimension of a chain complex, there is a generalization of dimension which applies to chain complexes. 
-\begin{definition}
-Let $(C, \partial)$ be a bounded chain complex  with each $C_i$ of finite dimension. Then the \emph{Euler Characteristic} of $(C, \partial)$ is the integer 
-\[\chi(C, \partial):= \sum_{k=-\infty}^\infty (-1)^k \dim (C_k).\]
+\begin{definition}[$\chi$ of a complex]
+Let $(C, d)$ be a bounded cochain complex  with each $C^i$ of finite dimension.
+ Then the \emph{Euler Characteristic} of $(C, d)$ is the integer 
+\[\chi(C, d):= \sum_{k=-\infty}^\infty (-1)^k \dim (C^k).\]
 \end{definition}
 Notice that the Euler Characteristic has no dependence on the differential of a chain complex. However, it is intimately related to the chain structure through an application of the rank-nullity theorem.  
-\nomenclature{$\chi(C, \partial)$}{The Euler Characteristic of a Chain Complex}
-\begin{lemma}[Euler Characteristic] Suppose that the chain complex is bounded. Then $$\chi(C, \partial) =\sum_{k=-\infty}^\infty -1^k \dim H_k.$$ 
+\nomenclature{$\chi(C, d)$}{The Euler Characteristic of a Chain Complex}
+\begin{lemma}[Euler via Homology] Suppose that the chain complex is bounded. Then 
+	\[\chi(C, d) =\sum_{k=-\infty}^\infty (-1)^k \dim H^k.\]
 \label{lemma:eulercharacteristic}
 \end{lemma}
-\begin{proof} Because our complex is bounded, there exists $n$ such that $|k|\geq n$ implies that $C_k=H_k=0$. Then we proceed by computing the sum:
+\begin{proof} Because our complex is bounded, there exists $n$ such that $|k|\geq n$ implies that $C^k=H^k=0$.
+	Then we proceed by computing the sum:
 \begin{align*}
-\chi(C, \partial)=&\sum_{k=-i}^{i}(-1)^k C_k\\
+\chi(C, d)=&\sum_{k=-i}^{i}(-1)^k C^k\\
 \intertext{Applying the Rank-Nullity theorem}
- &=\sum_{k=-i}^{i}(-1)^k (\dim (\ker \partial_k )+\dim( \im \partial_k))\\
+ &=\sum_{k=-i}^{i}(-1)^k (\dim (\ker d^k )+\dim( \im d^k))\\
  \intertext{Shifting the sum}
- &=\sum_{k=-i}^{i}(-1)^k \dim(\ker \partial_k)-\sum_{k=-i}^{i}(-1)^{k-1} \dim( \im \partial_k)\\
- &=\sum_{k=-i}^{i}(-1)^k \dim( \ker \partial_k) - \dim (\im \partial_{k+1})\\&= \sum_{k=-i}^{i}-1^k \dim H_k\end{align*}
+ &=\sum_{k=-i}^{i}(-1)^k (\dim(\ker d^k)-\sum_{k=-i}^{i}(-1)^{k-1} \dim( \im d^k))\\
+ &=\sum_{k=-i}^{i}(-1)^k \dim( \ker d^k) - \dim (\im d^{k-1})\\&= \sum_{k=-i}^{i}(-1)^k \dim H^k\end{align*}
 \end{proof}
 
-Now that we have chain complexes, we want to look at functions that can go between them. Just like when we study vector spaces and groups, it is only useful to study the maps between these objects which preserve their structure, We want the function between chain complexes to be compatible with the differential.
-\begin{definition}[Chain map] \label{def:chainmap} Let $( A,\partial^A)$ and $( B, \partial^B)$ be chain complexes, and let $f_i:A_i\to B_i$ be a collection of maps. Then we say that $f_\bullet=\{f_i\}$ is a \emph{chain map} if the following diagram commutes for all $i$:
-\[\begin{tikzcd}A_i\arrow{r}{\partial_i^A}\arrow{d}{f_i}&A_{i-1}\arrow{d}{f_{i-1}}\\ B_i\arrow{r}{\partial_i^B} &B_{i-1} 
-\end{tikzcd}\] \end{definition} 
+One interpretation of homology is that it is an algebraic measure of how far a sequence strays from being \emph{exact.} \label{append:chaincones}
+\begin{definition}[Exact Sequences]
+A chain complex $(C, d)$ is called \emph{exact} if $H^k(C)=0$ for all $k$. \label{def:exactsequence} 
+\end{definition}
+Notice by \sref{lemma:eulercharacteristic}, whenever $(C, d)$ is exact, the Euler characteristic  $\chi(C, d)=0$. 
+\begin{corollary}
+	Inclusion-Exclusion holds for sets. 
+\end{corollary}
+\begin{proof}
+	In \sref{hom:thm:inex} we showed that the chain complex dictating inclusion-exclusion for sets was exact. Furthermore, we showed that the inclusion-exclusion principle for sets was equivalent to $\chi(A, d)=0$. 
+\end{proof}
+\begin{elevator}[Maps between chain complexes, addition and subtraction]
+	
+\end{elevator}
+Now that we have chain complexes, we want to look at functions that can go between them. Just like when we study vector spaces and groups, it is only useful to study the maps between these objects which preserve their structure. We want the function between chain complexes to be compatible with the differential.
+\begin{definition}[Chain map] \label{def:chainmap} 
+	Let $( A,d_A)$ and $( B, d_B)$ be chain complexes, and let $f^i:A^i\to B^i$ be a collection of maps. Then we say that $f^\bullet=\{f^i\}$ is a \emph{cochain map} if the following diagram commutes for all $i$:
+\[\begin{tikzcd}
+	A^i\arrow{r}{d^i_A}\arrow{d}{f^i}&A^{i+1}\arrow{d}{f^{i+1}}\\ B^i\arrow{r}{d^i_B} &B^{i+1} 
+\end{tikzcd}.\] 
+\end{definition} 
 A chain map not only preserves the boundary structure of the chain complex, it also gives us maps between their homology groups. 
-\begin{claim}
-Let $f_\bullet:(A, \partial^A)\to (B, \partial^B)$ be a chain map. Then there is a well defined map between the homology of $(A, \partial^A)$ and $(B, \partial^B)$ given by 
+\begin{claim}[Induced map on cohomology]
+Let $f^\bullet:(A, d_A)\to (B, d_B)$ be a chain map. Then there is a well defined map between the cohomology of $(A, d_A)$ and $(B, d_B)$ given by 
 \begin{align*}
-(f_k)_*: H_k(A)\to& H_k(B)\\
-[a]\mapsto& [f_k(a)]. 
+f^k: H^k(A)\to& H^k(B)\\
+[a]\mapsto& [f^k(a)]. 
 \end{align*}
 \end{claim}
 \begin{proof}
-In order to show that this map is well defined, we need to check two things.  First we must show  that elements representing homology classes in $A$ get sent to elements representing homology classes in $B$ . Second, we must show that resulting map does not depend on the choice of representative for $a$. 
+In order to show that this map is well defined, we need to check two things.  First we must show  that elements representing homology classes in $A$ get sent to elements representing homology classes in $B$.
+Second, we must show that resulting map does not depend on the choice of representative for $a$. 
 \begin{itemize}
-\item For the first part, let $[a]\in H_k(A)$ be an element of homology. In order for $[f_k(a)]$ to be an element of $H_k(B)$, we need that $f_k(a)\in \ker \partial^B.$ We make a computation:
+\item For the first part, let $[a]\in H^k(A)$ be an element of homology. In order for $[f^k(a)]$ to be an element of $H^k(B)$, we need that $f^k(a)\in \ker d_B.$ We make a computation:
 \begin{align*}
-\partial^B(f_k(a))=& f_k(\partial^A(a))
-\intertext{Since $[a]\in H_k(A)$, we know that $a\in \ker \partial^A$. }
-=& f_k(0)=0. 
+d_B(f^k(a))=& f^{k+1}(d_A(a))
+\intertext{Since $[a]\in H^k(A)$, we know that $a\in \ker d_A$. }
+=& f^{k+1}(0)=0. 
 \end{align*}
-\item For the second part, suppose we have 2 different representatives of the same homology class $[a]=[a']\in H_k(A)$. We would like to show that $[f_k(a)]=[f_k(a')]\in H_k(B)$. \\
-Two classes in homology are equivalent if they differ by a boundary. This means we need to find $\beta$ so that  
-\[[f_k(a)]-[f_k(a')]=\partial_{k+1}(\beta)\]
-We can construct this $\beta$ by looking at the difference $a-a'.$  Since $[a]=[a']$, there is an element $\alpha\in C_{k+1}(A)$ so that $\partial^A(\alpha)=a-a'$. \\
+\item For the second part, suppose we have 2 different representatives of the same cohomology class $[a]=[a']\in H^k(A)$. We would like to show that $[f^k(a)]=[f^k(a')]\in H^k(B)$. \\
+Two classes in homology are equivalent if they differ by an element in the image of $d^{k-1}$. Therefore, we can prove the statement by finding an element $\beta\in B^{k-1}$ which satisfies:
+\[[f^k(a)]-[f^k(a')]=d^{k-1}(\beta).\]
+We can construct this $\beta$ by looking at the difference $a-a'.$  Since $[a]=[a']$, there is an element $\alpha\in C^{k-1}(A)$ so that $d_A(\alpha)=a-a'$. \\
 We now are in the place to make a computation. 
 \begin{align*}
-f_k(a)-f_k(a')=& f_k(a-a')\\
-=& f_k(\partial^A(\alpha))\\
-=& \partial^B(f_{k+1}(\alpha)).
+f^k(a)-f^k(a')=& f^k(a-a')\\
+=& f^k(d_A(\alpha))\\
+=& d_B(f^{k-1}(\alpha)).
 \end{align*}
-This shows that $f_{k+1}(\alpha)$ gives us the equivalence relation between the two homology classes. 
+We set $\beta=f^{k-1}(\alpha)$ to realize the equivalence relation between the two homology classes $[f^k(a)], [f^k(a')]$. 
 \end{itemize}
 \end{proof}
-\begin{elevator}[Cones]
-\end{elevator}
-One interpretation of homology is that it is an algebraic measure of how far a sequence strays from being \emph{exact.} \label{append:chaincones}
-\begin{definition}
-A chain complex $(C, \partial)$ is called \emph{exact} if $H_k(C)=0$ for all $k$. \label{def:exactsequence} 
-\end{definition}
-Notice by \ref{lemma:eulercharacteristic}, whenever $(C, \partial)$ is exact, the Euler characteristic  $\chi(C_\bullet)=0$. 
-\begin{example}
-No non-trivial  simplicial complex has exact homology; this is because $H_0(C)$ counts the number of connected components, which should be non-zero. 
-\end{example}
-\begin{example} Let $f: V\to W$ be any map. Then the very short complex 
-\[0 \to V\xrightarrow{f} W\to 0\]
-is exact if and only if $f$ is an isomorphism. 
-\end{example}
 The most useful example of exact complexes are \emph{short exact sequences}, which are exact complexes of the form:
-\[\begin{tikzcd} 0 \arrow{r} & A \arrow{r}{i} & B \arrow{r}{\pi} & C \arrow{r} & 0 \end{tikzcd}\]
-which enjoy the additional properties that $i: A\to B$ must be injective, and $\pi: B\to C$ must be surjective.\\
-\begin{claim}
-If $A, B$ and $C$ are vector spaces, and \[\begin{tikzcd} 0 \arrow{r} & A \arrow{r}{i} & B \arrow{r}{\pi} & C \arrow{r} & 0 \end{tikzcd}\] is a short exact sequence, then $B\simeq A\oplus C$. 
-\end{claim}
-However, in the world of chain complexes, $B$ could contain more data than just that of the vector spaces $A\oplus C$-- we need to additionally consider the information that comes from a differential.
+\[\begin{tikzcd} 0 \arrow{r} & A \arrow{r}{i} & B \arrow{r}{\pi} & C \arrow{r} & 0 \end{tikzcd}.\]
+From the definition of exactness $i: A\to B$ must be injective, and $\pi: B\to C$ must be surjective. 
+If we were only interested in vector spaces, then $B=A\oplus C$ would be the only interesting data about this exact complex.
+If we think of $A, B,$ and $C$ as being the generalizations of the numbers $\dim(A), \dim(B)$ and $\dim(C)$, then a short exact sequence is a way to encode that $\dim(A)+\dim(C)=\dim(B)$. 
+
+In the world of chain complexes, $B$ could contain more data than just that of the vector spaces $A\oplus C$ -- we need to additionally consider the information that comes from a differential.
 \begin{definition}
-Let $(A, \partial^A), (B, \partial^B), (C, \partial^C)$ be chain complexes. Let $i_\bullet: A_\bullet\to B_\bullet$ and $\pi_\bullet: B_\bullet\to C_\bullet$ be maps of chain complexes. We say that 
-\[\begin{tikzcd} 0 \arrow{r} & A_\bullet \arrow{r}{i_\bullet} & B_\bullet \arrow{r}{\pi_\bullet} & C_\bullet \arrow{r} & 0 \end{tikzcd}\] 
-is an exact sequence of chain complexes if for all $k$, 
-\[\begin{tikzcd} 0 \arrow{r} & A_k \arrow{r}{i_k} & B_k \arrow{r}{\pi_k} & C_k \arrow{r} & 0 \end{tikzcd}\] 
-is an exact sequence of vector spaces. 
+Let $(A, d_A), (B, d_B), (C, d_C)$ be chain complexes. Let $i^\bullet: A^\bullet\to B^\bullet$ and $\pi^\bullet: B^\bullet\to C^\bullet$ be maps of cochain complexes. We say that 
+\[\begin{tikzcd} 0 \arrow{r} & A^\bullet \arrow{r}{i^\bullet} & B^\bullet \arrow{r}{\pi^\bullet} & C_\bullet \arrow{r} & 0 \end{tikzcd}\] 
+is a short exact sequence of chain complexes if for all $k$, 
+\[\begin{tikzcd} 0 \arrow{r} & A^k \arrow{r}{i^k} & B^k \arrow{r}{\pi^k} & C^k \arrow{r} & 0 \end{tikzcd}\] 
+is a short exact sequence of vector spaces. 
 \end{definition}
-Given a map $f_\bullet: A_\bullet\to B_\bullet$ there is an interesting short exact sequence that we can cook up, that shows that the data of a short exact sequence of chain complexes contains more than just the data of the vector spaces.  
-\begin{definition}
-Let $f_\bullet:A_\bullet\to B_\bullet$ be a map of chain complexes. Define the \emph{cone of $f$,} to be the chain complex with 
+The theory of short exact sequences of chain complexes is a lot richer than the theory for vector spaces, because chain complexes contain much more internal structure. 
+We will now associate to each map $f^\bullet: A^\bullet\to B^\bullet$ a canonical short exact sequence.   
+\begin{definition}[Cone of Chain morphism]
+Let $f^\bullet:A^\bullet\to B^\bullet$ be a map of cochain complexes. Define the \emph{cone of $f$,} to be the cochain complex with 
 \begin{itemize}
-\item Chain groups $\cone_{k}(f)=A_{k-1}\oplus B_k$
-\item Differential defined by $\partial_k^{\cone}(a_{k-1}, b_k)= (-  \partial_{k-1}^A a_{k-1}, \partial^B_k(b_k)+f_{k-1}(a_{k-1})$. 
+\item Chain groups $\cone^{k}(f)=A^{k+1}\oplus B^{k}$
+\item Differential defined by $d^k_{\cone}(a, b)= (-d_A^{k+1}(a), d^{k}_B(b)+f^{k+1}(a))$. 
 \end{itemize}
 \label{def:chaincone}
 \end{definition}
-\begin{claim}
-This defines a chain complex. 
+Note that for each $k$, $A^{k+1}\to \cone^k(f)\to B^k$ is a short exact sequence.
+We should think of $\cone^\bullet(f)$ as being the chain complex created by ``attaching'' $A^{\bullet+1}$ to $B^\bullet$. 
+\begin{claim}[Mapping cone is complex]
+$\cone^\bullet(f)$ is a cochain complex. 
 \end{claim}
 \begin{proof}
-A convenient notation for this proof will be to think of $\partial_k^{\cone}$ as having the form of a matrix:
+A convenient notation for this proof will be to think of $d^k_{\cone}$ as having the form of a matrix:
 \[
-\partial_k^{\cone}=\begin{pmatrix} -\partial^A_{k-1}&0\\ f_{k-1} & \partial_{k}^B \end{pmatrix}.
+d^k_{\cone}=\begin{pmatrix} -d_A^{k+1}&0\\ f^{k+1} & d^{k}_B \end{pmatrix}.
 \]
-We can then compute $\partial_{k-1}^{\cone}\circ \partial_k^{\cone}$ by using matrix multiplication. 
+We can then compute $d^{k+1}_{\cone}\circ d^k_{\cone}$ by using matrix multiplication. 
 \begin{align*}
-\partial_{k-1}^{\cone}\partial_k^{\cone}=&\begin{pmatrix} -\partial^A_{k-2}&0\\ f_{k-2} & \partial_{k-1}^B \end{pmatrix}\begin{pmatrix} -\partial^A_{k-1}&0\\ f_{k-1} & \partial_{k}^B \end{pmatrix}\\
-=&\begin{pmatrix} \partial_A^{k-2}\circ \partial^A_{k-1}&0\\ \partial^B_{k-1}\circ\partial f_{k-1}-f_{k-2}\circ \partial_{k-1}^A &\partial_{k-1}^B \partial_{k}^B \end{pmatrix}\\
+d^{k+1}_{\cone}d^k_{\cone}=&
+\begin{pmatrix} 
+	-d_A^{k+2}&0\\ 
+	f^{k+2} & d^{k+1}_B
+ \end{pmatrix}
+\begin{pmatrix}
+ -d_A^{k+1}&0\\
+ f^{k+1} & d^{k}_B 
+\end{pmatrix}\\
+=&\begin{pmatrix} 
+d_A^{k+2}\circ d^{k+1}_A & 0\\
+d_B^{k+1}\circ f^{k+1} - f^{k+2}\circ d_A^{k+1} & d^{k+1}_B\circ d^{k}_B
+\end{pmatrix}
 \intertext{Using the definitions of chain map and chain differential,}
 =& \begin{pmatrix} 0&0\\0&0\end{pmatrix}.
 \end{align*}
 \end{proof}
-The cone of a morphism $f_\bullet: A_\bullet\to B_\bullet$ fits into a short exact sequence of chain complexes, 
+The cone of a morphism $f^\bullet: A^\bullet\to B^\bullet$ fits into a short exact sequence of chain complexes, 
 \[ \begin{tikzcd}
-0 \arrow{r} & B_\cdot \arrow{r}{i}&\cone(f) \arrow{r}{\pi} & A_{\cdot-1}\arrow{r} & 0 
+0 \arrow{r} & B^{\bullet} \arrow{r}{i}&\cone^\bullet(f) \arrow{r}{\pi} & A^{\bullet+1}\arrow{r} & 0 
 \end{tikzcd}
 \]
-where $i, \pi $ are the natural inclusion and projection maps. Notice the shift in the index on the right. A piece of notation that we will use for this shift in index is 
-\[C_{bullet-1}=C_\bullet[-1].\] 
+where $i, \pi $ are the natural inclusion and projection maps. Notice the shift in the index on the left hand side. A piece of notation that we will use for this shift in index is 
+\[C^{\bullet-1}=C^\bullet[-1].\] 
 \nomenclature{$C_\bullet[1]$}{The chain complex $C_\bullet$ shifted by $1$ in index}
+The way that $A^{\bullet+1}$ is glued to $B^\bullet$ is dictated by the map $f^{\bullet}$. 
+In this way, the exact sequence of chain complexes not only remembers that we can put $A^{\bullet+1}, B^{\bullet}$ together to build $\cone^{\bullet}$, but 
+also \emph{how} these things were glued together. 
+
 From this short exact sequence, we surprisingly get a \emph{long exact sequence} of homology groups. 
-\begin{theorem}
-Let $f_\bullet: A_\bullet\to B_\bullet$ be a chain map. Then we have the following long exact sequence of homology groups:
-\[\begin{tikzcd}
-\cdots \arrow{r}{f_*} & H_k(B)\arrow{r}{i_*} & H_k(\cone(f)) \arrow{r}{\pi_*} &  H_k(A[-1]) \arrow{r}{f_*}  & H_{k-1}(B) \arrow{r} & \cdots
-\end{tikzcd}.\]
+\begin{theorem}[SES-LES for mapping cones]
+Let $f^\bullet: A^\bullet\to B^\bullet$ be a chain map. 
+We have a short exact sequence of chain complexes
+\[ \begin{tikzcd}
+	0 \arrow{r} & B^{\bullet} \arrow{r}{i}&\cone^\bullet(f) \arrow{r}{\pi} & A^\bullet[1]\arrow{r} & 0 
+	\end{tikzcd}
+\]
+And we have the following long exact sequence of homology groups:
+\[
+	\begin{tikzcd}
+\cdots \arrow{r}{f} & H^k(B)\arrow{r}{i} & H^k(\cone(f)) \arrow{r}{\pi} &  H^k(A[1]) \arrow{r}{f}  & H^{k+1}(B) \arrow{r} & \cdots
+\end{tikzcd}.
+\]
 \label{thm:leqfromcone}
 \end{theorem}
 \begin{proof}
-Showing that this is a long exact sequence amounts to checking that the sequence is exact at $H_k(A[-1]), H_k(\cone(h)),H_k(B).$\\
-We will how that the function is exact at $H_l(\cone(h))\to H_k(A[-1])\to H_{k-1}(B)$, which is perhaps the most surprising statement in the proof. \\
-Instead of exhibiting an isomorphism 
-\[\ker(f_*: H_k(A[-1])\to H_{k-1}(B))\simeq \im( \pi_*: H_k(\cone(h))\to H_k(A[-1]),\]
+Showing that this is a long exact sequence amounts to checking that the sequence is exact at $H^k(B), H^k(\cone(f)),H^k(A[1]).$
+We will show that the function is exact at $H^k(\cone(f))\to H^k(A[1])\to H^{k+1}(B)$, which is perhaps the most surprising statement in the proof. 
+To show the isomorphism 
+\[\ker(f: H^k(A[1])\to H_{k+1}(B))\simeq \im( \pi: H^k(\cone(h))\to H^k(A[1]),\]
 we will show two inclusions. 
-\begin{itemize}
-\item  The first inclusion is that $\ker(f_*: H_k(A[-1])\to H_{k-1}(B))\subset \im( \pi_*: H_k(\cone(f))\to H_k(A[-1]).$ Suppose that we have a homology class $[a]\in H_k(A[-1])$ so that $f_*([a])=[0]$. Since $\cone_k(f)=A_k[-1]\oplus B_k$, a natural candidate for an element whose image is $a$ is $(a, 0)$. However, it may not be the case that this represents a homology class, as 
-\[\partial^{\cone}(a, 0)=( \partial^A a, h_*(a)).\]
-As $[a]\in H_k(A[-1])$, we are guaranteed that $\partial^A a=0$. However, the only data that we have about $f_*(a)$ is that it is \emph{homologous} to $0$. We can restate $f_*([a])=[0]$ as the equality $f(a)=\partial b$ for some $b\in B_k$. Replacing our candidate element with 
-\[\pi^{-1}(a)= (a, -b)\]
+
+We prove that $\ker(f: H^k(A[1])\to H^{k+1}(B))\subset \im( \pi: H^k(\cone(f))\to H^k(A[1]).$ Take a cohomology class $[a]\in H^k(A[1])$ which is in the kernel of $f$ so that
+\[f([a])=[0].\] 
+Since $\cone^k(f)=A^k[1]\oplus B^k$, a natural candidate for an element of $\cone^k(f)$ whose image under $\pi$ is $a$ would be $(a, 0)$. 
+However, it may not be the case that this a homology class, as 
+\[d_{\cone}(a, 0)=( d_A a, f(a))\]
+which is not necessarily zero. 
+As $[a]\in H^k(A[1])$, we are guaranteed that $d_A a=0$. However, the only data that we have about $f(a)$ is that it is \emph{cohomologous} to $0$. Since $f([a])=[0]$, there is an element $b\in B^k$ realizing the equivalence relation via  $f(a)=d_B b$. Replacing our candidate element\footnote{The notation $\pi^{-1}(a)$ means that we have picked \emph{an} inverse image of $a$ under $\pi$. 
+However, the map $\pi$ is usually not invertible, and choices were made to produce this inverse image. In short, $\pi^{-1}$ is not a map.} with 
+\[\pi^{-1}(a):= (a, -b)\]
 we can compute 
 \begin{align*}
-\pi \pi^{-1}(a)= &\pi(a, -b) = a\\
-\partial^{\cone} \pi^{-1}(a) =& \partial^{\cone} (a, -b) = 0
+\pi (\pi^{-1}(a))= &\pi(a, -b) = a\\
+d^{\cone}( \pi^{-1}(a) )=& d_{\cone} (a, -b) = 0
 \end{align*}
-Therefore, $\ker(f_*: H_k(A[-1])\to H_{k-1}(B))\subset \im( \pi_*: H_k(\cone(f))\to H_k(A[-1]).$
-\item The other direction is that $\ker(f_*: H_k(A[-1])\to H_{k-1}(B))\supset \im( \pi_*: H_k(\cone(f))\to H_k(A[-1]).$ To show this, we need to show that the composition of $f_*\circ \pi_*=0$. Let $[(a, b)]\in H_k(\cone(f))$ be any element of homology. Since this is an element of homology, $\partial^{\cone}(a, b)=0$, and in particular,
-\[h_*(a)= - \partial b. \]
+Therefore, $\ker(f: H^k(A[1])\to H^{k+1}(B))\subset \im( \pi: H^k(\cone(f))\to H^k(A[1]).$
+
+The other direction is that $\ker(f: H^k(A[1])\to H^{k+1}(B))\supset \im( \pi: H^k(\cone(f))\to H^k(A[1]).$ To show this, we need to show that the composition of $f\circ \pi=0$ on cohomology. 
+Let $[(a, b)]\in H^k(\cone(f))$ be any element of homology. 
+Since this is an element of homology, $d_{\cone}(a, b)=0$, and in particular,
+\[f(a)= - d_B b. \]
 We can use this when computing:
 \begin{align*}
-f_*\circ \pi_*[(a, b)] =& f_*[(a)]\\
-=&[-\partial b ]=[0].
+f\circ \pi[(a, b)] =& f[(a)]=[-d_B b ]=[0].
 \end{align*}
-\end{itemize}
-The arguments for showing exactness at the other portions of the sequence are similar.
+We omit the arguments for showing exactness at the other portions of the sequence.
 \end{proof}
+This is sometimes notated in the following way:
+\[\begin{tikzcd}
+	\cdots     \arrow{r}{i} \arrow[draw=none]{d}[name=Z, shape=coordinate]{}&H^{n  }(\cone(f)) \arrow{r}{\pi} & H^{n  }(A[1]) \arrow[rounded corners,to path={ -- ([xshift=2ex]\tikztostart.east)|- (Z) [near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}]{dll}{f} \\
+	H^{n+1}(B) \arrow{r}{i} \arrow[draw=none]{d}[name=Z, shape=coordinate]{}&H^{n+1}(\cone(f)) \arrow{r}{\pi} & H^{n+1}(A[1]) \arrow[rounded corners,to path={ -- ([xshift=2ex]\tikztostart.east)|- (Z) [near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}]{dll}{f} \\
+	H^{n+2}(B) \arrow{r}{i} &                                                H^{n+2}(\cone(f)) \arrow{r}{\pi} &\cdots 
+\end{tikzcd}
+\]
 There is a useful corollary that follows from this construction:
-\begin{corollary}
-Suppose that $A, B$ are exact, and let $f: A\to B$ be any map. Then $\cone(f)$ is exact. 
+\begin{corollary}[2-out of 3]
+Suppose that $A^\bullet, B^\bullet$ are exact, and let $f^\bullet: A^\bullet\to B^\bullet$ be any map. Then $\cone^\bullet(f)$ is exact. 
 \end{corollary}
-\begin{elevator}[Cones in Practice: Proving Inclusion-Exclusion]
+\begin{proof}
+	By assumption $H^k(A)=H^k(B)=0$ for all $k$. Therefore, we have the long exact sequence
+	\[\begin{tikzcd}
+		\cdots     \arrow{r}{i} \arrow[draw=none]{d}[name=Z, shape=coordinate]{}&H^{n  }(\cone(f)) \arrow{r}{\pi} & 0 \arrow[rounded corners,to path={ -- ([xshift=2ex]\tikztostart.east)|- (Z) [near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}]{dll}{f} \\
+		0          \arrow{r}{i} \arrow[draw=none]{d}[name=Z, shape=coordinate]{}&H^{n+1}(\cone(f)) \arrow{r}{\pi} & 0 \arrow[rounded corners,to path={ -- ([xshift=2ex]\tikztostart.east)|- (Z) [near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}]{dll}{f} \\
+		0          \arrow{r}{i} &                                                H^{n+2}(\cone(f)) \arrow{r}{\pi} &\cdots 
+	\end{tikzcd}
+	\]
+	from which it follows that $H^k(\cone(f))=0$ for all $k$. Therefore $\cone^\bullet(f)$ is exact. 
+\end{proof}
+\input{app_homological/inclusionexclusionpage.tex}
+\begin{elevator}[Mayer Vietoris]
+We finally return to one of the core concepts of this course: given a decomposition of a space $X=A\cup B$, what can we tell about the topology of $X$ in terms of the topology of $A$ and $B$?
 \end{elevator}
-Let's take a short break from homological algebra to review a general principle from combinatorics. 
-\begin{theorem}[General Principle of Inclusion-Exclusion]
-Let $X$ be a set with a decomposition into smaller subsets, $X=\bigcup_{i\in I} U_i$. Then we can compute the size of $X$ via it's cover by taking an alternating sum:
-\[
-0=|X|-\sum_{J\subset I}(-1)^{|J|} \left|\cap_{i\in J} U_i\right|. 
-\]
-\end{theorem}
-The theorem essentially gives an algorithm for computing the size of $X$ by looking at the sizes of the covering sets $U_i$, and then successively correcting that estimate by accounting for elements might have been represented twice in that count. In the case where $X=A_1\cup A_2$, the formula reduces to 
-\[|X|=|U_1|+|U_2|-|U_1\cap U_2|.\]
-One can easily remember the signs used in the count by using Figure \ref{fig:incex} as a mnemonic. 
-\begin{figure}
-\centering
-\begin{tikzpicture}[scale=.4]
-\begin{scope}[shift={(-24,2)}]
-\draw  (13,-3) rectangle (17,-7);
-\clip (-17:15.2947) circle[radius=1];
-\clip (-18:16.477) circle[radius=1];
-\clip (-21:15.6861) circle[radius=1];
-\fill[red] (-17:15.2947) circle[radius=1];
-\fill[red] (-18:16.477) circle[radius=1];
-\fill[red] (-21:15.6861) circle[radius=1];
-\draw (-17:15.2947) circle[radius=1];
-\draw (-18:16.477) circle[radius=1];
-\draw (-21:15.6861) circle[radius=1];
-\end{scope}\begin{scope}[shift={(15,-3)}]
-\draw  (-2,2) rectangle (2,-2);
-\draw (120:0.7) circle[radius=1];
-\draw (0:0.7) circle[radius=1];
-\draw (240:0.7) circle[radius=1];
-\fill[red] (120:0.7) circle[radius=1];
-\fill[red] (0:0.7) circle[radius=1];
-\fill[red] (240:0.7) circle[radius=1];
-\draw (120:0.7) circle[radius=1];
-\draw (0:0.7) circle[radius=1];
-\draw (240:0.7) circle[radius=1];
-\end{scope}\begin{scope}[shift={(7,2)}]
-\draw  (-2,2) rectangle (2,-2);
-\clip (120:0.7) circle[radius=1];
-\draw (0:0.7) circle[radius=1];
-\draw (240:0.7) circle[radius=1];
-\fill[red] (120:0.7) circle[radius=1];
-\fill[red] (0:0.7) circle[radius=1];
-\fill[red] (240:0.7) circle[radius=1];
-\draw (120:0.7) circle[radius=1];
-\draw (0:0.7) circle[radius=1];
-\draw (240:0.7) circle[radius=1];
-\end{scope}\begin{scope}[shift={(7,-3)}]
-\draw  (-2,2) rectangle (2,-2);
-\clip (0:0.7) circle[radius=1];
-\draw (120:0.7) circle[radius=1];
-\draw (240:0.7) circle[radius=1];
-\fill[red] (120:0.7) circle[radius=1];
-\fill[red] (0:0.7) circle[radius=1];
-\fill[red] (240:0.7) circle[radius=1];
-\draw (120:0.7) circle[radius=1];
-\draw (0:0.7) circle[radius=1];
-\draw (240:0.7) circle[radius=1];
-\end{scope}\begin{scope}[shift={(7,-8)}]
-\draw  (-2,2) rectangle (2,-2);
-\clip (240:0.7) circle[radius=1];
-\draw (120:0.7) circle[radius=1];
-\draw (0:0.7) circle[radius=1];
-\fill[red] (120:0.7) circle[radius=1];
-\fill[red] (0:0.7) circle[radius=1];
-\fill[red] (240:0.7) circle[radius=1];
-\draw (120:0.7) circle[radius=1];
-\draw (0:0.7) circle[radius=1];
-\draw (240:0.7) circle[radius=1];
-\end{scope}\begin{scope}[shift={(-1,2)}]
-\draw  (-2,2) rectangle (2,-2);
-\clip (120:0.7) circle[radius=1];
-\clip (0:0.7) circle[radius=1];
-\draw (240:0.7) circle[radius=1];
-\fill[red] (120:0.7) circle[radius=1];
-\fill[red] (0:0.7) circle[radius=1];
-\fill[red] (240:0.7) circle[radius=1];
-\draw (120:0.7) circle[radius=1];
-\draw (0:0.7) circle[radius=1];
-\draw (240:0.7) circle[radius=1];
-\end{scope}\begin{scope}[shift={(-1,-3)}]
-\draw  (-2,2) rectangle (2,-2);
-\clip (120:0.7) circle[radius=1];
-\clip (240:0.7) circle[radius=1];
-\draw (0:0.7) circle[radius=1];
-\fill[red] (120:0.7) circle[radius=1];
-\fill[red] (0:0.7) circle[radius=1];
-\fill[red] (240:0.7) circle[radius=1];
-\draw (120:0.7) circle[radius=1];
-\draw (0:0.7) circle[radius=1];
-\draw (240:0.7) circle[radius=1];
-\end{scope}\begin{scope}[shift={(-1,-8)}]
-\draw  (-2,2) rectangle (2,-2);
-\clip (0:0.7) circle[radius=1];
-\clip (240:0.7) circle[radius=1];
-\draw (120:0.7) circle[radius=1];
-\fill[red] (120:0.7) circle[radius=1];
-\fill[red] (0:0.7) circle[radius=1];
-\fill[red] (240:0.7) circle[radius=1];
-\draw (120:0.7) circle[radius=1];
-\draw (0:0.7) circle[radius=1];
-\draw (240:0.7) circle[radius=1];
-\end{scope}
-\node at (-9,8) {$-$};
-\node at (-1,8) {$+$};
-\node at (7,8) {$-$};
-\node at (15,8) {$+$};
-\draw[dashed] (-5,8) -- (-5,-11);
-\draw[dashed] (3,8) -- (3,-11);
-\draw[dashed] (11,8) -- (11,-11);
-\end{tikzpicture}
-\caption{Inclusion Exclusion says that the sum of the elements weighted with the signs listed is zero. }
-\label{fig:incex}
-\end{figure}
-We will prove this theorem by using the tools of homological algebra.
-\begin{notation}
-If $U$ is a set, denote by $\Z_2\langle U \rangle$ the vector space which has $U$ as a basis. If $f: U\to V$ is a map of sets, we will similarly denote by $f: \Z_2\langle U \rangle \to \Z_2\langle V\rangle$ the induced map set by mapping the basis elements according to $f$. 
-\end{notation} 
-A covering $\mathcal U=\{U_i\}$ of $X$  is a collection of subsets $U_i\subset X$ so that  \[X=\bigcup_{i\in I} U_i.\]
-To each covering of $X$ we will create an \emph{resolution complex} $CR_\bullet(\mathcal U)$.
-\begin{definition}
-Let $\mathcal U=\{U_i\}_{i\in I}$ be a covering of $X$. For each $J$ subset $i$, define the subset $U_J:=\cap_{i\in J} U_i$\footnote{Should $J=\emptyset,$ let $U_{\emptyset}=X$}, and as shorthand the associated vector space 
-\[A_J:= \Z_2 \langle U_J\rangle. \]
-Suppose that $J$ and $K$ differ by a single index. We will then write $J\lessdot K$. Notice that whenever $K\gtrdot J$ we have an inclusion map $i_{K\gtrdot J}:U_K\to U_J$, and therefore we get an associated map 
-\[i_{K\gtrdot J}: A_K\to A_J.\]
-We define the chain groups 
-\[CR_k:=\bigoplus_{K\subset I, |K|=k} A_K\]
-and define the differential map to be
-\[\partial_k^{CR}:=\bigoplus_{K\gtrdot J} i_{K\gtrdot J}.\]
-\end{definition}
-Before we show that this gives us a chain complex, let's look at an example, and make an important note.
 
-\begin{example}[Inclusion-Exclusion Complex]
-\label{exam:inclusionexclusioncomplex}
-Let suppose we have that  $X=U_1\cup U_2\cup U_3$, as in  \ref{fig:incex} . We can represent this data with the following diagram of resolutions:
-\[	\begin{tikzcd}[row sep=small]
-			\;&A_1  \cap A_2\arrow{r} \arrow{ddr} & A_1 \arrow{ddr}\\
-			&\oplus&\oplus\\
-			A_1\arrow{r} \arrow{uur} \arrow{ddr} \cap A_2\cap A_3 & A_1\cap A_3 \arrow{uur} \arrow{ddr}& A_2 \arrow{r} & A_1\cup A_2\cup A_3\\ 
-			&\oplus&\oplus\\
-			&A_2\cap A_3 \arrow{uur} \arrow{r} & A_3 \arrow{uur}
-		\end{tikzcd}\]
-Notice that each vertex of this cube represents a subset $K\subset\{1,2,3\}$. Each arrow in this diagram is represented by a pair $J\lessdot K$ where $J$ and $K$ differ by a single element. For each such pair $J,K$ denote by $i_{JK}$ the corresponding inclusion of subsets.\\
-\end{example}
-How does this chain complex help us prove the statement of inclusion exclusion? Notice that the Euler characteristic of this chain complex is 
+At the start of the course, we alluded that we would like an algorithm to compute the number of connected components via an inclusion-exclusion principle on a decomposition of $X$ into smaller topological spaces. Let's look at an example where this works, and an example that shows that our theory requires some more depth. 
+\begin{examplefigureenv}{191figures/simp_incexc.tikz}
+	Let $S^1=A\cup B$ as drawn in the figure. Let's try to compute the number of connected components of $S^1$ using this decomposition. $A\cap B$ has two connected components, so we would have that 
+\[b_0(A)+b_0(B)-b_0(A\cap B)=0\]
+which means that we cannot use the principle of inclusion-exclusion to compute the number of connected components of the circle. The obstruction in this case to the principle of inclusion-exclusion working is the presence of nontrivial homology in $H^1(S^1)$.  
+\end{examplefigureenv}
+
+While we cannot use the principle of inclusion-exclusion to compute the number connected components, we can get an inclusion-exclusion like principle to work homologically. For full details on how to generalize inclusion-exclusion like principles to general settings, see Appendix \ref{append:inexzigzag}.
+\begin{theorem}[Mayer-Vietoris]
+Let $A, B, X$ be topological spaces. Let 
+\begin{align*} j_A:A\to& X\\
+j_B: B\to& X
+\end{align*}
+ be two inclusions of topological spaces so that $A\cup B=X$. Let $A\cap B$ be the common intersection of $A$ and $B$ in $X$, with the natural inclusions 
+ \begin{align*}
+ i_A:A\cap B\to& A \\
+  i_B: A \cap B\to & B
+ \end{align*}
+ Then there is a short exact sequence of chain complexes
+ \[\begin{tikzcd}[row sep=tiny]
+  \;& &  \underline C^\bullet(A) \arrow{dr}{i^*_A}\\
+ 0 \arrow{r}& \underline C^\bullet(X)\arrow{ru}{j^*_A} \arrow{rd}{j^*_B} & \oplus & \underline C^\bullet(A\cap B)\arrow{r} & 0\\
+ & & \underline C^\bullet(B) \arrow{ur}{-i^*_B}
+ \end{tikzcd}\]
+ This in turn gives us a long exact sequence on homology from Lemma \ref{lemma:zigzag}.
+ \[\cdots\to  H^{k-1}(A\cap B)\to H^k(X)\to H^k(A)\oplus H^k(B)\to H^k(A\cap B)\to H^{k+1} (X)\to \cdots \]
+\end{theorem}
+\begin{proof}
+To show that this is an exact sequence, we need to check that the chain maps form exact sequences of vector spaces at each grading $k$:
+\[\begin{tikzcd}
+0 \arrow{r} & \underline C^k(X)\arrow{r}{j^*_A\oplus j^*_B} & \underline C^k(A)\oplus \underline C^k(B) \arrow{r}{i^*_A\oplus (-i^*_B)} & \underline C^k(A\cap B)\arrow{r} & 0.
+\end{tikzcd}\]
+Let's start by checking exactness at the first position of the sequence. 
+\[\begin{tikzcd}
+	0 \arrow{r} & \underline C^k(X)\arrow{r}{j^*_A\oplus j^*_B} & \underline C^k(A)\oplus \underline C^k(B) 
+\end{tikzcd}\]
+The statement of exactness at this point is that $\ker (j^*_A\oplus j^*_B)=0$, or that the map is injective.
+Recall that $\underbar C^k(X), \underbar C^k(A)$ and $\underbar C^k(B)$ are continuous $\ZZ_2$ labellings of the $k$-intersections of the covering sets $U_i$. 
+Given $U_\sigma\subset X$ a $k$-fold intersection of open sets, it is either the case that $U_\sigma \subset A$ or $U_\sigma \subset B$.
+As a result, given $\phi\in \underline C^\bullet(X)$, the labelling of $U_\sigma$ can be determined by its image under the map $j^*_A$ or $j^*_B$. 
+This means that the labelling $\phi$ can be recovered from $(j^*_A\oplus j^*_B)(\phi)$, so $(j^*_A\oplus j^*_B)$ is injective. 
+
+At the last position of the sequence, 
 \[
-\sum_{k} \dim CR_k(\mathcal U)=|X|-\sum_{J\subset I}(-1)^{|J|} \left|\cap_{i\in J} U_i\right|. 
+\begin{tikzcd}
+	\underline C^k(A)\oplus \underline C^k(B) \arrow{r}{i^*_A\oplus (-i^*_B)} & \underline C^k(A\cap B)\arrow{r} & 0.
+\end{tikzcd}\]
+exactness means that $\im{i^*_A\oplus i^*B_B}=\underline C^k(X)$ i.e. $i^*_A\oplus i^*_B$ is surjective. In fact, $i^*_A$ is already surjective, as $U_\sigma\subset A\cap B$ is contained in $U_\sigma\subset A$, and therefore every labelling of an open set in $\underline C^k(A\cap B)$ can be lifted to a labelling of open sets in $\underline C^k(A)$ and extended by zero over $\underline C^k(B)$. 
+
+The remaining tricky part of the argument is on the middle section, 
+\[ \begin{tikzcd} 
+\underline C^k(X)\arrow{r}{j^*_A\oplus j^*_B} & \underline C^k(A)\oplus \underline C^k(B) \arrow{r}{i^*_A\oplus (-i^*_B)} & \underline C^k(A\cap B)
+\end{tikzcd}\]
+Here, the statement is that $\ker(i^*_A\oplus(- i^*_B))=\im (j^*_A\oplus j^*_B). $ The kernel of the map $(j_A\oplus(- j_B))$ consists exactly of labellings of the $k$-fold intersections on $A$ and $B$ which agree on the intersection.
+These are exactly the labellings which are in the image of $j^*_A\oplus j^*_B$. 
+
+Once we know that the short sequence of chain complexes is exact, the long exact sequence of homology groups
+\[\cdots\to  H^{k-1}(A\cap B)\to H^k(X)\to H^k(A)\oplus H^k(B)\to H^k(A\cap B)\to H^{k+1} (X)\to \cdots \]
+ follows from the application of the Zig-Zag Lemma ( \sref{lemma:zigzag}.)
+\end{proof}
+We usually represent the Mayer-Vietoris long exact sequence with the following diagram of homology groups :
+\[\begin{tikzcd}
+	\cdots         \arrow{r}{j^*_A\oplus j^*_B} \arrow[draw=none]{d}[name=Z, shape=coordinate]{}&H^{k  }(A)\oplus H^{k  }(B) \arrow{r}{i^*_A\oplus i^*_B} & H^{k  }(A\cap B) \arrow[rounded corners,to path={ -- ([xshift=2ex]\tikztostart.east)|- (Z) [near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}]{dll}{\delta} \\
+	H^{k  }(X)     \arrow{r}{j^*_A\oplus j^*_B} \arrow[draw=none]{d}[name=Z, shape=coordinate]{}&H^{k+1}(A)\oplus H^{k+1}(B) \arrow{r}{i^*_A\oplus i^*_B} & H^{k+1}(A\cap B) \arrow[rounded corners,to path={ -- ([xshift=2ex]\tikztostart.east)|- (Z) [near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}]{dll}{\delta} \\
+	H^{k+1}(X)     \arrow{r}{j^*_A\oplus j^*_B} &                                                H^{k+2}(A)\oplus H^{k+2}(B) \arrow{r}{i^*_A\oplus i^*_B} &\cdots 
+\end{tikzcd}
 \]
-If we can show that Euler Characteristic vanishes, we will have proven inclusion-exclusion.  
-To show that this is a chain complex, we use the language of cones. 
-\begin{lemma}
-Let $\hat U_1$ be the elements of $X$ which only belong to $U_1$, and let $\hat A_1$ be it's associated vector space.  Let $\mathcal U_X=\{U_i\}_{i\in I}$ be a cover of $X$. Let $\mathcal U_{\cap}=\{U_i\cap U_1\}_{1\neq i\in I} $ be a cover for $U_1\setminus \hat A_1$. Let $\mathcal U_{\setminus}=\{U_i\}_{1\neq i\in I}$ be a cover for $X \setminus \hat U_1$. Suppose that $CR_\bullet(\mathcal U_\cup)$ and $CR_\bullet(\mathcal U_\cap)$ are chain complexes. Then there is a natural map 
-\[i: CR_\bullet(\mathcal U_\cap)\to CR_\bullet(\mathcal U_\cup)\]
-and $CR_\bullet(\mathcal U_X)=\cone(i)\oplus (\hat A_1\to \hat A_1)$
-\end{lemma}
-As always, a diagram explains the core concept of this proof:
-\[\begin{tikzpicture}[commutative diagrams/every diagram]
-\fill[red!10] (0,3) -- (-2.5,-0.5) -- (1.5,-0.5) -- (4,3) -- cycle;
-\fill[blue!10] (-1.5,5.5) -- (-4,2) -- (0,2) -- (2.5,5.5) -- cycle;
-\matrix[matrix of math nodes, name=m, commutative diagrams/every cell, row sep= 20, column sep = 30] {
-\; & A_{12} & A_1 \\
-			&\oplus&\oplus\\
-A_{123}& A_{13}& A_2 & X\\
-			&\oplus&\oplus\\
-& A_{23} & A_3 \\};
-\path[commutative diagrams/.cd, every arrow, every label]
-(m-3-1) edge(m-1-2) edge (m-3-2) edge (m-5-2)
-(m-1-2) edge(m-1-3) edge (m-3-3) 
-(m-3-2) edge(m-1-3) edge (m-5-3) 
-(m-5-2) edge(m-3-3) edge (m-5-3) 
-(m-5-3) edge(m-3-4) 
-(m-3-3) edge(m-3-4) 
-(m-1-3) edge(m-3-4) 
-;
-\node at (1.5,7) {$CR_\bullet(\mathcal U_\cap \oplus A_1)$};
-\node at (5,4) {$CR_\bullet(\mathcal U_\cup\oplus A_1)$};
-\draw[->] (3,7) -- (4.5,4.5);
-\end{tikzpicture}\]
-The proof is a check of the definitions used to construct the chain complexes. More importantly, we get the following corollaries:
-\begin{corollary}
-The complexes $(CR_\bullet(\mathcal U)$ are in fact chain complexes.
-\end{corollary}
-\begin{proof}
-One proves this by recursively defining $CR_\bullet(\mathcal U)=\cone(CR_\bullet(\mathcal U_\cap)\to CR_\bullet(\mathcal U_\cup)$ and inducting on the size of the cover $\mathcal U$.  If $\mathcal U=\{X\}$, then the associated chain complex is 
-\[0 \to X\to X \to 0\]. 
-\end{proof}
-\begin{corollary}
-The homology of the resolution complexes are trivial: $H_\bullet(CR_\bullet(\mathcal U))=0$, i.e. $CR_\bullet(\mathcal U)$ is exact. 
-\end{corollary}
-\begin{proof}
-We again prove by induction on the size of the cover. As a base case, we can let  $\mathcal U=\{X\}$, then $H_\bullet(\mathcal U)=0$ trivially. \\
-Now assume that we know by induction that $CR_\bullet(\mathcal U_\cap)$ and $ CR_\bullet(\mathcal U_\cup)$ have trivial homology. Since the cone of exact chain complexes is exact, we get $CR_\bullet(\mathcal U)$ is exact. 
-\end{proof}
-This allows us to prove the principle of inclusion-exclusion. 
-\begin{corollary} Let $\mathcal U=\{U_i\}$ be a covering of $X$. Then
-\[
-0=|X|-\sum_{J\subset I}(-1)^{|J|} \left|\cap_{i\in J} U_i\right|. 
-\]
-\end{corollary}
-\begin{proof}
-Since $CR_\bullet(\mathcal U)$ is exact, 
-\[0=\chi(CR_\bullet(\mathcal U))=|X|-\sum_{J\subset I}(-1)^{|J|} \left|\cap_{i\in J} U_i\right|.\]
-\end{proof}
-\section{Inclusion-Exclusion principles: The Zig-Zag Lemma} 
+The maps $i^*$ and $j^*$ somewhat act in a normal way: cycles in the spaces $X, A, B$ and $A\cap B$ are related to each other. We now will try to figure out what the map $\delta$ does.
+
+This requires a better geometric understanding of what each homology class means. Each element of $\underbar C^k(X)$ represents a labelling of the $k$-simplices of $X$, and the differential map ``pushes'' those labellings to the higher simplices. 
+
+A label represents a non-trivial class in $H^k(X)$ if, when pushed to the higher dimensional simplices it cancels out, and the labelling itself does not arise from a lower-dimensional labelling. 
+
+Suppose that we have a labelling $\phi$ of the simplices of $A\cap B$ giving us a cohomology class. This means that the ``push'' of the labelling on $A\cap B$ to the higher simplices \emph{inside of $A\cap B$} will cancel out.
+Let us take $\phi$ some labelling of the $k$-simplices  on $A\cap B$ representing some cohomology class. Use this to create a labelling $\phi_A$ on $A$ and a labelling $\phi_B$ on $B$.
+ Even though $d_{A\cap B}\phi$  equals zero, the extended labellings may not have this property, and so $d_A\phi_A$ and $d_B\phi_B$ are some interesting labellings to talk about. They, in some sense, represent the ``boundary'' $A\cap B$ inside of $A$ and $B$. 
+
+Let's now use both $d_A\phi_A$ and $d_B\phi_B$ to create a labelling for all of $X$. We take $d_A\phi_A+d_B\phi_B$ as a labelling on all of $X$.  This element is, surprisingly, closed. 
+\newpage\vspace{4cm}
+\[\scalebox{.7}{\input{191figures/homalg_labelzigzag.tikz}}\]
+
+
+
+\begin{doubledpage}{example}{Homology of Sphere}
+	{Let's compute the homology of sphere $S^n$ by using Mayer-Vietoris and induction. For this example, we will start with the assumptions that we know the homology of a disk \ref{exam:diskhomology}.}
+	 We will prove that $H^k(S^n)=\ZZ_2$ if and only if $k=n, 0$ by induction on $n$.  
+	Here, we will run the Mayer-Vietoris argument on a the decomposition of $S^n$ into two disks, $A, B= D^n$, which are suppose to represent the upper and lower hemispheres. Notice that the intersection of the two hemispheres is the equatorial sphere, which is a sphere of 1-dimension lower.
+	\[\input{191figures/simp_spheredecomp.tikz}\]
+	 So, we have a short exact sequence of chain complexes:
+	\[0\to C^\bullet(S^{n})\to C^\bullet(D^n)\oplus C^\bullet(D^n)\to C_\bullet(S^{n-1})\to 0\]
+	This short exact sequence gives us a long exact sequence of homology groups :
+		\[
+			\begin{tikzcd}
+				H^{0  }(S^{n}) \arrow{r}\arrow[draw=none]{d}[name=Z, shape=coordinate]{}&H^{0}  (D^n)\oplus H^{0  }(D^n)  \arrow{r}& H^{0  }    (S^{n-1}) \arrow[rounded corners,to path={ -- ([xshift=2ex]\tikztostart.east)|- (Z) [near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}]{dll}{\delta} \\
+				H^{1  }(S^{n}) \arrow{r}\arrow[draw=none]{d}[name=Z, shape=coordinate]{}&H^{1}  (D^n)\oplus H^{1  }(D^n)  \arrow{r}& H^{1  }    (S^{n-1}) \arrow[rounded corners,to path={ -- ([xshift=2ex]\tikztostart.east)|- (Z) [near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}]{dll}{\delta} \\
+				H^{2  }(S^{n}) \arrow{r}\arrow[draw=none]{d}[name=Z, shape=coordinate]{}&\cdots 					      \arrow{r}& H^{n-2}    (S^{n-1}) \arrow[rounded corners,to path={ -- ([xshift=2ex]\tikztostart.east)|- (Z) [near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}]{dll}{\delta} \\
+				H^{n-1}(S^{n}) \arrow{r}\arrow[draw=none]{d}[name=Z, shape=coordinate]{}&H^{n-1}(D^n)\oplus H^{n-1}(D^n)  \arrow{r}& H^{n-1}    (S^{n-1}) \arrow[rounded corners,to path={ -- ([xshift=2ex]\tikztostart.east)|- (Z) [near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}]{dll}{\delta} \\
+				H^{n  }(S^{n}) \arrow{r}{i_0\oplus j_0 }								&H^{n  }(D^n)\oplus H^{n  }(D^n)  \arrow{r}& H^{n  }    (S^{n-1}) \arrow{r}&0
+			\end{tikzcd}
+	\]
+	Substituting in the groups we know from induction and our assumptions
+		\[
+			\begin{tikzcd}
+				H^{0  }(S^{n}) \arrow{r}\arrow[draw=none]{d}[name=Z, shape=coordinate]{}&  \ZZ_2\oplus \ZZ_2    \arrow{r}& \ZZ_2    \arrow[rounded corners,to path={ -- ([xshift=2ex]\tikztostart.east)|- (Z) [near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}]{dll}{\delta} \\
+				H^{1  }(S^{n}) \arrow{r}\arrow[draw=none]{d}[name=Z, shape=coordinate]{}& 0                     \arrow{r}& 0            \arrow[rounded corners,to path={ -- ([xshift=2ex]\tikztostart.east)|- (Z) [near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}]{dll}{\delta} \\
+				H^{2  }(S^{n}) \arrow{r}\arrow[draw=none]{d}[name=Z, shape=coordinate]{}& \cdots                \arrow{r}& 0            \arrow[rounded corners,to path={ -- ([xshift=2ex]\tikztostart.east)|- (Z) [near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}]{dll}{\delta} \\
+				H^{n-1}(S^{n}) \arrow{r}\arrow[draw=none]{d}[name=Z, shape=coordinate]{}& 0                     \arrow{r}& \ZZ_2        \arrow[rounded corners,to path={ -- ([xshift=2ex]\tikztostart.east)|- (Z) [near end]\tikztonodes-| ([xshift=-2ex]\tikztotarget.west)-- (\tikztotarget)}]{dll}{\delta} \\
+				H^{n  }(S^{n}) \arrow{r}{i_0\oplus j_0 }                                &    0                  \arrow{r}& 0\arrow{r}&0
+			\end{tikzcd}
+	\]
+	We therefore may now look at these shorter exact sequences instead:
+	\[0\to  \ZZ_2\to H^n(S^n)\to 0\]
+	\[0\to H^k(S^n) \to 0 \;\;\;\;\;\;\;\; k\neq n, 0\]
+	\[0\to H^0(S^n)\to Z_2\oplus Z_2\to Z_2\to H^1(S^n)\to 0\]
+	Running through the properties of exactness at each part shows confirms our computation of the homology of $S^n$. 
+	\end{doubledpage}
+
+\begin{elevator}[Inclusion-Exclusion principles: The Zig-Zag Lemma]
 \label{append:inexzigzag}
 Let's now use Inclusion-Exclusion to build up some more intuition on what homological algebra can get us. We will now work a little abstractly.
-Let $\mathcal C$ be a collection of objects. Let's suppose that objects in this collection admit decompositions, so that we may write 
+\end{elevator}
+Let $\mathcal C$ be a collection of objects. Let's suppose that objects in this collection admit decompositions, so that we may write \footnote{We also adopt homological grading conventions in this section, as opposed to cohomological grading conditions. }
 \[X=A\cup B\]
-and for every such decomposition, we may also associate an objects called $A\cap B$. \\
+and for every such decomposition, we may also associate an objects called $A\cap B$. 
+
 A \emph{property} is a function $P: \mathcal C\to \N$ which assigns to each object a number. 
-\begin{example}
-Let our group of objects be $\Set$, the set of all finite sets. Then given $f: A\to X$, and $g: B\to X$, we have that $X=A\cup B$ if the map $f\sqcup g: A\sqcup B \to X$ was surjective. \\
-In this case, we can also define $A\cap B$. The property that we're interested in the case of sets is their size, which defines a function $|\;\cdot \;|: \Set \to \N.$
-\end{example}
-\begin{example}
-Let our group of objects be graphs. Similarly we have an idea of covering $G=H_1\cup H_2$, and an idea of intersection.\\
-There are several different properties we could look at. We could look at $|V(G)|$, which measures the number of vertices, or $|E(G)|$, which measures the number of edges. \\
-A more interesting property is the number of connected components, $b_0(G)$, or $b_1(G)$, the dimension of the cycle space.\\
-A very difficult property to compute is $\gamma_G(k)$, which computes the number of $k$-colorings. 
-\end{example}
-Our goal is to come up with a general framework to understand how to compute properties with the framework of decompositions. 
-\begin{definition}
-A category $\mathcal C$ and a property $P$ satisfy an \emph{inclusion-exclusion principle} if for every decomposition $X=A\cup B$, we have 
-\[P(X)=P(A)+P(B)-P(A\cap B).\]
-\end{definition}
-Sets, and sizes of sets is a classic example of a category and a property that obey the inclusion-exclusion principle. However, many properties do not satisfy the inclusion-exclusion principle. 
-\begin{example}
-Let $C_n$ be a cycle, and $C_n=P_{m_1}\cup P_{m_2}$ be a decomposition so that $P_{m_1}\cap P_{m_2}=\{u,v\}. $ Then we have that $b_0(C_n)=1$, but 
-\[b_0(P_{m_1})+b_0(P_{m_2})-b_0(P_{m_1}\cap P_{m_2})=0.\]
-This property does not have the inclusion-exclusion property
-\end{example}
-Though the inclusion-exclusion property does not hold, it almost holds, and the more subtle properties of graphs is what prevents the inclusion-exclusion properties from holding. However, we can access some of these properties by using homological algebra. 
+%\begin{example}
+%Let our group of objects be $\Set$, the set of all finite sets. Then given $f: A\to X$, and $g: B\to X$, we have that $X=A\cup B$ if the map $f\sqcup g: A\sqcup B \to X$ was surjective. \\
+%In this case, we can also define $A\cap B$. The property that we're interested in the case of sets is their size, which defines a function $|\;\cdot \;|: \Set \to \N.$
+%\end{example}
+%\begin{example}
+%Let our group of objects be graphs. Similarly we have an idea of covering $G=H_1\cup H_2$, and an idea of intersection.\\
+%There are several different properties we could look at. We could look at $|V(G)|$, which measures the number of vertices, or $|E(G)|$, which measures the number of edges. \\
+%A more interesting property is the number of connected components, $b_0(G)$, or $b_1(G)$, the dimension of the cycle space.\\
+%A very difficult property to compute is $\gamma_G(k)$, which computes the number of $k$-colorings. 
+%\end{example}
+%Our goal is to come up with a general framework to understand how to compute properties with the framework of decompositions. 
+%\begin{definition}
+%A category $\mathcal C$ and a property $P$ satisfy an \emph{inclusion-exclusion principle} if for every decomposition $X=A\cup B$, we have 
+%\[P(X)=P(A)+P(B)-P(A\cap B).\]
+%\end{definition}
+%Sets, and sizes of sets is a classic example of a category and a property that obey the inclusion-exclusion principle. However, many properties do not satisfy the inclusion-exclusion principle. 
+%\begin{example}
+%Let $C_n$ be a cycle, and $C_n=P_{m_1}\cup P_{m_2}$ be a decomposition so that $P_{m_1}\cap P_{m_2}=\{u,v\}. $ Then we have that $b_0(C_n)=1$, but 
+%\[b_0(P_{m_1})+b_0(P_{m_2})-b_0(P_{m_1}\cap P_{m_2})=0.\]
+%This property does not have the inclusion-exclusion property
+%\end{example}
+%Though the inclusion-exclusion property does not hold, it almost holds, and the more subtle properties of graphs is what prevents the inclusion-exclusion properties from holding. However, we can access some of these properties by using homological algebra. 
 \begin{definition}
 Let $\mathcal C$ be a category, and $P: \mathcal C\to \N$ be a property. We say that $P$ obeys the \emph{homological inclusion-exclusion principle} if for all $X$, there exists a chain complex $P_\bullet(X)$ satisfying the following conditions:
 \begin{itemize}
@@ -526,7 +684,7 @@ Let $\mathcal C$ be a category, and $P: \mathcal C\to \N$ be a property. We say 
 \end{itemize}
 \end{definition}
 Notice that satisfying a homological inclusion-exclusion principle is in a lot of ways like satisfying a inclusion-exclusion principle, in that 
-\[\dim(P_0(X))= dim (P_0(A))+\dim(P_0(B))-\dim(P_0(A\cap B)).\]
+\[\dim(P_0(X))= \dim (P_0(A))+\dim(P_0(B))-\dim(P_0(A\cap B)).\]
 While we don't get an actual inclusion exclusion principle from a homological inclusion-exclusion principle, we get something very close to the principle holding. In order to see the relation between inclusion-exclusion and homological inclusion-exclusion, we need a powerful lemma from homological algebra. 
 \begin{theorem}[Zig-Zag Lemma]
 Let $ A_\bullet,\partial^A_\bullet$ , $ B_\bullet,d^B_\bullet$ and $C_\bullet,d^C_\bullet$ be chain complexes. Given 
@@ -744,7 +902,7 @@ Finally, when we constructed the class $\alpha$, we had to make a choice of $\be
 (m-4-4) edge node {$\partial^C_{k-1}$}(m-5-4)  edge (m-4-5)  
 ;
 \end{tikzpicture}\]
-\item Due to commutivity of the highlighted square, we have that $f_{k-1}\partial_k^A(f^{-1}_k(\beta-\beta')= \partial^B_k(\beta-\beta')=f_{k-1}(\alpha-\alpha')$. Due to the injectivity of $f_{k-1}$, we conclude that $\alpha-\alpha'= \partial_k^A(f^{-1}_k(\beta-\beta')$, so these two classes are cohomologous. 
+\item Due to commutativity of the highlighted square, we have that $f_{k-1}\partial_k^A(f^{-1}_k(\beta-\beta')= \partial^B_k(\beta-\beta')=f_{k-1}(\alpha-\alpha')$. Due to the injectivity of $f_{k-1}$, we conclude that $\alpha-\alpha'= \partial_k^A(f^{-1}_k(\beta-\beta')$, so these two classes are cohomologous. 
 \[ \begin{tikzpicture}
 \usetikzlibrary{cd}
 
@@ -785,7 +943,7 @@ is exact.
 In order to prove this claim, we need to show that $\ker(\delta)\subset \im(g_k)$, and $\im (g_k)\subset \ker \delta$. 
 \begin{itemize}
 \item To show that $\im(g_k)\subset \ker \delta$, it suffices to show that the composition $\delta_k \circ g_k=0$. Let $[\beta]\in H_k(B)$ be a homology class. Then $[\delta_k g_k(\beta)]= [f_{k-1}^{-1}(\partial^B_k\beta)]. $ Since $[\beta]$ is a class in homology, the boundary map starts by computing $\partial^B_k\beta=0$, and we conclude that $\delta_k (g_k(\beta))=0$. 
-\item To show that the $\ker(\delta_k)\subset \im (g_k)$, let $\gamma$ be an element so that $\delta_k[\gamma]=0$. Since the map $g_k: B_k\to C_k$ is surjective, we might hope that $\beta=g^{-1}_k\gamma$, a choice of lift of $\gamma$, is a class in homology. So we need to show that $\partial^B_k(\beta)=0$. By commutivity of the lower right square, we have that 
+\item To show that the $\ker(\delta_k)\subset \im (g_k)$, let $\gamma$ be an element so that $\delta_k[\gamma]=0$. Since the map $g_k: B_k\to C_k$ is surjective, we might hope that $\beta=g^{-1}_k\gamma$, a choice of lift of $\gamma$, is a class in homology. So we need to show that $\partial^B_k(\beta)=0$. By commutativity of the lower right square, we have that 
 $\partial^B_k(\beta)=f_{k-1}(\delta(\gamma))=0.$
 \[ \begin{tikzpicture}
 \usetikzlibrary{cd}
@@ -825,103 +983,5 @@ The sequence of homology groups
 is exact. 
 \end{claim}
 \end{proof}
-
-
-\section{Chain Homotopy}
-Homological algebra is ultimately the study of which chain complexes are isomorphic to eachother in a homological way.
-\label{append:chainhomotopy}
-\begin{definition} \label{def:quasiisomorphism} Let $f:A_\bullet \to B_\bullet$ be a chain map. Then we say that $f$ is a  \emph{quasi-isomorphism} if the induced map on homology, $f_*:H_i(\mathcal A)\to H_i(\mathcal B)$ are isomorphisms of homology groups. \end{definition}
-Notice that while every isomorphism which is a chain map gives us a quasi-isomorphism, a chain map need not be an isomorphism to be a quasi-isomorphism. 
-\begin{example}
-Not isomorphic, but quasi-isomorphic. 
-\end{example}
-Similarly, even if $(A, \partial)$ and $(B, \partial)$ have isomorphic homology groups, they need to not be quasi-isomorphic. 
-\begin{example}
-It is not necessarily the case that if two chain complexes have isomorphic homology that those two complexes are quasi isomorphic. 
-\end{example}
-Even though $f_\bullet: A_\bullet\to B_\bullet$ is a quasi-isomorphism, there is no guarantee that there exists $g_\bullet: B_\bullet\to A_\bullet$ so that the maps $(g\circ f)_k: H_k(A)\to H_k(A)$ is the identity. In other words, there is no need for inverses to exists to quasi-isomorphism on either the chain or homological level. If such a map exists, we call it a \emph{quasi-inverse}. 
-\begin{example}
-Chain Complexes with no quasi-inverse.
-\end{example}
-It is usually hard come up with an interpretation of where a quasi-isomorphism comes from; in general the question if two maps $f,g :A_\bullet\to B_\bullet$ do the same thing on homology is hard to get some intuition on. As a proxy to showing that two maps have the same definition on homology, we introduce an idea from topology: that of a \emph{homotopy.}
-
-\begin{definition} Let $(A,\partial^A)$ and $(B, \partial^B)$ be chain complexes. Let $f_\bullet:A_\bullet\to B_\bullet$ and $g_\bullet:A_\bullet \to B_\bullet$ be chain maps. Then we say that $f$ is \emph{chain homotopic} to $g$ if there exists a series of maps (called a \emph{chain homotopy}) $h_i:A_i\to B_{i+1}$ such that $$f-g=\partial^B h_{i}+h_{i-1}\partial^A$$ We write that $f\sim g$. \end{definition}
-
-Here's a diagram that helps visualize the maps involved in a chain homotopy.
-\[\begin{tikzcd}[column sep=2cm]
-\cdots \arrow{r}{\partial^A} & A_{i+1}\arrow[bend left]{d}[description]{f} \arrow[bend right]{d}[description]{g}\arrow{dl}[description]{h_{i+1}} \arrow{r}{\partial^A} & A_{i}\arrow[bend left]{d}[description]{f} \arrow[bend right]{d}[description]{g}\arrow{dl}[description]{h_{i}} \arrow{r}{\partial^A}& A_{i-1} \arrow[bend left]{d}[description]{f} \arrow[bend right]{d}[description]{g}\arrow{dl}[description]{h_{i-1}}\arrow{r}{\partial^A}& \cdots \arrow{dl}[description]{h_{i-2}}\\
-\cdots \arrow{r}{\partial^B} & B_{i+1} \arrow{r}{\partial^B} & B_{i} \arrow{r}{\partial^B}& B_{i-1} \arrow{r}{\partial^B}& \cdots \\
-\end{tikzcd}\]
-It can be difficult to get an intuition on what a chain homotopy between two map constitutes. One interpretation comes from topology; for every element $x$, the difference between $f(x)$ and $g(x)$ can be expressed as a cylinder connecting $f(x), g(x)$. This bears resemblance to the definition of a homotopy between two maps in point-set topology. \\
-\begin{example} An example of a chain homotopy will go here!
-\end{example}
-One thing worth pointing out is that we don't have any condition of compatibility with the differential for the homotopy maps $h_k:A_k\to B_{k+1}$; they are allowed to be as crazy as need be. \\
-Chain homotopy is especially useful for the following lemma:
-\begin{lemma}
-Suppose that $f_\bullet, g_\bullet: A_\bullet\to B_\bullet$ are chain homotopic chain maps. Then they are the same map on homology, in the sense that 
-\[f_k[x]=g_k[x]\]
-for every $[x]\in H_k(A). $
-\end{lemma}
-\begin{proof}
-What we want to show is that $f_k-g_k= \partial^B_{k+1} h_{k}+h_{k-1}\partial^A_k$, then for every $[a]\in H_k(A)$, there exists $b\in C_{k+1}(B)$ with 
-\[f_k(a)-g_k(a)=\partial_{k+1}(b).\]
-The homotopy gives us a natural for $b$ is; we can let $b=h_k(a)$. Taking our definition of homotopy shows 
-\begin{align*}f_k(a)-g_k(a)=&\partial^B_{k+1} h_{k}(a)+h_{k-1}\partial^A_k(a)\\
-\intertext{ As $a$ represents a class in homology} 
-=& \partial^B_{k+1} h_{k}(a)= \partial^B_{k+1}(b). \end{align*}
-\end{proof}
-
-
-This next claim shows the usefulness of chain homotopies:
-\begin{lemma} Let $f:\mathcal A\to\mathcal B$ and $g:\mathcal B\to\mathcal A$ be chain maps. Suppose that $g\circ f\sim 1_{\mathcal A}$ and $g\circ f \sim 1_{\mathcal B}$. Then $f$ and $g$ are quasi-isomorphisms.
-\begin{proof}
-Let's start with a diagram.
-$$\begin{tikzcd}[column sep=2cm]
-\cdots \arrow[crossing over]{r}[near start]{d'} & A_{i+1} \arrow{r}{d}\arrow{ddl}[near start, description]{h} \arrow{d}[description]{f}\arrow[bend left]{dd}&  A_{i} \arrow{r}{d}\arrow{d}[description]{f}\arrow[bend left]{dd} \arrow{ddl}[near start, description]{h}& A_{i-1} \arrow{d}[description]{f}\arrow{r}{d}\arrow[bend left]{dd}\arrow{ddl}[near start, description]{h}& \cdots \\
-\cdots \arrow[crossing over]{r}[near start]{d'} & B_{i+1} \arrow[crossing over]{r}[near start]{d'}\arrow{d}[description]{g}&  B_{i} \arrow[crossing over]{r}[near start]{d'}\arrow{d}[description]{g}& B_{i-1}\arrow{d}[description]{g}\arrow[crossing over]{r}[near start]{d'}& \cdots \\
-\cdots \arrow[crossing over]{r}[near start]{d'} & A_{i+1} \arrow{r}{d}            &   A_{i} \arrow{r}{d}             & A_{i-1}\arrow{r}{d}             & \cdots \\
-\end{tikzcd}$$
-The homotopy to the identity map gives us that there exists $h$ such that $g\circ f- 1_{\mathcal A}=dh^{i}+h^{i-1}d$. Suppose that $v\in H_i{A}$. Then $v$ is in the kernel of $d$, so $h^{i-1}d(v)=h^{i-1}(0)=0$. We have that therefore $g\circ f - 1_{\mathcal A}\in \im(d)$, which is to say that on homology $g\circ f = 1_{\mathcal A}$, as we mod out by $\im(d)$ when we take homology.\\
-Of course, a similar proof shows that $f\circ g=1_{\mathcal A}$
-\end{proof}
-\end{lemma}
-\section{Snake Lemma}
-\begin{comment}
-Therefore, to show that a morphism is a quasi-isomorphism, one can just show that it is homotopic to the identity. As homotopies form an equivalence relationship on the set of morphisms, we can quotient out by homotopies to arrive a new category, the homotopy category of chain complexes$\C$. In this category, $f=g$ if $f\sim g$; in particular, maps who are isomorphisms in the homotopy category are quasi-isomorphisms in the original chain category. We call this category $\K(\C)$ .
-Now, we will introduce the most powerful theorem for homology theory.
-\begin{theorem}{Zig-Zag Lemma}
-Let $\mathcal A,\partial_\bullet$ , $\mathcal B,d'_\bullet$ and $\C,d''_\bullet$ be chain complexes. Given $$\begin{tikzcd} 0\arrow{r}& \mathcal A\arrow{r}{f}&\mathcal B\arrow{r}{g} &\C\arrow{r}&0\end{tikzcd}$$ a short exact sequence, there exists a unique map $\delta$ such that the following is a long exact sequence on homology:
-$$\begin{tikzcd}[column sep=small] \cdots \arrow{r}{g_*}&H_{n+1}(\C)\arrow{r}{\delta}& H_n (\mathcal A)\arrow{r}{f_*}& H_n(\mathcal B)\arrow{r}{g_*}& H_n(\C)\arrow{r}{\delta}& H_{n-1}(\mathcal A)\arrow{r}{f_*}&\cdots \end{tikzcd}$$
-\begin{proof}
-First, let's expand the original diagram:
-\[\begin{tikzcd}
-\; & \vdots   \arrow{d}{\partial} & \vdots\arrow{d}{\partial^B} &\vdots \arrow{d}{\partial ^C}&\\
-0\arrow{r}& A_{n+1}\arrow{d}{\partial_{n+1}^A}\arrow{r}{f_{n+1}} & B_{n+1}\arrow{d}{\partial^B_{n+1}}\arrow{r}{g_{n+1}} & C_{n+1}\arrow{d}{\partial^C_{n+1}}\arrow{r}&0\\
-0\arrow{r}& A_{n  }\arrow{d}{\partial^A_{n  }}\arrow{r}{f_{n  }} & B_{n  }\arrow{d}{d^B_{n  }}\arrow{r}{g_{n  }} & C_{n  }\arrow{d}{d^C_{n  }}\arrow{r}&0\\
-0\arrow{r}& A_{n-1}\arrow{d}{\partial^A_{n-1}}\arrow{r}{f_{n-1}} & B_{n-1}\arrow{d}{d^B_{n-1}}\arrow{r}{g_{n-1}} & C_{n-1}\arrow{d}{d^C_{n-1}}\arrow{r}&0\\
-\;&\vdots&\vdots&\vdots&
-\end{tikzcd}\]
-We want to construct a function $\delta$ from $H_{n}(\C)$ to $H_{n-1}(\mathcal A)$. Select a $[c]\in H_n(\C)$. Then lift it to $c\in C_n$. Take an element $b$ in the preimage of $c$ along $g_n$. Then as $d''_n(g_n(b))=d''_n(c)=0$, we have by commutivity of the diagram that $g_{n-1}(d'_n(b))=0$. Therefore, $\partial_n(b)\in \ker g_{n-1}$. However, $\ker g_{n-1}=\im f_{n-1}$ by exactness of the rows. There therefore exists unique $a\in A_{n-1}$ such that $f_{n-1}(a)=\partial_n(b)$. We choose the representive of  $a$ in $H_{n-1}(\mathcal A)$ to be $\delta(c)$. \\Now we have to show that this $a$ is independent of choice of $b$. Suppose instead we choose $b'$ in the preimage of $c$ along $g_n$. Let $d'_n(b')$ lift instead to $a'$. As $b'$ is a lift of $c$, we have that $g_n(b)=g_n(b')=c$. Then $b-b'\in \ker(g_n)$. By the exactness of the rows, there exists a unique $\bar a\in A_n$ such that $f_n(\bar a)=b-b'$. Then the lifts of $d'_n(b)$ and $d'_n(b')$  in $A_{n-1}$ differ by $\partial_n(\bar a)$. Therefore, $a-a'=\partial_n(\bar a)\in \im \partial_n$. Therefore, $a$ and $a'$ represent the same class in the homology $H_{n-1}(\mathcal A)$. The function $\delta$ is now shown to be well defined on homology and is the unique class $$\delta(c)=f_{n-1}^{-1} d'_n g_n^{-1} (c)$$\\
-\end{proof}
-\end{theorem}
-
-
-Let's look at several factors that made the story of inclusion-exclusion and homological algebra so successful. Let's start with an intermediate definition. 
-\begin{definition}
-Let $\mathcal U$ be a covering. Define the \emph{reduced Covering resolution complex} to be the chain complex which is 
-\begin{itemize}
-\item $\tilde{CR}_k(\mathcal U)=CR_k(\mathcal U)$ whenever $k\neq 0$,
-\item and otherwise $\tilde{CR}_0(\mathcal U)=0$ .
-\end{itemize}
-\end{definition}
-Here are some properties of the reduced covering resolution complex. 
-\begin{fact}
-The Reduced covering resolution satisfies the following analogous properties to the covering resolution. 
-\begin{itemize}
-\item $b_0(\mathcal U):=\dim H_0(\tilde{CR}(\mathcal U))=|X|.$
-\item $b_k(\mathcal U)=0$ for all $k\neq 0$. 
-\item There is the inclusion-exclusion cone 
-\[\tilde{CR}_\bullet(\mathcal U)=\cone(\tilde{CR}_\bullet(\mathcal U_\cap)\to \tilde{CR}_\bullet(\mathcal U_\cup)\]
-\end{itemize}
-\end{fact}
-\end{comment}
+\laststation{Exercises}
+\input{app_homological/homologicalexercises.tex}

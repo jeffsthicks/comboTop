@@ -1,0 +1,48 @@
+
+\begin{doubledpage}{example}{Topology 101}{A topological space is a set, equipped with the additional data of \emph{open sets} which determine which points on the topological space are close to each other. In this section, we give a quick overview of point-set topology. }
+\label{def:topologycc}
+\begin{definition}
+    A \emph{topological space} is a pair $(X,\mathcal U)$, where $X$ is a set, and $\mathcal U$ is a specified collection of subsets of $X$, called \emph{open sets} satisfying the following axioms:
+    \begin{itemize}
+        \item The empty set and whole space $X$ are open sets. 
+        \[\emptyset, X\in \mathcal U\]
+        \item Any union of open sets is an open set. 
+        \[U_\alpha \subset \mathcal U \Rightarrow \left(\bigcup_{\alpha \in A} U_\alpha \right) \in \mathcal U.\]
+        \item Any finite intersection of open sets is an open subset. 
+        \[\mathcal B\subset \mathcal U , | B|< \infty \Rightarrow \left(\bigcap_{\beta\in B} U_\beta \right) \in \mathcal U.\]
+    \end{itemize}
+    \end{definition}
+    Open sets are kind of strange things. Roughly speaking, if $x$ and $y$ mutually belong to an open set, then we know that they are close to each other in \emph{some} sense, but unlike in the metric space a topology doesn't tell you \emph{how} near two points are two each other. It just tells you that there is something containing both of them. We still get some relative idea of closeness-- if two points mutually belong to many open sets, then we think of them being closer to each other. \\
+    Let's introduce a few examples of topologies. 
+    \begin{example}[The Discrete Topology]
+    Let $X$ be a set. The \emph{discrete topology}  has every subset of $X$ as an open set:
+    \[\mathcal U = \{U \;|\; U\subset X\}\]
+    This topology has too many open subsets, and all of the points are very far away from each other!
+    \end{example}
+    A common example of a topological space comes from metric spaces.
+    We'll say that a $U$ is open if every point in $x$ is contained within an open ball inside of $U$. 
+\newpage
+    \begin{example}
+    Let $(X, \rho)$ be a metric space. Say that a set $U$ is \emph{$\rho$-open} if for every point $x\in U$, there exists an open ball $B_\epsilon(y)$ with 
+    \[x\in B_\epsilon(y)\subseteq U.\]
+    Then the collection of sets 
+    \[\mathcal U = \{U\subset X \;|\; \text{$U$ is $\rho$-open}\}\]
+    makes $(X, \mathcal U)$ a topology. For example, on the real numbers every open interval is an example of an open set with this topology. \label{thm:metrictopology} 
+    \end{example}
+
+The interesting maps between topological spaces are those which preserve the topological structure. 
+\begin{definition}[Continuous Maps]
+    Let $f: X\to Y$ be a function, and $U\subset Y$. The \emph{pre-image} of $Y$ is all the elements of $X$ which get mapped to $U$, 
+    \[f^{-1}(U):=\{x\in X\;|\; f(x)\in U\}.\]
+    A function $f: X\to Y$ is continuous if and only if for every open set $U\subset Y$, the preimage 
+    \[f^{-1}(U)\subset X\]
+    is an open set of $X$. 
+    \end{definition}
+    Suppose that $f: X\to Y$ and $g: Y\to Z$ are continuous maps. Then for any $U\in Z$, $(g\circ f)^{-1}(U)$ is again an open set, which shows that the composition of continuous maps is continuous. 
+
+    A topological space is called \emph{disconnected} if $X=U_1\sqcup U_2$, with $U_1, U_2$ nonempty open sets. The \emph{connected components} of a topological space are the smallest nonempty open sets $\{U_i\}$ so that $X=\bigsqcup_{i=1}^k U_i$. We say that in this case that $X$ has $k$-connected components. 
+    \begin{theorem}
+        Suppose that $X$ has $k$-connected components. Let $\hom(X, \ZZ_2)$ denote the set of linear maps from $X$ to the space with two points. Then
+        \[\dim(\hom(X, \ZZ_2))=k.\] 
+    \end{theorem}
+\end{doubledpage}

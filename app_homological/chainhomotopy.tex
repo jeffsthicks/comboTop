@@ -1,0 +1,61 @@
+
+\begin{elevator}[Chain Homotopy]
+Homological algebra is ultimately the study of which chain complexes are isomorphic to each other in a homological way
+\end{elevator}
+\label{append:chainhomotopy}
+\begin{definition}[Quasi-isomorphism] \label{def:quasiisomorphism} Let $f:A_\bullet \to B_\bullet$ be a chain map. Then we say that $f$ is a  \emph{quasi-isomorphism} if the induced map on homology, $f_*:H_i(\mathcal A)\to H_i(\mathcal B)$ are isomorphisms of homology groups. \end{definition}
+Notice that while every isomorphism which is a chain map gives us a quasi-isomorphism, a chain map need not be an isomorphism to be a quasi-isomorphism. 
+\begin{example}[Non-isomorphic, but quasi-isomorphic]
+Not isomorphic, but quasi-isomorphic. 
+\end{example}
+Similarly, even if $(A, \partial)$ and $(B, \partial)$ have isomorphic homology groups, they need to not be quasi-isomorphic. 
+\begin{example}
+It is not necessarily the case that if two chain complexes have isomorphic homology that those two complexes are quasi isomorphic. 
+\end{example}
+Even though $f_\bullet: A_\bullet\to B_\bullet$ is a quasi-isomorphism, there is no guarantee that there exists $g_\bullet: B_\bullet\to A_\bullet$ so that the maps $(g\circ f)_k: H_k(A)\to H_k(A)$ is the identity. In other words, there is no need for inverses to exists to quasi-isomorphism on either the chain or homological level. If such a map exists, we call it a \emph{quasi-inverse}. 
+\begin{example}[Non-inverticble quasi-isomorphism]
+Chain Complexes with no quasi-inverse.
+\end{example}
+It is usually hard come up with an interpretation of where a quasi-isomorphism comes from; in general the question if two maps $f,g :A_\bullet\to B_\bullet$ do the same thing on homology is hard to get some intuition on. As a proxy to showing that two maps have the same definition on homology, we introduce an idea from topology: that of a \emph{homotopy.}
+
+\begin{definition}[Chain Homotopy] Let $(A,\partial^A)$ and $(B, \partial^B)$ be chain complexes. Let $f_\bullet:A_\bullet\to B_\bullet$ and $g_\bullet:A_\bullet \to B_\bullet$ be chain maps. Then we say that $f$ is \emph{chain homotopic} to $g$ if there exists a series of maps (called a \emph{chain homotopy}) $h_i:A_i\to B_{i+1}$ such that $$f-g=\partial^B h_{i}+h_{i-1}\partial^A$$ We write that $f\sim g$. \end{definition}
+
+Here's a diagram that helps visualize the maps involved in a chain homotopy.
+\[\begin{tikzcd}[column sep=2cm]
+\cdots \arrow{r}{\partial^A} & A_{i+1}\arrow[bend left]{d}[description]{f} \arrow[bend right]{d}[description]{g}\arrow{dl}[description]{h_{i+1}} \arrow{r}{\partial^A} & A_{i}\arrow[bend left]{d}[description]{f} \arrow[bend right]{d}[description]{g}\arrow{dl}[description]{h_{i}} \arrow{r}{\partial^A}& A_{i-1} \arrow[bend left]{d}[description]{f} \arrow[bend right]{d}[description]{g}\arrow{dl}[description]{h_{i-1}}\arrow{r}{\partial^A}& \cdots \arrow{dl}[description]{h_{i-2}}\\
+\cdots \arrow{r}{\partial^B} & B_{i+1} \arrow{r}{\partial^B} & B_{i} \arrow{r}{\partial^B}& B_{i-1} \arrow{r}{\partial^B}& \cdots \\
+\end{tikzcd}\]
+It can be difficult to get an intuition on what a chain homotopy between two map constitutes. One interpretation comes from topology; for every element $x$, the difference between $f(x)$ and $g(x)$ can be expressed as a cylinder connecting $f(x), g(x)$. This bears resemblance to the definition of a homotopy between two maps in point-set topology. 
+
+\begin{example} An example of a chain homotopy will go here!
+\end{example}
+One thing worth pointing out is that we don't have any condition of compatibility with the differential for the homotopy maps $h_k:A_k\to B_{k+1}$; they are allowed to be as crazy as need be. 
+Chain homotopy is especially useful for the following lemma:
+\begin{lemma}[Homotopic maps agree on homology]
+Suppose that $f_\bullet, g_\bullet: A_\bullet\to B_\bullet$ are chain homotopic chain maps. Then they are the same map on homology, in the sense that 
+\[f_k[x]=g_k[x]\]
+for every $[x]\in H_k(A). $
+\end{lemma}
+\begin{proof}
+What we want to show is that $f_k-g_k= \partial^B_{k+1} h_{k}+h_{k-1}\partial^A_k$, then for every $[a]\in H_k(A)$, there exists $b\in C_{k+1}(B)$ with 
+\[f_k(a)-g_k(a)=\partial_{k+1}(b).\]
+The homotopy gives us a natural for $b$ is; we can let $b=h_k(a)$. Taking our definition of homotopy shows 
+\begin{align*}f_k(a)-g_k(a)=&\partial^B_{k+1} h_{k}(a)+h_{k-1}\partial^A_k(a)\\
+\intertext{ As $a$ represents a class in homology} 
+=& \partial^B_{k+1} h_{k}(a)= \partial^B_{k+1}(b). \end{align*}
+\end{proof}
+
+
+This next claim shows the usefulness of chain homotopies:
+\begin{lemma}[Homotopic to Identity] Let $f:\mathcal A\to\mathcal B$ and $g:\mathcal B\to\mathcal A$ be chain maps. Suppose that $g\circ f\sim 1_{\mathcal A}$ and $g\circ f \sim 1_{\mathcal B}$. Then $f$ and $g$ are quasi-isomorphisms.
+\begin{proof}
+Let's start with a diagram.
+\[]\begin{tikzcd}[column sep=2cm]
+\cdots \arrow[crossing over]{r}[near start]{d'} & A_{i+1} \arrow{r}{d}\arrow{ddl}[near start, description]{h} \arrow{d}[description]{f}\arrow[bend left]{dd}&  A_{i} \arrow{r}{d}\arrow{d}[description]{f}\arrow[bend left]{dd} \arrow{ddl}[near start, description]{h}& A_{i-1} \arrow{d}[description]{f}\arrow{r}{d}\arrow[bend left]{dd}\arrow{ddl}[near start, description]{h}& \cdots \\
+\cdots \arrow[crossing over]{r}[near start]{d'} & B_{i+1} \arrow[crossing over]{r}[near start]{d'}\arrow{d}[description]{g}&  B_{i} \arrow[crossing over]{r}[near start]{d'}\arrow{d}[description]{g}& B_{i-1}\arrow{d}[description]{g}\arrow[crossing over]{r}[near start]{d'}& \cdots \\
+\cdots \arrow[crossing over]{r}[near start]{d'} & A_{i+1} \arrow{r}{d}            &   A_{i} \arrow{r}{d}             & A_{i-1}\arrow{r}{d}             & \cdots \\
+\end{tikzcd}\]
+The homotopy to the identity map gives us that there exists $h$ such that $g\circ f- 1_{\mathcal A}=dh^{i}+h^{i-1}d$. Suppose that $v\in H_i{A}$. Then $v$ is in the kernel of $d$, so $h^{i-1}d(v)=h^{i-1}(0)=0$. We have that therefore $g\circ f - 1_{\mathcal A}\in \im(d)$, which is to say that on homology $g\circ f = 1_{\mathcal A}$, as we mod out by $\im(d)$ when we take homology.\\
+Of course, a similar proof shows that $f\circ g=1_{\mathcal A}$
+\end{proof}
+\end{lemma}
