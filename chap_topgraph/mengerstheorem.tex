@@ -20,7 +20,7 @@ Let $\mathcal P_n=\{P_1, \ldots , P_n\}$ be a collection of disjoint paths $G$, 
 Then there exists a point $y\in B$ and  collection $\mathcal P_{n+1}$ of $n+1$ disjoint paths in  $G\setminus (A\cup B))$ which satisfy the above conditions, with right endpoints $b_1, \ldots, b_n, y$. 
 \end{claimfigureenv}
 
-We will prove this by inducting  on the size of $G\setminus B$. When $B$ is all of $G\setminus A$, then each path $P_i$ consists of a single edge, and $k$-connectedness gaurentees that $A$ cannot be separated from $B$ by fewer than the removal of $k$-vertices.
+We will prove this by inducting  on the size of $G\setminus B$. When $B$ is all of $G\setminus A$, then each path $P_i$ consists of a single edge, and $k$-connectedness guarantees that $A$ cannot be separated from $B$ by fewer than the removal of $k$-vertices.
 For our inductive step, let us assume that the claim holds for every subgraph $B'$ containing $B$.  Let's look at our current graph and subgraph $B$. 
 Now, we will randomly construct a new path $Q$ from $A$ with a  random endpoint in $B$.
 If this path is disjoint from the $\mathcal P_n$, then we are done.
@@ -44,7 +44,7 @@ The more difficult case is when  $z$ only belongs to the enlargement  $B'$. Then
         \item $P''_n$, which is $P'_n$ concatenated with $Q_b$, and 
         \item $P''_{n+1}$, which is $P'_{n+1}$ concatenated with the portion of $Q_y$ lying after $z$. 
     \end{itemize} 
-    These two paths are disjoint from the $P'_1, \ldots, P'_{n-1}$, and are additionally disjoint for eachother. These paths are seen to have interior vertices which are disjoint from $B$, and by construction have left endpoints in $A$. The $\{P_1', \ldots, P'_{n-1}, P''_n, P''_{n+1}\}$ satisfy the conditions of the claim. 
+    These two paths are disjoint from the $P'_1, \ldots, P'_{n-1}$, and are additionally disjoint for each other. These paths are seen to have interior vertices which are disjoint from $B$, and by construction have left endpoints in $A$. The $\{P_1', \ldots, P'_{n-1}, P''_n, P''_{n+1}\}$ satisfy the conditions of the claim. 
 \end{paragraphfigureenv}
 
 \begin{paragraphfigureenv}{191figures/topgraph_mengercase3.tikz}

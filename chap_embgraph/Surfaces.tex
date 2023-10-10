@@ -5,7 +5,7 @@ We generalize our study of planar drawing to drawings on other surfaces, and alo
 \end{elevator}
 The simplest kind of topological surface that we can look at are those of \emph{surfaces.} A good way to get an initial handle on surfaces is by describing them in terms of the combinatorial data of a graph drawn on that surface. We'll give a formal definition of a surface in the next section, but for now think of this as a shape without corners which you could make out of a rubber sheet.
 \begin{definition}
-An \emph{embedding} of a graph $G$ into a surface $\Sigma$ is a drawing of $G$ on $\Sigma$ where no edges cross eac hother. 
+An \emph{embedding} of a graph $G$ into a surface $\Sigma$ is a drawing of $G$ on $\Sigma$ where no edges cross  each other. 
 \end{definition}
 Here are a few examples of embeddings of graphs into surfaces:
 
@@ -21,7 +21,7 @@ Here are a few examples of embeddings of graphs into surfaces:
 
 \begin{examplefigureenv}[Differences in face counts]{191figures/embgraph_planeVsTorus.tikz}
 	
-There are of some more intesting graphs that we can embed on the torus. In the figure on the right, the graph drawn has only 1 face; but any planar drawing of this graph will have 3 faces as the graph has 2 cycles. 
+There are of some more interesting graphs that we can embed on the torus. In the figure on the right, the graph drawn has only 1 face; but any planar drawing of this graph will have 3 faces as the graph has 2 cycles. 
 \end{examplefigureenv}
 
 It can be difficult to draw a graph on a surface when we imagine that surface being in 3-dimensional space-- especially when we consider that not every surface is embeddable in 3 dimensional space! Here is a convenient piece of notation or drawing technique for getting a better handle on visualizing surfaces. A \emph{gluing polygon} for a surface is a polygon where pairs of sides have been labeled with an orientation and letter. Such a diagram gives us a method for building a surface: imagine that this polygon was a sheet of rubber, and take pairs of sides equipped with the same label and glue them together as specified by the orientation. 
@@ -81,7 +81,7 @@ as each subdivision adds an equal number of edges and vertices to a graph. There
 
 \begin{proof}[Proof of Theorem \ref{thm:eulercharacteristicsurface}.]
 \begin{paragraphfigureenv}{191figures/embgraph_commonRefinement.tikz}
-Given two nets $G_1$ and $G_2$ on a surface, there is another net $H$ called the \emph{common refinement,} which contains both $G_1$ and $G_2$ as topological minors. There is a bit of topology or analysis to explicitally construct this graph, but in essence the graph is created by taking the drawings of $G_1$ and $G_2$, and creating a new graph whose vertices come from $G_1, G_2$ and the intersection points of the edges of $G_1$ and $G_2$. 
+Given two nets $G_1$ and $G_2$ on a surface, there is another net $H$ called the \emph{common refinement,} which contains both $G_1$ and $G_2$ as topological minors. There is a bit of topology or analysis to explicitly construct this graph, but in essence the graph is created by taking the drawings of $G_1$ and $G_2$, and creating a new graph whose vertices come from $G_1, G_2$ and the intersection points of the edges of $G_1$ and $G_2$. 
 Since a topological minor which is also a net yields the same Euler characteristic,
 \[\chi_{G_1}(\Sigma)=\chi_{H}(\Sigma)=\chi_{G_2}(\Sigma)\]
 proving the theorem.
@@ -123,7 +123,7 @@ taking the edges of $E$ to paths in $E'$, and each face in $F$ contractible subs
 
 
 \begin{examplefigureenv}[A topological non-trivial map]{191figures/embgraph_nonTrivialMorphism.tikz}
-	Such a map between surfaces need not be a topologically trivial map between surfaces. For instance, the map described by matching the colored faces to eachother on the right describes the ``double covering'' map of the sphere. Notice that each color in the bottom surface corresponds to 2 faces in the top surface. In Sphereical coordinates, this would correspond to the map 
+	Such a map between surfaces need not be a topologically trivial map between surfaces. For instance, the map described by matching the colored faces to each other on the right describes the ``double covering'' map of the sphere. Notice that each color in the bottom surface corresponds to 2 faces in the top surface. In Spherical coordinates, this would correspond to the map 
 \[(\theta, \phi)\mapsto (2\theta, \phi).\]
 While this map is not injective, it is a valid map of surfaces. 
 \end{examplefigureenv}
@@ -145,7 +145,7 @@ Notice that under our definition, it is not possible for two surfaces to be topo
 \begin{examplefigureenv}[$\chi$ is not a complete invariant]{191figures/embgraph_kleinVsTorus.tikz}
 	The torus and the Klein bottle are very topologically similar surfaces. Here, we've drawn the torus on top, and the Klein bottle on the bottle. One can show that these are not the same surface; the Klein bottle is an example of a \emph{nonorientable surface.} However, the nets that they admit look very similar, making them impossible to tell apart by using the Euler characteristic (they both have Euler characteristic zero).
 
-The thing that one needs to understand in telling these two spaces apart is that that surfaces are determined more than just the nets that are drawn on them, and the incidence conditions for those nets. It is also important to consider the order of the cycles which are being glued into those nets to get an understanding for the surface.
+The thing that one needs to understand in telling these two spaces apart is that surfaces are determined more than just the nets that are drawn on them, and the incidence conditions for those nets. It is also important to consider the order of the cycles which are being glued into those nets to get an understanding for the surface.
 \end{examplefigureenv}
 \begin{elevator}[The Euler Characteristic]
 The Euler Characteristic, determines all orientable surfaces uniquely; as a result, many facts about surfaces and their properties can be restated in terms of Euler characteristic. We relate the Euler Characteristic to curvature, handlebodies, critical points of a function on a surface and introduce homology. 
@@ -192,7 +192,7 @@ When we look at a surface, we can ``guess'' what the Euler characteristic is wit
 \caption{Some Euler Characteristics.}
 \end{figure}
 We want to understand how we may assemble larger surfaces from smaller ones, and figure out what the Euler characteristic of the whole is based on the Euler characteristic of the smaller parts. 
-\begin{definition}Let $\Sigma_1$ and $\Sigma_2$, with nets drawn on them $G_1$ and $G_2$ respectively. Let $f_1, f_2$ be faces in $G_1$ and $G_2$, and $f_1\sim f_2$ an identifaction of their boundary cycles.  the define the \emph{connect sum of $\Sigma_1, \Sigma_2$ along $f_1\sim f_2$} to be the surface $\Sigma_1\#_{f_1\sim f_2} \Sigma_2$ defined by the net with  
+\begin{definition}Let $\Sigma_1$ and $\Sigma_2$, with nets drawn on them $G_1$ and $G_2$ respectively. Let $f_1, f_2$ be faces in $G_1$ and $G_2$, and $f_1\sim f_2$ an identification of their boundary cycles.  the define the \emph{connect sum of $\Sigma_1, \Sigma_2$ along $f_1\sim f_2$} to be the surface $\Sigma_1\#_{f_1\sim f_2} \Sigma_2$ defined by the net with  
 \begin{itemize}
 \item Vertices given by $(V(G_1)\sqcup V(G_2))/\sim$
 \item Edges given by $(E(G_1)\sqcup E(G_2))/\sim$
@@ -208,7 +208,7 @@ Connect sum of surface can be interpreted as taking two disks on different surfa
 \end{figure}
 Connect sum is a operation which allows us to build surfaces out of simpler ones, and explains why we are able to ``visually'' understand what the Euler Characteristic of a surface is by visual inspection.
 \begin{claim}
-The Euler characteristic of the connect sum is related to the Euler charactertistic of the original components by 
+The Euler characteristic of the connect sum is related to the Euler characteristic of the original components by 
 \[\chi(\Sigma_1\#_{f_1\sim f_2} \Sigma_2)=\chi(\Sigma_1)+\chi(\Sigma_2)-2.\]
 \end{claim}
 \begin{proof}
@@ -242,7 +242,7 @@ This monoid property can be shown to be \label{proj:classification} the only dat
 \begin{theorem}[Classification of Surfaces]
  The Sphere, Torus and Projective Plane generate the monoid of surfaces. In fact this monoid is $\langle T, P \;|\; PT=PPP, PT=TP\rangle. $
 \end{theorem}
-The classification of surfaces is remarkable, as we accessible  classifications of topological manifolds if they have dimension 0, 1, or 2.  In dimension 3, one must use a trick called ``geometrization'' to classify the manifolds, (which is really hard!) In dimensions 5 and above, manifolds can be classified (smoothly) using a a technique called surgery. Dimension 4 can be topologically attacked by using the tool of surgery, but smoothly cannot; techniques to understand the smooth structure of 4 manifolds are still an area of open research.
+The classification of surfaces is remarkable, as we accessible  classifications of topological manifolds if they have dimension 0, 1, or 2.  In dimension 3, one must use a trick called ``glamorization'' to classify the manifolds, (which is really hard!) In dimensions 5 and above, manifolds can be classified (smoothly) using a technique called surgery. Dimension 4 can be topologically attacked by using the tool of surgery, but smoothly cannot; techniques to understand the smooth structure of 4 manifolds are still an area of open research.
 \end{projectdescription} 
 
 
@@ -260,7 +260,7 @@ Morse theory makes the following observations:
 \end{itemize}
 While to make this rigorous takes a substantial amount of differential geometry,  we can briefly outline the overall ideas. You take a function from the space $X$ to the real numbers,  called the height functions. The horizontal tangent spaces of this function are the critical points of the function. We will want to do a similar thing for our simplicial spaces.
 
-In certain cases, every critical point looks locally like a maximum, a minimum, or a saddle. This can be stated rigerously by defining the \emph{index} as the number of negative eigenvalues of the Hessian at a critical point. In our example, $x_1, x_2$ have index 2, $y$ has index 1, and $z$ has index $0$. \\
+In certain cases, every critical point looks locally like a maximum, a minimum, or a saddle. This can be stated rigorously by defining the \emph{index} as the number of negative eigenvalues of the Hessian at a critical point. In our example, $x_1, x_2$ have index 2, $y$ has index 1, and $z$ has index $0$. \\
 Notice that the index of a critical point determines the dimension of the flow space emanating from that critical point. Each flow space is contractible, so it is reasonable to  come up with the following conjectural relationship:
 \[\begin{tabular}{l|l|l}
 Index & Dimension Flow Space & Graph Theoretic Analogue\\ \hline
@@ -268,13 +268,13 @@ Index & Dimension Flow Space & Graph Theoretic Analogue\\ \hline
 1& 1& Edge\\
 0 & 0 & Vertex
 \end{tabular} \]
-While we cannot assemble graphs from the morse function, we can define their Euler characteristics. 
+While we cannot assemble graphs from the Morse function, we can define their Euler characteristics. 
 \begin{theorem} Let $f:\Sigma\to \RR$ be a function with non-degenerate critical points. Define the \emph{Euler characteristic of $f$} to be 
 \[\chi_f(\Sigma)\sum_{x\in \Crit(f)} (-1)^{\ind(f)}.\]
 This is no different than the Euler Characteristic of $\Sigma,$
 \[\chi_f(\Sigma)=\chi(\Sigma).\]
 \end{theorem}
-We won't be able to prove the full differential geometry version of this theorem, as we don't have access to the machinery of differential geometry and analysis necessary to make this rigerous. 
+We won't be able to prove the full differential geometry version of this theorem, as we don't have access to the machinery of differential geometry and analysis necessary to make this rigorous. 
 \subsubsection{Discrete Morse Functions}
 \begin{projectdescription}
 However, there is a discrete analogue of Morse functions which draws much of it's philosophy from the smooth construction.\label{proj:morsetheory} This theory works in the general setting of simplicial complexes, but here we will restrict ourselves to the case of surfaces. The full theory of Discrete Morse Functions, and their associated homology theory, is fleshed out in \cite{forman2002user}. 
@@ -283,7 +283,7 @@ However, there is a discrete analogue of Morse functions which draws much of it'
 Let $\Sigma$ be a triangulated surface. Write $\Delta(\Sigma)= V\cup E\cup F$. $\Delta(\Sigma)$ comes with a \emph{partial order} given by $v<e<f$ whenever $v$ is a vertex contained in the edge $e$, and $e<f$ whenever $e$ is an edge contained in the face $f$. \\
 \end{definition}
 If $\alpha< \beta \in \Delta$ are two simplices without an intermediary $\alpha<\gamma<\beta$, then we say that $\alpha$ is a \emph{facet} of $\beta$ and write $\alpha\lessdot\beta$. \\
-The kind of functions which mimic those describing paint flows are \emph{discrete morse functions. } 
+The kind of functions which mimic those describing paint flows are \emph{discrete Morse functions. } 
 \begin{definition}[Discrete Morse Function]
 Let $\Sigma$ be a triangulated surface. A \textbf{discrete Morse function} for $\Sigma$ is a function $f: \Delta(\Sigma)\to \RR$ such that for every simplex $\alpha$,
 \[|\{\beta \;|\; \beta\lessdot \alpha ,  f(\beta)\geq f(\alpha)\}|\leq 1\]
@@ -291,11 +291,11 @@ Let $\Sigma$ be a triangulated surface. A \textbf{discrete Morse function} for $
 \end{definition}
 The rules for a Morse function look a little bit strange, but they can be summarized with two ideas:
 \begin{itemize}
-\item  Most of the time, the morse function increases as you go from vertex to edge to face. If this is not the case, we have two sets,  $\{\beta \;|\; \beta\lessdot \alpha ,  f(\beta)\geq f(\alpha)\}$ the \emph{upward exception} and $\{\beta \;|\; \alpha\lessdot \beta ,  f(\alpha)\geq f(\beta)\}$ the downward exception. 
+\item  Most of the time, the Morse function increases as you go from vertex to edge to face. If this is not the case, we have two sets,  $\{\beta \;|\; \beta\lessdot \alpha ,  f(\beta)\geq f(\alpha)\}$ the \emph{upward exception} and $\{\beta \;|\; \alpha\lessdot \beta ,  f(\alpha)\geq f(\beta)\}$ the downward exception. 
 \item A Morse function is a function which has at most 1 upward exception at each simplex, and at most 1 downward exception at each simplex. 
 \end{itemize}
 \begin{examplefigureenv}[A discrete Morse function]{191figures/embgraph_morseFunction.tikz}
-	The labeling on the right gives a morse function on the sphere, with a net given by a tetrahedron. One can see that in this representation, the outside face is the ``maximum'' of the sphere, while the central function is the ``minimum'' of the morse function. Notice that the function roughly increases in value as we go from the center of the diagram to the outside of the diagram. In this example, there is a maximum and minimum, and nothing that looks like a ``saddle'' point. 
+	The labeling on the right gives a Morse function on the sphere, with a net given by a tetrahedron. One can see that in this representation, the outside face is the ``maximum'' of the sphere, while the central function is the ``minimum'' of the Morse function. Notice that the function roughly increases in value as we go from the center of the diagram to the outside of the diagram. In this example, there is a maximum and minimum, and nothing that looks like a ``saddle'' point. 
 \end{examplefigureenv}
 While the assignments of numbers to the simplices seems like a good idea to imitate a Morse function,  why do we have these funny conditions?  The idea is that all simplices should have at most one higher side and be the higher face of one simplex. \\
 \begin{claim}
@@ -329,9 +329,9 @@ Each vertex, edge of face is only allowed to have 1 upward and/or downward excep
 	\[f(v)< f(e)< f(f).\]
 	Let $e'$ the other edge in the boundary of $f$ containing $v'$. This edge also satisfies
 	\[v'\lessdot e\lessdot f.\]
-	As $v$ has at most one downward expection, and $f$ can have at most one upward exception, 
+	As $v$ has at most one downward exception, and $f$ can have at most one upward exception, 
 	\[f(v)\leq f(e') \leq f(f).\]
-	This contradicts our first inequality on the morse function. 
+	This contradicts our first inequality on the Morse function. 
 \end{proof}
 Notice that if $\alpha\cdot \beta$, and $\beta$ is an downward exception for $\alpha$ then $\alpha$ is an upward exception for $\beta$. In other words, the upward and downward exceptions induce a pairing on the non-critical vertices, edges and faces of $\Sigma$. \\
 \begin{examplefigureenv}[A discrete vector field]{191figures/embgraph_discreteVectorField.tikz}
@@ -366,7 +366,7 @@ Recall that the set of faces formed a spanning set of the cycle space of a plana
 
 
 \begin{examplefigureenv}[Cycles on the torus]{191figures/embgraph_cyclesOnTorus.tikz}
-	Notice in this net for the torus, there is only 1 face. However, there are 2 cycles: the one that goes meridinally around the torus, and the one that goes longitudinally. Since there are fewer faces than cycles, it is clear that they do not form a good basis for the cycle.
+	Notice in this net for the torus, there is only 1 face. However, there are 2 cycles: the one that goes meridionally around the torus, and the one that goes longitudinally. Since there are fewer faces than cycles, it is clear that they do not form a good basis for the cycle.
 \end{examplefigureenv}
 To prove that there are many ``interesting cycles'' that cannot be represented by faces, we'll start introducing the idea of \emph{homology.}
 \begin{theorem}
