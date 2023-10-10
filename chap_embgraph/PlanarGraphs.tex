@@ -32,9 +32,9 @@ A planar representation of a graph gives us a new piece of data: the \emph{faces
 \nomenclature{$F(G)$}{The faces of $G$.}
  Notice that this definition counts the large ``outer region'' of the plane as a face of the graph. 
  \begin{examplefigureenv}[Faces of a planar graph]{191figures/embgraph_embgraph.tikz}
-  An planar representation of a graph with three faces highlighted in different colors. The ``outer region'' also constitutes a face of this graph. The innermost face is not only connected but ``contractible'' in the sense that it it has no holes. The other interior face is not contractible: it has a hole! 
+  An planar representation of a graph with three faces highlighted in different colors. The ``outer region'' also constitutes a face of this graph. The innermost face is not only connected but ``contractible'' in the sense that it has no holes. The other interior face is not contractible: it has a hole! 
  \end{examplefigureenv}
-  From here on, whenver we have a graph $G$ with a planar representation, we will conflate the vertices and edges of $G$ with their images in the plane $\RR^2$ given by the planar representation.
+  From here on, whenever we have a graph $G$ with a planar representation, we will conflate the vertices and edges of $G$ with their images in the plane $\RR^2$ given by the planar representation.
 \begin{stationconnection}{sec:graph:cyclespace}
  Imagine you are walking along the path for $e$ drawn by $\gamma_e: I\to \RR^2$. If you jump off the path to the left (as determined by the direction you walk along the path), you will wind up with your feet in a face of the planar representation; similarly to your right hand there is also a face of the planar representation. We can therefore associate to each edge $e$ two faces, which we call the ``left face'' and ``right face''.  Note that the left face and the right face may be the same! 
 
@@ -81,7 +81,7 @@ This is a \emph{chain complex}, in that $\partial_E\circ \partial_F =0$ \label{d
 \label{claim:dsquarezerograph}
 \end{claim}
 \begin{proof}
-A rigerous proof of this statement is beyond this course --- it is actually the content of the \emph{Jordan curve theorem}! However, we give a sketch. In order to show that $\partial_E\circ \partial_F=0$, it suffices to check on a basis of $\mathcal F$. Let $f\in \mathcal F$ be a face. Then --- and we here we use the Jordan curve theorem --- the boundary  $\partial_F(f)$ is a union of cycles. By \sref{claim:cyclespaceisker}, this lies in the kernel of $\partial_E$. 
+A rigorous proof of this statement is beyond this course --- it is actually the content of the \emph{Jordan curve theorem}! However, we give a sketch. In order to show that $\partial_E\circ \partial_F=0$, it suffices to check on a basis of $\mathcal F$. Let $f\in \mathcal F$ be a face. Then --- and we here we use the Jordan curve theorem --- the boundary  $\partial_F(f)$ is a union of cycles. By \sref{claim:cyclespaceisker}, this lies in the kernel of $\partial_E$. 
 \end{proof}
 We will develop the algebraic theory of chain complexes throughout the course ( \sref{def:chainmap})
 We will continue to use this chain complex through this section.
@@ -244,7 +244,7 @@ let $G_{n,p}$ be a graph on $n$ vertices with each edge appearing with probabili
 Even though this method proves the existence of such a sparse-highly colored graph, it is in practice difficult to construct such a graph. 
 \end{projectdescription}
 
-For all of these difficulties, we expect that chromatic number of graph is a rather mysterious value to get a good pin on. However, we have a deletion-contraction tool which gives us an algorithem for computing the chromatic number of a graph.  
+For all of these difficulties, we expect that chromatic number of graph is a rather mysterious value to get a good pin on. However, we have a deletion-contraction tool which gives us an algorithm for computing the chromatic number of a graph.  
 \subsection{Chromatic Polynomial}
 Colorings of graphs follow some nice algebraic properties:
 
@@ -393,11 +393,11 @@ Now I want to briefly  want to explore coloring graphs on surfaces, which is (su
  which simplifies to $\delta\leq \frac{7+\sqrt{1+48g}}{2}$ giving us a minimal vertex. By the same induction argument as before, we have that every graph is at least this colorable. 
 \end{proof}
 \begin{elevator}[Planarity Criterion]
-We provide criteria for checking whether a graph has a planar embedding. These are Kuratowski's theorem, Algebraic Planartiy criterion, and the Cycle-Cut duality criterion. 
+We provide criteria for checking whether a graph has a planar embedding. These are Kuratowski's theorem, Algebraic Planarity criterion, and the Cycle-Cut duality criterion. 
 \end{elevator}
 \label{sec:planar:criterion}
 In this section, we'll look at two different approaches to determining whether or not a graph admits a planar embedding. The first approach looks for topological minors of $G$ which are ``obstructions'' to finding a planar drawing. This method basically tries to construct a drawing of the graph according to an algorithm, and classifies the types of topological minors that prevent the algorithm from running.\\
-The second approach asks what kind of algebraic data one can get about a graph by looking at the faces of the planar embedding, and whether the existence of such data guarentees a planar embedding. \\
+The second approach asks what kind of algebraic data one can get about a graph by looking at the faces of the planar embedding, and whether the existence of such data guarantees a planar embedding. \\
 Finally, we'll take a look again at dual graphs, and show that being planar is, in the appropriate language, equivalent to having a dual graph. 
 \subsection{Kuratowski's Theorem}
 
@@ -543,7 +543,7 @@ By induction hypothesis, $G/xy$ is 3 connected and has a planar drawing. Let's l
 \draw (3,-1) -- (1,-1.5);
 \node at (3.5,-1) {$v_{xy}$};
 \end{tikzpicture}\\
-The collection $C$ is the boundary of a face in the planar drawing of $G/xy \setminus v_{xy}$. We can now try adding in the the edge $xy$ and other edges of $G$. In this simplified case, we can to a case by case analysis to the obstruction of a planar embedding. Each case results in the creation of a $K_{3,3}$ or $K_5$ minor. (To check the cases, try adding in edges in clockwise order coming from $C$.) &\begin{tikzpicture}[baseline=(current bounding box.north)]
+The collection $C$ is the boundary of a face in the planar drawing of $G/xy \setminus v_{xy}$. We can now try adding in the edge $xy$ and other edges of $G$. In this simplified case, we can to a case by case analysis to the obstruction of a planar embedding. Each case results in the creation of a $K_{3,3}$ or $K_5$ minor. (To check the cases, try adding in edges in clockwise order coming from $C$.) &\begin{tikzpicture}[baseline=(current bounding box.north)]
   
   \input{figuresettings}
 \vertex at  (8,-0.5) {};

@@ -18,7 +18,7 @@ In the case where the graph $G$ is clear, we will suppress the label and simply 
 While this definition gives us the mathematical rigor necessary to begin our explanation of graphs, it is useful to have some good examples in mind to ground our discussion.
 %\footnote{I usually have a hard time understanding definitions in mathematics without first drawing a picture. In fact, I suggest that on a first reading of this book to look at the pictures before reading the definitions or proofs.}
 \begin{examplefigureenv}[Friends in the Order]{191figures/topgraph_potter.tikz}
-Let us look at the motiviating discussion of groups of friends at a party, and see how this fits into the definition of a graph.
+Let us look at the motivating discussion of groups of friends at a party, and see how this fits into the definition of a graph.
 Each person in the population would represent a vertex, and the edges between vertices correspond to the pairs of attendees who are friends.
 \end{examplefigureenv}
 \input{somecommongraphs}
@@ -128,7 +128,7 @@ As before, we look at how we can assemble local information -- in this case, the
 	A graph is connected if you can travel between any two vertices along the edges of the graph. We also look at several different quantitative measurements of connectivity.
 \end{elevator}
 \label{sec:graph:connectivity}
-Topology is the study of mathematical structures which have a notion of how their parts are connected to eachother.
+Topology is the study of mathematical structures which have a notion of how their parts are connected to each other.
 A graph is an example of a topological structure, as each vertex ``knows'' which neighbors it is connected to. 
 By travelling from vertex to vertex along edges, we can explore questions about the global connectivity of a graph.
 
@@ -160,7 +160,7 @@ Equivalently, a graph is $k$-connected if its connectivity is at least $k$.
 \nomenclature{$\kappa(G)$}{The vertex connectivity of $G$}
 Connectivity has a strange relationship with topology.
 Whether or not a graph is connected is a \emph{topological} property of the graph. However, the connectivity of a graph is \emph{not} a topological property.
-An example that demostrates that connectivity is not a topological property are the graphs of the triangle and the square, which are topologically indistinguishable.
+An example that demonstrates that connectivity is not a topological property are the graphs of the triangle and the square, which are topologically indistinguishable.
 However, the triangle is three connected, and the square is only 2 connected! We will later see in \sref{sec:graph:Minors} exactly why connectivity is not a topological property. 
 You can observe that even making small modifications to the graph (like making the edge of a graph into a path,) can greatly change to the connectivity of a graph. 
 
@@ -195,12 +195,12 @@ Finally, we define the \emph{Laplacian} of the graph $G$ to be the matrix
 The eigenvalues of $L$ bound the connectivity of $G$, and in applications gives a more nuanced definition for connectivity.
 \end{projectdescription}
 
-As demonstrated by the dumbell graph (\sref{fig:graph:dumbell}), the vertex connectivity tells us where the bottlenecks are in our graph. 
-Another way of counting the bottlenecks in a graph would be to ask how many independent paths there are betweeen two vertices, as the presence of a bottleneck in the graph will force this number to be small.
+As demonstrated by the dumbbell graph (\sref{fig:graph:dumbbell}), the vertex connectivity tells us where the bottlenecks are in our graph. 
+Another way of counting the bottlenecks in a graph would be to ask how many independent paths there are between two vertices, as the presence of a bottleneck in the graph will force this number to be small.
 \begin{definition} [$k$-path connected]
 	A graph is \emph{$k$-path connected} if any two vertices $v$ and $w$ can be joined by at least $k$ disjoint paths. 
 \end{definition}
-You can check that  the dumbell graph (\sref{fig:graph:dumbell}) is only 1-path connected, as there is only one way to get from the left portion of the graph to the right portion. Menger's theorem (\sref{graph:thm:mengers}) tells us that this is generally the case: the path connectivity of a graph is equal to its vertex connectivity.
+You can check that  the dumbbell graph (\sref{fig:graph:dumbbell}) is only 1-path connected, as there is only one way to get from the left portion of the graph to the right portion. Menger's theorem (\sref{graph:thm:mengers}) tells us that this is generally the case: the path connectivity of a graph is equal to its vertex connectivity.
 
 Menger's theorem seems a bit strange on first reading because of a contrast in the definition of path connectedness and vertex connectedness. 
 The path connectivity looks to  \emph{maximize} a set of independent paths, while the vertex connectivity is tries to  \emph{minimize} the size of a disconnecting set.
@@ -231,7 +231,7 @@ One application of Menger's theorem is to classify the structure of graphs with 
 
 \input{mengerstheorem}
 This gives us a method to build larger 2-connected graphs from smaller 2-connected graphs.
-This can be strenghthend to a characterization of $2$-connected graphs. 
+This can be strengthened to a characterization of $2$-connected graphs. 
 \begin{theorem}[Characterization of 2-connected graphs]
 	Let $G$ be a 2-connected graph. Then either 
 		\begin{itemize}

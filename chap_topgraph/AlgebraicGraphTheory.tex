@@ -44,7 +44,7 @@ Let $S=\{s_1, \ldots, s_k\}$ be a set. Denote by $\mathcal S$ the vector space o
 
 Let $f:S_1\to S_2$ be a map between sets. When we  write  $f: \mathcal S_1\to \mathcal S_2$, we'll mean the linear map induced from the basis $f$, which is called the \emph{linearization of $f$}.
 \end{definition}
-We'll continue to build a dictionary between sets and linear algebra throughout this course. A way to translate from vector spaces back to combinatorics ofsets is to use the relation 
+We'll continue to build a dictionary between sets and linear algebra throughout this course. A way to translate from vector spaces back to combinatorics of sets is to use the relation 
 \[\dim(\mathcal S)=|S|.\]
 \begin{claim}
 Let $S= S_1\sqcup S_2$ be finite sets. Then $\mathcal S= \mathcal S_1\oplus \mathcal S_2. $
@@ -150,7 +150,7 @@ The cycle space can be related to the boundary by
 \label{claim:cyclespaceisker}
 \end{claim}
 \begin{proof}
-The forward direction follows from \sref{claim:pathsindifferential}. To show that that every element of the $\ker\partial$ is a sum of cycles, we will use a greedy algorithm which decomposes an element $s\in \ker \partial $ into a sum of cycles.
+The forward direction follows from \sref{claim:pathsindifferential}. To show that every element of the $\ker\partial$ is a sum of cycles, we will use a greedy algorithm which decomposes an element $s\in \ker \partial $ into a sum of cycles.
 
 We induct on the number of edges in  $s\in \ker \partial$. Pick any edge $e_1$ in $s$. Since $s\in \ker \partial$, there must be another edge $e_2\in s$ with left endpoint equal to $e_1$'s right endpoint. This process constructs a path, and by finiteness of the graph this path must eventually cross itself. This gives us a cycle $c_1\in s$, so we have 
 \[s=s'+c_1\]
