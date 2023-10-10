@@ -1,0 +1,19 @@
+\begin{tikzpicture}[scale=\scalefactor]
+
+    \input{figuresettings}
+\draw[fill=\highlighta]  (0,0) circle[radius=3];
+\draw[fill=white] (120:2) -- (-120:2) -- (0:2) -- (120:2);
+\vertexa  (0, 0) {};
+\vertex at (120:2) {};
+\vertex at (240:2) {};
+\vertex at (2,0) {};
+\draw (120:2) -- (-120:2) -- (0:2) -- (120:2) -- (0:0) -- (-120:2);
+\draw (0:0) -- (0:2);
+\draw[->,blue] (60:.5)--(60:1);
+\draw[->,blue] (180:.5)--(180:1);
+\draw[->,blue] (300:.5)--(300:1);
+\draw[->,blue] (120:1)--(120:1.5);
+\draw[->,blue] (240:1)--(240:1.5);
+\draw[->,blue] (0:1)--(0:1.5);
+\pgfsize
+\end{tikzpicture}

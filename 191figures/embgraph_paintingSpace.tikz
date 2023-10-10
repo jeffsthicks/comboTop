@@ -1,0 +1,28 @@
+\begin{tikzpicture}[scale=\scalefactor]
+    \input{figuresettings}
+\draw plot [smooth cycle, tension =.75] coordinates {(0, .75)(-1, 1.2)(-1.2, 2)(-.75, 2.5)(0, 2)(.75, 3)(1, 1.5) };
+		\begin{scope}
+			\clip  (0, 0)rectangle (2, 4);
+			\draw[fill=blue] plot [smooth cycle, tension =.75] coordinates {(0, .75)(-1, 1.2)(-1.2, 2)(-.75, 2.5)(0, 2)(.75, 3)(1, 1.5) };
+		\end{scope}
+		\begin{scope}
+			\clip  (0, 2)rectangle (.74, 4);
+			%\draw[green,  thick] plot [smooth cycle, tension =.75] coordinates {(0, .75)(-1, 1.2)(-1.2, 2)(-.75, 2.5)(0, 2)(.75, 3)(1, 1.5) };
+		\end{scope}
+		\begin{scope}
+			\clip  (0, 0)rectangle (.74, 4);
+			\draw[red, thick,  fill =blue!30] plot [smooth cycle, tension =.55] coordinates {(0, .75)(-.25, 1.2)(0, 2) (.3, 1.2)};
+		\end{scope}
+		\begin{scope}
+			\clip  (0, 0)rectangle (-.74, 4);
+			\draw[red, dashed,  thick , fill =blue!30] plot [smooth cycle, tension =.55] coordinates {(0, .75)(-.25, 1.2)(0, 2) (.3, 1.2)};
+		\end{scope}
+		\draw plot [smooth, tension =.75] coordinates {(-1.2, 2)(-.6, 1.8)(0, 2)};
+		\draw[dotted] plot [smooth, tension =.3] coordinates {(-1.2, 2)(-.8, 2.1)(-.2, 1.95)(0, 2)};
+		\draw (0, .75) node[below] {$z$};
+		\vertex at  (0, .75) {};
+		\draw (0, 2) node[above] {$y$};
+		\draw (.75,  3) node[above] {$x_1$};
+		\draw (-.75, 2.5) node[above] {$x_1$};
+\pgfsize
+\end{tikzpicture}

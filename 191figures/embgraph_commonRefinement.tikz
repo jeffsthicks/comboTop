@@ -1,0 +1,39 @@
+\begin{tikzpicture}[scale=\scalefactor]
+    \input{figuresettings}
+
+    
+\vertexb at (0.5,-8.5) {};
+\vertexb at (0.5,-9.5) {};
+\vertexb at (-0.5,-9.5) {};
+\vertexb at (-0.5,-8.5) {};
+\draw  (-1.5,-7) rectangle (2,-10.5);
+\draw[blue] (-0.5,-8.5) -- (-0.5,-9.5) -- (0.5,-9.5) -- (0.5,-8.5) -- (-0.5,-8.5);
+\vertexa at (0,-7.5) {};
+\vertexa at (1.5,-9) {};
+\vertexa at (0,-9) {};
+\vertexa at (-1,-9) {};
+\draw [red](-1,-9) -- (0,-9) -- (0,-7.5) -- (1.5,-9) -- (0,-9);
+\vertexc at (0.5,-9) {};
+\vertexc at (0,-8.5) {};
+\vertexc at (-0.5,-9) {};
+
+
+\vertexb at (0.5,-0.5) {};
+\vertexb at (0.5,-1.5) {};
+\vertexb at (-0.5,-1.5) {};
+\vertexb at (-0.5,-0.5) {};
+\draw  (-1.5,1) rectangle (2,-2.5);
+\draw[blue] (-0.5,-0.5) -- (-0.5,-1.5) -- (0.5,-1.5) -- (0.5,-0.5) -- (-0.5,-0.5);
+
+
+
+\draw  (-1.5,-3) rectangle (2,-6.5);
+\vertexa at (0,-3.5) {};
+\vertexa at (1.5,-5) {};
+\vertexa at (0,-5) {};
+\vertexa at (-1,-5) {};
+\draw [red](-1,-5) -- (0,-5) -- (0,-3.5) -- (1.5,-5) -- (0,-5);
+
+
+\pgfsize
+\end{tikzpicture}

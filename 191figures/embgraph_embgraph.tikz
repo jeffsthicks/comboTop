@@ -1,0 +1,16 @@
+\begin{tikzpicture}[scale=\scalefactor]
+    \input{figuresettings}
+\begin{tikzpicture}
+\fill[color=\highlighta]  (-2,2) rectangle (3,-1.5);
+\draw[fill =\highlightb] (0.5,1.5) -- (-1,-1) -- (2,-1) -- cycle;
+\draw[fill=\highlightc] (0.5,0.5) -- (0,-0.5) -- (1,-0.5) -- (0.5,0.5);
+
+\vertex at (0.5,1.5) {};
+\vertex at (-1,-1) {};
+\vertex at (2,-1) {};
+\vertex at (0.5,0.5) {};
+\vertex at (0,-0.5) {};
+\vertex at (1,-0.5) {};
+\end{tikzpicture}
+\pgfsize
+\end{tikzpicture}

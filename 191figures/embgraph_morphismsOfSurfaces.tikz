@@ -1,0 +1,58 @@
+\begin{tikzpicture}[scale=\scalefactor]
+    \input{figuresettings}
+\begin{scope}[shift={(-8,-8)}]
+\vertexa at (8.5,-0.5) {};
+\vertexa at (8.5,-1.5) {};
+\vertexa at (7.5,-1.5) {};
+\vertexa at (7.5,-0.5) {};
+\draw  (6.5,1) rectangle (10,-2.5);
+\draw[blue] (7.5,-0.5) -- (7.5,-1.5) -- (8.5,-1.5) -- (8.5,-0.5) -- (7.5,-0.5);
+\vertexb at (8,0.5) {};
+\vertexb at (9.5,-1) {};
+\vertexb at (8,-1) {};
+\vertexb at (7,-1) {};
+\draw [red](7,-1) -- (8,-1) -- (8,0.5) -- (9.5,-1) -- (8,-1);
+\vertexc at (8.5,-1) {};
+\vertexc at (8,-0.5) {};
+\vertexc at (7.5,-1) {};
+
+\end{scope}
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{scope}[]
+\vertexa at (0.5,-0.5) {};
+\vertexa at (0.5,-1.5) {};
+\vertexa at (-0.5,-1.5) {};
+\vertexa at (-0.5,-0.5) {};
+\draw  (-1.5,1) rectangle (2,-2.5);
+\draw[blue] (-0.5,-0.5) -- (-0.5,-1.5) -- (0.5,-1.5) -- (0.5,-0.5) -- (-0.5,-0.5);
+
+\end{scope}
+
+
+
+
+
+\begin{scope}[shift={(-4,-4)}]
+\draw  (2.5,1) rectangle (6,-2.5);
+\vertexb at (4,0.5) {};
+\vertexb at (5.5,-1) {};
+\vertexb at (4,-1) {};
+\vertexb at (3,-1) {};
+\draw [red](3,-1) -- (4,-1) -- (4,0.5) -- (5.5,-1) -- (4,-1);
+
+\end{scope}
+
+\draw[white]  (-2.5,2) rectangle (11.5,-3.5);
+\pgfsize
+\end{tikzpicture}

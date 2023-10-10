@@ -1,0 +1,33 @@
+\begin{tikzpicture}[scale=\scalefactor]
+    \input{figuresettings}
+
+    
+\vertex at (0, 0) {} ;
+\vertex at (120:2) {} ;
+\vertex at (240:2) {} ;
+\vertex at (2,0) {} ;
+\draw (120:2) -- (-120:2) -- (0:2) -- (120:2) -- (0:0) -- (-120:2);
+\draw (0:0) -- (0:2);
+\fill[white]  (0.4,1) rectangle (0.8,0.6);
+\fill[white]  (0.6,0.2) rectangle (1,-0.2);
+\fill[white]  (-1.2,0.2) rectangle (-0.8,-0.2);
+\fill[white]  (0.4,-0.6) rectangle (0.8,-1);
+\fill[white]  (-0.6,1) rectangle (-0.2,0.6);
+\fill[white]  (-0.6,-0.6) rectangle (-0.2,-1);
+\node at (0.2,0.2) {$1$};
+\node at (-0.4,0.8) {$2$};
+\node at (0.8,0) {$2$};
+\node at (-0.4,-0.8) {$2$};
+\node at (-0.6,0) {$3$};
+\node at (0.4,0.6) {$3$};
+\node at (0.2,-0.4) {$3$};
+\node at (0.6,-0.8) {$5$};
+\node at (-1,0) {$5$};
+\node at (0.6,0.8) {$5$};
+\node at (-1.2,2) {$4$};
+\node at (2.2,0) {$4$};
+\node at (-1.2,-2) {$4$};
+\node at (-1.5,0.2) {$6$};
+
+\pgfsize
+\end{tikzpicture}
